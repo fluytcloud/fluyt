@@ -1,0 +1,143 @@
+<div class="container">
+  <app-loader [show]="display">
+    <mat-accordion class="example-headers-align" multi>
+      <mat-expansion-panel [hideToggle]="true" [expanded]="true">
+        <mat-expansion-panel-header>
+          <div class="fc-form">
+            <div class="fc-form-actions-container">
+              <mat-panel-title>
+                General
+              </mat-panel-title>
+              <button mat-raised-button routerLink="/kubernetes/pods">Back</button>
+            </div>
+          </div>
+        </mat-expansion-panel-header>
+        <div class="fc-form">
+          <app-form-container label="Created"
+                              [value]="pod?.metadata?.creationTimestamp | date">
+          </app-form-container>
+
+          <app-form-multiple-container>
+            <app-form-container label="Name"
+                                [value]="pod?.metadata?.name">
+
+            </app-form-container>
+
+            <app-form-container label="Namespace"
+                                [value]="pod?.metadata?.namespace">
+            </app-form-container>
+          </app-form-multiple-container>
+
+          <app-form-container label="Annotations" [labelAbove]="true">
+            <mat-chip-listbox aria-label="annotations">
+              <mat-chip-option *ngFor="let annotation of pod?.metadata?.annotations | keyvalue">
+                {{annotation.key}} : {{annotation.value}}
+              </mat-chip-option>
+            </mat-chip-listbox>
+            <span *ngIf="!pod?.metadata?.annotations">None</span>
+          </app-form-container>
+
+          <app-form-container label="Labels" [labelAbove]="true">
+            <mat-chip-listbox aria-label="labels">
+              <mat-chip-option *ngFor="let label of pod?.metadata?.labels | keyvalue">
+                {{label.key}} : {{label.value}}
+              </mat-chip-option>
+            </mat-chip-listbox>
+            <span *ngIf="!pod?.metadata?.labels">None</span>
+          </app-form-container>
+
+          <app-form-multiple-container>
+            <app-form-container label="Status"
+                                [value]="pod?.status?.phase">
+            </app-form-container>
+
+            <app-form-container label="Node"
+                                [value]="pod?.spec?.nodeName">
+            </app-form-container>
+          </app-form-multiple-container>
+
+          <app-form-multiple-container>
+            <app-form-container label="Pod IP"
+                                [value]="pod?.status?.podIP">
+            </app-form-container>
+
+            <app-form-container label="Pod IPs">
+              <mat-chip-listbox aria-label="pod ips">
+                <mat-chip-option *ngFor="let podIP of pod?.status?.podIPs">
+                  {{podIP.ip}}
+                </mat-chip-option>
+              </mat-chip-listbox>
+            </app-form-container>
+          </app-form-multiple-container>
+
+          <app-form-multiple-container>
+            <app-form-container label="Service Account"
+                                [value]="pod?.spec?.serviceAccountName">
+            </app-form-container>
+
+            <app-form-container label="QoS Class"
+                                [value]="pod?.status?.qosClass">
+            </app-form-container>
+          </app-form-multiple-container>
+
+          <app-form-container label="Conditions" [labelAbove]="true">
+            <mat-chip-listbox aria-label="conditions">
+              <mat-chip-option *ngFor="let condition of pod?.status?.conditions">
+                {{condition.type}}
+              </mat-chip-option>
+            </mat-chip-listbox>
+          </app-form-container>
+
+          <app-form-container label="Tolerations" [labelAbove]="true">
+            <p-table [value]="pod?.spec?.tolerations">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th>Key</th>
+                  <th>Operator</th>
+                  <th>Value</th>
+                  <th>Effect</th>
+                  <th>Seconds</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-object>
+                <tr>
+                  <td>{{object.key}}</td>
+                  <td>{{object.operator}}</td>
+                  <td>{{object.value}}</td>
+                  <td>{{object.effect}}</td>
+                  <td>{{object.tolerationSeconds}}</td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </app-form-container>
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          Containers
+        </mat-expansion-panel-header>
+        <div class="fc-form">
+          <div *ngFor="let container of pod?.spec?.containers; let first = first;">
+            <mat-divider *ngIf="!first"></mat-divider>
+            <app-kubernetes-workload-pod-detail-container
+              [container]="container"
+              [containerStatuses]="getContainerStatusesByName(container.name)">
+            </app-kubernetes-workload-pod-detail-container>
+          </div>
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          Volumes
+        </mat-expansion-panel-header>
+        <div class="fc-form">
+          <div *ngFor="let volume of pod?.spec?.volumes; let first = first;">
+            <mat-divider *ngIf="!first"></mat-divider>
+            <app-kubernetes-workload-pod-detail-volume [volume]="volume">
+            </app-kubernetes-workload-pod-detail-volume>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </app-loader>
+</div>

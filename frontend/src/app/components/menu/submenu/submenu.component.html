@@ -1,0 +1,23 @@
+teste
+<section class="submenu" [class.extended]="parent.children.size == 0">
+  <div class="submenu-title" *ngIf="parent.children.size > 0">
+    {{parent.name}}
+  </div>
+
+  <div class="submenu-container">
+    <div class="submenu-nav" *ngFor="let child of parent.children | keyvalue: originalOrder">
+      <div class="submenu-subtitle">
+        {{child.key}}
+      </div>
+      <nav class="submenu-links">
+        <ul>
+          <li *ngFor="let menu of child.value">
+            <a [routerLink]="parent.url + '/' + menu.url" [class.selected]="menu.selected">
+              {{menu.name}}
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</section>

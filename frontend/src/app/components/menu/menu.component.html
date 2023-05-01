@@ -1,0 +1,31 @@
+<nav class="menu">
+  <div class="avatar">
+    <p-avatar label="{{avatarLabel}}"
+              styleClass="mr-2"
+              [style]="{'background-color':'#2B67F0', 'color': '#ffffff'}"
+              shape="circle"></p-avatar>
+  </div>
+  <div class="above">
+    <ul>
+      <li *ngFor="let menu of menus"
+          [class.selected]="menu.selected"
+          (click)="selectMenu(menu)"
+          matTooltip="{{menu.name}}"
+          matTooltipPosition="right">
+        <mat-icon inline>{{menu.icon}}</mat-icon>
+      </li>
+    </ul>
+  </div>
+  <div>
+    <ul>
+      <li class="logout"
+          (click)="logout()"
+          matTooltip="Sair"
+          matTooltipPosition="right">
+        <mat-icon fontIcon="logout"></mat-icon>
+      </li>
+    </ul>
+  </div>
+</nav>
+<app-submenu [parent]="selected"
+             *ngIf="selected"></app-submenu>

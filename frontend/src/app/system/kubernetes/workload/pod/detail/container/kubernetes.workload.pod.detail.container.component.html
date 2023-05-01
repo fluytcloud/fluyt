@@ -1,0 +1,73 @@
+<app-form-multiple-container>
+  <app-form-container label="Name"
+                      [value]="container.name">
+  </app-form-container>
+
+  <app-form-container label="Status"
+                      [value]="containerStatuses.ready ? 'Ready' : 'Not Ready'">
+  </app-form-container>
+</app-form-multiple-container>
+
+<app-form-container label="Image"
+                    [value]="container.image">
+</app-form-container>
+
+<app-form-multiple-container>
+  <app-form-container label="Image Pull Policy"
+                      [value]="container.imagePullPolicy">
+  </app-form-container>
+
+  <app-form-container label="Ports">
+    <mat-chip-listbox aria-label="container ports">
+      <mat-chip-option *ngFor="let port of container.ports">
+        {{port | podContainerPort}}
+      </mat-chip-option>
+    </mat-chip-listbox>
+  </app-form-container>
+</app-form-multiple-container>
+
+<app-form-container label="Environment" [labelAbove]="true">
+  <mat-chip-listbox aria-label="environments">
+    <mat-chip-option *ngFor="let env of container.env">
+      {{env | podContainerEnv}}
+    </mat-chip-option>
+  </mat-chip-listbox>
+</app-form-container>
+
+<app-form-container label="Mounts" [labelAbove]="true">
+  <mat-chip-listbox aria-label="mounts">
+    <mat-chip-option *ngFor="let mount of container.volumeMounts">
+      {{mount | podContainerMount}}
+    </mat-chip-option>
+  </mat-chip-listbox>
+</app-form-container>
+
+<app-form-container label="Command" [labelAbove]="true">
+  {{container.command?.join(" ")?.trim()}}
+</app-form-container>
+
+<ng-container *ngFor="let containerStatus of containerStatuses">
+  <app-form-container label="Last Running Status" [labelAbove]="true" *ngIf="containerStatus.lastState?.running">
+    <mat-chip-listbox aria-label="Last Running Status">
+      <mat-chip-option *ngFor="let state of containerStatus.lastState?.running | keyvalue">
+        {{state.key}} : {{state.value}}
+      </mat-chip-option>
+    </mat-chip-listbox>
+  </app-form-container>
+
+  <app-form-container label="Last Terminated Status" [labelAbove]="true" *ngIf="containerStatus.lastState?.terminated">
+    <mat-chip-listbox aria-label="Last Running Status">
+      <mat-chip-option *ngFor="let state of containerStatus.lastState?.terminated | keyvalue">
+        {{state.key}} : {{state.value}}
+      </mat-chip-option>
+    </mat-chip-listbox>
+  </app-form-container>
+
+  <app-form-container label="Last Waiting Status" [labelAbove]="true" *ngIf="containerStatus.lastState?.waiting">
+    <mat-chip-listbox aria-label="Last Running Status">
+      <mat-chip-option *ngFor="let state of containerStatus.lastState?.waiting | keyvalue">
+        {{state.key}} : {{state.value}}
+      </mat-chip-option>
+    </mat-chip-listbox>
+  </app-form-container>
+</ng-container>

@@ -1,0 +1,73 @@
+/.idea/
+
+
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# Compiled output
+/frontend/dist
+/frontend/tmp
+/frontend/out-tsc
+/frontend/bazel-out
+
+# Node
+/frontend/node_modules
+/frontend/npm-debug.log
+/frontend/yarn-error.log
+
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+
+# Miscellaneous
+/frontend/.angular/cache
+/frontend/.sass-cache/
+/frontend/connect.lock
+/frontend/coverage
+/frontend/libpeerconnection.log
+/frontend/testem.log
+/frontend/typings
+
+# System files
+/frontend/.DS_Store
+/frontend/.db
+
+
+# Compiled class file
+/backend/*.class
+
+# Log file
+/backend/*.log
+
+# BlueJ files
+/backend/*.ctxt
+
+# Mobile Tools for Java (J2ME)
+/backend/.mtj.tmp/
+
+# Package Files #
+/backend/*.jar
+/backend/*.war
+/backend/*.nar
+/backend/*.ear
+/backend/*.zip
+/backend/*.tar.gz
+/backend/*.rar
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+/backend/hs_err_pid*
+/backend/admin/target/
+/backend/api/target/
+/backend/auth/target/
+/backend/core/target/
+/backend/jpa/target/
+/backend/kubernetes/target/
+/backend/migration/target/
+/backend/rest/target/
+/backend/security/target/
+/backend/support/target/

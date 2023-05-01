@@ -1,0 +1,15 @@
+<label [for]="inputId" class="fc-form-required">
+  {{label}}
+</label>
+<div class="fc-form-field">
+  <div *ngIf="value" class="fc-form-field-text-value">
+    {{value}}
+  </div>
+  <ng-content></ng-content>
+  <div class="fc-form-required-info" *ngIf="required && isNotValid">
+    Required
+  </div>
+  <div *ngIf="description" class="description">
+    {{description}}
+  </div>
+</div>

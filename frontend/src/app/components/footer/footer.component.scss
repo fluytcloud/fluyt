@@ -1,0 +1,39 @@
+.footer-container {
+  background: #FFF;
+  position: fixed;
+  width: calc(100% - 300px);
+  bottom: 0;
+  height: 350px;
+  left: 300px;
+  transition: width 400ms linear, left 400ms linear, opacity 400ms linear;
+  visibility: hidden;
+  opacity: 0;
+  box-shadow: 0 0 10px 1px #CCC;
+
+  &.show-footer {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+:host-context(.menu-close) .footer-container {
+  width: calc(100% - 65px);
+  left: 65px;
+}
+.pi-times {
+  font-size: 0.7rem;
+  position: relative;
+  top: 1px;
+}
+:host ::ng-deep .mat-tab-label-content {
+  .pi {
+    margin-right: 1rem;
+  }
+  .pi-times {
+    opacity: 0;
+    transition: opacity 400ms;
+    margin-left: 1rem;
+  }
+  &:hover .pi-times {
+    opacity: 1;
+  }
+}

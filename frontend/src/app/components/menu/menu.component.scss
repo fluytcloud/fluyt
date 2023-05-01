@@ -1,0 +1,51 @@
+.menu {
+  position: fixed;
+  background-color: #FFFFFF;
+  width: 50px;
+  height: 100vh;
+  border-right: 1px solid #E5E5E5;
+  box-shadow: 0 0 10px 1px #CCC;
+  z-index: 2;
+
+  .avatar {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+  }
+
+  li {
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+    color: #C3C7CC;
+    transition: color 400ms;
+    cursor: pointer;
+
+    .mat-icon {
+      font-size: 1.4rem;
+    }
+
+    &:hover {
+      color: #2B67F0;
+    }
+
+    &.selected {
+      color: #2B67F0;
+    }
+
+    &.logout {
+      position: fixed;
+      bottom: 20px;
+      width: 50px;
+    }
+
+  }
+
+  .above {
+    height: calc(100vh - 70px);
+    overflow-y: auto;
+  }
+
+}
+
+

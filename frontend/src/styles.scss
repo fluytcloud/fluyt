@@ -1,0 +1,36 @@
+@import "reset";
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #bababd;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #b0b0b4;
+}
+
+
+.width-100-px {
+  width: 100px;
+}
+
+
+
+/* Custom PrimeNG Components*/
+.p-tag {
+  margin: 0.3rem
+}

@@ -1,0 +1,26 @@
+<app-form-container [label]="label"
+                    [inputId]="inputId"
+                    [required]="required"
+                    [isNotValid]="isValid()">
+  <p-autoComplete *ngIf="form"
+                  [formControlName]="controlName!"
+                  [inputId]="inputId"
+                  [field]="field"
+                  [multiple]="multiple"
+                  [suggestions]="list"
+                  (completeMethod)="search($event)"
+                  [dropdown]="true"
+                  [forceSelection]="true">
+  </p-autoComplete>
+  <ng-container *ngIf="!form">
+    <p-autoComplete [inputId]="inputId"
+                    [field]="field"
+                    [(ngModel)]="value"
+                    [multiple]="multiple"
+                    [suggestions]="list"
+                    (completeMethod)="search($event)"
+                    [dropdown]="true"
+                    [forceSelection]="true">
+    </p-autoComplete>
+  </ng-container>
+</app-form-container>

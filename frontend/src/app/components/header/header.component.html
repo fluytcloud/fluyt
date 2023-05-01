@@ -1,0 +1,20 @@
+<div class="fc-header">
+  <header class="container">
+    <ul>
+      <ng-container *ngFor="let breadcrumb of header?.breadcrumbs; let i = index">
+        <li *ngIf="i > 0">
+          /
+        </li>
+        <li>
+          <a routerLink="{{breadcrumb.link}}" [class.menu]="i == 0" [class.submenu]="i > 0">
+            {{breadcrumb.label}}
+          </a>
+        </li>
+      </ng-container>
+    </ul>
+
+    <h1>
+      {{header?.name}}
+    </h1>
+  </header>
+</div>

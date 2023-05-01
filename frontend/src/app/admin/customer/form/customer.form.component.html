@@ -1,0 +1,46 @@
+<div class="container">
+  <app-loader [show]="display">
+    <mat-card>
+      <div class="fc-form" [formGroup]="form">
+        <div class="fc-form-header">
+          <mat-card-actions>
+            <button mat-raised-button routerLink="/admin/customer">Back</button>
+            <button mat-raised-button (click)="reset()">Reset</button>
+            <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="save()">Save</button>
+          </mat-card-actions>
+        </div>
+
+        <app-form-container label="Company Name"
+                            inputId="companyName"
+                            [required]="true"
+                            [isNotValid]="isNotValid('companyName')">
+          <input id="companyName" formControlName="companyName" type="text" pInputText maxlength="100" />
+        </app-form-container>
+
+        <app-form-container label="Trade Name"
+                            inputId="tradeName"
+                            [required]="true"
+                            [isNotValid]="isNotValid('tradeName')">
+          <input id="tradeName" formControlName="tradeName" type="text" pInputText maxlength="100" />
+        </app-form-container>
+
+        <app-form-container label="E-mail"
+                            inputId="email"
+                            description="Nome de usuário do supervisor de sistema"
+                            [required]="true"
+                            [isNotValid]="isNotValid('email')">
+          <input id="email" formControlName="email" type="mail" pInputText maxlength="100" />
+        </app-form-container>
+
+        <app-form-container label="Active"
+                            inputId="active"
+                            description="Only users linked to active customers can log in to the system"
+                            [required]="true"
+                            [isNotValid]="isNotValid('active')">
+          <p-checkbox inputId="active" formControlName="active" [binary]="true" ></p-checkbox>
+        </app-form-container>
+
+      </div>
+    </mat-card>
+  </app-loader>
+</div>

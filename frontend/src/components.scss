@@ -1,0 +1,181 @@
+.p-datatable {
+  .p-datatable-thead > tr > th {
+    font-size: 0.8rem;
+    color: #6E6E70;
+    font-weight: 400;
+    background-color: #FFF;
+  }
+
+  .p-datatable-tbody > tr > td {
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: #000;
+  }
+
+  .p-paginator-bottom {
+    border-bottom: 0;
+  }
+
+}
+
+.p-dialog.p-confirm-dialog {
+  .p-dialog-header-icons {
+    display: none;
+  }
+}
+
+.mat-mdc-card {
+  padding: 1rem;
+  .mdc-card__actions {
+    justify-content: right;
+    button {
+      margin-left: 1rem;
+    }
+  }
+}
+
+.fc-form {
+  position: relative;
+  width: 100%;
+
+  .fc-form-header {
+    border: 1px dashed #CCC;
+  }
+
+  .fc-form-actions-container {
+    border: 1px dashed #CCC;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: right;
+    gap: 1rem;
+    border-radius: 3px;
+  }
+
+  .fc-form-multiple-container {
+    display: flex;
+    gap: 12px
+  }
+
+  .fc-form-container {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: left;
+    position: relative;
+    margin: 0.5rem 0;
+    border: 1px dashed #e1e1e1;
+    padding: 5px;
+    border-radius: 3px;
+
+    &.fc-form-container-label-above {
+      display: block;
+
+      label {
+        display: block;
+      }
+    }
+
+    label {
+      padding: 0 8px;
+      font-weight: 500;
+      font-size: 0.8rem;
+      background-color: #F9F9F9;
+      height: 38px;
+      line-height: 38px;
+      margin-right: 4px;
+      border-radius: 3px;
+      min-width: 200px;
+    }
+
+    .fc-form-field-info {
+      padding-top: 0.5rem;
+    }
+
+    .fc-form-field {
+      flex-grow: 1;
+      min-height: 36px;
+
+      .fc-form-field-text-value {
+        padding-top: 0.5rem;
+      }
+
+      .fc-form-required-info {
+        font-size: 0.8em;
+        color: #a7a7a7;
+        font-style: italic;
+      }
+
+      .p-checkbox .p-checkbox-box {
+        margin-top: 8px;
+      }
+
+      .p-dropdown.p-dropdown-clearable .p-dropdown-label {
+        padding: 0;
+      }
+
+      .p-chips.p-component,
+      .p-chips-multiple-container {
+        width: 100%;
+        padding: 0;
+      }
+
+      .p-chips-input-token {
+        padding: 0;
+      }
+
+
+      .mat-slider-horizontal,
+      .p-autocomplete,
+      p-inputNumber,
+      input,
+      .p-dropdown,
+      textarea,
+      .p-multiselect,
+      .p-inputnumber,
+      .p-calendar,
+      .p-password {
+        width: 100%;
+        font-size: 0.9rem;
+        padding: 0.5rem 0.5rem;
+        border-radius: 3px;
+      }
+
+      .mat-slider-horizontal {
+        height: 36px;
+      }
+
+      .p-autocomplete {
+        padding: 0;
+      }
+
+      .p-autocomplete-dd .p-autocomplete-dropdown {
+        height: 38px;
+      }
+      .input {
+        height: 36px;
+      }
+
+      .p-checkbox {
+        height: 36px;
+
+        &.p-checkbox-box {
+          margin-top: 0.5rem;
+        }
+      }
+
+      .p-calendar {
+        padding: 0;
+        border: none;
+      }
+    }
+
+    .description {
+      font-size: 0.7rem;
+      font-style: italic;
+      padding: 2px 0 10px;
+    }
+
+  }
+
+}

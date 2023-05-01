@@ -1,0 +1,30 @@
+h1 {
+  font-size: 1.1rem;
+  color: #000;
+  padding-top: 10px;
+  font-weight: 300;
+  margin-bottom: 0;
+}
+li {
+  display: inline;
+  color: #6E6E70;
+  font-size: 0.7rem;
+  box-sizing: border-box;
+  padding-right: 5px;
+  font-weight: 300;
+
+  a {
+    text-decoration: none;
+    color: #6E6E70;
+
+    &.menu {
+      color: #2B67F0;
+    }
+  }
+}
+.fc-header {
+  background-color: #FFF;
+  border-bottom: 1px solid #EBEBEB;
+  padding: 1rem 0;
+  box-shadow: 0 0 10px 1px #CCC;
+}

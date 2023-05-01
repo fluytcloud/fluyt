@@ -1,0 +1,71 @@
+<div class="container">
+  <app-loader [show]="display">
+    <mat-card>
+      <div class="fc-form" [formGroup]="form">
+        <div class="fc-form-actions-container">
+          <button mat-raised-button routerLink="/kubernetes/cluster">Back</button>
+          <button mat-raised-button (click)="reset()">New</button>
+          <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="save()">Save</button>
+        </div>
+
+        <app-form-container label="Connection Type"
+                            inputId="type"
+                            [required]="true"
+                            [isNotValid]="isNotValid('connectionType')">
+          <p-dropdown [options]="types"
+                      formControlName="connectionType"
+                      placeholder="Choose"
+                      optionLabel="label"
+                      optionValue="value"
+                      [showClear]="true"></p-dropdown>
+        </app-form-container>
+
+        <app-form-container label="Name"
+                            inputId="name"
+                            [required]="true"
+                            [isNotValid]="isNotValid('name')">
+          <input id="name" formControlName="name" type="text" pInputText maxlength="100" />
+        </app-form-container>
+
+        <app-form-container label="URL"
+                            inputId="url"
+                            [required]="true"
+                            [isNotValid]="isNotValid('url')"
+                            *ngIf="connectionType.DEFAULT !== form.get('connectionType')!.value">
+          <input id="url" formControlName="url" type="text" pInputText maxlength="255" />
+        </app-form-container>
+
+        <app-form-container label="Token"
+                            inputId="token"
+                            [required]="true"
+                            [isNotValid]="isNotValid('token')"
+                            *ngIf="connectionType.TOKEN === form.get('connectionType')!.value">
+          <p-password id="token" inputId="token" formControlName="token" [feedback]="false"></p-password>
+        </app-form-container>
+
+        <app-form-container label="Username"
+                            inputId="username"
+                            [required]="true"
+                            [isNotValid]="isNotValid('username')"
+                            *ngIf="connectionType.BASIC === form.get('connectionType')!.value">
+          <input id="username" formControlName="username" type="text" pInputText />
+        </app-form-container>
+
+        <app-form-container label="Password"
+                            inputId="password"
+                            [required]="true"
+                            [isNotValid]="isNotValid('password')"
+                            *ngIf="connectionType.BASIC === form.get('connectionType')!.value">
+          <p-password id="password" formControlName="password" [feedback]="false"></p-password>
+        </app-form-container>
+
+        <app-form-container label="Validate SSL"
+                            inputId="validateSSL"
+                            *ngIf="connectionType.DEFAULT !== form.get('connectionType')!.value">
+          <p-checkbox id="validateSSL" inputId="validateSSL" formControlName="validateSSL" [binary]="true"></p-checkbox>
+        </app-form-container>
+      </div>
+
+    </mat-card>
+  </app-loader>
+</div>

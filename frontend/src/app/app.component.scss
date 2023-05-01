@@ -1,0 +1,13 @@
+main {
+  width: calc(100vw - 300px);
+  left: 300px;
+  position: relative;
+  transition: left 400ms, width 400ms;
+  box-sizing: border-box;
+  top: -20px;
+
+  &.extended {
+    width: calc(100vw - 50px);
+    left: 50px;
+  }
+}

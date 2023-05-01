@@ -1,0 +1,55 @@
+main {
+  width: 400px;
+  height: 420px;
+  padding: 20px;
+  position: absolute;
+  margin-left: -200px;
+  margin-top: -210px;
+  box-shadow: 0 0 10px 1px #ccc;
+  border-radius: 3px;
+  left: 50%;
+  top: 50%;
+  border: 1px solid #CCC;
+  background-color: #FFF;
+
+  .logo {
+    text-align: center;
+  }
+
+  img {
+    height: 60px;
+  }
+
+  h1 {
+    text-align: center;
+    font-weight: 400;
+    font-size: 1.3rem;
+    padding: 20px 0;
+  }
+
+  .company {
+    border: 1px solid #CCC;
+    padding: 20px;
+    margin: 10px 0;
+    border-radius: 3px;
+    transition: background-color 400ms;
+    cursor: pointer;
+    font-weight: 300;
+
+    &:hover {
+      background-color: #E5E5E5;
+    }
+  }
+
+  .companies {
+    overflow-y: auto;
+    height: 154px;
+    padding-right: 5px;
+  }
+
+  .logout {
+    text-align: center;
+    padding-top: 20px;
+  }
+
+}

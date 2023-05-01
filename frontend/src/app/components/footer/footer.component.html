@@ -1,0 +1,15 @@
+<div class="footer-container" [class.show-footer]="footers.length > 0">
+  <mat-tab-group [selectedIndex]="index" (selectedIndexChange)="index = $event">
+    <mat-tab *ngFor="let footer of footers; index as i">
+      <ng-template mat-tab-label>
+        <span class="pi {{footer.icon}}"></span>
+
+        {{footer.title}}
+
+        <span (click)="remove(i)" class="pi pi-times"></span>
+      </ng-template>
+
+      <app-footer-content [type]="footer.type" [data]="footer.data"></app-footer-content>
+    </mat-tab>
+  </mat-tab-group>
+</div>

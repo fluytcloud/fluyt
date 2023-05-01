@@ -1,0 +1,32 @@
+<div class="container">
+  <app-loader [show]="display">
+    <mat-card *ngIf="catalogs">
+      <div class="fc-form">
+        <div class="fc-form-header">
+          <mat-card-header>
+            <mat-card-title>Select a cluster to browse</mat-card-title>
+            <mat-card-subtitle>To navigate between objects you must select a cluster</mat-card-subtitle>
+          </mat-card-header>
+
+        </div>
+
+        <div class="container">
+          <div class="row">
+            <div *ngFor="let catalog of catalogs.content"
+                 pRipple
+                 (click)="select(catalog)"
+                 class="col-12 col-sm-6 col-lg-4 catalog-container">
+              <div>{{catalog.name}}</div>
+            </div>
+          </div>
+        </div>
+
+        <p-paginator (onPageChange)="load($event)"
+                     [first]="first"
+                     [rows]="rows"
+                     [totalRecords]="catalogs.totalElements"
+                     [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+      </div>
+    </mat-card>
+  </app-loader>
+</div>

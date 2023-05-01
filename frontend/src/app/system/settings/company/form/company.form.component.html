@@ -1,0 +1,36 @@
+<div class="container">
+  <app-loader [show]="display">
+    <mat-card>
+      <div class="fc-form" [formGroup]="form">
+        <div class="fc-form-header">
+          <mat-card-actions>
+            <button mat-raised-button routerLink="/settings/company">Back</button>
+            <button mat-raised-button (click)="reset()">Reset</button>
+            <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="save()">Save</button>
+          </mat-card-actions>
+        </div>
+
+        <app-form-container label="Company name"
+                            inputId="companyName"
+                            [required]="true"
+                            [isNotValid]="isNotValid('companyName')">
+          <input id="companyName" formControlName="companyName" type="text" pInputText maxlength="100" />
+        </app-form-container>
+
+        <app-form-container label="Trade name"
+                            inputId="tradeName"
+                            [required]="true"
+                            [isNotValid]="isNotValid('tradeName')">
+          <input id="tradeName" formControlName="tradeName" type="text" pInputText maxlength="100" />
+        </app-form-container>
+
+        <app-form-container label="E-mail"
+                            inputId="email"
+                            [required]="true"
+                            [isNotValid]="isNotValid('email')">
+          <input id="email" formControlName="email" type="mail" pInputText maxlength="100" />
+        </app-form-container>
+      </div>
+    </mat-card>
+  </app-loader>
+</div>

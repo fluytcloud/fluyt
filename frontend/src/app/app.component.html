@@ -1,0 +1,23 @@
+<app-loader [show]="displaySystem">
+  <ng-container *ngIf="fullAuthentication">
+    <app-menu></app-menu>
+    <main [class.extended]="extended">
+      <app-header></app-header>
+      <br/>
+      <router-outlet></router-outlet>
+      <app-footer (onHide)="footerIsOpen=false" (onShow)="footerIsOpen=true"></app-footer>
+    </main>
+  </ng-container>
+
+  <ng-template [ngIf]="selectOrganization && !fullAuthentication">
+    <app-auth-organization></app-auth-organization>
+  </ng-template>
+
+  <ng-template [ngIf]="selectCompany && !fullAuthentication">
+    <app-auth-company></app-auth-company>
+  </ng-template>
+
+</app-loader>
+<p-toast></p-toast>
+<p-confirmDialog header="Confirmação"
+                 icon="pi pi-exclamation-triangle"></p-confirmDialog>

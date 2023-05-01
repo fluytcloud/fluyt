@@ -1,0 +1,28 @@
+<app-crud-list [crudList]="this">
+  <ng-template #header>
+    <tr>
+      <th class="width-100-px">ID</th>
+      <th>Company Name</th>
+      <th>Trade Name</th>
+      <th class="width-100-px">Actions</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-company>
+    <tr>
+      <td class="width-100-px">{{company.id}}</td>
+      <td>{{company.companyName}}</td>
+      <td>{{company.tradeName}}</td>
+      <td>
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Actions">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <a mat-menu-item [routerLink]="['/settings/company/form', company.id]">
+            <mat-icon>mode_edit</mat-icon>
+            <span>Edit</span>
+          </a>
+        </mat-menu>
+      </td>
+    </tr>
+  </ng-template>
+</app-crud-list>

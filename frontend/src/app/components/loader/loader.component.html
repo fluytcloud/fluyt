@@ -1,0 +1,8 @@
+<ng-container *ngIf="show;else displayLoader">
+  <ng-content></ng-content>
+</ng-container>
+<ng-template #displayLoader>
+  <div class="wrapper">
+    <mat-spinner [diameter]="50"></mat-spinner>
+  </div>
+</ng-template>

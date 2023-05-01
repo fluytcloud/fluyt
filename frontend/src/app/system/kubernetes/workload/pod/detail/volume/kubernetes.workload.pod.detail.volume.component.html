@@ -1,0 +1,9 @@
+<app-form-multiple-container>
+  <app-form-container label="Name"
+                      [value]="volume.name">
+  </app-form-container>
+
+  <app-form-container label="Kind"
+                      [value]="volume | podVolumeKind">
+  </app-form-container>
+</app-form-multiple-container>

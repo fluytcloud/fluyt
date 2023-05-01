@@ -1,0 +1,60 @@
+<div class="container">
+  <app-loader [show]="display">
+    <mat-accordion class="example-headers-align" multi>
+      <mat-expansion-panel [hideToggle]="true" [expanded]="true">
+        <mat-expansion-panel-header>
+          <div class="fc-form">
+            <div class="fc-form-actions-container">
+              <mat-panel-title>
+                General
+              </mat-panel-title>
+              <button mat-raised-button routerLink="/kubernetes/config-maps">Back</button>
+            </div>
+          </div>
+        </mat-expansion-panel-header>
+        <div class="fc-form">
+          <app-form-container label="Created"
+                              [value]="configMap?.metadata?.creationTimestamp | date">
+          </app-form-container>
+
+          <app-form-multiple-container>
+            <app-form-container label="Name"
+                                [value]="configMap?.metadata?.name">
+
+            </app-form-container>
+
+            <app-form-container label="Namespace"
+                                [value]="configMap?.metadata?.namespace">
+            </app-form-container>
+          </app-form-multiple-container>
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel [expanded]="true" *ngIf="configMap.data">
+        <mat-expansion-panel-header>
+          Data
+        </mat-expansion-panel-header>
+        <div class="fc-form">
+          <app-form-container *ngFor="let data of configMap.data | keyvalue"
+                              label="{{data.key}}"
+                              [labelAbove]="true">
+            <ngx-codemirror [(ngModel)]="data.value"
+                            [options]="codeMirrorConfig"></ngx-codemirror>
+          </app-form-container>
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel [expanded]="true" *ngIf="configMap.binaryData">
+        <mat-expansion-panel-header>
+          BinaryData
+        </mat-expansion-panel-header>
+        <div class="fc-form">
+          <app-form-container *ngFor="let binaryData of configMap.binaryData | keyvalue"
+                              label="{{binaryData.key}}"
+                              [labelAbove]="true">
+            <ngx-codemirror [(ngModel)]="binaryData.value"
+                            [options]="codeMirrorConfig"></ngx-codemirror>
+          </app-form-container>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </app-loader>
+</div>

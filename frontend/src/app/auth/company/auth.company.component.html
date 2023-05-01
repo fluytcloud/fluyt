@@ -1,0 +1,20 @@
+<main>
+  <app-loader [show]="displayContent">
+    <div class="logo">
+      <img src="/assets/image/logo.png" alt="Logo FluytCloud" />
+    </div>
+    <h1>
+      Selecione uma Filial
+    </h1>
+
+    <div class="companies">
+      <div class="company" *ngFor="let company of companies" (click)="selectCompany(company.id)">
+        {{company.name}}
+      </div>
+    </div>
+
+    <div class="logout">
+      <p-button label="Desconectar" (click)="logout()"></p-button>
+    </div>
+  </app-loader>
+</main>

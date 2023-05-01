@@ -1,0 +1,15 @@
+<div class="container">
+  <app-loader [show]="crudForm.display">
+    <div class="card">
+      <div class="fc-form">
+        <div class="fc-form-actions-container">
+          <button mat-raised-button (click)="crudForm.back()">Voltar</button>
+          <button mat-raised-button (click)="crudForm.reset()">Novo</button>
+          <button mat-raised-button color="primary" [disabled]="!crudForm.form.valid" (click)="crudForm.save()">Salvar</button>
+        </div>
+
+        <ng-content></ng-content>
+      </div>
+    </div>
+  </app-loader>
+</div>

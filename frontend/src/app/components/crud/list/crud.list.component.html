@@ -1,0 +1,28 @@
+<div class="container">
+  <mat-card *ngIf="crudList.page">
+    <div class="fc-form">
+      <div class="fc-form-header">
+        <mat-card-actions  *ngIf="showButtonForm">
+          <button mat-raised-button color="primary" routerLink="{{crudList.formUrl()}}">New</button>
+        </mat-card-actions>
+      </div>
+      <p-table [value]="crudList.page.content"
+               [lazy]="true"
+               (onLazyLoad)="crudList.load($event)"
+               responsiveLayout="scroll"
+               [paginator]="true"
+               [rows]="crudList.rows"
+               [totalRecords]="crudList.page.totalElements"
+               [loading]="crudList.loading">
+        <ng-template pTemplate="header">
+          <ng-container [ngTemplateOutlet]="header"></ng-container>
+        </ng-template>
+        <ng-template pTemplate="body" let-object>
+          <ng-container [ngTemplateOutlet]="body"
+                        [ngTemplateOutletContext]="{$implicit: object}">
+          </ng-container>
+        </ng-template>
+      </p-table>
+    </div>
+  </mat-card>
+</div>

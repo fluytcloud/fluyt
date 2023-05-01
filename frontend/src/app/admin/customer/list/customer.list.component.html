@@ -1,0 +1,38 @@
+<app-crud-list [crudList]="this">
+  <ng-template #header>
+    <tr>
+      <th class="width-100-px">ID</th>
+      <th>Company name</th>
+      <th>Trade name</th>
+      <th>Active</th>
+      <th class="width-100-px">Actions</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-customer>
+    <tr>
+      <td class="width-100-px">{{customer.id}}</td>
+      <td>{{customer.companyName}}</td>
+      <td>{{customer.tradeName}}</td>
+      <td>{{customer.active | boolean}}</td>
+      <td>
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Actions">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <a mat-menu-item [routerLink]="['/admin/customer/form', customer.id]">
+            <mat-icon>visibility</mat-icon>
+            <span>View</span>
+          </a>
+          <a mat-menu-item *ngIf="customer.active" (click)="changeActive(customer)">
+            <mat-icon>unpublished</mat-icon>
+            <span>Disable</span>
+          </a>
+          <a mat-menu-item *ngIf="!customer.active" (click)="changeActive(customer)">
+            <mat-icon>check_circle</mat-icon>
+            <span>Enable</span>
+          </a>
+        </mat-menu>
+      </td>
+    </tr>
+  </ng-template>
+</app-crud-list>
