@@ -28,6 +28,8 @@ import {MatChipsModule} from "@angular/material/chips";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatCardModule} from "@angular/material/card";
 import {MatDividerModule} from "@angular/material/divider";
+import {FormsModule} from "@angular/forms";
+import {KubernetesComponentsListModule} from "../../components/list/kubernetes.components.list.module";
 
 @NgModule({
   declarations: [
@@ -44,6 +46,7 @@ import {MatDividerModule} from "@angular/material/divider";
   ],
   imports: [
     CommonModule,
+    FormsModule,
     TableModule,
     MatButtonModule,
     MatIconModule,
@@ -60,7 +63,8 @@ import {MatDividerModule} from "@angular/material/divider";
     MatChipsModule,
     MatExpansionModule,
     MatCardModule,
-    MatDividerModule
+    MatDividerModule,
+    KubernetesComponentsListModule
   ],
   providers: [
     KubernetesWorkloadPodService

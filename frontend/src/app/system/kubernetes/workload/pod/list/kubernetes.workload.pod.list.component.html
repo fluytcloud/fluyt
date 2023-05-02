@@ -1,78 +1,67 @@
-<div class="container">
-  <mat-card>
-    <div class="fc-form">
-      <p-table [value]="pods"
-               responsiveLayout="scroll"
-               [paginator]="true"
-               [rows]="8"
-               [totalRecords]="pods.length"
-               [loading]="loading">
-        <ng-template pTemplate="header">
-          <tr>
-            <th>Namespace</th>
-            <th>Name</th>
-            <th>Containers</th>
-            <th>Restarts</th>
-            <th>Node</th>
-            <th>QoS</th>
-            <th>Age</th>
-            <th>Status</th>
-            <th>Actions</th>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-pod>
-          <tr>
-            <td>{{pod.namespace}}</td>
-            <td>{{pod.name}}</td>
-            <td>
-              <mat-chip-listbox aria-label="containers">
-                <mat-chip-option *ngFor="let container of pod.containers"
-                                 [title]="container.status + '\n' + (container.reason || '')"
-                                 highlighted
-                                 [color]="pod.status | podSeverity">
-                  {{container.name}}
-                </mat-chip-option>
-              </mat-chip-listbox>
-            </td>
-            <td>{{pod.restarts}}</td>
-            <td>{{pod.nodeName}}</td>
-            <td>{{pod.qosClass}}</td>
-            <td>{{pod.age}}</td>
-            <td>
-              <mat-chip-listbox aria-label="status">
-                <mat-chip-option [color]="pod.status | podSeverity" highlighted>
-                  {{pod.status}}
-                </mat-chip-option>
-              </mat-chip-listbox>
-            </td>
-            <td>
-              <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Actions">
-                <mat-icon>more_vert</mat-icon>
-              </button>
-              <mat-menu #menu="matMenu">
-                <a mat-menu-item
-                   [routerLink]="['/kubernetes/pods/detail']"
-                   [queryParams]="{cluster: clusterId, name: pod.name, namespace: pod.namespace}">
-                  <mat-icon>visibility</mat-icon>
-                  <span>Detail</span>
-                </a>
-                <a mat-menu-item (click)="openTerminal(pod)">
-                  <mat-icon>terminal</mat-icon>
-                  <span>Terminal</span>
-                </a>
-                <a mat-menu-item>
-                  <mat-icon>mode_edit</mat-icon>
-                  <span>Edit</span>
-                </a>
-                <a mat-menu-item>
-                  <mat-icon>delete</mat-icon>
-                  <span>Delete</span>
-                </a>
-              </mat-menu>
-            </td>
-          </tr>
-        </ng-template>
-      </p-table>
-    </div>
-  </mat-card>
-</div>
+<app-kubernetes-components-list (filter)="load($event)" [values]="values" [loading]="loading">
+  <ng-template #header>
+    <tr>
+      <th>Namespace</th>
+      <th>Name</th>
+      <th>Containers</th>
+      <th>Restarts</th>
+      <th>Node</th>
+      <th>QoS</th>
+      <th>Age</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-pod>
+    <tr>
+      <td>{{pod.namespace}}</td>
+      <td>{{pod.name}}</td>
+      <td>
+        <mat-chip-listbox aria-label="containers">
+          <mat-chip-option *ngFor="let container of pod.containers"
+                           [title]="container.status + '\n' + (container.reason || '')"
+                           highlighted
+                           [color]="pod.status | podSeverity">
+            {{container.name}}
+          </mat-chip-option>
+        </mat-chip-listbox>
+      </td>
+      <td>{{pod.restarts}}</td>
+      <td>{{pod.nodeName}}</td>
+      <td>{{pod.qosClass}}</td>
+      <td>{{pod.age}}</td>
+      <td>
+        <mat-chip-listbox aria-label="status">
+          <mat-chip-option [color]="pod.status | podSeverity" highlighted>
+            {{pod.status}}
+          </mat-chip-option>
+        </mat-chip-listbox>
+      </td>
+      <td>
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Actions">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <a mat-menu-item
+             [routerLink]="['/kubernetes/pods/detail']"
+             [queryParams]="{name: pod.name, namespace: pod.namespace}">
+            <mat-icon>visibility</mat-icon>
+            <span>Detail</span>
+          </a>
+          <a mat-menu-item (click)="openTerminal(pod)">
+            <mat-icon>terminal</mat-icon>
+            <span>Terminal</span>
+          </a>
+          <a mat-menu-item>
+            <mat-icon>mode_edit</mat-icon>
+            <span>Edit</span>
+          </a>
+          <a mat-menu-item>
+            <mat-icon>delete</mat-icon>
+            <span>Delete</span>
+          </a>
+        </mat-menu>
+      </td>
+    </tr>
+  </ng-template>
+</app-kubernetes-components-list>

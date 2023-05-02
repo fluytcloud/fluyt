@@ -1,0 +1,20 @@
+<div class="fc-form" *ngIf="search">
+  <app-form-multiple-container>
+    <app-form-container label="Namespace" *ngIf="showNamespace">
+      <p-multiSelect *ngIf="namespaces"
+                     [options]="namespaces"
+                     placeholder="All namespaces"
+                     [(ngModel)]="search.namespaces"
+                     (onChange)="filter.emit(search)"
+                     [maxSelectedLabels]="1"
+                     appendTo="body"></p-multiSelect>
+    </app-form-container>
+    <app-form-container label="Search">
+      <input type="text"
+             placeholder="Name"
+             (blur)="filter.emit(search)"
+             pInputText
+             [(ngModel)]="search.name" />
+    </app-form-container>
+  </app-form-multiple-container>
+</div>

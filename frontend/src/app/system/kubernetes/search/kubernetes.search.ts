@@ -1,5 +1,5 @@
-export class KubernetesSupportNamespaceObjectFilterList {
-  clusterId!: number;
+export class KubernetesSearch {
+  clusterId: number;
   namespaces?: string[];
   name?: string;
 

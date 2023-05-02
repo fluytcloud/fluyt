@@ -18,6 +18,10 @@
 
 }
 
+.p-multiselect .p-multiselect-label {
+  padding: 0;
+}
+
 .p-dialog.p-confirm-dialog {
   .p-dialog-header-icons {
     display: none;
@@ -53,7 +57,11 @@
 
   .fc-form-multiple-container {
     display: flex;
-    gap: 12px
+    gap: 12px;
+
+    .p-multiselect .p-multiselect-label {
+      max-width: 220px;
+    }
   }
 
   .fc-form-container {
