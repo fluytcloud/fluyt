@@ -13,10 +13,9 @@
         <div class="container">
           <div class="row">
             <div *ngFor="let catalog of catalogs.content"
-                 pRipple
                  (click)="select(catalog)"
-                 class="col-12 col-sm-6 col-lg-4 catalog-container">
-              <div>{{catalog.name}}</div>
+                 class="col-12 col-sm-6 col-lg-4">
+              <div pRipple class="catalog-container">{{catalog.name}}</div>
             </div>
           </div>
         </div>

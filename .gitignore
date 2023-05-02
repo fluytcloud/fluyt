@@ -71,3 +71,14 @@
 /backend/rest/target/
 /backend/security/target/
 /backend/support/target/
+/backend/admin/admin.iml
+/backend/api/api.iml
+/backend/auth/auth.iml
+/backend/core/core.iml
+/backend/jpa/jpa.iml
+/backend/kubernetes/kubernetes.iml
+/backend/migration/migration.iml
+/backend/rest/rest.iml
+/backend/security/security.iml
+/backend/support/support.iml
+/backend/backend.iml
