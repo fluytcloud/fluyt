@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component} from "@angular/core";
 import {HeaderService} from "../../../../components/header/header.service";
 import {CompanyService} from "../company.service";
 import {CompanyList} from "../company.list";
@@ -12,7 +12,7 @@ import {Header} from "../../../../components/header/header";
   selector: "app-system-settings-company-list",
   templateUrl: "./company.list.component.html"
 })
-export class CompanyListComponent  extends CrudList<Company, CompanyList> implements OnInit {
+export class CompanyListComponent  extends CrudList<Company, CompanyList> {
 
   constructor(private readonly companyService: CompanyService,
               router: Router,
@@ -20,10 +20,6 @@ export class CompanyListComponent  extends CrudList<Company, CompanyList> implem
               messageService: MessageService,
               confirmationService: ConfirmationService) {
     super(headerService, router, messageService, confirmationService, companyService);
-  }
-
-  ngOnInit(): void {
-    super.onInit();
   }
 
   getHeader(): Header {

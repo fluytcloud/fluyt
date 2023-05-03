@@ -3,9 +3,11 @@ import {HeaderService} from "../../../components/header/header.service";
 import {Header} from "../../../components/header/header";
 import {KubernetesSearch} from "../search/kubernetes.search";
 import {finalize} from "rxjs";
+import {Directive, OnInit} from "@angular/core";
 
 
-export abstract class KubernetesSupportList<T> {
+@Directive()
+export abstract class KubernetesSupportList<T> implements OnInit {
 
   loading = true;
   values: T[] = [];
@@ -14,7 +16,7 @@ export abstract class KubernetesSupportList<T> {
                         public crudService: KubernetesSupportService<T>) {
   }
 
-  onInit(): void {
+  ngOnInit(): void {
     this.headerService.notifyHeader(this.getHeader());
   }
 

@@ -5,8 +5,10 @@ import {PageLazyService} from "./page.lazy.service";
 import {Header} from "../components/header/header";
 import {CrudService} from "./crud.service";
 import {Router} from "@angular/router";
+import {Directive, OnInit} from "@angular/core";
 
-export abstract class CrudList<T, LIST> extends PageLazy<LIST> {
+@Directive()
+export abstract class CrudList<T, LIST> extends PageLazy<LIST> implements OnInit {
 
   protected constructor(public headerService: HeaderService,
                         public router: Router,
@@ -17,7 +19,7 @@ export abstract class CrudList<T, LIST> extends PageLazy<LIST> {
     console.log(router.url);
   }
 
-  onInit(): void {
+  ngOnInit(): void {
     this.headerService.notifyHeader(this.getHeader());
   }
 

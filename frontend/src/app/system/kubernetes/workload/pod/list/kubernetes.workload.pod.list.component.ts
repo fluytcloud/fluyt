@@ -19,10 +19,6 @@ export class KubernetesWorkloadPodListComponent extends KubernetesSupportList<Ku
     super(headerService, podService);
   }
 
-  ngOnInit(): void {
-    super.onInit();
-  }
-
   getHeader(): Header {
     return {
       name: 'Pod list',

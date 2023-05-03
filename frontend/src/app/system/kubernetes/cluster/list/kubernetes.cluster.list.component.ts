@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component} from "@angular/core";
 import {KubernetesClusterList} from "../kubernetes.cluster.list";
 import {HeaderService} from "../../../../components/header/header.service";
 import {ConfirmationService, MessageService} from "primeng/api";
@@ -12,7 +12,7 @@ import {KubernetesCluster} from "../kubernetes.cluster";
   selector: 'app-kubernetes-cluster-list',
   templateUrl: './kubernetes.cluster.list.component.html'
 })
-export class KubernetesClusterListComponent extends CrudList<KubernetesCluster, KubernetesClusterList> implements OnInit {
+export class KubernetesClusterListComponent extends CrudList<KubernetesCluster, KubernetesClusterList> {
 
   constructor(private readonly kubernetesClusterService: KubernetesClusterService,
               router: Router,
@@ -20,10 +20,6 @@ export class KubernetesClusterListComponent extends CrudList<KubernetesCluster, 
               messageService: MessageService,
               confirmationService: ConfirmationService) {
     super(headerService, router, messageService, confirmationService, kubernetesClusterService);
-  }
-
-  ngOnInit(): void {
-    super.onInit();
   }
 
   getHeader(): Header {

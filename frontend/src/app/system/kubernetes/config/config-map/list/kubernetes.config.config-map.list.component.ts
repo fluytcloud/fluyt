@@ -16,10 +16,6 @@ export class KubernetesConfigConfigMapListComponent extends KubernetesSupportLis
     super(headerService, configConfigMapService);
   }
 
-  ngOnInit(): void {
-    super.onInit();
-  }
-
   getHeader(): Header {
     return {
       name: 'ConfigMap list',

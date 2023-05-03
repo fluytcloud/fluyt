@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component} from "@angular/core";
 import {OptionDropdown} from "../../../../components/dropdown/option/option.dropdown";
 import {ActivatedRoute} from "@angular/router";
 import {FormBuilder, Validators} from "@angular/forms";
@@ -16,7 +16,7 @@ import {Header} from "../../../../components/header/header";
   selector: 'app-kubernetes-cluster-form',
   templateUrl: './kubernetes.cluster.form.component.html'
 })
-export class KubernetesClusterFormComponent extends CrudForm<KubernetesCluster, KubernetesClusterList> implements OnInit {
+export class KubernetesClusterFormComponent extends CrudForm<KubernetesCluster, KubernetesClusterList> {
 
   types: OptionDropdown[] = [];
 
@@ -50,10 +50,7 @@ export class KubernetesClusterFormComponent extends CrudForm<KubernetesCluster, 
         }
       }
     });
-  }
 
-  ngOnInit(): void {
-    this.onInit();
     Object.values(KubernetesClusterConnectionType).forEach(it => {
       this.types.push({
         value: it,

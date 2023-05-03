@@ -7,8 +7,10 @@ import {Location} from "@angular/common";
 import {Header} from "../components/header/header";
 import {CrudService} from "./crud.service";
 import {finalize} from "rxjs";
+import {Directive, OnInit} from "@angular/core";
 
-export abstract class CrudForm<T, LIST> extends FormValidator{
+@Directive()
+export abstract class CrudForm<T, LIST> extends FormValidator implements OnInit {
 
   display: boolean = true;
 
@@ -28,7 +30,7 @@ export abstract class CrudForm<T, LIST> extends FormValidator{
     this.location.back();
   }
 
-  onInit(): void {
+  ngOnInit(): void {
     this.headerService.notifyHeader(this.getHeader());
 
     const id = this.activatedRoute.snapshot.paramMap.get('id');
@@ -37,13 +39,17 @@ export abstract class CrudForm<T, LIST> extends FormValidator{
       this.crudService.findById(id)
         .pipe(finalize(() => this.display = true))
         .subscribe({
-        next: object => {
-          this.setFormValue(object);
-        },
-        error: error => console.log(error)
-      });
+          next: object => {
+            this.setFormValue(object);
+          },
+          error: error => console.log(error)
+        });
     }
+
+    this.onInit();
   }
+
+  onInit(): void {}
 
   setFormValue(value: T) {
     this.form.setValue(value as ɵFormGroupRawValue<any>);

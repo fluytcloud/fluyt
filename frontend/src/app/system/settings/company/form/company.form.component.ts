@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {FormBuilder, Validators} from "@angular/forms";
 import {HeaderService} from "../../../../components/header/header.service";
@@ -14,7 +14,7 @@ import {Header} from "../../../../components/header/header";
   selector: "app-system-settings-company-form",
   templateUrl: "./company.form.component.html"
 })
-export class CompanyFormComponent extends CrudForm<Company, CompanyList> implements OnInit {
+export class CompanyFormComponent extends CrudForm<Company, CompanyList> {
 
   constructor(private readonly companyService: CompanyService,
               activatedRoute: ActivatedRoute,
@@ -28,10 +28,6 @@ export class CompanyFormComponent extends CrudForm<Company, CompanyList> impleme
       tradeName: [null, [Validators.required]],
       email: [null, [Validators.required]]
     });
-  }
-
-  ngOnInit(): void {
-    this.onInit();
   }
 
   getHeader(): Header {

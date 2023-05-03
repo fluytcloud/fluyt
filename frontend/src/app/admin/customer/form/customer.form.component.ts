@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {FormBuilder, Validators} from "@angular/forms";
 import {HeaderService} from "../../../components/header/header.service";
@@ -15,7 +15,7 @@ import {CustomerService} from "../customer.service";
   templateUrl: './customer.form.component.html',
   styleUrls: ['./customer.form.component.scss']
 })
-export class CustomerFormComponent extends CrudForm<Customer, CustomerList> implements OnInit {
+export class CustomerFormComponent extends CrudForm<Customer, CustomerList> {
 
   constructor(private readonly customerService: CustomerService,
               activatedRoute: ActivatedRoute,
@@ -30,10 +30,6 @@ export class CustomerFormComponent extends CrudForm<Customer, CustomerList> impl
       email: [null, [Validators.required]],
       active: [null]
     });
-  }
-
-  ngOnInit(): void {
-    this.onInit();
   }
 
   getHeader(): Header {
