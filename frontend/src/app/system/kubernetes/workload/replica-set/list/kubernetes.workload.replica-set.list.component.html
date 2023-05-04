@@ -1,0 +1,44 @@
+<app-kubernetes-components-list (filter)="load($event)" [values]="values" [loading]="loading">
+  <ng-template #header>
+    <tr>
+      <th>Namespace</th>
+      <th>Name</th>
+      <th>Desired</th>
+      <th>Current</th>
+      <th>Ready</th>
+      <th>Age</th>
+      <th>Actions</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-configMap>
+    <tr>
+      <td>{{configMap.namespace}}</td>
+      <td>{{configMap.name}}</td>
+      <td>{{configMap.desired}}</td>
+      <td>{{configMap.current}}</td>
+      <td>{{configMap.ready}}</td>
+      <td>{{configMap.age}}</td>
+      <td>
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Actions">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <a mat-menu-item
+             [routerLink]="['/kubernetes/replica-sets/detail']"
+             [queryParams]="{name: configMap.name, namespace: configMap.namespace}">
+            <mat-icon>visibility</mat-icon>
+            <span>Detail</span>
+          </a>
+          <a mat-menu-item>
+            <mat-icon>mode_edit</mat-icon>
+            <span>Edit</span>
+          </a>
+          <a mat-menu-item>
+            <mat-icon>delete</mat-icon>
+            <span>Delete</span>
+          </a>
+        </mat-menu>
+      </td>
+    </tr>
+  </ng-template>
+</app-kubernetes-components-list>

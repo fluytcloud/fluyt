@@ -17,7 +17,7 @@
       <td>{{pod.namespace}}</td>
       <td>{{pod.name}}</td>
       <td>
-        <mat-chip-listbox aria-label="containers">
+        <mat-chip-listbox aria-label="containers" [selectable]="false">
           <mat-chip-option *ngFor="let container of pod.containers"
                            [title]="container.status + '\n' + (container.reason || '')"
                            highlighted
@@ -31,7 +31,7 @@
       <td>{{pod.qosClass}}</td>
       <td>{{pod.age}}</td>
       <td>
-        <mat-chip-listbox aria-label="status">
+        <mat-chip-listbox aria-label="status" [selectable]="false">
           <mat-chip-option [color]="pod.status | podSeverity" highlighted>
             {{pod.status}}
           </mat-chip-option>

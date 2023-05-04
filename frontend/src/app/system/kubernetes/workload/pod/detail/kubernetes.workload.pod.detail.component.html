@@ -29,7 +29,7 @@
           </app-form-multiple-container>
 
           <app-form-container label="Annotations" [labelAbove]="true">
-            <mat-chip-listbox aria-label="annotations">
+            <mat-chip-listbox aria-label="annotations" [selectable]="false">
               <mat-chip-option *ngFor="let annotation of pod?.metadata?.annotations | keyvalue">
                 {{annotation.key}} : {{annotation.value}}
               </mat-chip-option>
@@ -38,7 +38,7 @@
           </app-form-container>
 
           <app-form-container label="Labels" [labelAbove]="true">
-            <mat-chip-listbox aria-label="labels">
+            <mat-chip-listbox aria-label="labels" [selectable]="false">
               <mat-chip-option *ngFor="let label of pod?.metadata?.labels | keyvalue">
                 {{label.key}} : {{label.value}}
               </mat-chip-option>
@@ -62,7 +62,7 @@
             </app-form-container>
 
             <app-form-container label="Pod IPs">
-              <mat-chip-listbox aria-label="pod ips">
+              <mat-chip-listbox aria-label="pod ips" [selectable]="false">
                 <mat-chip-option *ngFor="let podIP of pod?.status?.podIPs">
                   {{podIP.ip}}
                 </mat-chip-option>
@@ -81,7 +81,7 @@
           </app-form-multiple-container>
 
           <app-form-container label="Conditions" [labelAbove]="true">
-            <mat-chip-listbox aria-label="conditions">
+            <mat-chip-listbox aria-label="conditions" [selectable]="false">
               <mat-chip-option *ngFor="let condition of pod?.status?.conditions">
                 {{condition.type}}
               </mat-chip-option>

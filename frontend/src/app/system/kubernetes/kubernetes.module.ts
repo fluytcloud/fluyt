@@ -17,6 +17,7 @@ import {KubernetesCatalogModule} from "./catalog/kubernetes.catalog.module";
 import {KubernetesClusterModule} from "./cluster/kubernetes.cluster.module";
 import {MatMenuModule} from "@angular/material/menu";
 import {KubernetesConfigConfigMapModule} from "./config/config-map/kubernetes.config.config-map.module";
+import {KubernetesWorkloadReplicaSetModule} from "./workload/replica-set/kubernetes.workload.replica-set.module";
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import {KubernetesConfigConfigMapModule} from "./config/config-map/kubernetes.co
     KubernetesClusterModule,
     KubernetesRoutingModule,
     KubernetesTerminalModule,
-    KubernetesConfigConfigMapModule
+    KubernetesConfigConfigMapModule,
+    KubernetesWorkloadReplicaSetModule
   ],
   providers: [
     KubernetesClusterService,

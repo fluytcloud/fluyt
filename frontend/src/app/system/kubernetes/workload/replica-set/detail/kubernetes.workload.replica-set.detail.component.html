@@ -1,0 +1,114 @@
+<div class="container">
+  <app-loader [show]="display">
+    <mat-accordion class="example-headers-align" multi>
+      <mat-expansion-panel [hideToggle]="true" [expanded]="true">
+        <mat-expansion-panel-header>
+          <div class="fc-form">
+            <div class="fc-form-actions-container">
+              <mat-panel-title>
+                General
+              </mat-panel-title>
+              <button mat-raised-button routerLink="/kubernetes/replica-sets">Back</button>
+            </div>
+          </div>
+        </mat-expansion-panel-header>
+        <div class="fc-form">
+          <app-form-container label="Created"
+                              [value]="replicaSet?.metadata?.creationTimestamp | date">
+          </app-form-container>
+
+          <app-form-multiple-container>
+            <app-form-container label="Name"
+                                [value]="replicaSet?.metadata?.name">
+            </app-form-container>
+
+            <app-form-container label="Namespace"
+                                [value]="replicaSet?.metadata?.namespace">
+            </app-form-container>
+          </app-form-multiple-container>
+
+          <app-form-multiple-container>
+            <app-form-container label="Replicas"
+                                [value]="replicaSet?.status | replicaSetReplicas">
+            </app-form-container>
+
+            <app-form-container label="Controlled By">
+              <mat-chip-listbox aria-label="ownerReferences" [selectable]="false">
+                <mat-chip-option *ngFor="let owner of replicaSet?.metadata?.ownerReferences">
+                  {{owner.kind}} : {{owner.name}}
+                </mat-chip-option>
+              </mat-chip-listbox>
+            </app-form-container>
+          </app-form-multiple-container>
+
+          <app-form-container label="Annotations" [labelAbove]="true">
+            <mat-chip-listbox aria-label="annotations" [selectable]="false">
+              <mat-chip-option *ngFor="let annotation of replicaSet?.metadata?.annotations | keyvalue">
+                {{annotation.key}} : {{annotation.value}}
+              </mat-chip-option>
+            </mat-chip-listbox>
+            <span *ngIf="!replicaSet?.metadata?.annotations">None</span>
+          </app-form-container>
+
+          <app-form-container label="Labels" [labelAbove]="true">
+            <mat-chip-listbox aria-label="labels" [selectable]="false">
+              <mat-chip-option *ngFor="let label of replicaSet?.metadata?.labels | keyvalue">
+                {{label.key}} : {{label.value}}
+              </mat-chip-option>
+            </mat-chip-listbox>
+            <span *ngIf="!replicaSet?.metadata?.labels">None</span>
+          </app-form-container>
+
+          <app-form-multiple-container>
+            <app-form-container label="Selector" [labelAbove]="true">
+              <mat-chip-listbox aria-label="selector" [selectable]="false">
+                <mat-chip-option *ngFor="let match of replicaSet?.spec?.selector?.matchLabels | keyvalue">
+                  {{match.key}} : {{match.value}}
+                </mat-chip-option>
+              </mat-chip-listbox>
+            </app-form-container>
+
+            <app-form-container label="Node Selector" [labelAbove]="true">
+              <mat-chip-listbox aria-label="node selector" [selectable]="false">
+                <mat-chip-option *ngFor="let selector of replicaSet?.spec?.template?.spec?.nodeSelector | keyvalue">
+                  {{selector.key}} : {{selector.value}}
+                </mat-chip-option>
+              </mat-chip-listbox>
+            </app-form-container>
+          </app-form-multiple-container>
+
+          <app-form-container label="Images" [labelAbove]="true">
+            <mat-chip-listbox aria-label="selector" [selectable]="false">
+              <mat-chip-option *ngFor="let container of replicaSet?.spec?.template?.spec?.containers">
+                {{container.image}}
+              </mat-chip-option>
+            </mat-chip-listbox>
+          </app-form-container>
+
+          <app-form-container label="Tolerations" [labelAbove]="true">
+            <p-table [value]="replicaSet?.spec?.template?.spec?.tolerations">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th>Key</th>
+                  <th>Operator</th>
+                  <th>Value</th>
+                  <th>Effect</th>
+                  <th>Seconds</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-object>
+                <tr>
+                  <td>{{object.key}}</td>
+                  <td>{{object.operator}}</td>
+                  <td>{{object.value}}</td>
+                  <td>{{object.effect}}</td>
+                  <td>{{object.tolerationSeconds}}</td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </app-form-container>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </app-loader>
+</div>

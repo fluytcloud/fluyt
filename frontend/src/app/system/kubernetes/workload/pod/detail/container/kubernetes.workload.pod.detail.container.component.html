@@ -18,7 +18,7 @@
   </app-form-container>
 
   <app-form-container label="Ports">
-    <mat-chip-listbox aria-label="container ports">
+    <mat-chip-listbox aria-label="container ports" [selectable]="false">
       <mat-chip-option *ngFor="let port of container.ports">
         {{port | podContainerPort}}
       </mat-chip-option>
@@ -27,7 +27,7 @@
 </app-form-multiple-container>
 
 <app-form-container label="Environment" [labelAbove]="true">
-  <mat-chip-listbox aria-label="environments">
+  <mat-chip-listbox aria-label="environments" [selectable]="false">
     <mat-chip-option *ngFor="let env of container.env">
       {{env | podContainerEnv}}
     </mat-chip-option>
@@ -35,7 +35,7 @@
 </app-form-container>
 
 <app-form-container label="Mounts" [labelAbove]="true">
-  <mat-chip-listbox aria-label="mounts">
+  <mat-chip-listbox aria-label="mounts" [selectable]="false">
     <mat-chip-option *ngFor="let mount of container.volumeMounts">
       {{mount | podContainerMount}}
     </mat-chip-option>
@@ -48,7 +48,7 @@
 
 <ng-container *ngFor="let containerStatus of containerStatuses">
   <app-form-container label="Last Running Status" [labelAbove]="true" *ngIf="containerStatus.lastState?.running">
-    <mat-chip-listbox aria-label="Last Running Status">
+    <mat-chip-listbox aria-label="Last Running Status" [selectable]="false">
       <mat-chip-option *ngFor="let state of containerStatus.lastState?.running | keyvalue">
         {{state.key}} : {{state.value}}
       </mat-chip-option>
@@ -56,7 +56,7 @@
   </app-form-container>
 
   <app-form-container label="Last Terminated Status" [labelAbove]="true" *ngIf="containerStatus.lastState?.terminated">
-    <mat-chip-listbox aria-label="Last Running Status">
+    <mat-chip-listbox aria-label="Last Running Status" [selectable]="false">
       <mat-chip-option *ngFor="let state of containerStatus.lastState?.terminated | keyvalue">
         {{state.key}} : {{state.value}}
       </mat-chip-option>
@@ -64,7 +64,7 @@
   </app-form-container>
 
   <app-form-container label="Last Waiting Status" [labelAbove]="true" *ngIf="containerStatus.lastState?.waiting">
-    <mat-chip-listbox aria-label="Last Running Status">
+    <mat-chip-listbox aria-label="Last Running Status" [selectable]="false">
       <mat-chip-option *ngFor="let state of containerStatus.lastState?.waiting | keyvalue">
         {{state.key}} : {{state.value}}
       </mat-chip-option>

@@ -13,6 +13,12 @@ import {
 import {
   KubernetesConfigConfigMapDetailComponent
 } from "./config/config-map/detail/kubernetes.config.config-map.detail.component";
+import {
+  KubernetesWorkloadReplicaSetListComponent
+} from "./workload/replica-set/list/kubernetes.workload.replica-set.list.component";
+import {
+  KubernetesWorkloadReplicaSetDetailComponent
+} from "./workload/replica-set/detail/kubernetes.workload.replica-set.detail.component";
 
 
 const routes: Routes = [
@@ -63,6 +69,16 @@ const routes: Routes = [
     path: 'config-maps/detail',
     canActivate: [KubernetesClusterGuard],
     component: KubernetesConfigConfigMapDetailComponent
+  },
+  {
+    path: 'replica-sets',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesWorkloadReplicaSetListComponent
+  },
+  {
+    path: 'replica-sets/detail',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesWorkloadReplicaSetDetailComponent
   }
 ];
 

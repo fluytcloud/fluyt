@@ -33,10 +33,10 @@ public class ConfigMapResource {
 
     @GET
     @Path("list")
-    public List<ConfigMapResponseList> find(@BeanParam @Valid NamespaceObjectRequestListFilter podFilter) {
-        var cluster = clusterService.findById(podFilter.getClusterId())
+    public List<ConfigMapResponseList> find(@BeanParam @Valid NamespaceObjectRequestListFilter requestFilter) {
+        var cluster = clusterService.findById(requestFilter.getClusterId())
                 .orElseThrow();
-        var filter = new Filter(cluster).setNamespaces(podFilter.getNamespaces()).setSearch(podFilter.getName());
+        var filter = new Filter(cluster).setNamespaces(requestFilter.getNamespaces()).setSearch(requestFilter.getName());
         var configMaps = configMapService.list(filter);
         return CONFIG_MAP_MAPPER.mapResponseList(configMaps);
     }
