@@ -1,31 +1,29 @@
-<app-kubernetes-components-list name="ReplicaSets" (filter)="load($event)" [values]="values" [loading]="loading">
+<app-kubernetes-components-list name="StatefulSets" (filter)="load($event)" [values]="values" [loading]="loading">
   <ng-template #header>
     <tr>
       <th>Namespace</th>
       <th>Name</th>
-      <th>Desired</th>
-      <th>Current</th>
-      <th>Ready</th>
+      <th>Pods</th>
+      <th>Replicas</th>
       <th>Age</th>
       <th>Actions</th>
     </tr>
   </ng-template>
-  <ng-template #body let-replicaSet>
+  <ng-template #body let-statefulSet>
     <tr>
-      <td>{{replicaSet.namespace}}</td>
-      <td>{{replicaSet.name}}</td>
-      <td>{{replicaSet.desired}}</td>
-      <td>{{replicaSet.current}}</td>
-      <td>{{replicaSet.ready}}</td>
-      <td>{{replicaSet.age}}</td>
+      <td>{{statefulSet.namespace}}</td>
+      <td>{{statefulSet.name}}</td>
+      <td>{{statefulSet.pods}}</td>
+      <td>{{statefulSet.replicas}}</td>
+      <td>{{statefulSet.age}}</td>
       <td>
         <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Actions">
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
           <a mat-menu-item
-             [routerLink]="['/kubernetes/replica-sets/detail']"
-             [queryParams]="{name: replicaSet.name, namespace: replicaSet.namespace}">
+             [routerLink]="['/kubernetes/stateful-sets/detail']"
+             [queryParams]="{name: statefulSet.name, namespace: statefulSet.namespace}">
             <mat-icon>visibility</mat-icon>
             <span>Detail</span>
           </a>

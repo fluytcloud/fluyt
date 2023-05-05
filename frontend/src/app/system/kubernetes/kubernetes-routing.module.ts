@@ -19,6 +19,12 @@ import {
 import {
   KubernetesWorkloadReplicaSetDetailComponent
 } from "./workload/replica-set/detail/kubernetes.workload.replica-set.detail.component";
+import {
+  KubernetesWorkloadStatefulSetListComponent
+} from "./workload/stateful-set/list/kubernetes.workload.stateful-set.list.component";
+import {
+  KubernetesWorkloadStatefulSetDetailComponent
+} from "./workload/stateful-set/detail/kubernetes.workload.stateful-set.detail.component";
 
 
 const routes: Routes = [
@@ -79,6 +85,16 @@ const routes: Routes = [
     path: 'replica-sets/detail',
     canActivate: [KubernetesClusterGuard],
     component: KubernetesWorkloadReplicaSetDetailComponent
+  },
+  {
+    path: 'stateful-sets',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesWorkloadStatefulSetListComponent
+  },
+  {
+    path: 'stateful-sets/detail',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesWorkloadStatefulSetDetailComponent
   }
 ];
 
