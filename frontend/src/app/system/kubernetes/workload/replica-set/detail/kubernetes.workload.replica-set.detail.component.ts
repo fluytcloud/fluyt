@@ -1,31 +1,27 @@
-import {Component, OnInit} from "@angular/core";
+import {Component} from "@angular/core";
 import {HeaderService} from "../../../../../components/header/header.service";
-import {finalize} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
 import {KubernetesSupportNamespaceObjectFilter} from "../../../support/kubernetes.support.namespace.object.filter";
 import {KubernetesWorkloadReplicaSetService} from "../kubernetes.workload.replica-set.service";
+import {KubernetesSupportDetail} from "../../../support/kubernetes.support.detail";
+import {KubernetesWorkloadReplicaSetList} from "../kubernetes.workload.replica-set.list";
+import {Header} from "../../../../../components/header/header";
 
 @Component({
   selector: 'app-kubernetes-workload-replica-set-detail',
   templateUrl: './kubernetes.workload.replica-set.detail.component.html'
 })
-export class KubernetesWorkloadReplicaSetDetailComponent implements OnInit {
+export class KubernetesWorkloadReplicaSetDetailComponent extends KubernetesSupportDetail<KubernetesWorkloadReplicaSetList> {
 
-  display = false;
-  replicaSet: any;
-
-  constructor(private headerService: HeaderService,
-              private activatedRoute: ActivatedRoute,
+  constructor(headerService: HeaderService,
+              activatedRoute: ActivatedRoute,
               private replicaSetService: KubernetesWorkloadReplicaSetService) {
+    super(headerService, activatedRoute, replicaSetService);
   }
 
-  ngOnInit(): void {
-    const clusterId = this.activatedRoute.snapshot.queryParams['cluster']!;
-    const name = this.activatedRoute.snapshot.queryParams['name']!;
-    const namespace = this.activatedRoute.snapshot.queryParams['namespace']!;
-
-    this.headerService.notifyHeader({
-      name: `ReplicaSet ${name} details`,
+  getHeader(filter: KubernetesSupportNamespaceObjectFilter): Header {
+    return {
+      name: `ReplicaSet ${filter.name} details`,
       breadcrumbs: [
         {
           label: 'ReplicaSets',
@@ -33,17 +29,12 @@ export class KubernetesWorkloadReplicaSetDetailComponent implements OnInit {
         },
         {
           label: 'Detail',
-          link: `/kubernetes/replica-sets/detail?name=${name}&namespace${namespace}&cluster${clusterId}`
+          link: `/kubernetes/replica-sets/detail?name=${filter.name}&namespace${filter.namespace}&cluster${filter.clusterId}`
         }
       ]
-    });
-
-    const filter = new KubernetesSupportNamespaceObjectFilter(clusterId, namespace, name);
-    this.replicaSetService.get(filter)
-      .pipe(finalize(() => this.display = true))
-      .subscribe(replicaSet => {
-        this.replicaSet = replicaSet;
-      });
+    };
   }
+
+
 
 }

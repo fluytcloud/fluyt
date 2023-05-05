@@ -14,56 +14,56 @@
         </mat-expansion-panel-header>
         <div class="fc-form">
           <app-form-container label="Created"
-                              [value]="pod?.metadata?.creationTimestamp | date">
+                              [value]="value?.metadata?.creationTimestamp | date">
           </app-form-container>
 
           <app-form-multiple-container>
             <app-form-container label="Name"
-                                [value]="pod?.metadata?.name">
+                                [value]="value?.metadata?.name">
 
             </app-form-container>
 
             <app-form-container label="Namespace"
-                                [value]="pod?.metadata?.namespace">
+                                [value]="value?.metadata?.namespace">
             </app-form-container>
           </app-form-multiple-container>
 
           <app-form-container label="Annotations" [labelAbove]="true">
             <mat-chip-listbox aria-label="annotations" [selectable]="false">
-              <mat-chip-option *ngFor="let annotation of pod?.metadata?.annotations | keyvalue">
+              <mat-chip-option *ngFor="let annotation of value?.metadata?.annotations | keyvalue">
                 {{annotation.key}} : {{annotation.value}}
               </mat-chip-option>
             </mat-chip-listbox>
-            <span *ngIf="!pod?.metadata?.annotations">None</span>
+            <span *ngIf="!value?.metadata?.annotations">None</span>
           </app-form-container>
 
           <app-form-container label="Labels" [labelAbove]="true">
             <mat-chip-listbox aria-label="labels" [selectable]="false">
-              <mat-chip-option *ngFor="let label of pod?.metadata?.labels | keyvalue">
+              <mat-chip-option *ngFor="let label of value?.metadata?.labels | keyvalue">
                 {{label.key}} : {{label.value}}
               </mat-chip-option>
             </mat-chip-listbox>
-            <span *ngIf="!pod?.metadata?.labels">None</span>
+            <span *ngIf="!value?.metadata?.labels">None</span>
           </app-form-container>
 
           <app-form-multiple-container>
             <app-form-container label="Status"
-                                [value]="pod?.status?.phase">
+                                [value]="value?.status?.phase">
             </app-form-container>
 
             <app-form-container label="Node"
-                                [value]="pod?.spec?.nodeName">
+                                [value]="value?.spec?.nodeName">
             </app-form-container>
           </app-form-multiple-container>
 
           <app-form-multiple-container>
             <app-form-container label="Pod IP"
-                                [value]="pod?.status?.podIP">
+                                [value]="value?.status?.podIP">
             </app-form-container>
 
             <app-form-container label="Pod IPs">
               <mat-chip-listbox aria-label="pod ips" [selectable]="false">
-                <mat-chip-option *ngFor="let podIP of pod?.status?.podIPs">
+                <mat-chip-option *ngFor="let podIP of value?.status?.podIPs">
                   {{podIP.ip}}
                 </mat-chip-option>
               </mat-chip-listbox>
@@ -72,24 +72,24 @@
 
           <app-form-multiple-container>
             <app-form-container label="Service Account"
-                                [value]="pod?.spec?.serviceAccountName">
+                                [value]="value?.spec?.serviceAccountName">
             </app-form-container>
 
             <app-form-container label="QoS Class"
-                                [value]="pod?.status?.qosClass">
+                                [value]="value?.status?.qosClass">
             </app-form-container>
           </app-form-multiple-container>
 
           <app-form-container label="Conditions" [labelAbove]="true">
             <mat-chip-listbox aria-label="conditions" [selectable]="false">
-              <mat-chip-option *ngFor="let condition of pod?.status?.conditions">
+              <mat-chip-option *ngFor="let condition of value?.status?.conditions">
                 {{condition.type}}
               </mat-chip-option>
             </mat-chip-listbox>
           </app-form-container>
 
           <app-form-container label="Tolerations" [labelAbove]="true">
-            <p-table [value]="pod?.spec?.tolerations">
+            <p-table [value]="value?.spec?.tolerations">
               <ng-template pTemplate="header">
                 <tr>
                   <th>Key</th>
@@ -117,7 +117,7 @@
           Containers
         </mat-expansion-panel-header>
         <div class="fc-form">
-          <div *ngFor="let container of pod?.spec?.containers; let first = first;">
+          <div *ngFor="let container of value?.spec?.containers; let first = first;">
             <mat-divider *ngIf="!first"></mat-divider>
             <app-kubernetes-workload-pod-detail-container
               [container]="container"
@@ -131,7 +131,7 @@
           Volumes
         </mat-expansion-panel-header>
         <div class="fc-form">
-          <div *ngFor="let volume of pod?.spec?.volumes; let first = first;">
+          <div *ngFor="let volume of value?.spec?.volumes; let first = first;">
             <mat-divider *ngIf="!first"></mat-divider>
             <app-kubernetes-workload-pod-detail-volume [volume]="volume">
             </app-kubernetes-workload-pod-detail-volume>

@@ -14,27 +14,27 @@
         </mat-expansion-panel-header>
         <div class="fc-form">
           <app-form-container label="Created"
-                              [value]="replicaSet?.metadata?.creationTimestamp | date">
+                              [value]="value?.metadata?.creationTimestamp | date">
           </app-form-container>
 
           <app-form-multiple-container>
             <app-form-container label="Name"
-                                [value]="replicaSet?.metadata?.name">
+                                [value]="value?.metadata?.name">
             </app-form-container>
 
             <app-form-container label="Namespace"
-                                [value]="replicaSet?.metadata?.namespace">
+                                [value]="value?.metadata?.namespace">
             </app-form-container>
           </app-form-multiple-container>
 
           <app-form-multiple-container>
             <app-form-container label="Replicas"
-                                [value]="replicaSet?.status | replicaSetReplicas">
+                                [value]="value?.status | replicaSetReplicas">
             </app-form-container>
 
             <app-form-container label="Controlled By">
               <mat-chip-listbox aria-label="ownerReferences" [selectable]="false">
-                <mat-chip-option *ngFor="let owner of replicaSet?.metadata?.ownerReferences">
+                <mat-chip-option *ngFor="let owner of value?.metadata?.ownerReferences">
                   {{owner.kind}} : {{owner.name}}
                 </mat-chip-option>
               </mat-chip-listbox>
@@ -43,26 +43,26 @@
 
           <app-form-container label="Annotations" [labelAbove]="true">
             <mat-chip-listbox aria-label="annotations" [selectable]="false">
-              <mat-chip-option *ngFor="let annotation of replicaSet?.metadata?.annotations | keyvalue">
+              <mat-chip-option *ngFor="let annotation of value?.metadata?.annotations | keyvalue">
                 {{annotation.key}} : {{annotation.value}}
               </mat-chip-option>
             </mat-chip-listbox>
-            <span *ngIf="!replicaSet?.metadata?.annotations">None</span>
+            <span *ngIf="!value?.metadata?.annotations">None</span>
           </app-form-container>
 
           <app-form-container label="Labels" [labelAbove]="true">
             <mat-chip-listbox aria-label="labels" [selectable]="false">
-              <mat-chip-option *ngFor="let label of replicaSet?.metadata?.labels | keyvalue">
+              <mat-chip-option *ngFor="let label of value?.metadata?.labels | keyvalue">
                 {{label.key}} : {{label.value}}
               </mat-chip-option>
             </mat-chip-listbox>
-            <span *ngIf="!replicaSet?.metadata?.labels">None</span>
+            <span *ngIf="!value?.metadata?.labels">None</span>
           </app-form-container>
 
           <app-form-multiple-container>
             <app-form-container label="Selector" [labelAbove]="true">
               <mat-chip-listbox aria-label="selector" [selectable]="false">
-                <mat-chip-option *ngFor="let match of replicaSet?.spec?.selector?.matchLabels | keyvalue">
+                <mat-chip-option *ngFor="let match of value?.spec?.selector?.matchLabels | keyvalue">
                   {{match.key}} : {{match.value}}
                 </mat-chip-option>
               </mat-chip-listbox>
@@ -70,7 +70,7 @@
 
             <app-form-container label="Node Selector" [labelAbove]="true">
               <mat-chip-listbox aria-label="node selector" [selectable]="false">
-                <mat-chip-option *ngFor="let selector of replicaSet?.spec?.template?.spec?.nodeSelector | keyvalue">
+                <mat-chip-option *ngFor="let selector of value?.spec?.template?.spec?.nodeSelector | keyvalue">
                   {{selector.key}} : {{selector.value}}
                 </mat-chip-option>
               </mat-chip-listbox>
@@ -79,14 +79,14 @@
 
           <app-form-container label="Images" [labelAbove]="true">
             <mat-chip-listbox aria-label="selector" [selectable]="false">
-              <mat-chip-option *ngFor="let container of replicaSet?.spec?.template?.spec?.containers">
+              <mat-chip-option *ngFor="let container of value?.spec?.template?.spec?.containers">
                 {{container.image}}
               </mat-chip-option>
             </mat-chip-listbox>
           </app-form-container>
 
           <app-form-container label="Tolerations" [labelAbove]="true">
-            <p-table [value]="replicaSet?.spec?.template?.spec?.tolerations">
+            <p-table [value]="value?.spec?.template?.spec?.tolerations">
               <ng-template pTemplate="header">
                 <tr>
                   <th>Key</th>

@@ -14,27 +14,27 @@
         </mat-expansion-panel-header>
         <div class="fc-form">
           <app-form-container label="Created"
-                              [value]="configMap?.metadata?.creationTimestamp | date">
+                              [value]="value?.metadata?.creationTimestamp | date">
           </app-form-container>
 
           <app-form-multiple-container>
             <app-form-container label="Name"
-                                [value]="configMap?.metadata?.name">
+                                [value]="value?.metadata?.name">
 
             </app-form-container>
 
             <app-form-container label="Namespace"
-                                [value]="configMap?.metadata?.namespace">
+                                [value]="value?.metadata?.namespace">
             </app-form-container>
           </app-form-multiple-container>
         </div>
       </mat-expansion-panel>
-      <mat-expansion-panel [expanded]="true" *ngIf="configMap.data">
+      <mat-expansion-panel [expanded]="true" *ngIf="value?.data">
         <mat-expansion-panel-header>
           Data
         </mat-expansion-panel-header>
         <div class="fc-form">
-          <app-form-container *ngFor="let data of configMap.data | keyvalue"
+          <app-form-container *ngFor="let data of value?.data | keyvalue"
                               label="{{data.key}}"
                               [labelAbove]="true">
             <ngx-codemirror [(ngModel)]="data.value"
@@ -42,12 +42,12 @@
           </app-form-container>
         </div>
       </mat-expansion-panel>
-      <mat-expansion-panel [expanded]="true" *ngIf="configMap.binaryData">
+      <mat-expansion-panel [expanded]="true" *ngIf="value?.binaryData">
         <mat-expansion-panel-header>
           BinaryData
         </mat-expansion-panel-header>
         <div class="fc-form">
-          <app-form-container *ngFor="let binaryData of configMap.binaryData | keyvalue"
+          <app-form-container *ngFor="let binaryData of value?.binaryData | keyvalue"
                               label="{{binaryData.key}}"
                               [labelAbove]="true">
             <ngx-codemirror [(ngModel)]="binaryData.value"

@@ -1,37 +1,34 @@
-import {Component, OnInit} from "@angular/core";
+import {Component} from "@angular/core";
 import {HeaderService} from "../../../../../components/header/header.service";
-import {finalize} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
 import {KubernetesSupportNamespaceObjectFilter} from "../../../support/kubernetes.support.namespace.object.filter";
 import {KubernetesConfigConfigMapService} from "../kubernetes.config.config-map.service";
+import {KubernetesSupportDetail} from "../../../support/kubernetes.support.detail";
+import {KubernetesConfigConfigMapList} from "../kubernetes.config.config-map.list";
+import {Header} from "../../../../../components/header/header";
 
 @Component({
   selector: 'app-kubernetes-config-config-map-detail',
   templateUrl: './kubernetes.config.config-map.detail.component.html',
   styleUrls: ['./kubernetes.config.config-map.detail.component.scss']
 })
-export class KubernetesConfigConfigMapDetailComponent implements OnInit {
+export class KubernetesConfigConfigMapDetailComponent extends KubernetesSupportDetail<KubernetesConfigConfigMapList> {
 
-  display = false;
-  configMap: any;
   codeMirrorConfig = {
     readOnly: true,
     lineNumbers: true,
     theme: 'material'
   };
 
-  constructor(private headerService: HeaderService,
-              private activatedRoute: ActivatedRoute,
+  constructor(headerService: HeaderService,
+              activatedRoute: ActivatedRoute,
               private configMapService: KubernetesConfigConfigMapService) {
+    super(headerService, activatedRoute, configMapService);
   }
 
-  ngOnInit(): void {
-    const clusterId = this.activatedRoute.snapshot.queryParams['cluster']!;
-    const name = this.activatedRoute.snapshot.queryParams['name']!;
-    const namespace = this.activatedRoute.snapshot.queryParams['namespace']!;
-
-    this.headerService.notifyHeader({
-      name: `ConfigMap ${name} details`,
+  getHeader(filter: KubernetesSupportNamespaceObjectFilter): Header {
+    return {
+      name: `ConfigMap ${filter.name} details`,
       breadcrumbs: [
         {
           label: 'ConfigMaps',
@@ -39,17 +36,10 @@ export class KubernetesConfigConfigMapDetailComponent implements OnInit {
         },
         {
           label: 'Detail',
-          link: `/kubernetes/config-maps/detail?name=${name}&namespace${namespace}&cluster${clusterId}`
+          link: `/kubernetes/config-maps/detail?name=${filter.name}&namespace=${filter.namespace}&cluster=${filter.clusterId}`
         }
       ]
-    });
-
-    const filter = new KubernetesSupportNamespaceObjectFilter(clusterId, namespace, name);
-    this.configMapService.get(filter)
-      .pipe(finalize(() => this.display = true))
-      .subscribe(configMap => {
-        this.configMap = configMap;
-      });
+    };
   }
 
 }

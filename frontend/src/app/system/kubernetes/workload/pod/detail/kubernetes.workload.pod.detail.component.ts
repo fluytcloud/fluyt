@@ -1,31 +1,27 @@
-import {Component, OnInit} from "@angular/core";
+import {Component} from "@angular/core";
 import {HeaderService} from "../../../../../components/header/header.service";
 import {KubernetesWorkloadPodService} from "../kubernetes.workload.pod.service";
-import {finalize} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
 import {KubernetesSupportNamespaceObjectFilter} from "../../../support/kubernetes.support.namespace.object.filter";
+import {KubernetesSupportDetail} from "../../../support/kubernetes.support.detail";
+import {KubernetesWorkloadPodList} from "../kubernetes.workload.pod.list";
+import {Header} from "../../../../../components/header/header";
 
 @Component({
   selector: 'app-kubernetes-workload-pod-detail',
   templateUrl: './kubernetes.workload.pod.detail.component.html'
 })
-export class KubernetesWorkloadPodDetailComponent implements OnInit {
+export class KubernetesWorkloadPodDetailComponent extends KubernetesSupportDetail<KubernetesWorkloadPodList> {
 
-  display = false;
-  pod: any;
-
-  constructor(private headerService: HeaderService,
-              private activatedRoute: ActivatedRoute,
+  constructor(headerService: HeaderService,
+              activatedRoute: ActivatedRoute,
               private podService: KubernetesWorkloadPodService) {
+    super(headerService, activatedRoute, podService)
   }
 
-  ngOnInit(): void {
-    const clusterId = this.activatedRoute.snapshot.queryParams['cluster']!;
-    const name = this.activatedRoute.snapshot.queryParams['name']!;
-    const namespace = this.activatedRoute.snapshot.queryParams['namespace']!;
-
-    this.headerService.notifyHeader({
-      name: `Pod ${name} details`,
+  getHeader(filter: KubernetesSupportNamespaceObjectFilter): Header {
+    return {
+      name: `Pod ${filter.name} details`,
       breadcrumbs: [
         {
           label: 'Pods',
@@ -33,21 +29,14 @@ export class KubernetesWorkloadPodDetailComponent implements OnInit {
         },
         {
           label: 'Detail',
-          link: `/kubernetes/pods/detail?name=${name}&namespace${namespace}&cluster${clusterId}`
+          link: `/kubernetes/pods/detail?name=${filter.name}&namespace${filter.namespace}&cluster${filter.clusterId}`
         }
       ]
-    });
-
-    const filter = new KubernetesSupportNamespaceObjectFilter(clusterId, namespace, name);
-    this.podService.get(filter)
-      .pipe(finalize(() => this.display = true))
-      .subscribe(pod => {
-        this.pod = pod;
-      });
+    };
   }
 
   getContainerStatusesByName(name: string): any {
-    const containerStatuses: any[] = this.pod?.status?.containerStatuses;
+    const containerStatuses: any[] = this.value?.status?.containerStatuses;
     return containerStatuses.filter(it => it.name === name);
   }
 
