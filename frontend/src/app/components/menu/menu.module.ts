@@ -5,8 +5,8 @@ import {CommonModule} from "@angular/common";
 import {AvatarModule} from "primeng/avatar";
 import {RouterModule} from "@angular/router";
 import {MatIconModule} from "@angular/material/icon";
-import {MatLegacyTooltipModule as MatTooltipModule} from "@angular/material/legacy-tooltip";
 import {AvatarGroupModule} from "primeng/avatargroup";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
   declarations: [
