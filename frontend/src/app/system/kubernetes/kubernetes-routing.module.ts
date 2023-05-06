@@ -25,6 +25,12 @@ import {
 import {
   KubernetesWorkloadStatefulSetDetailComponent
 } from "./workload/stateful-set/detail/kubernetes.workload.stateful-set.detail.component";
+import {
+  KubernetesWorkloadDaemonSetListComponent
+} from "./workload/daemon-set/list/kubernetes.workload.daemon-set.list.component";
+import {
+  KubernetesWorkloadDaemonSetDetailComponent
+} from "./workload/daemon-set/detail/kubernetes.workload.daemon-set.detail.component";
 
 
 const routes: Routes = [
@@ -95,6 +101,16 @@ const routes: Routes = [
     path: 'stateful-sets/detail',
     canActivate: [KubernetesClusterGuard],
     component: KubernetesWorkloadStatefulSetDetailComponent
+  },
+  {
+    path: 'daemon-sets',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesWorkloadDaemonSetListComponent
+  },
+  {
+    path: 'daemon-sets/detail',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesWorkloadDaemonSetDetailComponent
   }
 ];
 

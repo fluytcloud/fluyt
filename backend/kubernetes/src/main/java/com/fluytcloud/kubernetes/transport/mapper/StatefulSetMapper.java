@@ -10,13 +10,13 @@ import java.util.List;
 
 public class StatefulSetMapper {
 
-    public StatefulSetResponseList mapResponseList(V1StatefulSet replicaSet) {
+    public StatefulSetResponseList mapResponseList(V1StatefulSet statefulSet) {
         return new StatefulSetResponseList(
-                replicaSet.getMetadata().getName(),
-                replicaSet.getMetadata().getNamespace(),
-                getPods(replicaSet.getStatus()),
-                replicaSet.getSpec().getReplicas(),
-                getAge(replicaSet.getMetadata().getCreationTimestamp())
+                statefulSet.getMetadata().getName(),
+                statefulSet.getMetadata().getNamespace(),
+                getPods(statefulSet.getStatus()),
+                statefulSet.getSpec().getReplicas(),
+                getAge(statefulSet.getMetadata().getCreationTimestamp())
         );
     }
 

@@ -19,6 +19,7 @@ import {MatMenuModule} from "@angular/material/menu";
 import {KubernetesConfigConfigMapModule} from "./config/config-map/kubernetes.config.config-map.module";
 import {KubernetesWorkloadReplicaSetModule} from "./workload/replica-set/kubernetes.workload.replica-set.module";
 import {KubernetesWorkloadStatefulSetModule} from "./workload/stateful-set/kubernetes.workload.stateful-set.module";
+import {KubernetesWorkloadDaemonSetModule} from "./workload/daemon-set/kubernetes.workload.daemon-set.module";
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import {KubernetesWorkloadStatefulSetModule} from "./workload/stateful-set/kuber
     KubernetesTerminalModule,
     KubernetesConfigConfigMapModule,
     KubernetesWorkloadReplicaSetModule,
-    KubernetesWorkloadStatefulSetModule
+    KubernetesWorkloadStatefulSetModule,
+    KubernetesWorkloadDaemonSetModule
   ],
   providers: [
     KubernetesClusterService,
