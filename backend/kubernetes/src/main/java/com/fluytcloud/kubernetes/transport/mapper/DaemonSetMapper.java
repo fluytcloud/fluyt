@@ -48,8 +48,8 @@ public class DaemonSetMapper {
         return prettyTime.format(dateTime);
     }
 
-    public List<DaemonSetResponseList> mapResponseList(List<V1DaemonSet> statefulSets) {
-        return statefulSets.stream()
+    public List<DaemonSetResponseList> mapResponseList(List<V1DaemonSet> daemonSets) {
+        return daemonSets.stream()
                 .map(this::mapResponseList)
                 .toList();
     }

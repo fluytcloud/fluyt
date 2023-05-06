@@ -1,0 +1,89 @@
+<div class="container">
+  <app-loader [show]="display">
+    <mat-accordion class="example-headers-align" multi>
+      <mat-expansion-panel [hideToggle]="true" [expanded]="true">
+        <mat-expansion-panel-header>
+          <div class="fc-form">
+            <div class="fc-form-actions-container">
+              <mat-panel-title>
+                General
+              </mat-panel-title>
+              <button mat-raised-button routerLink="/kubernetes/daemon-sets">Back</button>
+            </div>
+          </div>
+        </mat-expansion-panel-header>
+        <div class="fc-form">
+          <app-form-container label="Created"
+                              [value]="value?.metadata?.creationTimestamp | date">
+          </app-form-container>
+
+          <app-form-multiple-container>
+            <app-form-container label="Name"
+                                [value]="value?.metadata?.name">
+            </app-form-container>
+
+            <app-form-container label="Namespace"
+                                [value]="value?.metadata?.namespace">
+            </app-form-container>
+          </app-form-multiple-container>
+
+          <app-form-multiple-container>
+            <app-form-container label="Schedule"
+                                [value]="value?.spec?.schedule">
+            </app-form-container>
+
+            <app-form-container label="Concurrency Policy"
+                                [value]="value?.spec?.concurrencyPolicy">
+            </app-form-container>
+          </app-form-multiple-container>
+
+          <app-form-multiple-container>
+            <app-form-container label="Starting Deadline Seconds"
+                                [value]="value?.spec?.startingDeadlineSeconds">
+            </app-form-container>
+
+            <app-form-container label="Time zone"
+                                [value]="value?.spec?.timeZone">
+            </app-form-container>
+          </app-form-multiple-container>
+
+          <app-form-multiple-container>
+            <app-form-container label="Successful Jobs History Limit"
+                                [value]="value?.spec?.successfulJobsHistoryLimit">
+            </app-form-container>
+
+            <app-form-container label="Failed Jobs History Limit"
+                                [value]="value?.spec?.failedJobsHistoryLimit">
+            </app-form-container>
+          </app-form-multiple-container>
+
+          <app-form-container label="Annotations" [labelAbove]="true">
+            <mat-chip-listbox aria-label="annotations" [selectable]="false">
+              <mat-chip-option *ngFor="let annotation of value?.metadata?.annotations | keyvalue">
+                {{annotation.key}} : {{annotation.value}}
+              </mat-chip-option>
+            </mat-chip-listbox>
+            <span *ngIf="!value?.metadata?.annotations">None</span>
+          </app-form-container>
+
+          <app-form-container label="Labels" [labelAbove]="true">
+            <mat-chip-listbox aria-label="labels" [selectable]="false">
+              <mat-chip-option *ngFor="let label of value?.metadata?.labels | keyvalue">
+                {{label.key}} : {{label.value}}
+              </mat-chip-option>
+            </mat-chip-listbox>
+            <span *ngIf="!value?.metadata?.labels">None</span>
+          </app-form-container>
+
+          <app-form-container label="Images" [labelAbove]="true">
+            <mat-chip-listbox aria-label="selector" [selectable]="false">
+              <mat-chip-option *ngFor="let container of value?.spec?.jobTemplate?.spec?.template?.spec?.containers">
+                {{container.image}}
+              </mat-chip-option>
+            </mat-chip-listbox>
+          </app-form-container>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </app-loader>
+</div>

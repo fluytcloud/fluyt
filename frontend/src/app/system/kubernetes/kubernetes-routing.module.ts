@@ -31,6 +31,12 @@ import {
 import {
   KubernetesWorkloadDaemonSetDetailComponent
 } from "./workload/daemon-set/detail/kubernetes.workload.daemon-set.detail.component";
+import {
+  KubernetesWorkloadCronJobListComponent
+} from "./workload/cron-job/list/kubernetes.workload.cron-job.list.component";
+import {
+  KubernetesWorkloadCronJobDetailComponent
+} from "./workload/cron-job/detail/kubernetes.workload.cron-job.detail.component";
 
 
 const routes: Routes = [
@@ -111,6 +117,16 @@ const routes: Routes = [
     path: 'daemon-sets/detail',
     canActivate: [KubernetesClusterGuard],
     component: KubernetesWorkloadDaemonSetDetailComponent
+  },
+  {
+    path: 'cron-jobs',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesWorkloadCronJobListComponent
+  },
+  {
+    path: 'cron-jobs/detail',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesWorkloadCronJobDetailComponent
   }
 ];
 

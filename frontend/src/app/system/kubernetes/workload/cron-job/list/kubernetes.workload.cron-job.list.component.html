@@ -1,0 +1,46 @@
+<app-kubernetes-components-list name="CronJobs" (filter)="load($event)" [values]="values" [loading]="loading">
+  <ng-template #header>
+    <tr>
+      <th>Namespace</th>
+      <th>Name</th>
+      <th>Schedule</th>
+      <th>Suspend</th>
+      <th>Active</th>
+      <th>Last Schedule</th>
+      <th>Age</th>
+      <th>Actions</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-cronJob>
+    <tr>
+      <td>{{cronJob.namespace}}</td>
+      <td>{{cronJob.name}}</td>
+      <td>{{cronJob.schedule}}</td>
+      <td>{{cronJob.suspend }}</td>
+      <td>{{cronJob.active}}</td>
+      <td>{{cronJob.lastSchedule}}</td>
+      <td>{{cronJob.age}}</td>
+      <td>
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Actions">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <a mat-menu-item
+             [routerLink]="['/kubernetes/cron-jobs/detail']"
+             [queryParams]="{name: cronJob.name, namespace: cronJob.namespace}">
+            <mat-icon>visibility</mat-icon>
+            <span>Detail</span>
+          </a>
+          <a mat-menu-item>
+            <mat-icon>mode_edit</mat-icon>
+            <span>Edit</span>
+          </a>
+          <a mat-menu-item>
+            <mat-icon>delete</mat-icon>
+            <span>Delete</span>
+          </a>
+        </mat-menu>
+      </td>
+    </tr>
+  </ng-template>
+</app-kubernetes-components-list>
