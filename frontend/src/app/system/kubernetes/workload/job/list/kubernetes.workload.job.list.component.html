@@ -1,12 +1,13 @@
-<app-kubernetes-components-list name="CronJobs" (filter)="load($event)" [values]="values" [loading]="loading">
+<app-kubernetes-components-list name="Jobs" (filter)="load($event)" [values]="values" [loading]="loading">
   <ng-template #header>
     <tr>
       <th>Namespace</th>
       <th>Name</th>
-      <th>Schedule</th>
-      <th>Suspend</th>
       <th>Active</th>
-      <th>Last Schedule</th>
+      <th>Failed</th>
+      <th>Ready</th>
+      <th>Succeeded</th>
+      <th>Conditions</th>
       <th>Age</th>
       <th>Actions</th>
     </tr>
@@ -15,10 +16,11 @@
     <tr>
       <td>{{cronJob.namespace}}</td>
       <td>{{cronJob.name}}</td>
-      <td>{{cronJob.schedule}}</td>
-      <td>{{cronJob.suspend?.toString()}}</td>
       <td>{{cronJob.active}}</td>
-      <td>{{cronJob.lastSchedule}}</td>
+      <td>{{cronJob.failed}}</td>
+      <td>{{cronJob.ready}}</td>
+      <td>{{cronJob.succeeded}}</td>
+      <td>{{cronJob.conditions?.join(',')}}</td>
       <td>{{cronJob.age}}</td>
       <td>
         <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Actions">
@@ -26,7 +28,7 @@
         </button>
         <mat-menu #menu="matMenu">
           <a mat-menu-item
-             [routerLink]="['/kubernetes/cron-jobs/detail']"
+             [routerLink]="['/kubernetes/jobs/detail']"
              [queryParams]="{name: cronJob.name, namespace: cronJob.namespace}">
             <mat-icon>visibility</mat-icon>
             <span>Detail</span>

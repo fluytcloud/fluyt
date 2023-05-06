@@ -8,7 +8,7 @@
               <mat-panel-title>
                 General
               </mat-panel-title>
-              <button mat-raised-button routerLink="/kubernetes/cron-jobs">Back</button>
+              <button mat-raised-button routerLink="/kubernetes/jobs">Back</button>
             </div>
           </div>
         </mat-expansion-panel-header>
@@ -24,36 +24,6 @@
 
             <app-form-container label="Namespace"
                                 [value]="value?.metadata?.namespace">
-            </app-form-container>
-          </app-form-multiple-container>
-
-          <app-form-multiple-container>
-            <app-form-container label="Schedule"
-                                [value]="value?.spec?.schedule">
-            </app-form-container>
-
-            <app-form-container label="Concurrency Policy"
-                                [value]="value?.spec?.concurrencyPolicy">
-            </app-form-container>
-          </app-form-multiple-container>
-
-          <app-form-multiple-container>
-            <app-form-container label="Starting Deadline Seconds"
-                                [value]="value?.spec?.startingDeadlineSeconds">
-            </app-form-container>
-
-            <app-form-container label="Time zone"
-                                [value]="value?.spec?.timeZone">
-            </app-form-container>
-          </app-form-multiple-container>
-
-          <app-form-multiple-container>
-            <app-form-container label="Successful Jobs History Limit"
-                                [value]="value?.spec?.successfulJobsHistoryLimit">
-            </app-form-container>
-
-            <app-form-container label="Failed Jobs History Limit"
-                                [value]="value?.spec?.failedJobsHistoryLimit">
             </app-form-container>
           </app-form-multiple-container>
 
@@ -77,11 +47,49 @@
 
           <app-form-container label="Images" [labelAbove]="true">
             <mat-chip-listbox aria-label="selector" [selectable]="false">
-              <mat-chip-option *ngFor="let container of value?.spec?.jobTemplate?.spec?.template?.spec?.containers">
+              <mat-chip-option *ngFor="let container of value?.spec?.template?.spec?.containers">
                 {{container.image}}
               </mat-chip-option>
             </mat-chip-listbox>
           </app-form-container>
+
+          <app-form-multiple-container>
+            <app-form-container label="Controlled By">
+              <mat-chip-listbox aria-label="ownerReferences" [selectable]="false">
+                <mat-chip-option *ngFor="let owner of value?.metadata?.ownerReferences">
+                  {{owner.kind}} : {{owner.name}}
+                </mat-chip-option>
+              </mat-chip-listbox>
+            </app-form-container>
+
+            <app-form-container label="Conditions">
+              <mat-chip-listbox aria-label="conditions" [selectable]="false">
+                <mat-chip-option *ngFor="let condition of value?.status?.conditions">
+                  {{condition.type}}
+                </mat-chip-option>
+              </mat-chip-listbox>
+            </app-form-container>
+          </app-form-multiple-container>
+
+          <app-form-multiple-container>
+            <app-form-container label="Completions"
+                                [value]="value?.spec?.completions">
+            </app-form-container>
+
+            <app-form-container label="Parallelism"
+                                [value]="value?.spec?.parallelism">
+            </app-form-container>
+          </app-form-multiple-container>
+
+          <app-form-multiple-container>
+            <app-form-container label="Backoff Limit"
+                                [value]="value?.spec?.backoffLimit">
+            </app-form-container>
+
+            <app-form-container label="Suspend"
+                                [value]="value?.spec?.suspend?.toString()">
+            </app-form-container>
+          </app-form-multiple-container>
         </div>
       </mat-expansion-panel>
     </mat-accordion>

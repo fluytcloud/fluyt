@@ -21,6 +21,7 @@ import {KubernetesWorkloadReplicaSetModule} from "./workload/replica-set/kuberne
 import {KubernetesWorkloadStatefulSetModule} from "./workload/stateful-set/kubernetes.workload.stateful-set.module";
 import {KubernetesWorkloadDaemonSetModule} from "./workload/daemon-set/kubernetes.workload.daemon-set.module";
 import {KubernetesWorkloadCronJobModule} from "./workload/cron-job/kubernetes.workload.cron-job.module";
+import {KubernetesWorkloadJobModule} from "./workload/job/kubernetes.workload.job.module";
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import {KubernetesWorkloadCronJobModule} from "./workload/cron-job/kubernetes.wo
     KubernetesWorkloadReplicaSetModule,
     KubernetesWorkloadStatefulSetModule,
     KubernetesWorkloadDaemonSetModule,
-    KubernetesWorkloadCronJobModule
+    KubernetesWorkloadCronJobModule,
+    KubernetesWorkloadJobModule
   ],
   providers: [
     KubernetesClusterService,
