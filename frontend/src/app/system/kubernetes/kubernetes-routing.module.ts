@@ -39,6 +39,8 @@ import {
 } from "./workload/cron-job/detail/kubernetes.workload.cron-job.detail.component";
 import {KubernetesWorkloadJobListComponent} from "./workload/job/list/kubernetes.workload.job.list.component";
 import {KubernetesWorkloadJobDetailComponent} from "./workload/job/detail/kubernetes.workload.job.detail.component";
+import { KubernetesNetworkEndpointListComponent } from './network/endpoint/list/kubernetes.network.endpoint.list.component';
+import { KubernetesNetworkEndpointDetailComponent } from './network/endpoint/detail/kubernetes.network.endpoint.detail.component';
 
 
 const routes: Routes = [
@@ -139,6 +141,16 @@ const routes: Routes = [
     path: 'jobs/detail',
     canActivate: [KubernetesClusterGuard],
     component: KubernetesWorkloadJobDetailComponent
+  },
+  {
+    path: 'endpoints',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesNetworkEndpointListComponent
+  },
+  {
+    path: 'endpoints/detail',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesNetworkEndpointDetailComponent
   }
 ];
 
