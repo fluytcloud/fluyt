@@ -39,6 +39,12 @@ import {
 } from "./workload/cron-job/detail/kubernetes.workload.cron-job.detail.component";
 import {KubernetesWorkloadJobListComponent} from "./workload/job/list/kubernetes.workload.job.list.component";
 import {KubernetesWorkloadJobDetailComponent} from "./workload/job/detail/kubernetes.workload.job.detail.component";
+import {
+  KubernetesWorkloadDeploymentListComponent
+} from "./workload/deployment/list/kubernetes.workload.deployment.list.component";
+import {
+  KubernetesWorkloadDeploymentDetailComponent
+} from "./workload/deployment/detail/kubernetes.workload.deployment.detail.component";
 
 
 const routes: Routes = [
@@ -99,6 +105,16 @@ const routes: Routes = [
     path: 'replica-sets/detail',
     canActivate: [KubernetesClusterGuard],
     component: KubernetesWorkloadReplicaSetDetailComponent
+  },
+  {
+    path: 'deployments',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesWorkloadDeploymentListComponent
+  },
+  {
+    path: 'deployments/detail',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesWorkloadDeploymentDetailComponent
   },
   {
     path: 'stateful-sets',

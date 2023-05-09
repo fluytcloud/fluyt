@@ -7,7 +7,7 @@ import io.kubernetes.client.openapi.models.V1ReplicaSet;
 import javax.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
-public class ReplicaSetService extends NamespaceObjectsService<V1ReplicaSet> implements ObjectService<V1ReplicaSet>  {
+public class ReplicaSetService extends NamespaceObjectsService<V1ReplicaSet> implements ObjectService<V1ReplicaSet> {
 
     private final ReplicaSetRepository replicaSetRepository;
 
