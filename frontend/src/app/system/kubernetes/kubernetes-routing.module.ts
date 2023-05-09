@@ -39,6 +39,12 @@ import {
 } from "./workload/cron-job/detail/kubernetes.workload.cron-job.detail.component";
 import {KubernetesWorkloadJobListComponent} from "./workload/job/list/kubernetes.workload.job.list.component";
 import {KubernetesWorkloadJobDetailComponent} from "./workload/job/detail/kubernetes.workload.job.detail.component";
+import {
+  KubernetesConfigHorizontalPodAutoscalerListComponent
+} from "./config/horizontal-pod-autoscaler/list/kubernetes.config.horizontal-pod-autoscaler.list.component";
+import {
+  KubernetesConfigHorizontalPodAutoscalerDetailComponent
+} from "./config/horizontal-pod-autoscaler/detail/kubernetes.config.horizontal-pod-autoscaler.detail.component";
 
 
 const routes: Routes = [
@@ -139,6 +145,16 @@ const routes: Routes = [
     path: 'jobs/detail',
     canActivate: [KubernetesClusterGuard],
     component: KubernetesWorkloadJobDetailComponent
+  },
+  {
+    path: 'horizontal-pod-autoscalers',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesConfigHorizontalPodAutoscalerListComponent
+  },
+  {
+    path: 'horizontal-pod-autoscalers/detail',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesConfigHorizontalPodAutoscalerDetailComponent
   }
 ];
 
