@@ -2,10 +2,10 @@ package com.fluytcloud.kubernetes.datasources;
 
 import com.fluytcloud.kubernetes.entities.Cluster;
 import com.fluytcloud.kubernetes.entities.Search;
-import com.fluytcloud.kubernetes.repositories.IngressRepository;
+import com.fluytcloud.kubernetes.repositories.EndpointRepository;
 import io.kubernetes.client.openapi.ApiException;
-import io.kubernetes.client.openapi.models.V1Ingress;
-import io.kubernetes.client.openapi.models.V1IngressList;
+import io.kubernetes.client.openapi.models.V1Endpoints;
+import io.kubernetes.client.openapi.models.V1EndpointsList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,15 +15,15 @@ import java.util.List;
 import java.util.Optional;
 
 @ApplicationScoped
-public class IngressRepositoryImpl extends NamespaceObjectRepositoryImpl<V1Ingress> implements IngressRepository {
+public class EndpointRepositoryImpl extends NamespaceObjectRepositoryImpl<V1Endpoints> implements EndpointRepository {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(IngressRepositoryImpl.class.getName());
+    private static final Logger LOGGER = LoggerFactory.getLogger(EndpointRepositoryImpl.class.getName());
 
     @Override
-    protected List<V1Ingress> listByNamespace(Cluster cluster, Search search) throws ApiException {
-        var networkingApi = new Connection(cluster).getNetworkingApi();
+    protected List<V1Endpoints> listByNamespace(Cluster cluster, Search search) throws ApiException {
+        var coreApi = new Connection(cluster).getCoreApi();
         return Optional.ofNullable(
-                        networkingApi.listNamespacedIngress(
+                        coreApi.listNamespacedEndpoints(
                                 search.getNamespace(),
                                 search.getPretty(),
                                 search.getAllowWatchBookmarks(),
@@ -36,15 +36,15 @@ public class IngressRepositoryImpl extends NamespaceObjectRepositoryImpl<V1Ingre
                                 search.getTimeoutSeconds(),
                                 search.getWatch()
                         ))
-                .map(V1IngressList::getItems)
+                .map(V1EndpointsList::getItems)
                 .orElse(Collections.emptyList());
     }
 
     @Override
-    protected List<V1Ingress> listByAllNamespace(Cluster cluster, Search search) throws ApiException {
-        var networkingApi = new Connection(cluster).getNetworkingApi();
+    protected List<V1Endpoints> listByAllNamespace(Cluster cluster, Search search) throws ApiException {
+        var coreApi = new Connection(cluster).getCoreApi();
         return Optional.ofNullable(
-                        networkingApi.listIngressForAllNamespaces(
+                        coreApi.listEndpointsForAllNamespaces(
                                 search.getAllowWatchBookmarks(),
                                 search.get_continue(),
                                 search.getFieldSelector(),
@@ -56,21 +56,21 @@ public class IngressRepositoryImpl extends NamespaceObjectRepositoryImpl<V1Ingre
                                 search.getTimeoutSeconds(),
                                 search.getWatch()
                         ))
-                .map(V1IngressList::getItems)
+                .map(V1EndpointsList::getItems)
                 .orElse(Collections.emptyList());
     }
 
     @Override
-    protected V1Ingress readObject(Cluster cluster, String namespace, String name) throws ApiException {
-        var networkingApi = new Connection(cluster).getNetworkingApi();
-        return networkingApi.readNamespacedIngress(name, namespace, null);
+    protected V1Endpoints readObject(Cluster cluster, String namespace, String name) throws ApiException {
+        var coreApi = new Connection(cluster).getCoreApi();
+        return coreApi.readNamespacedEndpoints(name, namespace, null);
     }
 
     @Override
-    public V1Ingress apply(Cluster cluster, V1Ingress object) {
+    public V1Endpoints apply(Cluster cluster, V1Endpoints object) {
         try {
-            var networkingApi = new Connection(cluster).getNetworkingApi();
-            return networkingApi.replaceNamespacedIngress(
+            var coreApi = new Connection(cluster).getCoreApi();
+            return coreApi.replaceNamespacedEndpoints(
                     object.getMetadata().getName(),
                     object.getMetadata().getNamespace(),
                     object,
@@ -88,8 +88,8 @@ public class IngressRepositoryImpl extends NamespaceObjectRepositoryImpl<V1Ingre
     @Override
     public void delete(Cluster cluster, String namespace, String name) {
         try {
-            var networkingApi = new Connection(cluster).getNetworkingApi();
-            networkingApi.deleteNamespacedIngress(
+            var coreApi = new Connection(cluster).getCoreApi();
+            coreApi.deleteNamespacedEndpoints(
                     name,
                     namespace,
                     null,
