@@ -5,7 +5,6 @@ import com.fluytcloud.kubernetes.transport.response.PodResponseList;
 import io.kubernetes.client.openapi.models.V1ContainerState;
 import io.kubernetes.client.openapi.models.V1ContainerStatus;
 import io.kubernetes.client.openapi.models.V1Pod;
-import org.ocpsoft.prettytime.PrettyTime;
 
 import java.util.List;
 import java.util.Objects;
@@ -24,16 +23,13 @@ public class PodMapper {
                 ))
                 .toList();
 
-        PrettyTime prettyTime = new PrettyTime();
-        var age = prettyTime.format(pod.getMetadata().getCreationTimestamp());
-
         return new PodResponseList(
                 pod.getMetadata().getNamespace(),
                 pod.getMetadata().getName(),
                 getRestarts(pod.getStatus().getContainerStatuses()),
                 pod.getSpec().getNodeName(),
                 pod.getStatus().getQosClass(),
-                age,
+                KubernetesMapper.formatAge(pod.getMetadata().getCreationTimestamp()),
                 pod.getStatus().getPhase(),
                 containers
         );

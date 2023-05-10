@@ -16,15 +16,26 @@ import {TableModule} from "primeng/table";
 import {KubernetesNetworkIngressService} from "./kubernetes.network.ingress.service";
 import {KubernetesNetworkIngressListComponent} from "./list/kubernetes.network.ingress.list.component";
 import {KubernetesNetworkIngressDetailComponent} from "./detail/kubernetes.network.ingress.detail.component";
+import {
+  KubernetesNetworkIngressDetailLoadBalancerComponent
+} from "./detail/load-balancer/kubernetes.network.ingress.detail.load-balancer.component";
+import {
+  KubernetesNetworkIngressDetailRuleComponent
+} from "./detail/rule/kubernetes.network.ingress.detail.rule.component";
+import {MatDividerModule} from "@angular/material/divider";
 
 @NgModule({
   declarations: [
     KubernetesNetworkIngressListComponent,
-    KubernetesNetworkIngressDetailComponent
+    KubernetesNetworkIngressDetailComponent,
+    KubernetesNetworkIngressDetailLoadBalancerComponent,
+    KubernetesNetworkIngressDetailRuleComponent
   ],
   exports: [
     KubernetesNetworkIngressListComponent,
-    KubernetesNetworkIngressDetailComponent
+    KubernetesNetworkIngressDetailComponent,
+    KubernetesNetworkIngressDetailLoadBalancerComponent,
+    KubernetesNetworkIngressDetailRuleComponent
   ],
   imports: [
     CommonModule,
@@ -40,7 +51,8 @@ import {KubernetesNetworkIngressDetailComponent} from "./detail/kubernetes.netwo
     DatePipe,
     MatChipsModule,
     KeyValuePipe,
-    TableModule
+    TableModule,
+    MatDividerModule
   ],
   providers: [
     KubernetesNetworkIngressService

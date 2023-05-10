@@ -1,7 +1,10 @@
 package com.fluytcloud.kubernetes.transport.mapper;
 
 import com.fluytcloud.kubernetes.transport.response.ServiceResponseList;
-import io.kubernetes.client.openapi.models.*;
+import io.kubernetes.client.openapi.models.V1Condition;
+import io.kubernetes.client.openapi.models.V1Service;
+import io.kubernetes.client.openapi.models.V1ServiceSpec;
+import io.kubernetes.client.openapi.models.V1ServiceStatus;
 import org.ocpsoft.prettytime.PrettyTime;
 
 import java.util.List;
@@ -12,8 +15,6 @@ import static java.util.Objects.nonNull;
 import static java.util.Optional.ofNullable;
 
 public class ServiceMapper {
-
-    private final PrettyTime PRETTY_TIME = new PrettyTime();
 
     public ServiceResponseList mapResponseList(V1Service service) {
 
@@ -30,7 +31,7 @@ public class ServiceMapper {
                     getExternalIps(service.getSpec()),
                     selectors(service.getSpec()),
                     status(service.getStatus()),
-                    age(service.getMetadata())
+                    KubernetesMapper.formatAge(service.getMetadata().getCreationTimestamp())
             );
         }
 
@@ -72,9 +73,4 @@ public class ServiceMapper {
                 .orElse(emptyList());
     }
 
-    private String age(V1ObjectMeta metadata) {
-        return ofNullable(metadata.getCreationTimestamp())
-                .map(PRETTY_TIME::format)
-                .orElse(null);
-    }
 }

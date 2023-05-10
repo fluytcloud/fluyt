@@ -2,9 +2,7 @@ package com.fluytcloud.kubernetes.transport.mapper;
 
 import com.fluytcloud.kubernetes.transport.response.ConfigMapResponseList;
 import io.kubernetes.client.openapi.models.V1ConfigMap;
-import org.ocpsoft.prettytime.PrettyTime;
 
-import java.time.OffsetDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -17,7 +15,7 @@ public class ConfigMapMapper {
                 configMap.getMetadata().getName(),
                 configMap.getMetadata().getNamespace(),
                 getKeys(configMap),
-                getAge(configMap.getMetadata().getCreationTimestamp())
+                KubernetesMapper.formatAge(configMap.getMetadata().getCreationTimestamp())
         );
     }
 
@@ -30,11 +28,6 @@ public class ConfigMapMapper {
             keysMap.addAll(configMap.getBinaryData().keySet());
         }
         return String.join(",", keysMap);
-    }
-
-    private String getAge(OffsetDateTime dateTime) {
-        PrettyTime prettyTime = new PrettyTime();
-        return prettyTime.format(dateTime);
     }
 
     public List<ConfigMapResponseList> mapResponseList(List<V1ConfigMap> configMaps) {

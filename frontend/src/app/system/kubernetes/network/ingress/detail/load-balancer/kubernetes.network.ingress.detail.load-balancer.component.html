@@ -1,0 +1,24 @@
+<app-form-container label="Ingresses" [labelAbove]="true">
+  <p-table [value]="ingresses">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Hostname</th>
+        <th>IP</th>
+        <th>Port</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-ingress>
+      <tr>
+        <td>{{ingress.hostname}}</td>
+        <td>{{ingress.ip}}</td>
+        <td>
+          <mat-chip-listbox aria-label="ports" [selectable]="false">
+            <mat-chip-option *ngFor="let port of ingress.ports">
+              {{port?.port}}/{{port?.protocol}}
+            </mat-chip-option>
+          </mat-chip-listbox>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</app-form-container>

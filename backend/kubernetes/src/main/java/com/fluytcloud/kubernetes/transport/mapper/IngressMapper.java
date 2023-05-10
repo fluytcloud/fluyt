@@ -4,15 +4,14 @@ import com.fluytcloud.kubernetes.transport.response.IngressResponseLIst;
 import io.kubernetes.client.openapi.models.V1Ingress;
 import io.kubernetes.client.openapi.models.V1IngressSpec;
 import io.kubernetes.client.openapi.models.V1IngressStatus;
-import org.ocpsoft.prettytime.PrettyTime;
 
-import java.time.OffsetDateTime;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static java.util.Objects.isNull;
+import static java.util.Objects.nonNull;
 
 public class IngressMapper {
 
@@ -22,7 +21,7 @@ public class IngressMapper {
                 ingress.getMetadata().getNamespace(),
                 loadBalancers(ingress.getStatus()),
                 rules(ingress.getSpec()),
-                getPrettyTime(ingress.getMetadata().getCreationTimestamp())
+                KubernetesMapper.formatAge(ingress.getMetadata().getCreationTimestamp())
         );
     }
 
@@ -34,9 +33,13 @@ public class IngressMapper {
         return status.getLoadBalancer().getIngress().stream()
                 .map(it -> {
                     var endpoint = Optional.ofNullable(it.getHostname()).orElseGet(it::getIp);
-                    var ports = it.getPorts().stream()
+
+                    var ports = Optional.ofNullable(it.getPorts())
+                            .orElseGet(Collections::emptyList)
+                            .stream()
                             .map(port -> port.getPort() + "/" + port.getProtocol())
                             .collect(Collectors.joining());
+
                     return endpoint + " " + ports;
                 })
                 .toList();
@@ -48,20 +51,36 @@ public class IngressMapper {
         }
 
         return spec.getRules().stream()
+                .filter(it -> nonNull(it.getHttp()) && nonNull(it.getHttp().getPaths()))
                 .map(it -> it.getHttp().getPaths().stream()
-                        .map(path -> "http://*"
-                                + path.getPath()
-                                + "->"
-                                + path.getBackend().getService().getName()
-                                + ":"
-                                + path.getBackend().getService().getPort().getNumber()
-                        ).collect(Collectors.joining())
-                ).toList();
-    }
+                        .map(path -> {
+                            StringBuilder endpoint = new StringBuilder("http://")
+                                    .append(Optional.ofNullable(it.getHost()).orElse(""))
+                                    .append(path.getPath())
+                                    .append("->");
 
-    private String getPrettyTime(OffsetDateTime dateTime) {
-        PrettyTime prettyTime = new PrettyTime();
-        return prettyTime.format(dateTime);
+                            if (nonNull(path.getBackend().getService())) {
+                                var service = path.getBackend().getService();
+
+                                var port = Optional.ofNullable(service.getPort())
+                                        .map(servicePort -> Optional.ofNullable(servicePort.getNumber())
+                                                .map(Object::toString)
+                                                .orElseGet(servicePort::getName)
+                                        ).orElse("");
+
+                                endpoint.append(service.getName())
+                                        .append(":")
+                                        .append(port);
+                            } else if (nonNull(path.getBackend().getResource())) {
+                                var resource = path.getBackend().getResource();
+                                endpoint.append(resource.getKind())
+                                        .append(":")
+                                        .append(resource.getName());
+                            }
+
+                            return endpoint.toString();
+                        }).collect(Collectors.joining())
+                ).toList();
     }
 
     public List<IngressResponseLIst> mapResponseList(List<V1Ingress> ingresses) {

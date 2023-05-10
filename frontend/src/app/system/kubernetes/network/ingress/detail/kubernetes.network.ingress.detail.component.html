@@ -26,6 +26,45 @@
                                 [value]="value?.metadata?.namespace">
             </app-form-container>
           </app-form-multiple-container>
+
+          <app-form-container label="Annotations" [labelAbove]="true">
+            <mat-chip-listbox aria-label="annotations" [selectable]="false">
+              <mat-chip-option *ngFor="let annotation of value?.metadata?.annotations | keyvalue">
+                {{annotation.key}} : {{annotation.value}}
+              </mat-chip-option>
+            </mat-chip-listbox>
+            <span *ngIf="!value?.metadata?.annotations">None</span>
+          </app-form-container>
+
+          <app-form-container label="Labels" [labelAbove]="true">
+            <mat-chip-listbox aria-label="labels" [selectable]="false">
+              <mat-chip-option *ngFor="let label of value?.metadata?.labels | keyvalue">
+                {{label.key}} : {{label.value}}
+              </mat-chip-option>
+            </mat-chip-listbox>
+            <span *ngIf="!value?.metadata?.labels">None</span>
+          </app-form-container>
+
+          <app-form-container label="TLS" [value]="value?.spec?.tls">
+          </app-form-container>
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          Rules
+        </mat-expansion-panel-header>
+        <div class="fc-form">
+          <app-kubernetes-network-ingress-detail-rule [rules]="value?.spec?.rules">
+          </app-kubernetes-network-ingress-detail-rule>
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          Load-Balancer Ingress Points
+        </mat-expansion-panel-header>
+        <div class="fc-form">
+          <app-kubernetes-network-ingress-detail-load-balancer [ingresses]="value?.status?.loadBalancer?.ingress">
+          </app-kubernetes-network-ingress-detail-load-balancer>
         </div>
       </mat-expansion-panel>
     </mat-accordion>
