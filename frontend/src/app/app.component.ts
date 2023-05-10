@@ -1,9 +1,9 @@
-import {Component} from '@angular/core';
-import {KeycloakService} from "keycloak-angular";
-import {ConfirmationService} from "primeng/api";
-import {MenuService} from "./components/menu/menu.service";
-import {AuthOrganizationService} from "./auth/organization/auth.organization.service";
-import {AuthCompanyService} from "./auth/company/auth.company.service";
+import { Component } from '@angular/core';
+import { KeycloakService } from "keycloak-angular";
+import { ConfirmationService } from "primeng/api";
+import { MenuService } from "./components/menu/menu.service";
+import { AuthOrganizationService } from "./auth/organization/auth.organization.service";
+import { AuthCompanyService } from "./auth/company/auth.company.service";
 
 @Component({
   selector: 'app-root',
@@ -20,10 +20,10 @@ export class AppComponent {
   footerIsOpen = false;
 
   constructor(private readonly menuService: MenuService,
-              private readonly keycloakService: KeycloakService,
-              private readonly authService: AuthOrganizationService,
-              private readonly authCompanyService: AuthCompanyService,
-              private readonly confirmationService: ConfirmationService) {
+    private readonly keycloakService: KeycloakService,
+    private readonly authService: AuthOrganizationService,
+    private readonly authCompanyService: AuthCompanyService,
+    private readonly confirmationService: ConfirmationService) {
     this.menuService.getSubmenuSubject()
       .asObservable()
       .subscribe(it => this.extended = !it);
@@ -84,7 +84,8 @@ export class AppComponent {
               this.keycloakService.logout();
             }
           });
-        }}
+        }
+      }
     });
   }
 

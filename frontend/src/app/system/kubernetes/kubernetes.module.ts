@@ -22,6 +22,7 @@ import {KubernetesWorkloadStatefulSetModule} from "./workload/stateful-set/kuber
 import {KubernetesWorkloadDaemonSetModule} from "./workload/daemon-set/kubernetes.workload.daemon-set.module";
 import {KubernetesWorkloadCronJobModule} from "./workload/cron-job/kubernetes.workload.cron-job.module";
 import {KubernetesWorkloadJobModule} from "./workload/job/kubernetes.workload.job.module";
+import { KubernetesNetworkEndpointModule } from "./network/endpoint/kubernetes.network.endpoint.module";
 import {
   KubernetesConfigHorizontalPodAutoscalerModule
 } from "./config/horizontal-pod-autoscaler/kubernetes.config.horizontal-pod-autoscaler.module";
@@ -54,6 +55,7 @@ import {
     KubernetesWorkloadDaemonSetModule,
     KubernetesWorkloadCronJobModule,
     KubernetesWorkloadJobModule,
+    KubernetesNetworkEndpointModule,
     KubernetesConfigHorizontalPodAutoscalerModule
   ],
   providers: [
