@@ -1,15 +1,14 @@
 package com.fluytcloud.kubernetes.transport.mapper;
 
 import com.fluytcloud.kubernetes.transport.response.PodContainerResponseList;
+import com.fluytcloud.kubernetes.transport.response.PodDetailResponseList;
 import com.fluytcloud.kubernetes.transport.response.PodResponseList;
 import io.kubernetes.client.openapi.models.V1ContainerState;
 import io.kubernetes.client.openapi.models.V1ContainerStatus;
 import io.kubernetes.client.openapi.models.V1Pod;
 import org.ocpsoft.prettytime.PrettyTime;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 public class PodMapper {
 
@@ -83,4 +82,34 @@ public class PodMapper {
                 .toList();
     }
 
+    public List<PodDetailResponseList> mapDetailResponseList(List<V1Pod> pods) {
+        return pods.stream()
+                .map(pod -> new PodDetailResponseList(
+                        pod.getMetadata().getNamespace(),
+                        pod.getMetadata().getName(),
+                        pod.getSpec().getNodeName(),
+                        pod.getSpec().getContainers().size(),
+                        getRunningContainers(pod),
+                        null,
+                        null,
+                        pod.getStatus().getPhase()
+                ))
+                .toList();
+    }
+
+    private Integer getRunningContainers(V1Pod pod) {
+        return getContainers(pod).intValue() + getInitContainers(pod).intValue();
+    }
+    private Long getContainers(V1Pod pod) {
+        return Optional.ofNullable(pod.getStatus().getContainerStatuses())
+                .orElse(Collections.emptyList())
+                .stream().filter(container -> Objects.nonNull(container.getState().getRunning()))
+                .count();
+    }
+
+    private Long getInitContainers(V1Pod pod) {
+        return Optional.ofNullable(pod.getStatus().getInitContainerStatuses())
+                .orElse(Collections.emptyList()).stream().filter(container -> Objects.nonNull(container.getState().getRunning()))
+                .count();
+    }
 }
