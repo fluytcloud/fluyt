@@ -9,15 +9,15 @@ import javax.enterprise.context.ApplicationScoped;
 @ApplicationScoped
 public class JobService extends NamespaceObjectsService<V1Job> implements ObjectService<V1Job>  {
 
-    private final JobRepository JobRepository;
+    private final JobRepository jobRepository;
 
-    public JobService(JobRepository JobRepository) {
-        this.JobRepository = JobRepository;
+    public JobService(JobRepository jobRepository) {
+        this.jobRepository = jobRepository;
     }
 
     @Override
     protected NamespaceObjectsRepository<V1Job> repository() {
-        return JobRepository;
+        return jobRepository;
     }
 
 }
