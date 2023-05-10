@@ -2,7 +2,6 @@ package com.fluytcloud.kubernetes.transport.mapper;
 
 import com.fluytcloud.kubernetes.transport.response.IngressResponseLIst;
 import io.kubernetes.client.openapi.models.V1Ingress;
-import io.kubernetes.client.openapi.models.V1IngressRule;
 import io.kubernetes.client.openapi.models.V1IngressSpec;
 import io.kubernetes.client.openapi.models.V1IngressStatus;
 import org.ocpsoft.prettytime.PrettyTime;
@@ -49,7 +48,15 @@ public class IngressMapper {
         }
 
         return spec.getRules().stream()
-                .map(V1IngressRule::getHost).toList();
+                .map(it -> it.getHttp().getPaths().stream()
+                        .map(path -> "http://*"
+                                + path.getPath()
+                                + "->"
+                                + path.getBackend().getService().getName()
+                                + ":"
+                                + path.getBackend().getService().getPort().getNumber()
+                        ).collect(Collectors.joining())
+                ).toList();
     }
 
     private String getPrettyTime(OffsetDateTime dateTime) {

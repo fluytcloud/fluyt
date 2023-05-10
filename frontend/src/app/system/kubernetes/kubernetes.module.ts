@@ -26,6 +26,7 @@ import { KubernetesNetworkEndpointModule } from "./network/endpoint/kubernetes.n
 import {
   KubernetesConfigHorizontalPodAutoscalerModule
 } from "./config/horizontal-pod-autoscaler/kubernetes.config.horizontal-pod-autoscaler.module";
+import {KubernetesNetworkIngressModule} from "./network/ingress/kubernetes.network.ingress.module";
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import {
     KubernetesWorkloadCronJobModule,
     KubernetesWorkloadJobModule,
     KubernetesNetworkEndpointModule,
-    KubernetesConfigHorizontalPodAutoscalerModule
+    KubernetesConfigHorizontalPodAutoscalerModule,
+    KubernetesNetworkIngressModule
   ],
   providers: [
     KubernetesClusterService,

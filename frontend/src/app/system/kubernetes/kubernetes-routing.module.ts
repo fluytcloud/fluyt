@@ -39,14 +39,22 @@ import {
 } from "./workload/cron-job/detail/kubernetes.workload.cron-job.detail.component";
 import {KubernetesWorkloadJobListComponent} from "./workload/job/list/kubernetes.workload.job.list.component";
 import {KubernetesWorkloadJobDetailComponent} from "./workload/job/detail/kubernetes.workload.job.detail.component";
-import { KubernetesNetworkEndpointListComponent } from './network/endpoint/list/kubernetes.network.endpoint.list.component';
-import { KubernetesNetworkEndpointDetailComponent } from './network/endpoint/detail/kubernetes.network.endpoint.detail.component';
+import {
+  KubernetesNetworkEndpointListComponent
+} from './network/endpoint/list/kubernetes.network.endpoint.list.component';
+import {
+  KubernetesNetworkEndpointDetailComponent
+} from './network/endpoint/detail/kubernetes.network.endpoint.detail.component';
 import {
   KubernetesConfigHorizontalPodAutoscalerListComponent
 } from "./config/horizontal-pod-autoscaler/list/kubernetes.config.horizontal-pod-autoscaler.list.component";
 import {
   KubernetesConfigHorizontalPodAutoscalerDetailComponent
 } from "./config/horizontal-pod-autoscaler/detail/kubernetes.config.horizontal-pod-autoscaler.detail.component";
+import {KubernetesNetworkIngressListComponent} from "./network/ingress/list/kubernetes.network.ingress.list.component";
+import {
+  KubernetesNetworkIngressDetailComponent
+} from "./network/ingress/detail/kubernetes.network.ingress.detail.component";
 
 
 const routes: Routes = [
@@ -167,6 +175,16 @@ const routes: Routes = [
     path: 'horizontal-pod-autoscalers/detail',
     canActivate: [KubernetesClusterGuard],
     component: KubernetesConfigHorizontalPodAutoscalerDetailComponent
+  },
+  {
+    path: 'ingresses',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesNetworkIngressListComponent
+  },
+  {
+    path: 'ingresses/detail',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesNetworkIngressDetailComponent
   }
 ];
 
