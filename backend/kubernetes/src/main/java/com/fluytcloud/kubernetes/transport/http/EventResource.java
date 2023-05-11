@@ -53,7 +53,7 @@ public class EventResource {
     }
 
     @GET
-    @Path("list/simple")
+    @Path("simple/list")
     public List<EventSimpleResponseList> getSimpleList(@BeanParam @Valid NamespaceObjectRequestListFilter requestFilter) {
         var cluster = clusterService.findById(requestFilter.getClusterId()).orElseThrow();
         var filter = new Filter(cluster).setNamespaces(requestFilter.getNamespaces())
