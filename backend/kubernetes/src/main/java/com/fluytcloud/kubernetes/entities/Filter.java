@@ -11,6 +11,8 @@ public class Filter {
     private Integer limit;
     private Map<String, String> selector;
 
+    private Map<String, String> fieldSelector;
+
     public Filter(Cluster cluster) {
         this.cluster = cluster;
     }
@@ -61,6 +63,15 @@ public class Filter {
 
     public Filter setSelector(Map<String, String> selector) {
         this.selector = selector;
+        return this;
+    }
+
+    public Map<String, String> getFieldSelector() {
+        return fieldSelector;
+    }
+
+    public Filter setFieldSelector(Map<String, String> fieldSelector) {
+        this.fieldSelector = fieldSelector;
         return this;
     }
 }

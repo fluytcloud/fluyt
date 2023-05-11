@@ -43,10 +43,10 @@ public class DeploymentResource {
     }
 
     @GET
-    public V1Deployment get(@BeanParam @Valid NamespaceObjectRequestFilter podFilter) {
-        var cluster = clusterService.findById(podFilter.getClusterId())
+    public V1Deployment get(@BeanParam @Valid NamespaceObjectRequestFilter deploymentFilter) {
+        var cluster = clusterService.findById(deploymentFilter.getClusterId())
                 .orElseThrow();
-        return deploymentService.read(cluster, podFilter.getNamespace(), podFilter.getName())
+        return deploymentService.read(cluster, deploymentFilter.getNamespace(), deploymentFilter.getName())
                 .orElseThrow(() -> new NotFoundException("Deployment not found"));
     }
 }

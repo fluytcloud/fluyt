@@ -6,10 +6,7 @@ public record PodDetailResponseList(
         String namespace,
         String name,
         String nodeName,
-
-        //getSpecContainers
         Integer containers,
-        //containerStatuses e initContainerStatuses - state = running
         Integer runningContainers,
         String cpu,
         String memory,
