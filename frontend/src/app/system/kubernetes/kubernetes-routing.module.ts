@@ -55,6 +55,10 @@ import {KubernetesNetworkIngressListComponent} from "./network/ingress/list/kube
 import {
   KubernetesNetworkIngressDetailComponent
 } from "./network/ingress/detail/kubernetes.network.ingress.detail.component";
+import {KubernetesNetworkServiceListComponent} from "./network/service/list/kubernetes.network.service.list.component";
+import {
+  KubernetesNetworkServiceDetailComponent
+} from "./network/service/detail/kubernetes.network.service.detail.component";
 
 
 const routes: Routes = [
@@ -185,7 +189,17 @@ const routes: Routes = [
     path: 'ingresses/detail',
     canActivate: [KubernetesClusterGuard],
     component: KubernetesNetworkIngressDetailComponent
-  }
+  },
+  {
+    path: 'services',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesNetworkServiceListComponent
+  },
+  {
+    path: 'services/detail',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesNetworkServiceDetailComponent
+  },
 ];
 
 @NgModule({
