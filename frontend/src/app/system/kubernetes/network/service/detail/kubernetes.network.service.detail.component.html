@@ -1,0 +1,76 @@
+<div class="container">
+  <app-loader [show]="display">
+    <mat-accordion class="example-headers-align" multi>
+      <mat-expansion-panel [expanded]="true" [hideToggle]="true">
+        <mat-expansion-panel-header>
+          <div class="fc-form">
+            <div class="fc-form-actions-container">
+              <mat-panel-title>General</mat-panel-title>
+              <button mat-raised-button routerLink="/kubernetes/services">Back</button>
+            </div>
+          </div>
+        </mat-expansion-panel-header>
+        <div class="fc-form">
+          <app-form-container [value]="value?.metadata?.creationTimestamp | date"
+                              label="Created">
+          </app-form-container>
+
+          <app-form-multiple-container>
+            <app-form-container [value]="value?.metadata?.name"
+                                label="Name">
+            </app-form-container>
+            <app-form-container [value]="value?.metadata?.namespace"
+                                label="Namespace">
+            </app-form-container>
+          </app-form-multiple-container>
+
+          <app-form-container [labelAbove]="true" label="Annotations">
+            <mat-chip-listbox [selectable]="false" aria-label="annotations">
+              <mat-chip-option *ngFor="let annotation of value?.metadata?.annotations | keyvalue">
+                {{annotation.key}} : {{annotation.value}}
+              </mat-chip-option>
+            </mat-chip-listbox>
+            <span *ngIf="!value?.metadata?.annotations">None</span>
+          </app-form-container>
+
+          <app-form-container [labelAbove]="true" label="Labels">
+            <mat-chip-listbox [selectable]="false" aria-label="labels">
+              <mat-chip-option *ngFor="let label of value?.metadata?.labels | keyvalue">
+                {{label.key}} : {{label.value}}
+              </mat-chip-option>
+            </mat-chip-listbox>
+            <span *ngIf="!value?.metadata?.labels">None</span>
+          </app-form-container>
+
+          <app-form-container [labelAbove]="true" label="Selectors">
+            <mat-chip-listbox [selectable]="false" aria-label="selectors">
+              <mat-chip-option *ngFor="let selector of value?.spec?.selector | keyvalue">
+                {{selector.key}} : {{selector.value}}
+              </mat-chip-option>
+            </mat-chip-listbox>
+            <span *ngIf="!value?.spec?.selector">None</span>
+          </app-form-container>
+
+          <app-form-multiple-container>
+            <app-form-container [value]="value?.spec?.type"
+                                label="Type">
+            </app-form-container>
+            <app-form-container [value]="value?.spec?.sessionAffinity"
+                                label="Session Affinity">
+            </app-form-container>
+          </app-form-multiple-container>
+        </div>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          Connection
+        </mat-expansion-panel-header>
+        <div class="fc-form">
+          <app-kubernetes-network-service-detail-connection [connection]="value?.spec">
+          </app-kubernetes-network-service-detail-connection>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </app-loader>
+</div>
