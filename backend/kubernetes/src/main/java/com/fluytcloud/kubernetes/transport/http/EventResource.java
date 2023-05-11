@@ -6,7 +6,7 @@ import com.fluytcloud.kubernetes.interactors.EventService;
 import com.fluytcloud.kubernetes.transport.mapper.EventMapper;
 import com.fluytcloud.kubernetes.transport.request.NamespaceObjectRequestFilter;
 import com.fluytcloud.kubernetes.transport.request.NamespaceObjectRequestListFilter;
-import com.fluytcloud.kubernetes.transport.response.EventDetailResponseList;
+import com.fluytcloud.kubernetes.transport.response.EventSimpleResponseList;
 import com.fluytcloud.kubernetes.transport.response.EventResponseList;
 import io.kubernetes.client.openapi.models.CoreV1Event;
 import io.quarkus.security.Authenticated;
@@ -53,12 +53,12 @@ public class EventResource {
     }
 
     @GET
-    @Path("list/detail")
-    public List<EventDetailResponseList> getListForDetail(@BeanParam @Valid NamespaceObjectRequestListFilter requestFilter) {
+    @Path("list/simple")
+    public List<EventSimpleResponseList> getSimpleList(@BeanParam @Valid NamespaceObjectRequestListFilter requestFilter) {
         var cluster = clusterService.findById(requestFilter.getClusterId()).orElseThrow();
         var filter = new Filter(cluster).setNamespaces(requestFilter.getNamespaces())
                 .setFieldSelector(Map.of("involvedObject.name", requestFilter.getName()));
         var events = eventService.list(filter);
-        return EVENT_MAPPER.mapDetailResponseList(events);
+        return EVENT_MAPPER.mapSimpleResponseList(events);
     }
 }

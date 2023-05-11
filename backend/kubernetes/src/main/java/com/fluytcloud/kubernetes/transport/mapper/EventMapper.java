@@ -1,6 +1,6 @@
 package com.fluytcloud.kubernetes.transport.mapper;
 
-import com.fluytcloud.kubernetes.transport.response.EventDetailResponseList;
+import com.fluytcloud.kubernetes.transport.response.EventSimpleResponseList;
 import com.fluytcloud.kubernetes.transport.response.EventResponseList;
 import io.kubernetes.client.openapi.models.CoreV1Event;
 
@@ -13,9 +13,9 @@ public class EventMapper {
                 .toList();
     }
 
-    public List<EventDetailResponseList> mapDetailResponseList(List<CoreV1Event> events) {
+    public List<EventSimpleResponseList> mapSimpleResponseList(List<CoreV1Event> events) {
         return events.stream()
-                .map(event -> new EventDetailResponseList(
+                .map(event -> new EventSimpleResponseList(
                         event.getSource().getComponent() + " " + event.getSource().getHost(),
                         event.getCount(),
                         event.getInvolvedObject().getFieldPath(),

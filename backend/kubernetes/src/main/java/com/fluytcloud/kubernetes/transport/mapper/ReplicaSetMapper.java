@@ -1,6 +1,6 @@
 package com.fluytcloud.kubernetes.transport.mapper;
 
-import com.fluytcloud.kubernetes.transport.response.ReplicaSetDetailResponseList;
+import com.fluytcloud.kubernetes.transport.response.ReplicaSetSimpleResponseList;
 import com.fluytcloud.kubernetes.transport.response.ReplicaSetResponseList;
 import io.kubernetes.client.openapi.models.V1ReplicaSet;
 import org.ocpsoft.prettytime.PrettyTime;
@@ -43,9 +43,9 @@ public class ReplicaSetMapper {
                 .toList();
     }
 
-    public List<ReplicaSetDetailResponseList> mapDetailResponseList(List<V1ReplicaSet> replicaSets) {
+    public List<ReplicaSetSimpleResponseList> mapSimpleResponseList(List<V1ReplicaSet> replicaSets) {
         return replicaSets.stream()
-                .map(replicaSet -> new ReplicaSetDetailResponseList(
+                .map(replicaSet -> new ReplicaSetSimpleResponseList(
                         replicaSet.getMetadata().getName(),
                         replicaSet.getMetadata().getNamespace(),
                         replicaSet.getStatus().getFullyLabeledReplicas(),

@@ -6,7 +6,7 @@ import com.fluytcloud.kubernetes.interactors.ReplicaSetService;
 import com.fluytcloud.kubernetes.transport.mapper.ReplicaSetMapper;
 import com.fluytcloud.kubernetes.transport.request.NamespaceObjectRequestFilter;
 import com.fluytcloud.kubernetes.transport.request.NamespaceObjectRequestListFilter;
-import com.fluytcloud.kubernetes.transport.response.ReplicaSetDetailResponseList;
+import com.fluytcloud.kubernetes.transport.response.ReplicaSetSimpleResponseList;
 import com.fluytcloud.kubernetes.transport.response.ReplicaSetResponseList;
 import io.kubernetes.client.openapi.models.V1ReplicaSet;
 import io.quarkus.security.Authenticated;
@@ -51,12 +51,12 @@ public class ReplicaSetResource {
     }
 
     @GET
-    @Path("list/detail")
-    public List<ReplicaSetDetailResponseList> getListForDetail(@BeanParam @Valid NamespaceObjectRequestListFilter requestFilter) {
+    @Path("list/simple")
+    public List<ReplicaSetSimpleResponseList> getSimpleList(@BeanParam @Valid NamespaceObjectRequestListFilter requestFilter) {
         var cluster = clusterService.findById(requestFilter.getClusterId()).orElseThrow();
         var filter = new Filter(cluster).setNamespaces(requestFilter.getNamespaces()).setSelector(requestFilter.getLabelSelector());
         var replicaSets = replicaSetService.list(filter);
-        return REPLICA_SET_MAPPER.mapDetailResponseList(replicaSets);
+        return REPLICA_SET_MAPPER.mapSimpleResponseList(replicaSets);
     }
 
 }

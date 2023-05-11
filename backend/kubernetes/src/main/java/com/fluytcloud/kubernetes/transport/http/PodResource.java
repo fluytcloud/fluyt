@@ -6,16 +6,14 @@ import com.fluytcloud.kubernetes.interactors.PodService;
 import com.fluytcloud.kubernetes.transport.mapper.PodMapper;
 import com.fluytcloud.kubernetes.transport.request.NamespaceObjectRequestFilter;
 import com.fluytcloud.kubernetes.transport.request.NamespaceObjectRequestListFilter;
-import com.fluytcloud.kubernetes.transport.response.PodDetailResponseList;
+import com.fluytcloud.kubernetes.transport.response.PodSimpleResponseList;
 import com.fluytcloud.kubernetes.transport.response.PodResponseList;
-import com.fluytcloud.kubernetes.transport.response.ReplicaSetDetailResponseList;
 import io.kubernetes.client.openapi.models.V1Pod;
 import io.quarkus.security.Authenticated;
 
 import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.util.ArrayList;
 import java.util.List;
 
 @Path("/api/v1/kubernetes/pod")
@@ -53,12 +51,12 @@ public class PodResource {
     }
 
     @GET
-    @Path("list/detail")
-    public List<PodDetailResponseList> getListForDetail(@BeanParam @Valid NamespaceObjectRequestListFilter requestFilter) {
+    @Path("list/simple")
+    public List<PodSimpleResponseList> getSimpleList(@BeanParam @Valid NamespaceObjectRequestListFilter requestFilter) {
         var cluster = clusterService.findById(requestFilter.getClusterId()).orElseThrow();
         var filter = new Filter(cluster).setNamespaces(requestFilter.getNamespaces()).setSelector(requestFilter.getLabelSelector());
         var pods = podService.list(filter);
-        return POD_MAPPER.mapDetailResponseList(pods);
+        return POD_MAPPER.mapSimpleResponseList(pods);
     }
 
 }

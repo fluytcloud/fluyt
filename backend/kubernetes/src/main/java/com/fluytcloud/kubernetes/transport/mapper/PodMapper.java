@@ -1,7 +1,7 @@
 package com.fluytcloud.kubernetes.transport.mapper;
 
 import com.fluytcloud.kubernetes.transport.response.PodContainerResponseList;
-import com.fluytcloud.kubernetes.transport.response.PodDetailResponseList;
+import com.fluytcloud.kubernetes.transport.response.PodSimpleResponseList;
 import com.fluytcloud.kubernetes.transport.response.PodResponseList;
 import io.kubernetes.client.openapi.models.V1ContainerState;
 import io.kubernetes.client.openapi.models.V1ContainerStatus;
@@ -82,9 +82,9 @@ public class PodMapper {
                 .toList();
     }
 
-    public List<PodDetailResponseList> mapDetailResponseList(List<V1Pod> pods) {
+    public List<PodSimpleResponseList> mapSimpleResponseList(List<V1Pod> pods) {
         return pods.stream()
-                .map(pod -> new PodDetailResponseList(
+                .map(pod -> new PodSimpleResponseList(
                         pod.getMetadata().getNamespace(),
                         pod.getMetadata().getName(),
                         pod.getSpec().getNodeName(),

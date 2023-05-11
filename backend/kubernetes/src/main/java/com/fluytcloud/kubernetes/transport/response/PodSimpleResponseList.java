@@ -1,8 +1,6 @@
 package com.fluytcloud.kubernetes.transport.response;
 
-import java.util.List;
-
-public record PodDetailResponseList(
+public record PodSimpleResponseList(
         String namespace,
         String name,
         String nodeName,
