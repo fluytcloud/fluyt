@@ -19,6 +19,9 @@ import {PipesDeploymentConditionModule} from "../../pipes/deployment/condition/p
 import {TagModule} from "primeng/tag";
 import {KubernetesWorkloadDeploymentDetailComponent} from "./detail/kubernetes.workload.deployment.detail.component";
 import {MatChipsModule} from "@angular/material/chips";
+import {KubernetesWorkloadPodModule} from "../pod/kubernetes.workload.pod.module";
+import {MatDividerModule} from "@angular/material/divider";
+import {KubernetesWorkloadReplicaSetModule} from "../replica-set/kubernetes.workload.replica-set.module";
 
 @NgModule({
   declarations: [
@@ -47,6 +50,9 @@ import {MatChipsModule} from "@angular/material/chips";
     PipesDeploymentConditionModule,
     TagModule,
     MatChipsModule,
+    KubernetesWorkloadPodModule,
+    MatDividerModule,
+    KubernetesWorkloadReplicaSetModule,
   ],
   providers: [
     KubernetesWorkloadDeploymentService

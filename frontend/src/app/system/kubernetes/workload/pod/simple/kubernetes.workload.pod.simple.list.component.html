@@ -1,0 +1,24 @@
+<app-kubernetes-components-simple-list (load)="load()" [values]="values" [loading]="loading">
+  <ng-template #header>
+    <tr>
+      <th>Namespace</th>
+      <th>Name</th>
+      <th>Node</th>
+      <th>Ready</th>
+      <th>CPU</th>
+      <th>Memory</th>
+      <th>Status</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-pod>
+    <tr>
+      <td>{{pod.namespace}}</td>
+      <td>{{pod.name}}</td>
+      <td>{{pod.nodeName}}</td>
+      <td>{{pod.runningContainers}} / {{pod.containers}}</td>
+      <td>{{pod.cpu}}</td>
+      <td>{{pod.memory}}</td>
+      <td>{{pod.status}}</td>
+    </tr>
+  </ng-template>
+</app-kubernetes-components-simple-list>

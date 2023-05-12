@@ -66,5 +66,26 @@ a<div class="container">
         </div>
       </mat-expansion-panel>
     </mat-accordion>
+
+    <mat-expansion-panel *ngIf="value" [expanded]="true" class="mat-expansion-panel-spacing">
+      <mat-expansion-panel-header>
+        Deploy Revisions
+      </mat-expansion-panel-header>
+      <div class="fc-form">
+        <app-kubernetes-workload-replica-set-simple-list [filter]="filterSimpleList!">
+        </app-kubernetes-workload-replica-set-simple-list>
+      </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel *ngIf="value" [expanded]="true" class="mat-expansion-panel-spacing">
+      <mat-expansion-panel-header>
+        Pods
+      </mat-expansion-panel-header>
+      <div class="fc-form">
+        <app-kubernetes-workload-pod-simple-list [filter]="filterSimpleList!">
+        </app-kubernetes-workload-pod-simple-list>
+      </div>
+    </mat-expansion-panel>
+
   </app-loader>
 </div>

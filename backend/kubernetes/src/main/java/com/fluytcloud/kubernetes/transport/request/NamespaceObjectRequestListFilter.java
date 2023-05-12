@@ -39,7 +39,17 @@ public class NamespaceObjectRequestListFilter {
 
     public Map<String, String> getLabelSelector() {
         if (StringUtils.isNotBlank(labelSelector)) {
-            var formattedLabel = "{" + labelSelector + "}";
+            String start = "";
+            String end = "";
+            if (!labelSelector.startsWith("{")) {
+                start = "{";
+            }
+
+            if (!labelSelector.endsWith("}")) {
+                end = "}";
+            }
+
+            var formattedLabel = start + labelSelector + end;
             return new Gson().fromJson(formattedLabel, new TypeToken<Map<String, Object>>(){}.getType());
         }
 
