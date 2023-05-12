@@ -5,7 +5,7 @@ import com.fluycloud.support.core.CrudServiceImpl;
 import com.fluytcloud.kubernetes.entities.Cluster;
 import com.fluytcloud.kubernetes.repositories.ClusterRepository;
 
-import javax.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class ClusterService extends CrudServiceImpl<Cluster, Integer> {

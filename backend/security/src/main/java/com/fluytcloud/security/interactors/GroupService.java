@@ -3,8 +3,8 @@ package com.fluytcloud.security.interactors;
 import com.fluytcloud.security.entities.Group;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import java.util.Set;
 import java.util.stream.Collectors;
 

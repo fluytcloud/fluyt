@@ -9,10 +9,10 @@ import io.quarkus.security.Authenticated;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
-import javax.annotation.security.RolesAllowed;
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import jakarta.annotation.security.RolesAllowed;
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 
 @Path("/api/admin/customer")
 @Authenticated
@@ -54,7 +54,7 @@ public class CustomerResource {
     }
 
     @POST
-    @RolesAllowed("administrator")
+    @jakarta.annotation.security.RolesAllowed("administrator")
     public Response create(CustomerRequest customerRequest) {
         var customer = CUSTOMER_MAPPER.map(customerRequest);
         customer = customerPersistUseCase.create(customer);

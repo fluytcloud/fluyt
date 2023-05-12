@@ -6,11 +6,11 @@ import com.fluytcloud.auth.transport.http.response.UserInfoResponse;
 import com.fluytcloud.core.entities.Company;
 import com.fluytcloud.core.entities.UserInfoContext;
 
-import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.QueryParam;
+import jakarta.inject.Inject;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.QueryParam;
 
 @Path("/auth")
 public class AuthResource {

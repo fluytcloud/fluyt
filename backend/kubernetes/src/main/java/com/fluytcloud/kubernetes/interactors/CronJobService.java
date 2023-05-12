@@ -4,7 +4,7 @@ import com.fluytcloud.kubernetes.repositories.CronJobRepository;
 import com.fluytcloud.kubernetes.repositories.NamespaceObjectsRepository;
 import io.kubernetes.client.openapi.models.V1CronJob;
 
-import javax.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class CronJobService extends NamespaceObjectsService<V1CronJob> implements ObjectService<V1CronJob>  {

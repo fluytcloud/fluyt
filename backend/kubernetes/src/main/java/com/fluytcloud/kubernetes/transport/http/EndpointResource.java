@@ -8,9 +8,9 @@ import com.fluytcloud.kubernetes.transport.request.NamespaceObjectRequestListFil
 import com.fluytcloud.kubernetes.transport.response.EndpointResponseList;
 import io.quarkus.security.Authenticated;
 
-import javax.validation.Valid;
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
+import jakarta.validation.Valid;
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.MediaType;
 import java.util.List;
 
 @Path("/api/v1/kubernetes/endpoint")

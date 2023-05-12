@@ -4,7 +4,7 @@ import com.fluytcloud.kubernetes.repositories.NamespaceObjectsRepository;
 import com.fluytcloud.kubernetes.repositories.ServiceRepository;
 import io.kubernetes.client.openapi.models.V1Service;
 
-import javax.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class ServiceService extends NamespaceObjectsService<V1Service> implements ObjectService<V1Service> {

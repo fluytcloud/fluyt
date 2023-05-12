@@ -4,7 +4,7 @@ import com.fluytcloud.kubernetes.repositories.IngressRepository;
 import com.fluytcloud.kubernetes.repositories.NamespaceObjectsRepository;
 import io.kubernetes.client.openapi.models.V1Ingress;
 
-import javax.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class IngressService extends NamespaceObjectsService<V1Ingress> implements ObjectService<V1Ingress>  {
