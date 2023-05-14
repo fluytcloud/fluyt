@@ -5,9 +5,9 @@ import com.fluytcloud.auth.interactors.UserInfoService;
 import com.fluytcloud.auth.transport.http.response.CompanyResponse;
 import com.fluytcloud.core.entities.UserInfoContext;
 
-import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
+import jakarta.inject.Inject;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
 import java.util.List;
 
 @Path("/companies")

@@ -1,0 +1,72 @@
+<div class="container">
+  <app-loader [show]="display">
+    <mat-accordion class="example-headers-align" multi>
+      <mat-expansion-panel [hideToggle]="true" [expanded]="true">
+        <mat-expansion-panel-header>
+          <div class="fc-form">
+            <div class="fc-form-actions-container">
+              <mat-panel-title>
+                General
+              </mat-panel-title>
+              <button mat-raised-button routerLink="/kubernetes/horizontal-pod-autoscalers">Back</button>
+            </div>
+          </div>
+        </mat-expansion-panel-header>
+        <div class="fc-form">
+          <app-form-container label="Created"
+                              [value]="value?.metadata?.creationTimestamp | date">
+          </app-form-container>
+
+          <app-form-multiple-container>
+            <app-form-container label="Name"
+                                [value]="value?.metadata?.name">
+            </app-form-container>
+
+            <app-form-container label="Namespace"
+                                [value]="value?.metadata?.namespace">
+            </app-form-container>
+          </app-form-multiple-container>
+
+          <app-form-multiple-container>
+            <app-form-container label="Min"
+                                [value]="value?.spec?.minReplicas">
+            </app-form-container>
+
+            <app-form-container label="Max"
+                                [value]="value?.spec?.maxReplicas">
+            </app-form-container>
+
+            <app-form-container label="Replicas"
+                                [value]="value?.status?.currentReplicas">
+            </app-form-container>
+          </app-form-multiple-container>
+
+          <app-form-container label="Status" [labelAbove]="true">
+            <mat-chip-listbox aria-label="status" [selectable]="false">
+              <mat-chip-option *ngFor="let status of status">
+                {{status}}
+              </mat-chip-option>
+            </mat-chip-listbox>
+            <span *ngIf="!value?.status?.conditions">None</span>
+          </app-form-container>
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel [hideToggle]="true" [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Metrics
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="fc-form">
+          <div *ngFor="let metric of value?.spec?.metrics; let first = first;">
+            <mat-divider *ngIf="!first"></mat-divider>
+            <app-kubernetes-config-horizontal-pod-autoscaler-detail-metric
+              [specMetric]="metric"
+            [currentMetric]="getCurrentMetricByResourceName(metric?.resource?.name)">
+            </app-kubernetes-config-horizontal-pod-autoscaler-detail-metric>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </app-loader>
+</div>

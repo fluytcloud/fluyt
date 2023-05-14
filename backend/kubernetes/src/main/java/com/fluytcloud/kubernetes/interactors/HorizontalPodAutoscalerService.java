@@ -4,7 +4,7 @@ import com.fluytcloud.kubernetes.repositories.HorizontalPodAutoscalerRepository;
 import com.fluytcloud.kubernetes.repositories.NamespaceObjectsRepository;
 import io.kubernetes.client.openapi.models.V2HorizontalPodAutoscaler;
 
-import javax.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class HorizontalPodAutoscalerService extends NamespaceObjectsService<V2HorizontalPodAutoscaler> implements ObjectService<V2HorizontalPodAutoscaler>  {

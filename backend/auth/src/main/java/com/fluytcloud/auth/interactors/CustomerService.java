@@ -3,7 +3,7 @@ package com.fluytcloud.auth.interactors;
 import com.fluytcloud.auth.entities.Customer;
 import com.fluytcloud.auth.repositories.CustomerRepository;
 
-import javax.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 import java.util.Optional;
 import java.util.Set;
 

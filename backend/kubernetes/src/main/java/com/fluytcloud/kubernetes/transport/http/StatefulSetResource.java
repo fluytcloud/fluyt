@@ -10,9 +10,9 @@ import com.fluytcloud.kubernetes.transport.response.StatefulSetResponseList;
 import io.kubernetes.client.openapi.models.V1StatefulSet;
 import io.quarkus.security.Authenticated;
 
-import javax.validation.Valid;
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
+import jakarta.validation.Valid;
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.MediaType;
 import java.util.List;
 
 @Path("/api/v1/kubernetes/stateful-set")

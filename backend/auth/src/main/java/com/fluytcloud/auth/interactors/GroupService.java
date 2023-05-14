@@ -3,7 +3,7 @@ package com.fluytcloud.auth.interactors;
 import com.fluytcloud.auth.entities.Group;
 import com.fluytcloud.auth.repositories.GroupRepository;
 
-import javax.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class GroupService {

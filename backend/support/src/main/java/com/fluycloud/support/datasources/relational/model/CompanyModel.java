@@ -1,6 +1,6 @@
 package com.fluycloud.support.datasources.relational.model;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "COMPANY")

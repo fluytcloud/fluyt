@@ -3,7 +3,7 @@ package com.fluytcloud.auth.datasources.memory;
 import com.fluytcloud.auth.repositories.UserInfoRepository;
 import com.fluytcloud.core.entities.UserInfo;
 
-import javax.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
