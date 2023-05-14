@@ -26,8 +26,8 @@ docker compose up
 To start development with minimal keycloak and application configuration, run the following commands to restore the databases:
 
 ```shell
-cat postgres-keycloak-backup.sql | docker exec -i postgres psql -U root -d fluyt
-cat postgres-app-backup.sql | docker exec -i postgres psql -U root -d fluyt
+cat postgres-app-backup-utf8.sql | docker exec -i postgres psql -U root -d fluyt
+cat postgres-keycloak-backup-utf8.sql | docker exec -i postgres psql -U root -d fluyt
 ```
 
 After the database restoration is complete, you can use the following users to connect to the system:
@@ -54,13 +54,14 @@ To run the backend and frontend application, you need to have Java 20 and Node.j
 To install dependencies for the backend, run the following command in the backend directory of the project:
 
 ```shell
-./mvnw compile
+cd backend/
+.mvnw compile
 ```
 
 To install dependencies for the frontend, run the following command in the frontend directory of the project:
 
 ```shell
-npm install
+npm i --force
 ```
 
 ### Running the Application
