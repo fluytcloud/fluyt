@@ -1,4 +1,4 @@
-import {Directive, EventEmitter, OnInit, Output} from "@angular/core";
+import {Directive, OnInit} from "@angular/core";
 import {HeaderService} from "../../../components/header/header.service";
 import {ActivatedRoute} from "@angular/router";
 import {KubernetesSupportNamespaceObjectFilter} from "./kubernetes.support.namespace.object.filter";
@@ -13,6 +13,7 @@ export abstract class KubernetesSupportDetail<T> implements OnInit {
   display = false;
   value: any;
   filterSimpleList?: KubernetesSearch;
+  owners?: string[];
 
   constructor(public headerService: HeaderService,
               public activatedRoute: ActivatedRoute,
@@ -32,19 +33,32 @@ export abstract class KubernetesSupportDetail<T> implements OnInit {
       .pipe(finalize(() => this.display = true))
       .subscribe(value => {
         this.value = value;
-        this.getFilterToSimpleList(clusterId, namespace, name, this.value?.spec?.selector?.matchLabels);
+        this.getFilterToSimpleList(clusterId, namespace, name, this.value?.spec?.selector?.matchLabels, this.value?.metadata?.uid);
       });
   }
 
   abstract getHeader(filter: KubernetesSupportNamespaceObjectFilter): Header;
 
-  getFilterToSimpleList(clusterId: number, namespace: string, name: string, selector: string) {
+  getFilterToSimpleList(clusterId: number, namespace: string, name: string, selector: string, owner: string) {
     const search = new KubernetesSearch(clusterId);
     search.name = name;
     search.namespaces = [namespace];
     if (selector) {
       search.labelSelector = JSON.stringify(selector);
     }
+
+    search.owner = [owner];
     this.filterSimpleList = search;
+  }
+
+  addOwners(owners: any[]): void {
+    if (owners.length > 0) {
+      this.owners = owners.map(it => it.uid as string);
+      if (this.owners.length > 0) {
+        for (const owner of this.owners) {
+          this.filterSimpleList!.owner?.push(owner);
+        }
+      }
+    }
   }
 }

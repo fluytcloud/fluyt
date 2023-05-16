@@ -23,6 +23,8 @@ import {KubernetesWorkloadDaemonSetModule} from "./workload/daemon-set/kubernete
 import {KubernetesWorkloadCronJobModule} from "./workload/cron-job/kubernetes.workload.cron-job.module";
 import {KubernetesWorkloadJobModule} from "./workload/job/kubernetes.workload.job.module";
 import {KubernetesWorkloadDeploymentModule} from "./workload/deployment/kubernetes.workload.deployment.module";
+import {KubernetesEventSimpleListComponent} from "./events/simple/kubernetes.event.simple.list.component";
+import {KubernetesEventModule} from "./events/kubernetes.event.module";
 
 @NgModule({
   declarations: [
@@ -52,7 +54,8 @@ import {KubernetesWorkloadDeploymentModule} from "./workload/deployment/kubernet
     KubernetesWorkloadDaemonSetModule,
     KubernetesWorkloadCronJobModule,
     KubernetesWorkloadJobModule,
-    KubernetesWorkloadDeploymentModule
+    KubernetesWorkloadDeploymentModule,
+    KubernetesEventModule
   ],
   providers: [
     KubernetesClusterService,

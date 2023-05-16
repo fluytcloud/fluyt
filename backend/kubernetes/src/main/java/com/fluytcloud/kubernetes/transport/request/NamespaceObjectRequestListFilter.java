@@ -6,9 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.QueryParam;
-import java.lang.reflect.Type;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class NamespaceObjectRequestListFilter {
 
@@ -24,6 +22,9 @@ public class NamespaceObjectRequestListFilter {
 
     @QueryParam("labelSelector")
     private String labelSelector;
+
+    @QueryParam("owner")
+    private String owner;
 
     public Integer getClusterId() {
         return clusterId;
@@ -56,4 +57,10 @@ public class NamespaceObjectRequestListFilter {
         return null;
     }
 
+    public List<String> getOwners() {
+        if (Objects.nonNull(owner) && !owner.isEmpty()) {
+            return Arrays.stream(owner.split(",")).toList();
+        }
+        return Collections.emptyList();
+    }
 }

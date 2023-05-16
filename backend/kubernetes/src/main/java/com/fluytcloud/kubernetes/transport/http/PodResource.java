@@ -1,6 +1,7 @@
 package com.fluytcloud.kubernetes.transport.http;
 
 import com.fluytcloud.kubernetes.entities.Filter;
+import com.fluytcloud.kubernetes.entities.OwnerReference;
 import com.fluytcloud.kubernetes.interactors.ClusterService;
 import com.fluytcloud.kubernetes.interactors.PodService;
 import com.fluytcloud.kubernetes.transport.mapper.PodMapper;
@@ -15,6 +16,8 @@ import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 @Path("/api/v1/kubernetes/pod")
 @Authenticated
@@ -53,8 +56,14 @@ public class PodResource {
     @GET
     @Path("simple/list")
     public List<PodSimpleResponseList> getSimpleList(@BeanParam @Valid NamespaceObjectRequestListFilter requestFilter) {
+        if (Objects.isNull(requestFilter.getOwners()) || requestFilter.getOwners().isEmpty()) {
+            throw new IllegalArgumentException("Param Owner is required");
+        }
+
         var cluster = clusterService.findById(requestFilter.getClusterId()).orElseThrow();
-        var filter = new Filter(cluster).setNamespaces(requestFilter.getNamespaces()).setSelector(requestFilter.getLabelSelector());
+        var filter = new Filter(cluster).setNamespaces(requestFilter.getNamespaces())
+                .setOwnerReference(new OwnerReference(requestFilter.getOwners()))
+                .setSelector(requestFilter.getLabelSelector());
         var pods = podService.list(filter);
         return POD_MAPPER.mapSimpleResponseList(pods);
     }

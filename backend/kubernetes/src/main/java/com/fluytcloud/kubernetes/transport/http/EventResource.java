@@ -1,6 +1,7 @@
 package com.fluytcloud.kubernetes.transport.http;
 
 import com.fluytcloud.kubernetes.entities.Filter;
+import com.fluytcloud.kubernetes.entities.OwnerReference;
 import com.fluytcloud.kubernetes.interactors.ClusterService;
 import com.fluytcloud.kubernetes.interactors.EventService;
 import com.fluytcloud.kubernetes.transport.mapper.EventMapper;
@@ -16,8 +17,9 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
-@Path("/api/v1/kubernetes/event")
+@Path("/api/v1/kubernetes/events")
 @Authenticated
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
@@ -55,6 +57,8 @@ public class EventResource {
     @GET
     @Path("simple/list")
     public List<EventSimpleResponseList> getSimpleList(@BeanParam @Valid NamespaceObjectRequestListFilter requestFilter) {
+        Optional.ofNullable(requestFilter.getName()).orElseThrow(() -> new IllegalArgumentException("Param Name is required"));
+
         var cluster = clusterService.findById(requestFilter.getClusterId()).orElseThrow();
         var filter = new Filter(cluster).setNamespaces(requestFilter.getNamespaces())
                 .setFieldSelector(Map.of("involvedObject.name", requestFilter.getName()));

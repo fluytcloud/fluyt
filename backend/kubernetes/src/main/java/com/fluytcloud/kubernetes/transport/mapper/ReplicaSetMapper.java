@@ -46,6 +46,7 @@ public class ReplicaSetMapper {
     public List<ReplicaSetSimpleResponseList> mapSimpleResponseList(List<V1ReplicaSet> replicaSets) {
         return replicaSets.stream()
                 .map(replicaSet -> new ReplicaSetSimpleResponseList(
+                        replicaSet.getMetadata().getUid(),
                         replicaSet.getMetadata().getName(),
                         replicaSet.getMetadata().getNamespace(),
                         replicaSet.getStatus().getFullyLabeledReplicas(),

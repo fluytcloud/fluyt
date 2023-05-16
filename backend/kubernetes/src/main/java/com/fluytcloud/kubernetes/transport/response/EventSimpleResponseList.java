@@ -6,7 +6,8 @@ public record EventSimpleResponseList(
         String source,
         Integer count,
         String object,
-        OffsetDateTime lastSeen
+        OffsetDateTime lastSeen,
+        String message
 ) {
 
 }

@@ -35,6 +35,4 @@ export class KubernetesWorkloadJobDetailComponent extends KubernetesSupportDetai
     };
   }
 
-
-
 }

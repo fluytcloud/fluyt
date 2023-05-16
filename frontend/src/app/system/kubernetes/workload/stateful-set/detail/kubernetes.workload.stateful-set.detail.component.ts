@@ -35,6 +35,4 @@ export class KubernetesWorkloadStatefulSetDetailComponent extends KubernetesSupp
     };
   }
 
-
-
 }

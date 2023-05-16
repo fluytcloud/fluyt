@@ -22,6 +22,7 @@ import {MatChipsModule} from "@angular/material/chips";
 import {KubernetesWorkloadPodModule} from "../pod/kubernetes.workload.pod.module";
 import {MatDividerModule} from "@angular/material/divider";
 import {KubernetesWorkloadReplicaSetModule} from "../replica-set/kubernetes.workload.replica-set.module";
+import {KubernetesEventModule} from "../../events/kubernetes.event.module";
 
 @NgModule({
   declarations: [
@@ -32,28 +33,29 @@ import {KubernetesWorkloadReplicaSetModule} from "../replica-set/kubernetes.work
     KubernetesWorkloadDeploymentListComponent,
     KubernetesWorkloadDeploymentDetailComponent
   ],
-  imports: [
-    CommonModule,
-    KubernetesComponentsListModule,
-    MatMenuModule,
-    MatButtonModule,
-    MatIconModule,
-    RouterModule,
-    LoaderModule,
-    MatExpansionModule,
-    FormContainerModule,
-    FormMultipleContainerModule,
-    DatePipe,
-    KeyValuePipe,
-    PipesReplicaSetReplicasModule,
-    TableModule,
-    PipesDeploymentConditionModule,
-    TagModule,
-    MatChipsModule,
-    KubernetesWorkloadPodModule,
-    MatDividerModule,
-    KubernetesWorkloadReplicaSetModule,
-  ],
+    imports: [
+        CommonModule,
+        KubernetesComponentsListModule,
+        MatMenuModule,
+        MatButtonModule,
+        MatIconModule,
+        RouterModule,
+        LoaderModule,
+        MatExpansionModule,
+        FormContainerModule,
+        FormMultipleContainerModule,
+        DatePipe,
+        KeyValuePipe,
+        PipesReplicaSetReplicasModule,
+        TableModule,
+        PipesDeploymentConditionModule,
+        TagModule,
+        MatChipsModule,
+        KubernetesWorkloadPodModule,
+        MatDividerModule,
+        KubernetesWorkloadReplicaSetModule,
+        KubernetesEventModule,
+    ],
   providers: [
     KubernetesWorkloadDeploymentService
   ]

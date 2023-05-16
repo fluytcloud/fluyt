@@ -19,4 +19,5 @@ export class KubernetesWorkloadPodSimpleListComponent extends KubernetesSupportS
     return this.filter;
   }
 
+  protected readonly Object = Object;
 }
