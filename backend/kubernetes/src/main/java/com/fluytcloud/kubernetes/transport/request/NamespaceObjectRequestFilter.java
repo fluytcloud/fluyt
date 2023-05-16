@@ -1,7 +1,7 @@
 package com.fluytcloud.kubernetes.transport.request;
 
-import javax.validation.constraints.NotNull;
-import javax.ws.rs.QueryParam;
+import jakarta.validation.constraints.NotNull;
+import jakarta.ws.rs.QueryParam;
 
 public class NamespaceObjectRequestFilter {
 

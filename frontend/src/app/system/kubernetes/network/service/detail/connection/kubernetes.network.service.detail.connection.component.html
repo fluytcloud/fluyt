@@ -1,0 +1,31 @@
+<app-form-container [value]="connection?.clusterIP"
+                    label="Cluster IP">
+</app-form-container>
+
+<app-form-container [labelAbove]="true" label="Cluster IPs">
+  <mat-chip-listbox [selectable]="false" aria-label="clusterIPs">
+    <mat-chip-option *ngFor="let clusterIP of connection?.clusterIPs">
+      {{clusterIP}}
+    </mat-chip-option>
+  </mat-chip-listbox>
+</app-form-container>
+
+<app-form-container [labelAbove]="true" label="IP Families">
+  <mat-chip-listbox [selectable]="false" aria-label="ipFamilies">
+    <mat-chip-option *ngFor="let ipFamily of connection?.ipFamilies">
+      {{ipFamily}}
+    </mat-chip-option>
+  </mat-chip-listbox>
+</app-form-container>
+
+<app-form-container [value]="connection?.ipFamilyPolicy"
+                    label="IP Family Policy">
+</app-form-container>
+
+<app-form-container [labelAbove]="true" label="Ports">
+  <mat-chip-listbox [selectable]="false" aria-label="ports">
+    <mat-chip-option *ngFor="let port of connection?.ports">
+      {{port?.port}}/{{port?.protocol}}
+    </mat-chip-option>
+  </mat-chip-listbox>
+</app-form-container>

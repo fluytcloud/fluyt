@@ -8,7 +8,7 @@ import com.fluytcloud.kubernetes.entities.Cluster;
 import com.fluytcloud.kubernetes.repositories.ClusterRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import javax.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class ClusterRepositoryImpl extends CrudRepositoryImpl<Cluster, ClusterModel, Integer> implements ClusterRepository {

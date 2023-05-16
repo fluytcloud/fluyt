@@ -1,0 +1,15 @@
+<app-form-multiple-container>
+  <app-form-container label="Name"
+                      [value]="'Resource '+ specMetric?.resource?.name + ' on Pods'">
+  </app-form-container>
+
+  <app-form-container label="Current/Target"
+                      *ngIf="specMetric?.resource?.target?.averageUtilization"
+                      [value]="currentMetric?.resource?.current?.averageUtilization + ' / ' + specMetric?.resource?.target?.averageUtilization + '%'">
+  </app-form-container>
+
+  <app-form-container label="Current/Target"
+                      *ngIf="specMetric?.resource?.target?.averageValue"
+                      [value]="currentMetric?.resource?.current?.averageValue?.number + ' / ' + specMetric?.resource?.target?.averageValue?.number + '%'">
+  </app-form-container>
+</app-form-multiple-container>

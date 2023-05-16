@@ -5,7 +5,7 @@ import com.fluytcloud.admin.repositories.CustomerRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import javax.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;

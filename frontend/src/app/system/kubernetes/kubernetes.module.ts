@@ -22,6 +22,12 @@ import {KubernetesWorkloadStatefulSetModule} from "./workload/stateful-set/kuber
 import {KubernetesWorkloadDaemonSetModule} from "./workload/daemon-set/kubernetes.workload.daemon-set.module";
 import {KubernetesWorkloadCronJobModule} from "./workload/cron-job/kubernetes.workload.cron-job.module";
 import {KubernetesWorkloadJobModule} from "./workload/job/kubernetes.workload.job.module";
+import {KubernetesNetworkEndpointModule} from "./network/endpoint/kubernetes.network.endpoint.module";
+import {
+  KubernetesConfigHorizontalPodAutoscalerModule
+} from "./config/horizontal-pod-autoscaler/kubernetes.config.horizontal-pod-autoscaler.module";
+import {KubernetesNetworkIngressModule} from "./network/ingress/kubernetes.network.ingress.module";
+import {KubernetesNetworkServiceModule} from "./network/service/kubernetes.network.service.module";
 import {KubernetesWorkloadDeploymentModule} from "./workload/deployment/kubernetes.workload.deployment.module";
 import {KubernetesEventSimpleListComponent} from "./events/simple/kubernetes.event.simple.list.component";
 import {KubernetesEventModule} from "./events/kubernetes.event.module";
@@ -53,6 +59,11 @@ import {KubernetesEventModule} from "./events/kubernetes.event.module";
     KubernetesWorkloadStatefulSetModule,
     KubernetesWorkloadDaemonSetModule,
     KubernetesWorkloadCronJobModule,
+    KubernetesWorkloadJobModule,
+    KubernetesNetworkEndpointModule,
+    KubernetesConfigHorizontalPodAutoscalerModule,
+    KubernetesNetworkIngressModule,
+    KubernetesNetworkServiceModule,
     KubernetesWorkloadJobModule,
     KubernetesWorkloadDeploymentModule,
     KubernetesEventModule

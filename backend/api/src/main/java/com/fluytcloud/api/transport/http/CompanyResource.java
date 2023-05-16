@@ -11,10 +11,10 @@ import io.quarkus.security.Authenticated;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
-import javax.annotation.security.RolesAllowed;
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import jakarta.annotation.security.RolesAllowed;
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 
 @Path("/api/v1/company")
 @Authenticated
@@ -47,7 +47,7 @@ public class CompanyResource {
 
     @GET
     @Path("{id}")
-    @RolesAllowed({"administrator", "manager"})
+    @jakarta.annotation.security.RolesAllowed({"administrator", "manager"})
     public CompanyResponse findById(@PathParam("id") Integer id) {
         return companyService.findById(id)
                 .map(COMPANY_MAPPER::mapResponse)

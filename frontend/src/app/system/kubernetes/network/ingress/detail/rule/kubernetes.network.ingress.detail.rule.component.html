@@ -1,0 +1,27 @@
+<app-form-container label="Paths" [labelAbove]="true">
+  <p-table [value]="paths">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Path</th>
+        <th>Link</th>
+        <th>Backends</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-path>
+      <tr>
+        <td>{{path.path}}</td>
+        <td>
+          http://{{path.host}}{{path.path}}
+        </td>
+        <td>
+          <ng-container *ngIf="path.backend?.service">
+            {{path.backend?.service?.name}}:{{path.backend?.service?.port?.number}}{{path.backend?.service?.port?.name}}
+          </ng-container>
+          <ng-container *ngIf="path.backend?.resource">
+            {{path.backend?.resource?.kind}}:{{path.backend?.resource?.name}}
+          </ng-container>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</app-form-container>

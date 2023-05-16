@@ -4,7 +4,7 @@ import com.fluytcloud.core.entities.UserInfoContext;
 import io.quarkus.hibernate.orm.PersistenceUnitExtension;
 import io.quarkus.hibernate.orm.runtime.tenant.TenantResolver;
 
-import javax.enterprise.context.RequestScoped;
+import jakarta.enterprise.context.RequestScoped;
 import java.util.Objects;
 
 @PersistenceUnitExtension

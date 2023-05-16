@@ -12,9 +12,9 @@ import com.fluytcloud.kubernetes.transport.response.ReplicaSetResponseList;
 import io.kubernetes.client.openapi.models.V1ReplicaSet;
 import io.quarkus.security.Authenticated;
 
-import javax.validation.Valid;
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
+import jakarta.validation.Valid;
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.MediaType;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;

@@ -33,9 +33,12 @@ export abstract class KubernetesSupportDetail<T> implements OnInit {
       .pipe(finalize(() => this.display = true))
       .subscribe(value => {
         this.value = value;
+        this.postGet(value);
         this.getFilterToSimpleList(clusterId, namespace, name, this.value?.spec?.selector?.matchLabels, this.value?.metadata?.uid);
       });
   }
+
+  postGet(value: any): void {}
 
   abstract getHeader(filter: KubernetesSupportNamespaceObjectFilter): Header;
 

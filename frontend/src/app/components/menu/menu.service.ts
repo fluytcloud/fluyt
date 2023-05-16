@@ -80,7 +80,7 @@ export class MenuService {
       new Menu("config-maps", "Config Maps"),
       new Menu("limit-ranges", "Limit Ranges"),
       new Menu("resource-quotas", "Resource Quotas"),
-      new Menu("hpa", "HPA"),
+      new Menu("horizontal-pod-autoscalers", "HPA"),
       new Menu("secrets", "Secrets")
     ];
     reports.addChildren("Config", config);
