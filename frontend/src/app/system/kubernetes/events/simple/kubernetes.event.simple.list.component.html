@@ -1,23 +1,16 @@
-<mat-expansion-panel [expanded]="true" class="mat-expansion-panel-spacing">
-  <mat-expansion-panel-header>
-    Events
-  </mat-expansion-panel-header>
-  <div class="fc-form">
-    <ng-container *ngFor="let value of values">
-      <app-form-container label="{{value.message}}" [labelAbove]="true">
-        <app-form-container label="Source"
-                            [value]="value?.source">
-        </app-form-container>
-        <app-form-container label="Count"
-                            [value]="value?.count?.toLocaleString()">
-        </app-form-container>
-        <app-form-container label="Sub-object"
-                            [value]="value?.object || '-'">
-        </app-form-container>
-        <app-form-container label="Last Seen"
-                            [value]="value?.lastSeen | date:'medium'">
-        </app-form-container>
-      </app-form-container>
-    </ng-container>
-  </div>
-</mat-expansion-panel>
+<ng-container *ngFor="let value of values">
+  <app-form-container label="{{value.message}}" [labelAbove]="true">
+    <app-form-container label="Source"
+                        [value]="value?.source">
+    </app-form-container>
+    <app-form-container label="Count"
+                        [value]="value?.count?.toLocaleString()">
+    </app-form-container>
+    <app-form-container label="Sub-object"
+                        [value]="value?.object || '-'">
+    </app-form-container>
+    <app-form-container label="Last Seen"
+                        [value]="value?.lastSeen | date:'medium'">
+    </app-form-container>
+  </app-form-container>
+</ng-container>

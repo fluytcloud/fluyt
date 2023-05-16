@@ -51,13 +51,11 @@ export abstract class KubernetesSupportDetail<T> implements OnInit {
     this.filterSimpleList = search;
   }
 
-  addOwners(owners: any[]): void {
+  addOwners(owners: string[]): void {
     if (owners.length > 0) {
-      this.owners = owners.map(it => it.uid as string);
-      if (this.owners.length > 0) {
-        for (const owner of this.owners) {
-          this.filterSimpleList!.owner?.push(owner);
-        }
+      this.owners = owners;
+      for (const owner of this.owners) {
+        this.filterSimpleList!.owner?.push(owner);
       }
     }
   }

@@ -45,6 +45,18 @@ a<div class="container">
             <span *ngIf="!value?.metadata?.labels">None</span>
           </app-form-container>
 
+          <app-form-container label="Replicas">
+            <div class="fc-form-field">
+              <div class="fc-form-field-text-value">
+                <span>{{value?.spec?.replicas}} desired, </span>
+                <span>{{value?.status?.updatedReplicas || 0}} updated, </span>
+                <span>{{value?.status?.replicas || 0}} total, </span>
+                <span>{{value?.status?.availableReplicas || 0}} available, </span>
+                <span>{{value?.status?.unavailableReplicas || 0}} unavailable </span>
+              </div>
+            </div>
+          </app-form-container>
+
           <app-form-container label="Selector" [labelAbove]="true">
             <mat-chip-listbox aria-label="selector" [selectable]="false">
               <mat-chip-option *ngFor="let match of value?.spec?.selector?.matchLabels | keyvalue">
@@ -72,7 +84,7 @@ a<div class="container">
         Deploy Revisions
       </mat-expansion-panel-header>
       <div class="fc-form">
-        <app-kubernetes-workload-replica-set-simple-list [filter]="filterSimpleList!" (valuesEmitter)="addOwners($event)">
+        <app-kubernetes-workload-replica-set-simple-list [filter]="filterSimpleList!" (uidsEmitter)="addOwners($event)">
         </app-kubernetes-workload-replica-set-simple-list>
       </div>
     </mat-expansion-panel>
@@ -87,7 +99,14 @@ a<div class="container">
       </div>
     </mat-expansion-panel>
 
-    <app-kubernetes-events-simple-list *ngIf="value" [filter]="filterSimpleList!"></app-kubernetes-events-simple-list>
+    <mat-expansion-panel [expanded]="true" class="mat-expansion-panel-spacing">
+      <mat-expansion-panel-header>
+        Events
+      </mat-expansion-panel-header>
+      <div class="fc-form">
+        <app-kubernetes-events-simple-list *ngIf="value" [filter]="filterSimpleList!"></app-kubernetes-events-simple-list>
+      </div>
+    </mat-expansion-panel>
 
   </app-loader>
 </div>

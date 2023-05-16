@@ -9,18 +9,12 @@ import {KubernetesEventService} from "../kubernetes.event.service";
   templateUrl: './kubernetes.event.simple.list.component.html'
 })
 export class KubernetesEventSimpleListComponent extends KubernetesSupportSimpleList<KubernetesEventSimpleList> implements OnInit {
-
-  @Input() filter!: KubernetesSearch;
   constructor(private eventService: KubernetesEventService) {
     super(eventService);
   }
 
   ngOnInit() {
     super.load();
-  }
-
-  override getFilter(): KubernetesSearch {
-    return this.filter;
   }
 
 }
