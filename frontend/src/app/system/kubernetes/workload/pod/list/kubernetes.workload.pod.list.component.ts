@@ -6,6 +6,7 @@ import {FooterService} from "../../../../../components/footer/footer.service";
 import {KubernetesTerminalComponent} from "../../../terminal/kubernetes.terminal.component";
 import {KubernetesSupportList} from "../../../support/kubernetes.support.list";
 import {Header} from "../../../../../components/header/header";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-kubernetes-workload-pod-list',
@@ -15,7 +16,8 @@ export class KubernetesWorkloadPodListComponent extends KubernetesSupportList<Ku
 
   constructor(private podService: KubernetesWorkloadPodService,
               headerService: HeaderService,
-              private footerService: FooterService) {
+              private footerService: FooterService,
+              private activatedRoute: ActivatedRoute) {
     super(headerService, podService);
   }
 
@@ -36,7 +38,8 @@ export class KubernetesWorkloadPodListComponent extends KubernetesSupportList<Ku
       type: KubernetesTerminalComponent,
       title: 'Terminal',
       data: {
-        title: 'Teste terminal'
+        cluster: this.activatedRoute.snapshot.queryParams['cluster'],
+        pod: pod
       },
       icon: 'pi-desktop'
     })
