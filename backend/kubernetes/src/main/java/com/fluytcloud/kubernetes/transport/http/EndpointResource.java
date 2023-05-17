@@ -22,8 +22,6 @@ public class EndpointResource {
     private final EndpointService endpointService;
     private final ClusterService clusterService;
 
-    private static final EndpointMapper ENDPOINT_MAPPER = new EndpointMapper();
-
     public EndpointResource(EndpointService endpointService, ClusterService clusterService) {
         this.endpointService = endpointService;
         this.clusterService = clusterService;
@@ -36,6 +34,6 @@ public class EndpointResource {
                 .orElseThrow();
         var filter = new Filter(cluster).setNamespaces(requestFilter.getNamespaces()).setSearch(requestFilter.getName());
         var endpoints = endpointService.list(filter);
-        return ENDPOINT_MAPPER.mapResponseList(endpoints);
+        return EndpointMapper.mapResponseList(endpoints);
     }
 }
