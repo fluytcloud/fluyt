@@ -31,6 +31,9 @@ import {KubernetesNetworkServiceModule} from "./network/service/kubernetes.netwo
 import {KubernetesWorkloadDeploymentModule} from "./workload/deployment/kubernetes.workload.deployment.module";
 import {KubernetesEventSimpleListComponent} from "./events/simple/kubernetes.event.simple.list.component";
 import {KubernetesEventModule} from "./events/kubernetes.event.module";
+import {
+  KubernetesAccessControlRoleBindingModule
+} from "./access-control/role-binding/kubernetes.access-control.role-binding.module";
 
 @NgModule({
   declarations: [
@@ -66,7 +69,8 @@ import {KubernetesEventModule} from "./events/kubernetes.event.module";
     KubernetesNetworkServiceModule,
     KubernetesWorkloadJobModule,
     KubernetesWorkloadDeploymentModule,
-    KubernetesEventModule
+    KubernetesEventModule,
+    KubernetesAccessControlRoleBindingModule
   ],
   providers: [
     KubernetesClusterService,
