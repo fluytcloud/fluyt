@@ -28,6 +28,9 @@ import {
 } from "./config/horizontal-pod-autoscaler/kubernetes.config.horizontal-pod-autoscaler.module";
 import {KubernetesNetworkIngressModule} from "./network/ingress/kubernetes.network.ingress.module";
 import {KubernetesNetworkServiceModule} from "./network/service/kubernetes.network.service.module";
+import {
+  KubernetesAccessControlRoleBindingModule
+} from "./access-control/role-binding/kubernetes.access-control.role-binding.module";
 
 @NgModule({
   declarations: [
@@ -61,6 +64,7 @@ import {KubernetesNetworkServiceModule} from "./network/service/kubernetes.netwo
     KubernetesConfigHorizontalPodAutoscalerModule,
     KubernetesNetworkIngressModule,
     KubernetesNetworkServiceModule,
+    KubernetesAccessControlRoleBindingModule
   ],
   providers: [
     KubernetesClusterService,

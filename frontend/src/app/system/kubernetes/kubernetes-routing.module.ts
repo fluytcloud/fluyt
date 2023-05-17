@@ -59,6 +59,12 @@ import {KubernetesNetworkServiceListComponent} from "./network/service/list/kube
 import {
   KubernetesNetworkServiceDetailComponent
 } from "./network/service/detail/kubernetes.network.service.detail.component";
+import {
+  KubernetesAccessControlRoleBindingListComponent
+} from "./access-control/role-binding/list/kubernetes.access-control.role-binding.list.component";
+import {
+  KubernetesAccessControlRoleBindingDetailComponent
+} from "./access-control/role-binding/detail/kubernetes.access-control.role-binding.detail.component";
 
 
 const routes: Routes = [
@@ -200,6 +206,16 @@ const routes: Routes = [
     canActivate: [KubernetesClusterGuard],
     component: KubernetesNetworkServiceDetailComponent
   },
+  {
+    path: 'role-bindings',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesAccessControlRoleBindingListComponent
+  },
+  {
+    path: 'role-bindings/detail',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesAccessControlRoleBindingDetailComponent
+  }
 ];
 
 @NgModule({
