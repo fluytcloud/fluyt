@@ -1,0 +1,112 @@
+a<div class="container">
+  <app-loader [show]="display">
+    <mat-accordion class="example-headers-align" multi>
+      <mat-expansion-panel [hideToggle]="true" [expanded]="true">
+        <mat-expansion-panel-header>
+          <div class="fc-form">
+            <div class="fc-form-actions-container">
+              <mat-panel-title>
+                General
+              </mat-panel-title>
+              <button mat-raised-button routerLink="/kubernetes/deployments">Back</button>
+            </div>
+          </div>
+        </mat-expansion-panel-header>
+        <div class="fc-form">
+          <app-form-container label="Created"
+                              [value]="value?.metadata?.creationTimestamp | date">
+          </app-form-container>
+
+          <app-form-multiple-container>
+            <app-form-container label="Name"
+                                [value]="value?.metadata?.name">
+            </app-form-container>
+
+            <app-form-container label="Namespace"
+                                [value]="value?.metadata?.namespace">
+            </app-form-container>
+          </app-form-multiple-container>
+
+          <app-form-container label="Annotations" [labelAbove]="true">
+            <mat-chip-listbox aria-label="annotations" [selectable]="false">
+              <mat-chip-option *ngFor="let annotation of value?.metadata?.annotations | keyvalue">
+                {{annotation.key}} : {{annotation.value}}
+              </mat-chip-option>
+            </mat-chip-listbox>
+            <span *ngIf="!value?.metadata?.annotations">None</span>
+          </app-form-container>
+
+          <app-form-container label="Labels" [labelAbove]="true">
+            <mat-chip-listbox aria-label="labels" [selectable]="false">
+              <mat-chip-option *ngFor="let label of value?.metadata?.labels | keyvalue">
+                {{label.key}} : {{label.value}}
+              </mat-chip-option>
+            </mat-chip-listbox>
+            <span *ngIf="!value?.metadata?.labels">None</span>
+          </app-form-container>
+
+          <app-form-container label="Replicas">
+            <div class="fc-form-field">
+              <div class="fc-form-field-text-value">
+                <span>{{value?.spec?.replicas}} desired, </span>
+                <span>{{value?.status?.updatedReplicas || 0}} updated, </span>
+                <span>{{value?.status?.replicas || 0}} total, </span>
+                <span>{{value?.status?.availableReplicas || 0}} available, </span>
+                <span>{{value?.status?.unavailableReplicas || 0}} unavailable </span>
+              </div>
+            </div>
+          </app-form-container>
+
+          <app-form-container label="Selector" [labelAbove]="true">
+            <mat-chip-listbox aria-label="selector" [selectable]="false">
+              <mat-chip-option *ngFor="let match of value?.spec?.selector?.matchLabels | keyvalue">
+                {{match.key}} : {{match.value}}
+              </mat-chip-option>
+            </mat-chip-listbox>
+          </app-form-container>
+
+          <app-form-container label="Strategy Type"
+                              [value]="value?.spec.strategy?.type">
+          </app-form-container>
+
+          <app-form-container label="Conditions">
+            <p-tag *ngFor="let condition of value?.status?.conditions"
+                   [value]="condition.type"
+                   [severity]="condition.type | deploymentCondition"
+                   [rounded]="true"></p-tag>
+          </app-form-container>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-expansion-panel *ngIf="value" [expanded]="true" class="mat-expansion-panel-spacing">
+      <mat-expansion-panel-header>
+        Deploy Revisions
+      </mat-expansion-panel-header>
+      <div class="fc-form">
+        <app-kubernetes-workload-replica-set-simple-list [filter]="filterSimpleList!" (uidsEmitter)="addOwners($event)">
+        </app-kubernetes-workload-replica-set-simple-list>
+      </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel *ngIf="value" [expanded]="true" class="mat-expansion-panel-spacing">
+      <mat-expansion-panel-header>
+        Pods
+      </mat-expansion-panel-header>
+      <div class="fc-form">
+        <app-kubernetes-workload-pod-simple-list *ngIf="owners" [filter]="filterSimpleList!">
+        </app-kubernetes-workload-pod-simple-list>
+      </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel [expanded]="true" class="mat-expansion-panel-spacing">
+      <mat-expansion-panel-header>
+        Events
+      </mat-expansion-panel-header>
+      <div class="fc-form">
+        <app-kubernetes-events-simple-list *ngIf="value" [filter]="filterSimpleList!"></app-kubernetes-events-simple-list>
+      </div>
+    </mat-expansion-panel>
+
+  </app-loader>
+</div>

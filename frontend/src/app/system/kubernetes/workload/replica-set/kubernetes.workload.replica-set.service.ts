@@ -15,4 +15,5 @@ export class KubernetesWorkloadReplicaSetService extends KubernetesSupportServic
     return `${environment.system_v1}/kubernetes/replica-set`;
   }
 
+
 }

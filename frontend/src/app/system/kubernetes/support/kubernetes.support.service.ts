@@ -25,4 +25,10 @@ export abstract class KubernetesSupportService<T> {
     return this.http.get<any>(this.getUrl(), { params: params });
   }
 
+  findSimple(filter: KubernetesSearch): Observable<any[]> {
+    const params = QueryParams.transform(filter);
+    const url = `${this.getUrl()}/simple/list`;
+    return this.http.get<any[]>(url, { params: params });
+  }
+
 }

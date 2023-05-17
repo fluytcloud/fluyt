@@ -1,5 +1,6 @@
 package com.fluytcloud.kubernetes.transport.mapper;
 
+import com.fluytcloud.kubernetes.transport.response.ReplicaSetSimpleResponseList;
 import com.fluytcloud.kubernetes.transport.response.ReplicaSetResponseList;
 import io.kubernetes.client.openapi.models.V1ReplicaSet;
 
@@ -35,4 +36,14 @@ public class ReplicaSetMapper {
                 .toList();
     }
 
+    public List<ReplicaSetSimpleResponseList> mapSimpleResponseList(List<V1ReplicaSet> replicaSets) {
+        return replicaSets.stream()
+                .map(replicaSet -> new ReplicaSetSimpleResponseList(
+                        replicaSet.getMetadata().getUid(),
+                        replicaSet.getMetadata().getName(),
+                        replicaSet.getMetadata().getNamespace(),
+                        replicaSet.getStatus().getFullyLabeledReplicas(),
+                        KubernetesMapper.formatAge(replicaSet.getMetadata().getCreationTimestamp()))
+                ).toList();
+    }
 }

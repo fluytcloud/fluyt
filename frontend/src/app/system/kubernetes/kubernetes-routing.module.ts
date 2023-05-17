@@ -60,6 +60,12 @@ import {
   KubernetesNetworkServiceDetailComponent
 } from "./network/service/detail/kubernetes.network.service.detail.component";
 import {
+  KubernetesWorkloadDeploymentListComponent
+} from "./workload/deployment/list/kubernetes.workload.deployment.list.component";
+import {
+  KubernetesWorkloadDeploymentDetailComponent
+} from "./workload/deployment/detail/kubernetes.workload.deployment.detail.component";
+import {
   KubernetesAccessControlRoleBindingListComponent
 } from "./access-control/role-binding/list/kubernetes.access-control.role-binding.list.component";
 import {
@@ -125,6 +131,16 @@ const routes: Routes = [
     path: 'replica-sets/detail',
     canActivate: [KubernetesClusterGuard],
     component: KubernetesWorkloadReplicaSetDetailComponent
+  },
+  {
+    path: 'deployments',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesWorkloadDeploymentListComponent
+  },
+  {
+    path: 'deployments/detail',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesWorkloadDeploymentDetailComponent
   },
   {
     path: 'stateful-sets',

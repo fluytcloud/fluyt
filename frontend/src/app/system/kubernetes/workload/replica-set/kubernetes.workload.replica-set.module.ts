@@ -17,15 +17,24 @@ import {CommonModule, DatePipe, KeyValuePipe} from "@angular/common";
 import {MatChipsModule} from "@angular/material/chips";
 import {PipesReplicaSetReplicasModule} from "../../pipes/replica-set/replicas/pipes.replica-set.replicas.module";
 import {TableModule} from "primeng/table";
+import {
+  KubernetesWorkloadReplicaSetSimpleListComponent
+} from "./simple/kubernetes.workload.replica-set.simple.list.component";
+import {
+  KubernetesComponentsSimpleListModule
+} from "../../components/list/simple/kubernetes.components.simple.list.module";
+import {KubernetesWorkloadPodModule} from "../pod/kubernetes.workload.pod.module";
 
 @NgModule({
   declarations: [
     KubernetesWorkloadReplicaSetListComponent,
-    KubernetesWorkloadReplicaSetDetailComponent
+    KubernetesWorkloadReplicaSetDetailComponent,
+    KubernetesWorkloadReplicaSetSimpleListComponent
   ],
   exports: [
     KubernetesWorkloadReplicaSetListComponent,
-    KubernetesWorkloadReplicaSetDetailComponent
+    KubernetesWorkloadReplicaSetDetailComponent,
+    KubernetesWorkloadReplicaSetSimpleListComponent
   ],
   imports: [
     CommonModule,
@@ -42,7 +51,9 @@ import {TableModule} from "primeng/table";
     MatChipsModule,
     KeyValuePipe,
     PipesReplicaSetReplicasModule,
-    TableModule
+    TableModule,
+    KubernetesComponentsSimpleListModule,
+    KubernetesWorkloadPodModule
   ],
   providers: [
     KubernetesWorkloadReplicaSetService

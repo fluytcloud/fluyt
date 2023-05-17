@@ -35,6 +35,4 @@ export class KubernetesWorkloadReplicaSetDetailComponent extends KubernetesSuppo
     };
   }
 
-
-
 }
