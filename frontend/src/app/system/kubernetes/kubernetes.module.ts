@@ -23,6 +23,9 @@ import {KubernetesWorkloadDaemonSetModule} from "./workload/daemon-set/kubernete
 import {KubernetesWorkloadCronJobModule} from "./workload/cron-job/kubernetes.workload.cron-job.module";
 import {KubernetesWorkloadJobModule} from "./workload/job/kubernetes.workload.job.module";
 import { KubernetesNetworkEndpointModule } from "./network/endpoint/kubernetes.network.endpoint.module";
+import {
+  KubernetesConfigHorizontalPodAutoscalerModule
+} from "./config/horizontal-pod-autoscaler/kubernetes.config.horizontal-pod-autoscaler.module";
 
 @NgModule({
   declarations: [
@@ -52,7 +55,8 @@ import { KubernetesNetworkEndpointModule } from "./network/endpoint/kubernetes.n
     KubernetesWorkloadDaemonSetModule,
     KubernetesWorkloadCronJobModule,
     KubernetesWorkloadJobModule,
-    KubernetesNetworkEndpointModule
+    KubernetesNetworkEndpointModule,
+    KubernetesConfigHorizontalPodAutoscalerModule
   ],
   providers: [
     KubernetesClusterService,
