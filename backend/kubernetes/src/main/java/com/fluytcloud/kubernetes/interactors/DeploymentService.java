@@ -3,8 +3,8 @@ package com.fluytcloud.kubernetes.interactors;
 import com.fluytcloud.kubernetes.repositories.DeploymentRepository;
 import com.fluytcloud.kubernetes.repositories.NamespaceObjectsRepository;
 import io.kubernetes.client.openapi.models.V1Deployment;
+import jakarta.enterprise.context.ApplicationScoped;
 
-import javax.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class DeploymentService extends NamespaceObjectsService<V1Deployment> implements ObjectService<V1Deployment> {

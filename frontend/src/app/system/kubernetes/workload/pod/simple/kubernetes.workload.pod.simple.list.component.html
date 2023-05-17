@@ -16,8 +16,8 @@
       <td>{{pod.name}}</td>
       <td>{{pod.nodeName}}</td>
       <td>{{pod.runningContainers}} / {{pod.containers}}</td>
-      <td>{{pod.cpu}}</td>
-      <td>{{pod.memory}}</td>
+      <td>{{pod.cpu || 0}}</td>
+      <td>{{pod.memory || 0}}</td>
       <td>{{pod.status}}</td>
     </tr>
   </ng-template>

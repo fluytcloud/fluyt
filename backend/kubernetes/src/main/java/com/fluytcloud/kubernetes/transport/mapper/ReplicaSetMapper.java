@@ -43,7 +43,7 @@ public class ReplicaSetMapper {
                         replicaSet.getMetadata().getName(),
                         replicaSet.getMetadata().getNamespace(),
                         replicaSet.getStatus().getFullyLabeledReplicas(),
-                        getAge(replicaSet.getMetadata().getCreationTimestamp()))
+                        KubernetesMapper.formatAge(replicaSet.getMetadata().getCreationTimestamp()))
                 ).toList();
     }
 }

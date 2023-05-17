@@ -3,8 +3,8 @@ package com.fluytcloud.kubernetes.interactors;
 import com.fluytcloud.kubernetes.repositories.EventRepository;
 import com.fluytcloud.kubernetes.repositories.NamespaceObjectsRepository;
 import io.kubernetes.client.openapi.models.CoreV1Event;
+import jakarta.enterprise.context.ApplicationScoped;
 
-import javax.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class EventService extends NamespaceObjectsService<CoreV1Event> implements ObjectService<CoreV1Event> {

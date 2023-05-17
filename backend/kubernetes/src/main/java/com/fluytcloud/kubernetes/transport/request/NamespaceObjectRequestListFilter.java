@@ -1,14 +1,11 @@
 package com.fluytcloud.kubernetes.transport.request;
 
-import jakarta.validation.constraints.NotNull;
-import jakarta.ws.rs.QueryParam;
-import java.util.List;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import jakarta.validation.constraints.NotNull;
+import jakarta.ws.rs.QueryParam;
 import org.apache.commons.lang3.StringUtils;
 
-import javax.validation.constraints.NotNull;
-import javax.ws.rs.QueryParam;
 import java.util.*;
 
 public class NamespaceObjectRequestListFilter {

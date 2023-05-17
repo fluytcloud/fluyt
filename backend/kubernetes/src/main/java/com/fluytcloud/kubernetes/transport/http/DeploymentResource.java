@@ -7,12 +7,12 @@ import com.fluytcloud.kubernetes.transport.mapper.DeploymentMapper;
 import com.fluytcloud.kubernetes.transport.request.NamespaceObjectRequestFilter;
 import com.fluytcloud.kubernetes.transport.request.NamespaceObjectRequestListFilter;
 import com.fluytcloud.kubernetes.transport.response.DeploymentResponseList;
+import com.fluytcloud.rest.exception.NotFoundException;
 import io.kubernetes.client.openapi.models.V1Deployment;
 import io.quarkus.security.Authenticated;
-
-import javax.validation.Valid;
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
+import jakarta.validation.Valid;
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.MediaType;
 import java.util.List;
 
 @Path("/api/v1/kubernetes/deployment")
