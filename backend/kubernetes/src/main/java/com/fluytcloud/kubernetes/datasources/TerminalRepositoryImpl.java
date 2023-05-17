@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.function.Consumer;
 
@@ -21,6 +22,7 @@ import java.util.function.Consumer;
 public class TerminalRepositoryImpl implements TerminalRepository {
 
     private final ClusterRepository clusterRepository;
+    private final ExecutorService executorService = Executors.newFixedThreadPool(100);
     private final Map<TerminalRequest, Exec> connections = new ConcurrentHashMap<>();
     private final Map<TerminalRequest, TerminalProcessConsumer> consumers = new ConcurrentHashMap<>();
 
@@ -32,7 +34,7 @@ public class TerminalRepositoryImpl implements TerminalRepository {
     public void subscribe(TerminalRequest request, Consumer<TerminalResponse> consumer) {
         try {
             var exec = connections.get(request);
-            var process = exec.exec(request.namespace(), request.pod(), getCommand(request), request.container(), true, true);
+            var process = exec.exec(request.namespace(), request.pod(), new String[]{request.command()}, request.container(), true, true);
 
             var processConsumer = new TerminalProcessConsumer(process, message -> {
                 var response = new TerminalResponse(request.context(), message);
@@ -41,7 +43,7 @@ public class TerminalRepositoryImpl implements TerminalRepository {
 
             consumers.put(request, processConsumer);
 
-            Executors.newSingleThreadExecutor().execute(processConsumer);
+            executorService.execute(processConsumer);
         } catch (ApiException | IOException e) {
             throw new RuntimeException(e);
         }
@@ -74,20 +76,13 @@ public class TerminalRepositoryImpl implements TerminalRepository {
             return;
         }
         var processConsumer = consumers.get(request.get());
-        processConsumer.close();
         consumers.remove(request.get());
         connections.remove(request.get());
+        processConsumer.close();
     }
 
     @Override
     public boolean isSubscribe(String context) {
         return consumers.keySet().stream().anyMatch(e -> e.context().equals(context));
-    }
-
-    private String[] getCommand(TerminalRequest request) {
-        if (request.command().contains("bash")) {
-            return new String[]{"env", "COLUMNS=" + request.columns(), "LINES=" + request.lines(), request.command()};
-        }
-        return new String[]{request.command()};
     }
 }

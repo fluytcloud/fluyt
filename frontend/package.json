@@ -25,11 +25,12 @@
     "codemirror": "^5.65.13",
     "keycloak-angular": "^12.0.0",
     "keycloak-js": "^18.0.1",
-    "ng-terminal": "^5.4.0",
+    "ng-terminal": "^5.5.0",
     "primeicons": "^5.0.0",
     "primeng": "^14.0.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
+    "uuid": "^9.0.0",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
@@ -37,6 +38,7 @@
     "@angular/cli": "~15.2.6",
     "@angular/compiler-cli": "^15.2.8",
     "@types/jasmine": "~4.0.0",
+    "@types/uuid": "^9.0.1",
     "jasmine-core": "~4.2.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.1.0",

@@ -19,10 +19,9 @@ export class KubernetesTerminalService {
 
   connect(context: string): Observable<any> {
     const socket = webSocket({
-      url: `${environment.websocket}/pod/terminal/${context}`
+      url: `${environment.websocket}/kubernetes/pod/terminal/${context}`
     });
     this.map.set(context, socket);
-    console.log(socket);
     return socket;
   }
 

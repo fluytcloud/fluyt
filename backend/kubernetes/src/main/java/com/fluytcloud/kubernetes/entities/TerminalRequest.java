@@ -8,9 +8,7 @@ public record TerminalRequest(
         String namespace,
         String pod,
         String container,
-        String command,
-        Integer lines,
-        Integer columns) {
+        String command) {
 
     @Override
     public boolean equals(Object o) {

@@ -12,17 +12,14 @@ import jakarta.websocket.server.ServerEndpoint;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
-@ServerEndpoint("/pod/terminal/{context}")
+@ServerEndpoint("/kubernetes/pod/terminal/{context}")
 @ApplicationScoped
 public class TerminalEndpoint {
 
     private final TerminalService terminalService;
     private final ObjectMapper objectMapper;
     private final Map<String, Session> sessions = new ConcurrentHashMap<>();
-    private final ExecutorService executor = Executors.newFixedThreadPool(10);
 
     public TerminalEndpoint(TerminalService terminalService, ObjectMapper objectMapper) {
         this.terminalService = terminalService;

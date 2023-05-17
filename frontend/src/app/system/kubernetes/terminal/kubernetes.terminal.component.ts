@@ -2,6 +2,7 @@ import {AfterViewInit, Component, Input, OnDestroy, OnInit, ViewChild} from "@an
 import {KubernetesWorkloadPodList} from "../workload/pod/kubernetes.workload.pod.list";
 import {NgTerminal} from "ng-terminal";
 import {KubernetesTerminalService} from "./kubernetes.terminal.service";
+import * as uuid from 'uuid';
 
 @Component({
   selector: 'app-kubernetes-terminal',
@@ -21,9 +22,7 @@ export class KubernetesTerminalComponent implements OnInit, OnDestroy, AfterView
   }
 
   ngOnInit(): void {
-    console.log(this.pod);
-
-    this.context = new Date().getTime().toString();
+    this.context = uuid.v4()!;
 
     const request = {
       context: this.context,
@@ -31,9 +30,7 @@ export class KubernetesTerminalComponent implements OnInit, OnDestroy, AfterView
       namespace: this.pod.namespace,
       pod: this.pod.name,
       container: this.pod.containers[0].name,
-      command: '/bin/sh',
-      lines: 10,
-      columns: 50
+      command: '/bin/sh'
     }
 
     this.kubernetesTerminalService.open(this.context, request).subscribe(() => {
@@ -45,7 +42,7 @@ export class KubernetesTerminalComponent implements OnInit, OnDestroy, AfterView
   }
 
   ngAfterViewInit(): void {
-    this.terminal?.onData().subscribe((value) => {
+    this.terminal?.onData().subscribe(value => {
       const request = {
         context: this.context,
         cluster: this.cluster,
