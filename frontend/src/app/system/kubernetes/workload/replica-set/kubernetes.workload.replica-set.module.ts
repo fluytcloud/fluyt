@@ -24,6 +24,7 @@ import {
   KubernetesComponentsSimpleListModule
 } from "../../components/list/simple/kubernetes.components.simple.list.module";
 import {KubernetesWorkloadPodModule} from "../pod/kubernetes.workload.pod.module";
+import {KubernetesEventModule} from "../../events/kubernetes.event.module";
 
 @NgModule({
   declarations: [
@@ -36,25 +37,26 @@ import {KubernetesWorkloadPodModule} from "../pod/kubernetes.workload.pod.module
     KubernetesWorkloadReplicaSetDetailComponent,
     KubernetesWorkloadReplicaSetSimpleListComponent
   ],
-  imports: [
-    CommonModule,
-    KubernetesComponentsListModule,
-    MatMenuModule,
-    MatButtonModule,
-    MatIconModule,
-    RouterModule,
-    LoaderModule,
-    MatExpansionModule,
-    FormContainerModule,
-    FormMultipleContainerModule,
-    DatePipe,
-    MatChipsModule,
-    KeyValuePipe,
-    PipesReplicaSetReplicasModule,
-    TableModule,
-    KubernetesComponentsSimpleListModule,
-    KubernetesWorkloadPodModule
-  ],
+    imports: [
+        CommonModule,
+        KubernetesComponentsListModule,
+        MatMenuModule,
+        MatButtonModule,
+        MatIconModule,
+        RouterModule,
+        LoaderModule,
+        MatExpansionModule,
+        FormContainerModule,
+        FormMultipleContainerModule,
+        DatePipe,
+        MatChipsModule,
+        KeyValuePipe,
+        PipesReplicaSetReplicasModule,
+        TableModule,
+        KubernetesComponentsSimpleListModule,
+        KubernetesWorkloadPodModule,
+        KubernetesEventModule
+    ],
   providers: [
     KubernetesWorkloadReplicaSetService
   ]

@@ -35,4 +35,8 @@ export class KubernetesWorkloadDaemonSetDetailComponent extends KubernetesSuppor
     };
   }
 
+  override postGet(value: any) {
+    this.addOwner(value?.metadata?.uid);
+  }
+
 }

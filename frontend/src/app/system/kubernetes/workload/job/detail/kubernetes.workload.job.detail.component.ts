@@ -35,4 +35,8 @@ export class KubernetesWorkloadJobDetailComponent extends KubernetesSupportDetai
     };
   }
 
+  override postGet(value: any) {
+    this.addOwner(value?.metadata?.uid);
+  }
+
 }

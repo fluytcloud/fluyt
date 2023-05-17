@@ -33,8 +33,14 @@ export abstract class KubernetesSupportDetail<T> implements OnInit {
       .pipe(finalize(() => this.display = true))
       .subscribe(value => {
         this.value = value;
+        this.getFilterToSimpleList(
+          clusterId,
+          namespace,
+          name,
+          this.value?.spec?.selector?.matchLabels,
+          this.value?.metadata?.uid
+        );
         this.postGet(value);
-        this.getFilterToSimpleList(clusterId, namespace, name, this.value?.spec?.selector?.matchLabels, this.value?.metadata?.uid);
       });
   }
 
@@ -60,6 +66,13 @@ export abstract class KubernetesSupportDetail<T> implements OnInit {
       for (const owner of this.owners) {
         this.filterSimpleList!.owner?.push(owner);
       }
+    }
+  }
+
+  addOwner(owner: string): void {
+    if (owner) {
+      this.owners = [owner];
+      this.filterSimpleList!.owner?.push(owner);
     }
   }
 }

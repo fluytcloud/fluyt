@@ -29,8 +29,6 @@ import {
 import {KubernetesNetworkIngressModule} from "./network/ingress/kubernetes.network.ingress.module";
 import {KubernetesNetworkServiceModule} from "./network/service/kubernetes.network.service.module";
 import {KubernetesWorkloadDeploymentModule} from "./workload/deployment/kubernetes.workload.deployment.module";
-import {KubernetesEventSimpleListComponent} from "./events/simple/kubernetes.event.simple.list.component";
-import {KubernetesEventModule} from "./events/kubernetes.event.module";
 import {
   KubernetesAccessControlRoleBindingModule
 } from "./access-control/role-binding/kubernetes.access-control.role-binding.module";
@@ -69,7 +67,6 @@ import {
     KubernetesNetworkServiceModule,
     KubernetesWorkloadJobModule,
     KubernetesWorkloadDeploymentModule,
-    KubernetesEventModule,
     KubernetesAccessControlRoleBindingModule
   ],
   providers: [
