@@ -32,6 +32,9 @@ import {KubernetesWorkloadDeploymentModule} from "./workload/deployment/kubernet
 import {
   KubernetesAccessControlRoleBindingModule
 } from "./access-control/role-binding/kubernetes.access-control.role-binding.module";
+import {
+  KubernetesAccessControlServiceAccountModule
+} from "./access-control/service-account/kubernetes.access-control.service-account.module";
 
 @NgModule({
   declarations: [
@@ -67,7 +70,8 @@ import {
     KubernetesNetworkServiceModule,
     KubernetesWorkloadJobModule,
     KubernetesWorkloadDeploymentModule,
-    KubernetesAccessControlRoleBindingModule
+    KubernetesAccessControlRoleBindingModule,
+    KubernetesAccessControlServiceAccountModule
   ],
   providers: [
     KubernetesClusterService,
