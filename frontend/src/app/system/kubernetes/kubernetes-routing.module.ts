@@ -77,6 +77,12 @@ import {
 import {
   KubernetesAccessControlServiceAccountDetailComponent
 } from "./access-control/service-account/detail/kubernetes.access-control.service-account.detail.component";
+import {
+  KubernetesAccessControlRoleListComponent
+} from "./access-control/role/list/kubernetes.access-control.role.list.component";
+import {
+  KubernetesAccessControlRoleDetailComponent
+} from "./access-control/role/detail/kubernetes.access-control.role.detail.component";
 
 
 const routes: Routes = [
@@ -247,6 +253,16 @@ const routes: Routes = [
     path: 'service-accounts/detail',
     canActivate: [KubernetesClusterGuard],
     component: KubernetesAccessControlServiceAccountDetailComponent
+  },
+  {
+    path: 'roles',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesAccessControlRoleListComponent
+  },
+  {
+    path: 'roles/detail',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesAccessControlRoleDetailComponent
   }
 ];
 

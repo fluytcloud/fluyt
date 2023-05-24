@@ -1,33 +1,25 @@
-<app-kubernetes-components-list name="RoleBindings" (filter)="load($event)" [values]="values" [loading]="loading">
+<app-kubernetes-components-list name="Roles" (filter)="load($event)" [values]="values" [loading]="loading">
   <ng-template #header>
     <tr>
       <th>Namespace</th>
       <th>Name</th>
-      <th>Bindings</th>
       <th>Age</th>
       <th>Actions</th>
     </tr>
   </ng-template>
-  <ng-template #body let-roleBinding>
+  <ng-template #body let-role>
     <tr>
-      <td>{{roleBinding.namespace}}</td>
-      <td>{{roleBinding.name}}</td>
-      <td>
-        <mat-chip-listbox aria-label="bindings" [selectable]="false">
-          <mat-chip-option *ngFor="let binding of roleBinding.bindings">
-            {{binding}}
-          </mat-chip-option>
-        </mat-chip-listbox>
-      </td>
-      <td>{{roleBinding.age}}</td>
+      <td>{{role.namespace}}</td>
+      <td>{{role.name}}</td>
+      <td>{{role.age}}</td>
       <td>
         <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Actions">
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
           <a mat-menu-item
-             [routerLink]="['/kubernetes/role-bindings/detail']"
-             [queryParams]="{name: roleBinding.name, namespace: roleBinding.namespace}">
+             [routerLink]="['/kubernetes/roles/detail']"
+             [queryParams]="{name: role.name, namespace: role.namespace}">
             <mat-icon>visibility</mat-icon>
             <span>Detail</span>
           </a>
