@@ -85,15 +85,15 @@ export class KubernetesClusterFormComponent extends CrudForm<KubernetesCluster, 
   }
 
   override preSave() {
-    if (KubernetesClusterConnectionType.DEFAULT !== this.getValue('connectionType')) {
+    if (KubernetesClusterConnectionType.DEFAULT === this.getValue('connectionType')) {
       this.form.get('url')?.setValue(null);
       this.form.get('token')?.setValue(null);
       this.form.get('username')?.setValue(null);
       this.form.get('password')?.setValue(null);
-    } else if (KubernetesClusterConnectionType.TOKEN !== this.getValue('connectionType')) {
+    } else if (KubernetesClusterConnectionType.TOKEN === this.getValue('connectionType')) {
       this.form.get('username')?.setValue(null);
       this.form.get('password')?.setValue(null);
-    } else if (KubernetesClusterConnectionType.BASIC !== this.getValue('connectionType')) {
+    } else if (KubernetesClusterConnectionType.BASIC === this.getValue('connectionType')) {
       this.form.get('token')?.setValue(null);
     }
   }
