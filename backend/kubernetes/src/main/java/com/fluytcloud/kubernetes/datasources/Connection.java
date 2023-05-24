@@ -2,11 +2,13 @@ package com.fluytcloud.kubernetes.datasources;
 
 import com.fluytcloud.kubernetes.entities.Cluster;
 import com.fluytcloud.kubernetes.entities.ConnectionType;
+import io.kubernetes.client.Exec;
 import io.kubernetes.client.Metrics;
 import io.kubernetes.client.openapi.ApiClient;
 import io.kubernetes.client.openapi.ApiException;
 import io.kubernetes.client.openapi.apis.*;
 import io.kubernetes.client.openapi.models.V1Pod;
+import io.kubernetes.client.util.ClientBuilder;
 import io.kubernetes.client.util.Config;
 
 import javax.annotation.Nonnull;
@@ -34,7 +36,7 @@ public class Connection {
             );
         } else {
             try {
-                apiClient = Config.defaultClient();
+                apiClient = ClientBuilder.standard().setVerifyingSsl(false).build();;
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -79,6 +81,10 @@ public class Connection {
 
     public CustomObjectsApi getCustomObjectsApi() {
         return new CustomObjectsApi(apiClient);
+    }
+
+    public Exec getExec() {
+        return new Exec(apiClient);
     }
 
     public static void main(String[] args) throws IOException, ApiException {

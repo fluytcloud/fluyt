@@ -17,6 +17,7 @@ import {TableModule} from "primeng/table";
 import {KubernetesWorkloadCronJobService} from "./kubernetes.workload.cron-job.service";
 import {KubernetesWorkloadCronJobListComponent} from "./list/kubernetes.workload.cron-job.list.component";
 import {KubernetesWorkloadCronJobDetailComponent} from "./detail/kubernetes.workload.cron-job.detail.component";
+import {KubernetesEventModule} from "../../events/kubernetes.event.module";
 
 @NgModule({
   declarations: [
@@ -27,23 +28,24 @@ import {KubernetesWorkloadCronJobDetailComponent} from "./detail/kubernetes.work
     KubernetesWorkloadCronJobListComponent,
     KubernetesWorkloadCronJobDetailComponent
   ],
-  imports: [
-    CommonModule,
-    KubernetesComponentsListModule,
-    MatMenuModule,
-    MatButtonModule,
-    MatIconModule,
-    RouterModule,
-    LoaderModule,
-    MatExpansionModule,
-    FormContainerModule,
-    FormMultipleContainerModule,
-    DatePipe,
-    MatChipsModule,
-    KeyValuePipe,
-    PipesReplicaSetReplicasModule,
-    TableModule
-  ],
+    imports: [
+        CommonModule,
+        KubernetesComponentsListModule,
+        MatMenuModule,
+        MatButtonModule,
+        MatIconModule,
+        RouterModule,
+        LoaderModule,
+        MatExpansionModule,
+        FormContainerModule,
+        FormMultipleContainerModule,
+        DatePipe,
+        MatChipsModule,
+        KeyValuePipe,
+        PipesReplicaSetReplicasModule,
+        TableModule,
+        KubernetesEventModule
+    ],
   providers: [
     KubernetesWorkloadCronJobService
   ]

@@ -35,6 +35,8 @@ export class KubernetesWorkloadStatefulSetDetailComponent extends KubernetesSupp
     };
   }
 
-
+  override postGet(value: any) {
+    this.addOwner(value?.metadata?.uid);
+  }
 
 }

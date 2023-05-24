@@ -59,6 +59,30 @@ import {KubernetesNetworkServiceListComponent} from "./network/service/list/kube
 import {
   KubernetesNetworkServiceDetailComponent
 } from "./network/service/detail/kubernetes.network.service.detail.component";
+import {
+  KubernetesWorkloadDeploymentListComponent
+} from "./workload/deployment/list/kubernetes.workload.deployment.list.component";
+import {
+  KubernetesWorkloadDeploymentDetailComponent
+} from "./workload/deployment/detail/kubernetes.workload.deployment.detail.component";
+import {
+  KubernetesAccessControlRoleBindingListComponent
+} from "./access-control/role-binding/list/kubernetes.access-control.role-binding.list.component";
+import {
+  KubernetesAccessControlRoleBindingDetailComponent
+} from "./access-control/role-binding/detail/kubernetes.access-control.role-binding.detail.component";
+import {
+  KubernetesAccessControlServiceAccountListComponent
+} from "./access-control/service-account/list/kubernetes.access-control.service-account.list.component";
+import {
+  KubernetesAccessControlServiceAccountDetailComponent
+} from "./access-control/service-account/detail/kubernetes.access-control.service-account.detail.component";
+import {
+  KubernetesAccessControlRoleListComponent
+} from "./access-control/role/list/kubernetes.access-control.role.list.component";
+import {
+  KubernetesAccessControlRoleDetailComponent
+} from "./access-control/role/detail/kubernetes.access-control.role.detail.component";
 
 
 const routes: Routes = [
@@ -119,6 +143,16 @@ const routes: Routes = [
     path: 'replica-sets/detail',
     canActivate: [KubernetesClusterGuard],
     component: KubernetesWorkloadReplicaSetDetailComponent
+  },
+  {
+    path: 'deployments',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesWorkloadDeploymentListComponent
+  },
+  {
+    path: 'deployments/detail',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesWorkloadDeploymentDetailComponent
   },
   {
     path: 'stateful-sets',
@@ -200,6 +234,46 @@ const routes: Routes = [
     canActivate: [KubernetesClusterGuard],
     component: KubernetesNetworkServiceDetailComponent
   },
+  {
+    path: 'role-bindings',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesAccessControlRoleBindingListComponent
+  },
+  {
+    path: 'role-bindings/detail',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesAccessControlRoleBindingDetailComponent
+  },
+  {
+    path: 'service-accounts',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesAccessControlServiceAccountListComponent
+  },
+  {
+    path: 'service-accounts/detail',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesAccessControlServiceAccountDetailComponent
+  },
+  {
+    path: 'roles',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesAccessControlRoleListComponent
+  },
+  {
+    path: 'roles/detail',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesAccessControlRoleDetailComponent
+  },
+  {
+    path: 'endpoints',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesNetworkEndpointListComponent
+  },
+  {
+    path: 'endpoints/detail',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesNetworkIngressDetailComponent
+  }
 ];
 
 @NgModule({

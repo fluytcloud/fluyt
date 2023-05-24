@@ -17,6 +17,8 @@ import {TableModule} from "primeng/table";
 import {KubernetesWorkloadStatefulSetDetailComponent} from "./detail/kubernetes.workload.stateful-set.detail.component";
 import {KubernetesWorkloadStatefulSetService} from "./kubernetes.workload.stateful-set.service";
 import {KubernetesWorkloadStatefulSetListComponent} from "./list/kubernetes.workload.stateful-set.list.component";
+import {KubernetesWorkloadPodModule} from "../pod/kubernetes.workload.pod.module";
+import {KubernetesEventModule} from "../../events/kubernetes.event.module";
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import {KubernetesWorkloadStatefulSetListComponent} from "./list/kubernetes.work
     MatChipsModule,
     KeyValuePipe,
     PipesReplicaSetReplicasModule,
-    TableModule
+    TableModule,
+    KubernetesWorkloadPodModule,
+    KubernetesEventModule
   ],
   providers: [
     KubernetesWorkloadStatefulSetService

@@ -1,1 +1,98 @@
-<p>kubernetes.network.endpoint.detail works!</p>
+<div class="container">
+  <app-loader [show]="display">
+    <mat-accordion class="example-headers-align" multi>
+      <mat-expansion-panel [hideToggle]="true" [expanded]="true">
+        <mat-expansion-panel-header>
+          <div class="fc-form">
+            <div class="fc-form-actions-container">
+              <mat-panel-title>
+                General
+              </mat-panel-title>
+              <button mat-raised-button routerLink="/kubernetes/endpoints">Back</button>
+            </div>
+          </div>
+        </mat-expansion-panel-header>
+        <div class="fc-form">
+          <app-form-container label="Created"
+                              [value]="value?.metadata?.creationTimestamp | date">
+          </app-form-container>
+
+          <app-form-multiple-container>
+            <app-form-container label="Name"
+                                [value]="value?.metadata?.name">
+            </app-form-container>
+
+            <app-form-container label="Namespace"
+                                [value]="value?.metadata?.namespace">
+            </app-form-container>
+          </app-form-multiple-container>
+
+          <app-form-container label="Annotations" [labelAbove]="true">
+            <mat-chip-listbox aria-label="annotations" [selectable]="false">
+              <mat-chip-option *ngFor="let annotation of value?.metadata?.annotations | keyvalue">
+                {{annotation.key}} : {{annotation.value}}
+              </mat-chip-option>
+            </mat-chip-listbox>
+            <span *ngIf="!value?.metadata?.annotations">None</span>
+          </app-form-container>
+
+          <app-form-container label="Labels" [labelAbove]="true">
+            <mat-chip-listbox aria-label="labels" [selectable]="false">
+              <mat-chip-option *ngFor="let label of value?.metadata?.labels | keyvalue">
+                {{label.key}} : {{label.value}}
+              </mat-chip-option>
+            </mat-chip-listbox>
+            <span *ngIf="!value?.metadata?.labels">None</span>
+          </app-form-container>
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          Subsets
+        </mat-expansion-panel-header>
+        <div class="fc-form">
+          <div *ngFor="let subset of value?.subsets; let first = first;">
+            <mat-divider *ngIf="!subset"></mat-divider>
+            <app-form-container label="Addresses" [labelAbove]="true">
+              <p-table [value]="subset?.addresses">
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th>IP</th>
+                    <th>Hostname</th>
+                    <th>Target</th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-object>
+                  <tr>
+                    <td>{{object.ip}}</td>
+                    <td>{{object.hostname}}</td>
+                    <td>{{object.targetRef?.name}}</td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </app-form-container>
+
+            <app-form-container label="Ports" [labelAbove]="true">
+              <p-table [value]="subset?.ports">
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th>Port</th>
+                    <th>Name</th>
+                    <th>Protocol</th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-object>
+                  <tr>
+                    <td>{{object.port}}</td>
+                    <td>{{object.name}}</td>
+                    <td>{{object.protocol}}</td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </app-form-container>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </app-loader>
+</div>

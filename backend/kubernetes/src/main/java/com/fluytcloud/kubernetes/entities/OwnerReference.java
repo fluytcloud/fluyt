@@ -1,4 +1,7 @@
 package com.fluytcloud.kubernetes.entities;
 
-public record OwnerReference(String owner, WorkdloadType workdloadType) {
+import java.util.List;
+
+public record OwnerReference(List<String> owners) {
+
 }

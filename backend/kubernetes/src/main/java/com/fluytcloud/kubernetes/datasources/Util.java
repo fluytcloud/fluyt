@@ -2,6 +2,7 @@ package com.fluytcloud.kubernetes.datasources;
 
 import com.fluytcloud.kubernetes.entities.Filter;
 import io.kubernetes.client.common.KubernetesObject;
+import io.kubernetes.client.openapi.models.V1OwnerReference;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
@@ -36,10 +37,7 @@ public class Util {
         if (Objects.nonNull(filter.getOwnerReference())) {
             var ownerFilter = (Predicate<KubernetesObject>) k8sObject -> k8sObject.getMetadata().getOwnerReferences()
                     .stream()
-                    .anyMatch(it ->
-                            it.getKind().equals(filter.getOwnerReference().workdloadType().getLabel())
-                                    && it.getName().equalsIgnoreCase(filter.getOwnerReference().owner())
-                    );
+                    .anyMatch(getOwnerFilter(filter));
             filters.add(ownerFilter);
         }
 
@@ -51,6 +49,17 @@ public class Util {
         return stream.toList();
     }
 
+    private static Predicate<V1OwnerReference> getOwnerFilter(Filter filter) {
+        return ownerReference -> {
+            var owners = filter.getOwnerReference().owners();
+
+            if (Objects.nonNull(owners) && !owners.isEmpty()) {
+                return owners.stream().anyMatch(it -> it.equals(ownerReference.getUid()));
+            }
+
+            return true;
+        };
+    }
     public static void copy(InputStream in, OutputStream... out) throws IOException {
         byte[] buffer = new byte[BUFFER_SIZE];
         int bytesRead;

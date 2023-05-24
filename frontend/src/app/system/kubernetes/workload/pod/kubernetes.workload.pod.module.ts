@@ -30,19 +30,25 @@ import {MatCardModule} from "@angular/material/card";
 import {MatDividerModule} from "@angular/material/divider";
 import {FormsModule} from "@angular/forms";
 import {KubernetesComponentsListModule} from "../../components/list/kubernetes.components.list.module";
+import {KubernetesWorkloadPodSimpleListComponent} from "./simple/kubernetes.workload.pod.simple.list.component";
+import {
+  KubernetesComponentsSimpleListModule
+} from "../../components/list/simple/kubernetes.components.simple.list.module";
 
 @NgModule({
   declarations: [
     KubernetesWorkloadPodListComponent,
     KubernetesWorkloadPodDetailComponent,
     KubernetesWorkloadPodDetailContainerComponent,
-    KubernetesWorkloadPodDetailVolumeComponent
+    KubernetesWorkloadPodDetailVolumeComponent,
+    KubernetesWorkloadPodSimpleListComponent
   ],
   exports: [
     KubernetesWorkloadPodListComponent,
     KubernetesWorkloadPodDetailComponent,
     KubernetesWorkloadPodDetailContainerComponent,
-    KubernetesWorkloadPodDetailVolumeComponent
+    KubernetesWorkloadPodDetailVolumeComponent,
+    KubernetesWorkloadPodSimpleListComponent
   ],
   imports: [
     CommonModule,
@@ -64,7 +70,8 @@ import {KubernetesComponentsListModule} from "../../components/list/kubernetes.c
     MatExpansionModule,
     MatCardModule,
     MatDividerModule,
-    KubernetesComponentsListModule
+    KubernetesComponentsListModule,
+    KubernetesComponentsSimpleListModule
   ],
   providers: [
     KubernetesWorkloadPodService

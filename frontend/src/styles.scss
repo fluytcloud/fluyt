@@ -31,6 +31,9 @@ body { margin: 0; }
   width: 100px;
 }
 
+.xterm-rows span {
+  font-family: courier-new, courier, monospace !important;
+}
 
 
 /* Custom PrimeNG Components*/

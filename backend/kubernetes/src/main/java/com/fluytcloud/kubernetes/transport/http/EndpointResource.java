@@ -4,13 +4,15 @@ import com.fluytcloud.kubernetes.entities.Filter;
 import com.fluytcloud.kubernetes.interactors.ClusterService;
 import com.fluytcloud.kubernetes.interactors.EndpointService;
 import com.fluytcloud.kubernetes.transport.mapper.EndpointMapper;
+import com.fluytcloud.kubernetes.transport.request.NamespaceObjectRequestFilter;
 import com.fluytcloud.kubernetes.transport.request.NamespaceObjectRequestListFilter;
 import com.fluytcloud.kubernetes.transport.response.EndpointResponseList;
+import io.kubernetes.client.openapi.models.V1Endpoints;
 import io.quarkus.security.Authenticated;
-
 import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
+
 import java.util.List;
 
 @Path("/api/v1/kubernetes/endpoint")
@@ -38,4 +40,13 @@ public class EndpointResource {
         var endpoints = endpointService.list(filter);
         return ENDPOINT_MAPPER.mapResponseList(endpoints);
     }
+
+    @GET
+    public V1Endpoints get(@BeanParam @Valid NamespaceObjectRequestFilter podFilter) {
+        var cluster = clusterService.findById(podFilter.getClusterId())
+                .orElseThrow();
+        return endpointService.read(cluster, podFilter.getNamespace(), podFilter.getName())
+                .orElseThrow(() -> new NotFoundException("Endpoint not found"));
+    }
+
 }

@@ -1,0 +1,23 @@
+<div class="container">
+  <mat-accordion class="example-headers-align" multi>
+    <mat-expansion-panel [expanded]="true">
+      <div class="fc-form">
+        <p-table [value]="values"
+                 responsiveLayout="scroll"
+                 [paginator]="true"
+                 [rows]="8"
+                 [totalRecords]="values.length"
+                 [loading]="loading">
+          <ng-template pTemplate="header">
+            <ng-container [ngTemplateOutlet]="header"></ng-container>
+          </ng-template>
+          <ng-template pTemplate="body" let-object>
+            <ng-container [ngTemplateOutlet]="body"
+                          [ngTemplateOutletContext]="{$implicit: object}">
+            </ng-container>
+          </ng-template>
+        </p-table>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
