@@ -263,6 +263,16 @@ const routes: Routes = [
     path: 'roles/detail',
     canActivate: [KubernetesClusterGuard],
     component: KubernetesAccessControlRoleDetailComponent
+  },
+  {
+    path: 'endpoints',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesNetworkEndpointListComponent
+  },
+  {
+    path: 'endpoints/detail',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesNetworkIngressDetailComponent
   }
 ];
 

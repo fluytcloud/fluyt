@@ -73,7 +73,8 @@ import {KubernetesAccessControlRoleModule} from "./access-control/role/kubernete
     KubernetesWorkloadDeploymentModule,
     KubernetesAccessControlRoleBindingModule,
     KubernetesAccessControlServiceAccountModule,
-    KubernetesAccessControlRoleModule
+    KubernetesAccessControlRoleModule,
+    KubernetesNetworkEndpointModule
   ],
   providers: [
     KubernetesClusterService,

@@ -1,21 +1,31 @@
-import { Component } from '@angular/core';
-import { KubernetesNetworkEndpointService } from '../kubernetes.network.endpoint.service';
+import {Component} from "@angular/core";
+import {HeaderService} from "../../../../../components/header/header.service";
+import {KubernetesSupportList} from "../../../support/kubernetes.support.list";
+import {Header} from "../../../../../components/header/header";
+import {KubernetesNetworkEndpointList} from "../kubernetes.network.endpoint.list";
+import {KubernetesNetworkEndpointService} from "../kubernetes.network.endpoint.service";
 
 @Component({
-  selector: 'app-kubernetes.network.endpoint.list',
-  templateUrl: './kubernetes.network.endpoint.list.component.html',
-  styleUrls: ['./kubernetes.network.endpoint.list.component.scss']
+  selector: 'app-kubernetes-network-endpoint-list',
+  templateUrl: './kubernetes.network.endpoint.list.component.html'
 })
-export class KubernetesNetworkEndpointListComponent {
+export class KubernetesNetworkEndpointListComponent extends KubernetesSupportList<KubernetesNetworkEndpointList> {
 
-  constructor(private service: KubernetesNetworkEndpointService) {
-    this.teste();
+  constructor(private endpointService: KubernetesNetworkEndpointService,
+              headerService: HeaderService) {
+    super(headerService, endpointService);
   }
 
-  private teste(): void {
-    this.service.find({clusterId: 1}).subscribe((result) => {
-      console.log(result);
-    });
+  getHeader(): Header {
+    return {
+      name: 'Endpoint list',
+      breadcrumbs: [
+        {
+          label: 'Endpoints',
+          link: '/kubernetes/endpoints'
+        }
+      ]
+    };
   }
 
 }
