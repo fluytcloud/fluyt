@@ -5,9 +5,7 @@ import io.kubernetes.client.openapi.models.V2HorizontalPodAutoscaler;
 import io.kubernetes.client.openapi.models.V2HorizontalPodAutoscalerCondition;
 import io.kubernetes.client.openapi.models.V2HorizontalPodAutoscalerStatus;
 import io.kubernetes.client.openapi.models.V2ResourceMetricSource;
-import org.ocpsoft.prettytime.PrettyTime;
 
-import java.time.OffsetDateTime;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -27,7 +25,7 @@ public class HorizontalPodAutoscalerMapper {
                 hpa.getSpec().getMaxReplicas(),
                 status.map(V2HorizontalPodAutoscalerStatus::getCurrentReplicas).orElse(0),
                 status(hpa.getStatus()),
-                getPrettyTime(hpa.getMetadata().getCreationTimestamp())
+                KubernetesMapper.formatAge(hpa.getMetadata().getCreationTimestamp())
         );
     }
 
@@ -69,11 +67,6 @@ public class HorizontalPodAutoscalerMapper {
                         .toList()
                 )
                 .orElse(Collections.emptyList());
-    }
-
-    private String getPrettyTime(OffsetDateTime dateTime) {
-        PrettyTime prettyTime = new PrettyTime();
-        return prettyTime.format(dateTime);
     }
 
     public List<HorizontalPodAutoscalerResponseList> mapResponseList(List<V2HorizontalPodAutoscaler> hpas) {

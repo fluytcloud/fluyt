@@ -10,9 +10,9 @@ import com.fluytcloud.kubernetes.transport.response.HorizontalPodAutoscalerRespo
 import io.kubernetes.client.openapi.models.V2HorizontalPodAutoscaler;
 import io.quarkus.security.Authenticated;
 
-import javax.validation.Valid;
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
+import jakarta.validation.Valid;
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.MediaType;
 import java.util.List;
 
 @Path("/api/v1/kubernetes/horizontal-pod-autoscaler")

@@ -4,7 +4,7 @@ import io.quarkus.runtime.Startup;
 import org.flywaydb.core.Flyway;
 import org.flywaydb.core.api.configuration.FluentConfiguration;
 
-import javax.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 import javax.sql.DataSource;
 
 @Startup

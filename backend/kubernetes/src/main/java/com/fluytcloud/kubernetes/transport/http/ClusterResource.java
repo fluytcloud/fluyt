@@ -9,13 +9,13 @@ import com.fluytcloud.kubernetes.transport.response.ClusterResponse;
 import com.fluytcloud.rest.exception.DuplicatedRecordException;
 import com.fluytcloud.rest.exception.NoContentException;
 import io.quarkus.security.Authenticated;
+import jakarta.annotation.security.RolesAllowed;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
-import javax.annotation.security.RolesAllowed;
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 
 @Path("/api/v1/kubernetes/cluster")
 @Authenticated
@@ -33,7 +33,7 @@ public class ClusterResource {
     }
 
     @GET
-    @RolesAllowed({"administrator", "manager"})
+    @jakarta.annotation.security.RolesAllowed({"administrator", "manager"})
     public Response findAll(@QueryParam("page") Integer page, @QueryParam("size") Integer size) {
         var pageable = clusterService.findAll(PageRequest.of(page, size));
         var pagination = new PageImpl<>(
@@ -49,7 +49,7 @@ public class ClusterResource {
 
     @GET
     @Path("{id}")
-    @RolesAllowed({"administrator", "manager"})
+    @jakarta.annotation.security.RolesAllowed({"administrator", "manager"})
     public ClusterResponse findById(@PathParam("id") Integer id) {
         return clusterService.findById(id)
                 .map(CLUSTER_MAPPER::mapResponse)
@@ -70,7 +70,7 @@ public class ClusterResource {
 
     @PUT
     @Path("{id}")
-    @RolesAllowed({"administrator", "manager"})
+    @jakarta.annotation.security.RolesAllowed({"administrator", "manager"})
     public Response update(@PathParam("id") Integer id, ClusterRequest clusterRequest) {
         var cluster = CLUSTER_MAPPER.map(clusterRequest, id);
         try {
@@ -85,7 +85,7 @@ public class ClusterResource {
 
     @DELETE
     @Path("{id}")
-    @RolesAllowed({"administrator", "manager"})
+    @jakarta.annotation.security.RolesAllowed({"administrator", "manager"})
     public Response delete(@PathParam("id") Integer id) {
         try {
             clusterService.delete(id);

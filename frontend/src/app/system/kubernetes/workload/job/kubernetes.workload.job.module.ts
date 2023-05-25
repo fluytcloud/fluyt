@@ -17,6 +17,8 @@ import {TableModule} from "primeng/table";
 import {KubernetesWorkloadJobListComponent} from "./list/kubernetes.workload.job.list.component";
 import {KubernetesWorkloadJobDetailComponent} from "./detail/kubernetes.workload.job.detail.component";
 import {KubernetesWorkloadJobService} from "./kubernetes.workload.job.service";
+import {KubernetesWorkloadPodModule} from "../pod/kubernetes.workload.pod.module";
+import {KubernetesEventModule} from "../../events/kubernetes.event.module";
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import {KubernetesWorkloadJobService} from "./kubernetes.workload.job.service";
     MatChipsModule,
     KeyValuePipe,
     PipesReplicaSetReplicasModule,
-    TableModule
+    TableModule,
+    KubernetesWorkloadPodModule,
+    KubernetesEventModule
   ],
   providers: [
     KubernetesWorkloadJobService

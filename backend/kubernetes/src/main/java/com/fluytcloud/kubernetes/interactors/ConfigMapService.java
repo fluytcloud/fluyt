@@ -4,7 +4,7 @@ import com.fluytcloud.kubernetes.repositories.ConfigMapRepository;
 import com.fluytcloud.kubernetes.repositories.NamespaceObjectsRepository;
 import io.kubernetes.client.openapi.models.V1ConfigMap;
 
-import javax.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class ConfigMapService extends NamespaceObjectsService<V1ConfigMap> implements ObjectService<V1ConfigMap>  {

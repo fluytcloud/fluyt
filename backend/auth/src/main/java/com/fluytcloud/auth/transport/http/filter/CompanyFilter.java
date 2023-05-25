@@ -10,12 +10,11 @@ import com.fluytcloud.core.entities.Company;
 import com.fluytcloud.core.entities.Organization;
 import com.fluytcloud.core.entities.UserInfoContext;
 
-import javax.inject.Inject;
-import javax.ws.rs.container.ContainerRequestContext;
-import javax.ws.rs.container.ContainerRequestFilter;
-import javax.ws.rs.ext.Provider;
-import java.util.List;
-import java.util.Set;
+import jakarta.inject.Inject;
+import jakarta.ws.rs.container.ContainerRequestContext;
+import jakarta.ws.rs.container.ContainerRequestFilter;
+import jakarta.ws.rs.ext.Provider;
+
 import java.util.function.Predicate;
 
 @Provider

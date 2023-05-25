@@ -14,7 +14,7 @@ import com.fluytcloud.core.entities.UserInfo;
 import com.fluytcloud.core.entities.UserInfoContext;
 import com.fluytcloud.migration.interactors.MigrationUseCase;
 
-import javax.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;

@@ -22,10 +22,20 @@ import {KubernetesWorkloadStatefulSetModule} from "./workload/stateful-set/kuber
 import {KubernetesWorkloadDaemonSetModule} from "./workload/daemon-set/kubernetes.workload.daemon-set.module";
 import {KubernetesWorkloadCronJobModule} from "./workload/cron-job/kubernetes.workload.cron-job.module";
 import {KubernetesWorkloadJobModule} from "./workload/job/kubernetes.workload.job.module";
-import { KubernetesNetworkEndpointModule } from "./network/endpoint/kubernetes.network.endpoint.module";
+import {KubernetesNetworkEndpointModule} from "./network/endpoint/kubernetes.network.endpoint.module";
 import {
   KubernetesConfigHorizontalPodAutoscalerModule
 } from "./config/horizontal-pod-autoscaler/kubernetes.config.horizontal-pod-autoscaler.module";
+import {KubernetesNetworkIngressModule} from "./network/ingress/kubernetes.network.ingress.module";
+import {KubernetesNetworkServiceModule} from "./network/service/kubernetes.network.service.module";
+import {KubernetesWorkloadDeploymentModule} from "./workload/deployment/kubernetes.workload.deployment.module";
+import {
+  KubernetesAccessControlRoleBindingModule
+} from "./access-control/role-binding/kubernetes.access-control.role-binding.module";
+import {
+  KubernetesAccessControlServiceAccountModule
+} from "./access-control/service-account/kubernetes.access-control.service-account.module";
+import {KubernetesAccessControlRoleModule} from "./access-control/role/kubernetes.access-control.role.module";
 
 @NgModule({
   declarations: [
@@ -56,7 +66,15 @@ import {
     KubernetesWorkloadCronJobModule,
     KubernetesWorkloadJobModule,
     KubernetesNetworkEndpointModule,
-    KubernetesConfigHorizontalPodAutoscalerModule
+    KubernetesConfigHorizontalPodAutoscalerModule,
+    KubernetesNetworkIngressModule,
+    KubernetesNetworkServiceModule,
+    KubernetesWorkloadJobModule,
+    KubernetesWorkloadDeploymentModule,
+    KubernetesAccessControlRoleBindingModule,
+    KubernetesAccessControlServiceAccountModule,
+    KubernetesAccessControlRoleModule,
+    KubernetesNetworkEndpointModule
   ],
   providers: [
     KubernetesClusterService,

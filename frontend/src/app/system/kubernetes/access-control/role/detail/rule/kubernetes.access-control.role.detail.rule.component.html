@@ -1,0 +1,24 @@
+<app-form-container label="Resources"
+                    *ngIf="rule?.resources"
+                    [value]="rule?.resources">
+</app-form-container>
+
+<app-form-container label="Resources Names"
+                    *ngIf="rule?.resourceNames"
+                    [value]="rule?.resourceNames">
+</app-form-container>
+
+<app-form-container label="Verbs"
+                    *ngIf="rule?.verbs"
+                    [value]="rule?.verbs">
+</app-form-container>
+
+<app-form-container label="Api Groups"
+                    *ngIf="rule?.apiGroups"
+                    [value]="rule?.apiGroups">
+</app-form-container>
+
+<app-form-container label="Non Resource URLs"
+                    *ngIf="rule?.nonResourceURLs"
+                    [value]="rule?.nonResourceURLs">
+</app-form-container>

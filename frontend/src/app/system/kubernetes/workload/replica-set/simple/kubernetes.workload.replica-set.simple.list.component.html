@@ -1,0 +1,18 @@
+<app-kubernetes-components-simple-list (load)="load()" [values]="values" [loading]="loading">
+  <ng-template #header>
+    <tr>
+      <th>Namespace</th>
+      <th>Name</th>
+      <th>Pods</th>
+      <th>Age</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-replicaSet>
+    <tr>
+      <td>{{replicaSet.namespace}}</td>
+      <td>{{replicaSet.name}}</td>
+      <td>{{replicaSet.pods}}</td>
+      <td>{{replicaSet.age}}</td>
+    </tr>
+  </ng-template>
+</app-kubernetes-components-simple-list>

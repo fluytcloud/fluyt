@@ -6,8 +6,8 @@ import org.keycloak.admin.client.CreatedResponseUtil;
 import org.keycloak.admin.client.resource.GroupsResource;
 import org.keycloak.representations.idm.GroupRepresentation;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.ws.rs.core.Response;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.ws.rs.core.Response;
 
 @ApplicationScoped
 public class GroupRepositoryImpl extends KeycloakConnection implements GroupRepository {

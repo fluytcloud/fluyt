@@ -50,6 +50,9 @@ public abstract class NamespaceObjectRepositoryImpl<T extends KubernetesObject> 
         if (Objects.nonNull(filter.getSelector())) {
             parameters.setLabelSelector(filter.getSelector());
         }
+        if (Objects.nonNull(filter.getFieldSelector())) {
+            parameters.setFieldSelector(filter.getFieldSelector());
+        }
         return parameters;
     }
 

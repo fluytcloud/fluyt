@@ -24,6 +24,7 @@ import {
   KubernetesConfigHorizontalPodAutoscalerDetailMetricComponent
 } from "./detail/metric/kubernetes.config.horizontal-pod-autoscaler.detail.metric.component";
 import {MatDividerModule} from "@angular/material/divider";
+import {KubernetesEventModule} from "../../events/kubernetes.event.module";
 
 @NgModule({
   declarations: [
@@ -36,23 +37,24 @@ import {MatDividerModule} from "@angular/material/divider";
     KubernetesConfigHorizontalPodAutoscalerDetailComponent,
     KubernetesConfigHorizontalPodAutoscalerDetailMetricComponent
   ],
-  imports: [
-    CommonModule,
-    KubernetesComponentsListModule,
-    MatMenuModule,
-    MatButtonModule,
-    MatIconModule,
-    RouterModule,
-    LoaderModule,
-    MatExpansionModule,
-    FormContainerModule,
-    FormMultipleContainerModule,
-    DatePipe,
-    MatChipsModule,
-    KeyValuePipe,
-    TableModule,
-    MatDividerModule
-  ],
+    imports: [
+        CommonModule,
+        KubernetesComponentsListModule,
+        MatMenuModule,
+        MatButtonModule,
+        MatIconModule,
+        RouterModule,
+        LoaderModule,
+        MatExpansionModule,
+        FormContainerModule,
+        FormMultipleContainerModule,
+        DatePipe,
+        MatChipsModule,
+        KeyValuePipe,
+        TableModule,
+        MatDividerModule,
+        KubernetesEventModule
+    ],
   providers: [
     KubernetesConfigHorizontalPodAutoscalerService
   ]

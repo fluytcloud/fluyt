@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 import io.kubernetes.client.custom.IntOrString;
 import io.quarkus.jackson.ObjectMapperCustomizer;
 
-import javax.inject.Singleton;
+import jakarta.inject.Singleton;
 
 @Singleton
 public class RegisterCustomModuleCustomizer implements ObjectMapperCustomizer {

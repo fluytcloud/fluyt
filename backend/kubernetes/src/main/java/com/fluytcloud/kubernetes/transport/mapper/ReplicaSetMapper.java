@@ -1,10 +1,9 @@
 package com.fluytcloud.kubernetes.transport.mapper;
 
+import com.fluytcloud.kubernetes.transport.response.ReplicaSetSimpleResponseList;
 import com.fluytcloud.kubernetes.transport.response.ReplicaSetResponseList;
 import io.kubernetes.client.openapi.models.V1ReplicaSet;
-import org.ocpsoft.prettytime.PrettyTime;
 
-import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -18,7 +17,7 @@ public class ReplicaSetMapper {
                     replicaSet.getStatus().getReplicas(),
                     replicaSet.getStatus().getAvailableReplicas(),
                     replicaSet.getStatus().getReadyReplicas(),
-                    getAge(replicaSet.getMetadata().getCreationTimestamp())
+                    KubernetesMapper.formatAge(replicaSet.getMetadata().getCreationTimestamp())
             );
         }
         return new ReplicaSetResponseList(
@@ -27,13 +26,8 @@ public class ReplicaSetMapper {
                 null,
                 null,
                 null,
-                getAge(replicaSet.getMetadata().getCreationTimestamp())
+                KubernetesMapper.formatAge(replicaSet.getMetadata().getCreationTimestamp())
         );
-    }
-
-    private String getAge(OffsetDateTime dateTime) {
-        PrettyTime prettyTime = new PrettyTime();
-        return prettyTime.format(dateTime);
     }
 
     public List<ReplicaSetResponseList> mapResponseList(List<V1ReplicaSet> replicaSets) {
@@ -42,4 +36,14 @@ public class ReplicaSetMapper {
                 .toList();
     }
 
+    public List<ReplicaSetSimpleResponseList> mapSimpleResponseList(List<V1ReplicaSet> replicaSets) {
+        return replicaSets.stream()
+                .map(replicaSet -> new ReplicaSetSimpleResponseList(
+                        replicaSet.getMetadata().getUid(),
+                        replicaSet.getMetadata().getName(),
+                        replicaSet.getMetadata().getNamespace(),
+                        replicaSet.getStatus().getFullyLabeledReplicas(),
+                        KubernetesMapper.formatAge(replicaSet.getMetadata().getCreationTimestamp()))
+                ).toList();
+    }
 }

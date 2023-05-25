@@ -6,13 +6,13 @@ import com.fluytcloud.security.entities.Group;
 import com.fluytcloud.security.interactors.GroupService;
 import org.springframework.data.domain.Pageable;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.transaction.Transactional;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.transaction.Transactional;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static javax.transaction.Transactional.TxType.REQUIRES_NEW;
+import static jakarta.transaction.Transactional.TxType.REQUIRES_NEW;
 
 @ApplicationScoped
 public class CompanyService {

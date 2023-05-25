@@ -35,6 +35,8 @@ export class KubernetesWorkloadReplicaSetDetailComponent extends KubernetesSuppo
     };
   }
 
-
+  override postGet(value: any) {
+    this.addOwner(value?.metadata?.uid);
+  }
 
 }
