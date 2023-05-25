@@ -83,6 +83,12 @@ import {
 import {
   KubernetesAccessControlRoleDetailComponent
 } from "./access-control/role/detail/kubernetes.access-control.role.detail.component";
+import {
+  KubernetesConfigResourceQuotaListComponent
+} from "./config/resource-quota/list/kubernetes.config.resource-quota.list.component";
+import {
+  KubernetesConfigResourceQuotaDetailComponent
+} from "./config/resource-quota/detail/kubernetes.config.resource-quota.detail.component";
 
 
 const routes: Routes = [
@@ -273,6 +279,16 @@ const routes: Routes = [
     path: 'endpoints/detail',
     canActivate: [KubernetesClusterGuard],
     component: KubernetesNetworkIngressDetailComponent
+  },
+  {
+    path: 'resource-quotas',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesConfigResourceQuotaListComponent
+  },
+  {
+    path: 'resource-quotas/detail',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesConfigResourceQuotaDetailComponent
   }
 ];
 

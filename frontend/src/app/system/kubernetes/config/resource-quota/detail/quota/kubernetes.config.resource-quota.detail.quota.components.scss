@@ -1,0 +1,11 @@
+ul {
+  padding-top: 1rem;
+  li {
+    display: inline-block;
+    width: 50%;
+
+    &:last-child {
+      text-align: right;
+    }
+  }
+}

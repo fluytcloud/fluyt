@@ -1,0 +1,79 @@
+<div class="container">
+  <app-loader [show]="display">
+    <mat-accordion class="example-headers-align" multi>
+      <mat-expansion-panel [hideToggle]="true" [expanded]="true">
+        <mat-expansion-panel-header>
+          <div class="fc-form">
+            <div class="fc-form-actions-container">
+              <mat-panel-title>
+                General
+              </mat-panel-title>
+              <button mat-raised-button routerLink="/kubernetes/resource-quotas">Back</button>
+            </div>
+          </div>
+        </mat-expansion-panel-header>
+        <div class="fc-form">
+          <app-form-container label="Created"
+                              [value]="value?.metadata?.creationTimestamp | date">
+          </app-form-container>
+
+          <app-form-multiple-container>
+            <app-form-container label="Name"
+                                [value]="value?.metadata?.name">
+
+            </app-form-container>
+
+            <app-form-container label="Namespace"
+                                [value]="value?.metadata?.namespace">
+            </app-form-container>
+          </app-form-multiple-container>
+
+          <app-form-container label="Quotas" [labelAbove]="true">
+            <app-kubernetes-config-resource-quota-detail-quota
+              type="cpu"
+              [hard]="value?.status?.hard?.cpu?.number"
+              [used]="value?.status?.used?.cpu?.number"
+              ></app-kubernetes-config-resource-quota-detail-quota>
+
+            <app-kubernetes-config-resource-quota-detail-quota
+              type="memory"
+              [hard]="value?.status?.hard?.memory?.number"
+              [used]="value?.status?.used?.memory?.number"
+            ></app-kubernetes-config-resource-quota-detail-quota>
+
+            <app-kubernetes-config-resource-quota-detail-quota
+              type="pods"
+              [hard]="value?.status?.hard?.pods?.number"
+              [used]="value?.status?.used?.pods?.number"
+            ></app-kubernetes-config-resource-quota-detail-quota>
+          </app-form-container>
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          Scope Selector
+        </mat-expansion-panel-header>
+        <div class="fc-form">
+          <app-form-container label="Selectors" [labelAbove]="true">
+            <p-table [value]="value?.spec?.scopeSelector?.matchExpressions">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th>Operator</th>
+                  <th>Scope name</th>
+                  <th>Values</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-object>
+                <tr>
+                  <td>{{object.operator}}</td>
+                  <td>{{object.scopeName}}</td>
+                  <td>{{object.values?.join(",")}}</td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </app-form-container>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </app-loader>
+</div>
