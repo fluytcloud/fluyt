@@ -37,6 +37,9 @@ import {
 } from "./access-control/service-account/kubernetes.access-control.service-account.module";
 import {KubernetesAccessControlRoleModule} from "./access-control/role/kubernetes.access-control.role.module";
 import {KubernetesConfigResourceQuotaModule} from "./config/resource-quota/kubernetes.config.resource-quota.module";
+import {
+  KubernetesAccessControlClusterRoleModule
+} from "./access-control/cluster-role/kubernetes.access-control.cluster-role.module";
 
 @NgModule({
   declarations: [
@@ -76,7 +79,8 @@ import {KubernetesConfigResourceQuotaModule} from "./config/resource-quota/kuber
     KubernetesAccessControlServiceAccountModule,
     KubernetesAccessControlRoleModule,
     KubernetesNetworkEndpointModule,
-    KubernetesConfigResourceQuotaModule
+    KubernetesConfigResourceQuotaModule,
+    KubernetesAccessControlClusterRoleModule
   ],
   providers: [
     KubernetesClusterService,

@@ -1,11 +1,9 @@
 package com.fluytcloud.kubernetes.datasources;
 
-import com.fluytcloud.core.functions.ThrowingFunction;
 import com.fluytcloud.kubernetes.entities.Cluster;
 import com.fluytcloud.kubernetes.entities.Filter;
 import com.fluytcloud.kubernetes.entities.Search;
 import com.fluytcloud.kubernetes.repositories.ClusterObjectsRepository;
-import com.fluytcloud.kubernetes.repositories.NamespaceObjectsRepository;
 import io.kubernetes.client.common.KubernetesObject;
 import io.kubernetes.client.openapi.ApiException;
 import org.slf4j.Logger;
@@ -27,26 +25,18 @@ public abstract class ClusterObjectRepositoryImpl<T extends KubernetesObject> im
         }
 
         try {
-            if (Objects.nonNull(filter.getNamespaces()) && !filter.getNamespaces().isEmpty()) {
-                var list = filter.getNamespaces()
-                        .stream()
-                        .flatMap(ThrowingFunction.handlingFunctionWrapper(namespace ->
-                            this.listByNamespace(filter.getCluster(), parameters(filter, namespace)).stream(), ApiException.class))
-                        .toList();
-
-                return filter(list, filter);
-            } else {
-                return filter(listByAllNamespace(filter.getCluster(), parameters(filter, null)), filter);
-            }
+            return filter(
+                    list(filter.getCluster(), parameters(filter)),
+                    filter
+            );
         } catch (ApiException e) {
             LOGGER.error("error fetching objects from cluster {}", filter.getCluster().name(), e);
             return Collections.emptyList();
         }
     }
 
-    protected Search parameters(Filter filter, String namespace) {
+    protected Search parameters(Filter filter) {
         var parameters = new Search();
-        parameters.setNamespace(namespace);
         parameters.setLimit(filter.getLimit());
         if (Objects.nonNull(filter.getSelector())) {
             parameters.setLabelSelector(filter.getSelector());
@@ -61,9 +51,7 @@ public abstract class ClusterObjectRepositoryImpl<T extends KubernetesObject> im
         return Util.filter(list, filter);
     }
 
-    protected abstract List<T> listByNamespace(Cluster cluster, Search search) throws ApiException;
-
-    protected abstract List<T> listByAllNamespace(Cluster cluster, Search search) throws ApiException;
+    protected abstract List<T> list(Cluster cluster, Search search) throws ApiException;
 
     @Override
     public Optional<T> read(Cluster cluster, String name) {
