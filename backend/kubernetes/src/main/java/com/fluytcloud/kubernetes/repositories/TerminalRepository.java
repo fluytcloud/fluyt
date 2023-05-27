@@ -7,8 +7,6 @@ import java.util.function.Consumer;
 
 public interface TerminalRepository {
 
-    void open(TerminalRequest request);
-
     void subscribe(TerminalRequest request, Consumer<TerminalResponse> consumer);
 
     void exec(TerminalRequest request);

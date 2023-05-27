@@ -1,28 +1,29 @@
 import {Injectable} from "@angular/core";
 import {webSocket, WebSocketSubject} from 'rxjs/webSocket';
 import {environment} from "../../../../environments/environment";
-import {map, Observable} from "rxjs";
-import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
+import {KeycloakService} from "keycloak-angular";
 
 @Injectable()
 export class KubernetesTerminalService {
 
   map = new Map<string, WebSocketSubject<any>>();
 
-  constructor(private http: HttpClient) {
+  constructor(private keycloakService: KeycloakService) {
   }
 
-  open(context: string, request: any): Observable<any> {
-    const url = `${environment.system_v1}/kubernetes/pod/terminal`;
-    return this.http.post<void>(url, request);
-  }
-
-  connect(context: string): Observable<any> {
-    const socket = webSocket({
-      url: `${environment.websocket}/kubernetes/pod/terminal/${context}`
+  connect(context: string): Observable<WebSocketSubject<any>> {
+    return new Observable(obs => {
+      this.keycloakService.getToken().then(token => {
+        const socket = webSocket({
+          url: `${environment.websocket}/kubernetes/pod/terminal/${context}`,
+          protocol: ["access_token", token]
+        });
+        this.map.set(context, socket);
+        obs.next(socket);
+        obs.complete();
+      });
     });
-    this.map.set(context, socket);
-    return socket;
   }
 
   send(context: string, data: any) {
