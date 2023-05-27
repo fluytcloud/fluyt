@@ -93,7 +93,7 @@ export class MenuService {
     reports.addChildren("Network", network);
 
     const storage = [
-      new Menu("persistent-volume_claims", "Persistent Volume Claims"),
+      new Menu("persistent-volume-claims", "Persistent Volume Claims"),
       new Menu("persistent-volumes", "Persistent Volumes"),
       new Menu("storage-classes", "Storage Classes")
     ];

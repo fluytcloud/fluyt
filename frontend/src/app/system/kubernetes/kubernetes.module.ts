@@ -43,6 +43,9 @@ import {
 import {
   KubernetesAccessControlClusterRoleBindingModule
 } from "./access-control/cluster-role-binding/kubernetes.access-control.cluster-role-binding.module";
+import {
+  KubernetesStoragePersistentVolumeClaimModule
+} from "./storage/persistent-volume-claim/kubernetes.storage.persistent-volume-claim.module";
 
 @NgModule({
   declarations: [
@@ -84,7 +87,8 @@ import {
     KubernetesNetworkEndpointModule,
     KubernetesConfigResourceQuotaModule,
     KubernetesAccessControlClusterRoleModule,
-    KubernetesAccessControlClusterRoleBindingModule
+    KubernetesAccessControlClusterRoleBindingModule,
+    KubernetesStoragePersistentVolumeClaimModule
   ],
   providers: [
     KubernetesClusterService,

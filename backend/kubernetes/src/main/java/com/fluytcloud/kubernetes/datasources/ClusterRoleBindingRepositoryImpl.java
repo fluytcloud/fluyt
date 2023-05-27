@@ -17,7 +17,7 @@ import java.util.Optional;
 @ApplicationScoped
 public class ClusterRoleBindingRepositoryImpl extends ClusterObjectRepositoryImpl<V1ClusterRoleBinding> implements ClusterRoleBindingRepository {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ClusterRoleRepositoryImpl.class.getName());
+    private static final Logger LOGGER = LoggerFactory.getLogger(ClusterRoleBindingRepositoryImpl.class.getName());
 
     @Override
     protected List<V1ClusterRoleBinding> list(Cluster cluster, Search search) throws ApiException {

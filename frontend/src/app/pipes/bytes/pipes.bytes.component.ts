@@ -1,12 +1,12 @@
 import {Pipe, PipeTransform} from "@angular/core";
 
 @Pipe({
-  name: "resourceQuotaBytes"
+  name: "bytes"
 })
-export class PipesResourceQuotaBytesComponent implements PipeTransform {
+export class PipesBytesComponent implements PipeTransform {
 
   transform(value: number, ...args: any[]): string {
-    if (args && args[0] !== 'memory') {
+    if (!args && args[0] !== 'memory' && args[0] !== 'disc') {
       return ''+value;
     }
 

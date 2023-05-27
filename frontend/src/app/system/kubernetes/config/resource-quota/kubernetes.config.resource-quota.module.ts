@@ -21,7 +21,7 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {
   KubernetesConfigResourceQuotaDetailQuotaComponents
 } from "./detail/quota/kubernetes.config.resource-quota.detail.quota.components";
-import {PipesResourceQuotaBytesModule} from "../../pipes/resource-quota/bytes/pipes.resource-quota.bytes.module";
+import {PipesBytesModule} from "../../../../pipes/bytes/pipes.bytes.module";
 
 @NgModule({
   declarations: [
@@ -49,7 +49,7 @@ import {PipesResourceQuotaBytesModule} from "../../pipes/resource-quota/bytes/pi
     FormMultipleContainerModule,
     KubernetesComponentsListModule,
     MatProgressBarModule,
-    PipesResourceQuotaBytesModule
+    PipesBytesModule
   ],
   providers: [
     KubernetesConfigResourceQuotaService

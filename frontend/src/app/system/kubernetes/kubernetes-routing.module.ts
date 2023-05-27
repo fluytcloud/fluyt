@@ -101,6 +101,12 @@ import {
 import {
   KubernetesAccessControlClusterRoleBindingDetailComponent
 } from "./access-control/cluster-role-binding/detail/kubernetes.access-control.cluster-role-binding.detail.component";
+import {
+  KubernetesStoragePersistentVolumeClaimListComponent
+} from "./storage/persistent-volume-claim/list/kubernetes.storage.persistent-volume-claim.list.component";
+import {
+  KubernetesStoragePersistentVolumeClaimDetailComponent
+} from "./storage/persistent-volume-claim/detail/kubernetes.storage.persistent-volume-claim.detail.component";
 
 
 const routes: Routes = [
@@ -321,6 +327,16 @@ const routes: Routes = [
     path: 'cluster-role-bindings/detail',
     canActivate: [KubernetesClusterGuard],
     component: KubernetesAccessControlClusterRoleBindingDetailComponent
+  },
+  {
+    path: 'persistent-volume-claims',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesStoragePersistentVolumeClaimListComponent
+  },
+  {
+    path: 'persistent-volume-claims/detail',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesStoragePersistentVolumeClaimDetailComponent
   }
 ];
 
