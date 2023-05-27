@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component} from "@angular/core";
 import {HeaderService} from "../../../../../components/header/header.service";
 import {KubernetesSupportList} from "../../../support/kubernetes.support.list";
 import {Header} from "../../../../../components/header/header";
@@ -9,7 +9,7 @@ import {KubernetesAccessControlRoleBindingList} from "../kubernetes.access-contr
   selector: 'app-kubernetes-access-control-role-binding-list',
   templateUrl: './kubernetes.access-control.role-binding.list.component.html'
 })
-export class KubernetesAccessControlRoleBindingListComponent extends KubernetesSupportList<KubernetesAccessControlRoleBindingList> implements OnInit {
+export class KubernetesAccessControlRoleBindingListComponent extends KubernetesSupportList<KubernetesAccessControlRoleBindingList> {
 
   constructor(private roleBindingService: KubernetesAccessControlRoleBindingService,
               headerService: HeaderService) {

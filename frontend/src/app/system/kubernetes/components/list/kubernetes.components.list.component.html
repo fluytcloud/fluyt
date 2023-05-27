@@ -6,7 +6,7 @@
           Filter
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <app-kubernetes-search (filter)="load($event)"></app-kubernetes-search>
+      <app-kubernetes-search (filter)="load($event)" [showNamespace]="showNamespace"></app-kubernetes-search>
     </mat-expansion-panel>
     <mat-expansion-panel [expanded]="true">
       <mat-expansion-panel-header>

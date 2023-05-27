@@ -95,6 +95,12 @@ import {
 import {
   KubernetesAccessControlClusterRoleDetailComponent
 } from "./access-control/cluster-role/detail/kubernetes.access-control.cluster-role.detail.component";
+import {
+  KubernetesAccessControlClusterRoleBindingListComponent
+} from "./access-control/cluster-role-binding/list/kubernetes.access-control.cluster-role-binding.list.component";
+import {
+  KubernetesAccessControlClusterRoleBindingDetailComponent
+} from "./access-control/cluster-role-binding/detail/kubernetes.access-control.cluster-role-binding.detail.component";
 
 
 const routes: Routes = [
@@ -305,6 +311,16 @@ const routes: Routes = [
     path: 'cluster-roles/detail',
     canActivate: [KubernetesClusterGuard],
     component: KubernetesAccessControlClusterRoleDetailComponent
+  },
+  {
+    path: 'cluster-role-bindings',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesAccessControlClusterRoleBindingListComponent
+  },
+  {
+    path: 'cluster-role-bindings/detail',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesAccessControlClusterRoleBindingDetailComponent
   }
 ];
 

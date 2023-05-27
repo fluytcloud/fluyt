@@ -104,7 +104,7 @@ export class MenuService {
       new Menu("roles", "Roles"),
       new Menu("cluster-roles", "Cluster Roles"),
       new Menu("role-bindings", "Role Bindings"),
-      new Menu("cluster-role_bindings", "Cluster Role Bindings")
+      new Menu("cluster-role-bindings", "Cluster Role Bindings")
     ];
     reports.addChildren("Access Control", accessControl);
 

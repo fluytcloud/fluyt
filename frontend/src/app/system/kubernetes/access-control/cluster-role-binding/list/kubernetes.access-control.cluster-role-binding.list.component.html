@@ -1,4 +1,4 @@
-<app-kubernetes-components-list name="ClusterRoles"
+<app-kubernetes-components-list name="ClusterRoleBindings"
                                 [showNamespace]="false"
                                 (filter)="load($event)"
                                 [values]="values"
@@ -6,22 +6,30 @@
   <ng-template #header>
     <tr>
       <th>Name</th>
+      <th>Bindings</th>
       <th>Age</th>
       <th>Actions</th>
     </tr>
   </ng-template>
-  <ng-template #body let-clusterRole>
+  <ng-template #body let-clusterRoleBinding>
     <tr>
-      <td>{{clusterRole.name}}</td>
-      <td>{{clusterRole.age}}</td>
+      <td>{{clusterRoleBinding.name}}</td>
+      <td>
+        <mat-chip-listbox aria-label="bindings" [selectable]="false">
+          <mat-chip-option *ngFor="let binding of clusterRoleBinding.bindings">
+            {{binding}}
+          </mat-chip-option>
+        </mat-chip-listbox>
+      </td>
+      <td>{{clusterRoleBinding.age}}</td>
       <td>
         <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Actions">
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
           <a mat-menu-item
-             [routerLink]="['/kubernetes/cluster-roles/detail']"
-             [queryParams]="{name: clusterRole.name}">
+             [routerLink]="['/kubernetes/cluster-role-bindings/detail']"
+             [queryParams]="{name: clusterRoleBinding.name}">
             <mat-icon>visibility</mat-icon>
             <span>Detail</span>
           </a>
