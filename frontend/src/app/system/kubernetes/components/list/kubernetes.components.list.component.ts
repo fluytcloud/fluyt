@@ -12,6 +12,7 @@ export class KubernetesComponentsListComponent {
   @Output() filter = new EventEmitter<KubernetesSearch>;
   @Input() values: any[] = [];
   @Input() loading = true;
+  @Input() showNamespace = true;
   @ContentChild('header') header!: TemplateRef<any>;
   @ContentChild('body') body!: TemplateRef<any>;
 

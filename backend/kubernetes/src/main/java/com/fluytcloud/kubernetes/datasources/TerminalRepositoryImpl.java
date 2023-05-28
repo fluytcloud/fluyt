@@ -4,7 +4,6 @@ import com.fluytcloud.kubernetes.entities.TerminalRequest;
 import com.fluytcloud.kubernetes.entities.TerminalResponse;
 import com.fluytcloud.kubernetes.repositories.ClusterRepository;
 import com.fluytcloud.kubernetes.repositories.TerminalRepository;
-import io.kubernetes.client.Exec;
 import io.kubernetes.client.openapi.ApiException;
 import io.kubernetes.client.util.Streams;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -23,7 +22,6 @@ public class TerminalRepositoryImpl implements TerminalRepository {
 
     private final ClusterRepository clusterRepository;
     private final ExecutorService executorService = Executors.newFixedThreadPool(100);
-    private final Map<TerminalRequest, Exec> connections = new ConcurrentHashMap<>();
     private final Map<TerminalRequest, TerminalProcessConsumer> consumers = new ConcurrentHashMap<>();
 
     public TerminalRepositoryImpl(ClusterRepository clusterRepository) {
@@ -33,7 +31,9 @@ public class TerminalRepositoryImpl implements TerminalRepository {
     @Override
     public void subscribe(TerminalRequest request, Consumer<TerminalResponse> consumer) {
         try {
-            var exec = connections.get(request);
+            var cluster = clusterRepository.findById(request.cluster()).orElseThrow();
+            var exec = new Connection(cluster).getExec();
+
             var process = exec.exec(request.namespace(), request.pod(), new String[]{request.command()}, request.container(), true, true);
 
             var processConsumer = new TerminalProcessConsumer(process, message -> {
@@ -47,13 +47,6 @@ public class TerminalRepositoryImpl implements TerminalRepository {
         } catch (ApiException | IOException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    @Override
-    public void open(TerminalRequest request) {
-        var cluster = clusterRepository.findById(request.cluster()).orElseThrow();
-        var exec = new Connection(cluster).getExec();
-        connections.put(request, exec);
     }
 
     @Override
@@ -77,7 +70,6 @@ public class TerminalRepositoryImpl implements TerminalRepository {
         }
         var processConsumer = consumers.get(request.get());
         consumers.remove(request.get());
-        connections.remove(request.get());
         processConsumer.close();
     }
 

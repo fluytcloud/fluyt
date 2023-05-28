@@ -1,0 +1,40 @@
+<app-kubernetes-components-list name="ClusterRoles"
+                                [showNamespace]="false"
+                                (filter)="load($event)"
+                                [values]="values"
+                                [loading]="loading">
+  <ng-template #header>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Actions</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-clusterRole>
+    <tr>
+      <td>{{clusterRole.name}}</td>
+      <td>{{clusterRole.age}}</td>
+      <td>
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Actions">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <a mat-menu-item
+             [routerLink]="['/kubernetes/cluster-roles/detail']"
+             [queryParams]="{name: clusterRole.name}">
+            <mat-icon>visibility</mat-icon>
+            <span>Detail</span>
+          </a>
+          <a mat-menu-item>
+            <mat-icon>mode_edit</mat-icon>
+            <span>Edit</span>
+          </a>
+          <a mat-menu-item>
+            <mat-icon>delete</mat-icon>
+            <span>Delete</span>
+          </a>
+        </mat-menu>
+      </td>
+    </tr>
+  </ng-template>
+</app-kubernetes-components-list>

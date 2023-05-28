@@ -18,6 +18,7 @@ import {
 import {CodemirrorModule} from "@ctrl/ngx-codemirror";
 import {FormsModule} from "@angular/forms";
 import {KubernetesComponentsListModule} from "../../components/list/kubernetes.components.list.module";
+import {MatChipsModule} from "@angular/material/chips";
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import {KubernetesComponentsListModule} from "../../components/list/kubernetes.c
     FormContainerModule,
     FormMultipleContainerModule,
     CodemirrorModule,
+    MatChipsModule,
     KubernetesComponentsListModule
   ],
   providers: [

@@ -16,10 +16,6 @@ public class TerminalService {
         this.terminalRepository = terminalRepository;
     }
 
-    public void open(TerminalRequest request) {
-        terminalRepository.open(request);
-    }
-
     public void subscribe(TerminalRequest request, Consumer<TerminalResponse> consumer) {
         terminalRepository.subscribe(request, consumer);
     }

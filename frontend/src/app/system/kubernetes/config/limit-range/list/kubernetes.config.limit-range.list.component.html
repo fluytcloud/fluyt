@@ -1,0 +1,38 @@
+<app-kubernetes-components-list name="LimitRanges" (filter)="load($event)" [values]="values" [loading]="loading">
+  <ng-template #header>
+    <tr>
+      <th>Namespace</th>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Actions</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-limitRange>
+    <tr>
+      <td>{{limitRange.namespace}}</td>
+      <td>{{limitRange.name}}</td>
+      <td>{{limitRange.age}}</td>
+      <td>
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Actions">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <a mat-menu-item
+             [routerLink]="['/kubernetes/limit-ranges/detail']"
+             [queryParams]="{name: limitRange.name, namespace: limitRange.namespace}">
+            <mat-icon>visibility</mat-icon>
+            <span>Detail</span>
+          </a>
+          <a mat-menu-item>
+            <mat-icon>mode_edit</mat-icon>
+            <span>Edit</span>
+          </a>
+          <a mat-menu-item>
+            <mat-icon>delete</mat-icon>
+            <span>Delete</span>
+          </a>
+        </mat-menu>
+      </td>
+    </tr>
+  </ng-template>
+</app-kubernetes-components-list>
