@@ -13,4 +13,6 @@ export class KubernetesComponentsActionsComponent {
 
   @Input() object!: any;
 
+  clusterId = sessionStorage.getItem("cluster");
+
 }

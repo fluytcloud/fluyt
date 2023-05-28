@@ -4,7 +4,7 @@
 <mat-menu #menu="matMenu">
   <a mat-menu-item
      [routerLink]="[link]"
-     [queryParams]="{name: object.name, namespace: object.namespace}">
+     [queryParams]="{name: object.name, namespace: object.namespace, cluster: clusterId}">
     <mat-icon>visibility</mat-icon>
     <span>Detail</span>
   </a>
