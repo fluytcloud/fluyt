@@ -25,6 +25,7 @@ import {
 } from "../../components/list/simple/kubernetes.components.simple.list.module";
 import {KubernetesWorkloadPodModule} from "../pod/kubernetes.workload.pod.module";
 import {KubernetesEventModule} from "../../events/kubernetes.event.module";
+import {KubernetesComponentsActionsModule} from "../../components/action/kubernetes.components.actions.module";
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import {KubernetesEventModule} from "../../events/kubernetes.event.module";
         TableModule,
         KubernetesComponentsSimpleListModule,
         KubernetesWorkloadPodModule,
-        KubernetesEventModule
+        KubernetesEventModule,
+        KubernetesComponentsActionsModule
     ],
   providers: [
     KubernetesWorkloadReplicaSetService

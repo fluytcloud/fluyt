@@ -23,6 +23,7 @@ import {
 } from "./detail/quota/kubernetes.config.resource-quota.detail.quota.components";
 import {PipesBytesModule} from "../../../../pipes/bytes/pipes.bytes.module";
 import {MatChipsModule} from "@angular/material/chips";
+import {KubernetesComponentsActionsModule} from "../../components/action/kubernetes.components.actions.module";
 
 @NgModule({
   declarations: [
@@ -35,24 +36,25 @@ import {MatChipsModule} from "@angular/material/chips";
     KubernetesConfigResourceQuotaDetailComponent,
     KubernetesConfigResourceQuotaDetailQuotaComponents
   ],
-  imports: [
-    CommonModule,
-    MatCardModule,
-    TableModule,
-    FormsModule,
-    MatMenuModule,
-    MatIconModule,
-    MatButtonModule,
-    RouterModule,
-    LoaderModule,
-    MatExpansionModule,
-    FormContainerModule,
-    FormMultipleContainerModule,
-    KubernetesComponentsListModule,
-    MatProgressBarModule,
-    MatChipsModule,
-    PipesBytesModule
-  ],
+    imports: [
+        CommonModule,
+        MatCardModule,
+        TableModule,
+        FormsModule,
+        MatMenuModule,
+        MatIconModule,
+        MatButtonModule,
+        RouterModule,
+        LoaderModule,
+        MatExpansionModule,
+        FormContainerModule,
+        FormMultipleContainerModule,
+        KubernetesComponentsListModule,
+        MatProgressBarModule,
+        MatChipsModule,
+        PipesBytesModule,
+        KubernetesComponentsActionsModule
+    ],
   providers: [
     KubernetesConfigResourceQuotaService
   ]

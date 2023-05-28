@@ -21,6 +21,7 @@ import {
 import {
   KubernetesAccessControlServiceAccountDetailComponent
 } from "./detail/kubernetes.access-control.service-account.detail.component";
+import {KubernetesComponentsActionsModule} from "../../components/action/kubernetes.components.actions.module";
 
 @NgModule({
   declarations: [
@@ -31,23 +32,24 @@ import {
     KubernetesAccessControlServiceAccountListComponent,
     KubernetesAccessControlServiceAccountDetailComponent
   ],
-  imports: [
-    CommonModule,
-    KubernetesComponentsListModule,
-    MatMenuModule,
-    MatButtonModule,
-    MatIconModule,
-    RouterModule,
-    LoaderModule,
-    MatExpansionModule,
-    FormContainerModule,
-    FormMultipleContainerModule,
-    DatePipe,
-    MatChipsModule,
-    KeyValuePipe,
-    PipesReplicaSetReplicasModule,
-    TableModule
-  ],
+    imports: [
+        CommonModule,
+        KubernetesComponentsListModule,
+        MatMenuModule,
+        MatButtonModule,
+        MatIconModule,
+        RouterModule,
+        LoaderModule,
+        MatExpansionModule,
+        FormContainerModule,
+        FormMultipleContainerModule,
+        DatePipe,
+        MatChipsModule,
+        KeyValuePipe,
+        PipesReplicaSetReplicasModule,
+        TableModule,
+        KubernetesComponentsActionsModule
+    ],
   providers: [
     KubernetesAccessControlServiceAccountService
   ]

@@ -19,6 +19,7 @@ import {PipesBytesModule} from "../../../../pipes/bytes/pipes.bytes.module";
 import {KubernetesStorageStorageClassService} from "./kubernetes.storage.storage-class.service";
 import {KubernetesStorageStorageClassListComponent} from "./list/kubernetes.storage.storage-class.list.component";
 import {KubernetesStorageStorageClassDetailComponent} from "./detail/kubernetes.storage.storage-class.detail.component";
+import {KubernetesComponentsActionsModule} from "../../components/action/kubernetes.components.actions.module";
 
 @NgModule({
   declarations: [
@@ -29,25 +30,26 @@ import {KubernetesStorageStorageClassDetailComponent} from "./detail/kubernetes.
     KubernetesStorageStorageClassListComponent,
     KubernetesStorageStorageClassDetailComponent
   ],
-  imports: [
-    CommonModule,
-    KubernetesComponentsListModule,
-    MatMenuModule,
-    MatButtonModule,
-    MatIconModule,
-    RouterModule,
-    LoaderModule,
-    MatExpansionModule,
-    FormContainerModule,
-    FormMultipleContainerModule,
-    DatePipe,
-    MatChipsModule,
-    KeyValuePipe,
-    PipesReplicaSetReplicasModule,
-    TableModule,
-    MatDividerModule,
-    PipesBytesModule
-  ],
+    imports: [
+        CommonModule,
+        KubernetesComponentsListModule,
+        MatMenuModule,
+        MatButtonModule,
+        MatIconModule,
+        RouterModule,
+        LoaderModule,
+        MatExpansionModule,
+        FormContainerModule,
+        FormMultipleContainerModule,
+        DatePipe,
+        MatChipsModule,
+        KeyValuePipe,
+        PipesReplicaSetReplicasModule,
+        TableModule,
+        MatDividerModule,
+        PipesBytesModule,
+        KubernetesComponentsActionsModule
+    ],
   providers: [
     KubernetesStorageStorageClassService
   ]

@@ -22,6 +22,7 @@ import {
   KubernetesConfigLimitRangeDetailtLimitComponent
 } from "./detail/limit/kubernetes.config.limit-range.detailt.limit.component";
 import {PipesBytesModule} from "../../../../pipes/bytes/pipes.bytes.module";
+import {KubernetesComponentsActionsModule} from "../../components/action/kubernetes.components.actions.module";
 
 @NgModule({
   declarations: [
@@ -34,25 +35,26 @@ import {PipesBytesModule} from "../../../../pipes/bytes/pipes.bytes.module";
     KubernetesConfigLimitRangeDetailComponent,
     KubernetesConfigLimitRangeDetailtLimitComponent
   ],
-  imports: [
-    CommonModule,
-    KubernetesComponentsListModule,
-    MatMenuModule,
-    MatButtonModule,
-    MatIconModule,
-    RouterModule,
-    LoaderModule,
-    MatExpansionModule,
-    FormContainerModule,
-    FormMultipleContainerModule,
-    DatePipe,
-    MatChipsModule,
-    KeyValuePipe,
-    TableModule,
-    MatDividerModule,
-    PipesBytesModule,
-    KubernetesEventModule
-  ],
+    imports: [
+        CommonModule,
+        KubernetesComponentsListModule,
+        MatMenuModule,
+        MatButtonModule,
+        MatIconModule,
+        RouterModule,
+        LoaderModule,
+        MatExpansionModule,
+        FormContainerModule,
+        FormMultipleContainerModule,
+        DatePipe,
+        MatChipsModule,
+        KeyValuePipe,
+        TableModule,
+        MatDividerModule,
+        PipesBytesModule,
+        KubernetesEventModule,
+        KubernetesComponentsActionsModule
+    ],
   providers: [
     KubernetesConfigLimitRangeService
   ]

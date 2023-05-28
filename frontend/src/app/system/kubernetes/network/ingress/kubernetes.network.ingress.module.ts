@@ -23,6 +23,7 @@ import {
   KubernetesNetworkIngressDetailRuleComponent
 } from "./detail/rule/kubernetes.network.ingress.detail.rule.component";
 import {MatDividerModule} from "@angular/material/divider";
+import {KubernetesComponentsActionsModule} from "../../components/action/kubernetes.components.actions.module";
 
 @NgModule({
   declarations: [
@@ -37,23 +38,24 @@ import {MatDividerModule} from "@angular/material/divider";
     KubernetesNetworkIngressDetailLoadBalancerComponent,
     KubernetesNetworkIngressDetailRuleComponent
   ],
-  imports: [
-    CommonModule,
-    KubernetesComponentsListModule,
-    MatMenuModule,
-    MatButtonModule,
-    MatIconModule,
-    RouterModule,
-    LoaderModule,
-    MatExpansionModule,
-    FormContainerModule,
-    FormMultipleContainerModule,
-    DatePipe,
-    MatChipsModule,
-    KeyValuePipe,
-    TableModule,
-    MatDividerModule
-  ],
+    imports: [
+        CommonModule,
+        KubernetesComponentsListModule,
+        MatMenuModule,
+        MatButtonModule,
+        MatIconModule,
+        RouterModule,
+        LoaderModule,
+        MatExpansionModule,
+        FormContainerModule,
+        FormMultipleContainerModule,
+        DatePipe,
+        MatChipsModule,
+        KeyValuePipe,
+        TableModule,
+        MatDividerModule,
+        KubernetesComponentsActionsModule
+    ],
   providers: [
     KubernetesNetworkIngressService
   ]

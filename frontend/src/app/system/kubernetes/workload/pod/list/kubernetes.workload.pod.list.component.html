@@ -38,29 +38,15 @@
         </mat-chip-listbox>
       </td>
       <td>
-        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Actions">
-          <mat-icon>more_vert</mat-icon>
-        </button>
-        <mat-menu #menu="matMenu">
-          <a mat-menu-item
-             [routerLink]="['/kubernetes/pods/detail']"
-             [queryParams]="{name: pod.name, namespace: pod.namespace}">
-            <mat-icon>visibility</mat-icon>
-            <span>Detail</span>
-          </a>
+        <app-kubernetes-components-action
+          [object]="pod"
+          [link]="'/kubernetes/pods/detail'"
+          [crudService]="crudService">
           <a mat-menu-item (click)="openTerminal(pod)">
             <mat-icon>terminal</mat-icon>
             <span>Terminal</span>
           </a>
-          <a mat-menu-item>
-            <mat-icon>mode_edit</mat-icon>
-            <span>Edit</span>
-          </a>
-          <a mat-menu-item>
-            <mat-icon>delete</mat-icon>
-            <span>Delete</span>
-          </a>
-        </mat-menu>
+        </app-kubernetes-components-action>
       </td>
     </tr>
   </ng-template>

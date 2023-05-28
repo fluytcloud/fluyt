@@ -21,6 +21,7 @@ import {KubernetesAccessControlRoleBindingService} from "./kubernetes.access-con
 import {
   KubernetesAccessControlRoleBindingDetailComponent
 } from "./detail/kubernetes.access-control.role-binding.detail.component";
+import {KubernetesComponentsActionsModule} from "../../components/action/kubernetes.components.actions.module";
 
 @NgModule({
   declarations: [
@@ -31,23 +32,24 @@ import {
     KubernetesAccessControlRoleBindingListComponent,
     KubernetesAccessControlRoleBindingDetailComponent
   ],
-  imports: [
-    CommonModule,
-    KubernetesComponentsListModule,
-    MatMenuModule,
-    MatButtonModule,
-    MatIconModule,
-    RouterModule,
-    LoaderModule,
-    MatExpansionModule,
-    FormContainerModule,
-    FormMultipleContainerModule,
-    DatePipe,
-    MatChipsModule,
-    KeyValuePipe,
-    PipesReplicaSetReplicasModule,
-    TableModule
-  ],
+    imports: [
+        CommonModule,
+        KubernetesComponentsListModule,
+        MatMenuModule,
+        MatButtonModule,
+        MatIconModule,
+        RouterModule,
+        LoaderModule,
+        MatExpansionModule,
+        FormContainerModule,
+        FormMultipleContainerModule,
+        DatePipe,
+        MatChipsModule,
+        KeyValuePipe,
+        PipesReplicaSetReplicasModule,
+        TableModule,
+        KubernetesComponentsActionsModule
+    ],
   providers: [
     KubernetesAccessControlRoleBindingService
   ]

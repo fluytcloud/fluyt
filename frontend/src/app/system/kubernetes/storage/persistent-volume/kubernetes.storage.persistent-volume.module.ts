@@ -23,6 +23,7 @@ import {
 import {
   KubernetesStoragePersistentVolumeListComponent
 } from "./list/kubernetes.storage.persistent-volume.list.component";
+import {KubernetesComponentsActionsModule} from "../../components/action/kubernetes.components.actions.module";
 
 @NgModule({
   declarations: [
@@ -33,25 +34,26 @@ import {
     KubernetesStoragePersistentVolumeListComponent,
     KubernetesStoragePersistentVolumeDetailComponent
   ],
-  imports: [
-    CommonModule,
-    KubernetesComponentsListModule,
-    MatMenuModule,
-    MatButtonModule,
-    MatIconModule,
-    RouterModule,
-    LoaderModule,
-    MatExpansionModule,
-    FormContainerModule,
-    FormMultipleContainerModule,
-    DatePipe,
-    MatChipsModule,
-    KeyValuePipe,
-    PipesReplicaSetReplicasModule,
-    TableModule,
-    MatDividerModule,
-    PipesBytesModule
-  ],
+    imports: [
+        CommonModule,
+        KubernetesComponentsListModule,
+        MatMenuModule,
+        MatButtonModule,
+        MatIconModule,
+        RouterModule,
+        LoaderModule,
+        MatExpansionModule,
+        FormContainerModule,
+        FormMultipleContainerModule,
+        DatePipe,
+        MatChipsModule,
+        KeyValuePipe,
+        PipesReplicaSetReplicasModule,
+        TableModule,
+        MatDividerModule,
+        PipesBytesModule,
+        KubernetesComponentsActionsModule
+    ],
   providers: [
     KubernetesStoragePersistentVolumeService
   ]

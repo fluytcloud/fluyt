@@ -21,6 +21,7 @@ import {
   KubernetesAccessControlRoleDetailRuleComponent
 } from "./detail/rule/kubernetes.access-control.role.detail.rule.component";
 import {MatDividerModule} from "@angular/material/divider";
+import {KubernetesComponentsActionsModule} from "../../components/action/kubernetes.components.actions.module";
 
 @NgModule({
   declarations: [
@@ -33,24 +34,25 @@ import {MatDividerModule} from "@angular/material/divider";
     KubernetesAccessControlRoleListComponent,
     KubernetesAccessControlRoleDetailRuleComponent
   ],
-  imports: [
-    CommonModule,
-    KubernetesComponentsListModule,
-    MatMenuModule,
-    MatButtonModule,
-    MatIconModule,
-    RouterModule,
-    LoaderModule,
-    MatExpansionModule,
-    FormContainerModule,
-    FormMultipleContainerModule,
-    DatePipe,
-    MatChipsModule,
-    KeyValuePipe,
-    PipesReplicaSetReplicasModule,
-    TableModule,
-    MatDividerModule
-  ],
+    imports: [
+        CommonModule,
+        KubernetesComponentsListModule,
+        MatMenuModule,
+        MatButtonModule,
+        MatIconModule,
+        RouterModule,
+        LoaderModule,
+        MatExpansionModule,
+        FormContainerModule,
+        FormMultipleContainerModule,
+        DatePipe,
+        MatChipsModule,
+        KeyValuePipe,
+        PipesReplicaSetReplicasModule,
+        TableModule,
+        MatDividerModule,
+        KubernetesComponentsActionsModule
+    ],
   providers: [
     KubernetesAccessControlRoleService
   ]
