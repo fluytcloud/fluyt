@@ -23,6 +23,7 @@ import {
 import {
   KubernetesAccessControlClusterRoleBindingDetailComponent
 } from "./detail/kubernetes.access-control.cluster-role-binding.detail.component";
+import {KubernetesComponentsActionsModule} from "../../components/action/kubernetes.components.actions.module";
 
 @NgModule({
   declarations: [
@@ -33,23 +34,24 @@ import {
     KubernetesAccessControlClusterRoleBindingListComponent,
     KubernetesAccessControlClusterRoleBindingDetailComponent
   ],
-  imports: [
-    CommonModule,
-    KubernetesComponentsListModule,
-    MatMenuModule,
-    MatButtonModule,
-    MatIconModule,
-    RouterModule,
-    LoaderModule,
-    MatExpansionModule,
-    FormContainerModule,
-    FormMultipleContainerModule,
-    DatePipe,
-    MatChipsModule,
-    KeyValuePipe,
-    PipesReplicaSetReplicasModule,
-    TableModule
-  ],
+    imports: [
+        CommonModule,
+        KubernetesComponentsListModule,
+        MatMenuModule,
+        MatButtonModule,
+        MatIconModule,
+        RouterModule,
+        LoaderModule,
+        MatExpansionModule,
+        FormContainerModule,
+        FormMultipleContainerModule,
+        DatePipe,
+        MatChipsModule,
+        KeyValuePipe,
+        PipesReplicaSetReplicasModule,
+        TableModule,
+        KubernetesComponentsActionsModule
+    ],
   providers: [
     KubernetesAccessControlClusterRoleBindingService
   ]

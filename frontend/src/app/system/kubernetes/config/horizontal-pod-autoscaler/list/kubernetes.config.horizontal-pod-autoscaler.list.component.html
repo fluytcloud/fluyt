@@ -35,25 +35,11 @@
       </td>
       <td>{{hpa.age}}</td>
       <td>
-        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Actions">
-          <mat-icon>more_vert</mat-icon>
-        </button>
-        <mat-menu #menu="matMenu">
-          <a mat-menu-item
-             [routerLink]="['/kubernetes/horizontal-pod-autoscalers/detail']"
-             [queryParams]="{name: hpa.name, namespace: hpa.namespace}">
-            <mat-icon>visibility</mat-icon>
-            <span>Detail</span>
-          </a>
-          <a mat-menu-item>
-            <mat-icon>mode_edit</mat-icon>
-            <span>Edit</span>
-          </a>
-          <a mat-menu-item>
-            <mat-icon>delete</mat-icon>
-            <span>Delete</span>
-          </a>
-        </mat-menu>
+        <app-kubernetes-components-action
+          [object]="hpa"
+          [link]="'/kubernetes/horizontal-pod-autoscalers/detail'"
+          [crudService]="crudService">
+        </app-kubernetes-components-action>
       </td>
     </tr>
   </ng-template>

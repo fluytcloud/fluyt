@@ -15,9 +15,11 @@
       <td>{{configMap.keys}}</td>
       <td>{{configMap.age}}</td>
       <td>
-        <app-kubernetes-components-action [crudService]="configConfigMapService"
-                                          [link]="'/kubernetes/config-maps/detail'"
-                                          [object]="configMap"></app-kubernetes-components-action>
+        <app-kubernetes-components-action
+          [object]="configMap"
+          [link]="'/kubernetes/config-maps/detail'"
+          [crudService]="crudService">
+        </app-kubernetes-components-action>
       </td>
     </tr>
   </ng-template>

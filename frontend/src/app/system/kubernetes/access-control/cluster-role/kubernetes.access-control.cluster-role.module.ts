@@ -25,6 +25,7 @@ import {
 import {
   KubernetesAccessControlClusterRoleDetailRuleComponent
 } from "./detail/rule/kubernetes.access-control.cluster-role.detail.rule.component";
+import {KubernetesComponentsActionsModule} from "../../components/action/kubernetes.components.actions.module";
 
 @NgModule({
   declarations: [
@@ -37,24 +38,25 @@ import {
     KubernetesAccessControlClusterRoleDetailComponent,
     KubernetesAccessControlClusterRoleDetailRuleComponent
   ],
-  imports: [
-    CommonModule,
-    KubernetesComponentsListModule,
-    MatMenuModule,
-    MatButtonModule,
-    MatIconModule,
-    RouterModule,
-    LoaderModule,
-    MatExpansionModule,
-    FormContainerModule,
-    FormMultipleContainerModule,
-    DatePipe,
-    MatChipsModule,
-    KeyValuePipe,
-    PipesReplicaSetReplicasModule,
-    TableModule,
-    MatDividerModule
-  ],
+    imports: [
+        CommonModule,
+        KubernetesComponentsListModule,
+        MatMenuModule,
+        MatButtonModule,
+        MatIconModule,
+        RouterModule,
+        LoaderModule,
+        MatExpansionModule,
+        FormContainerModule,
+        FormMultipleContainerModule,
+        DatePipe,
+        MatChipsModule,
+        KeyValuePipe,
+        PipesReplicaSetReplicasModule,
+        TableModule,
+        MatDividerModule,
+        KubernetesComponentsActionsModule
+    ],
   providers: [
     KubernetesAccessControlClusterRoleService
   ]

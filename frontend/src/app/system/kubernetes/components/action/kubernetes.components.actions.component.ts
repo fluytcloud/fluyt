@@ -17,6 +17,8 @@ export class KubernetesComponentsActionsComponent {
 
   @Input() object!: any;
 
+  clusterId = sessionStorage.getItem("cluster");
+
   constructor(protected activatedRoute: ActivatedRoute,
               protected dialog: MatDialog) {
   }

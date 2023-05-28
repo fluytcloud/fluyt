@@ -19,6 +19,7 @@ import {KubernetesConfigSecretService} from "./kubernetes.config.secret.service"
 import {KubernetesConfigSecretListComponent} from "./list/kubernetes.config.secret.list.component";
 import {KubernetesConfigSecretDetailComponent} from "./detail/kubernetes.config.secret.detail.component";
 import {MatChipsModule} from "@angular/material/chips";
+import {KubernetesComponentsActionsModule} from "../../components/action/kubernetes.components.actions.module";
 
 @NgModule({
   declarations: [
@@ -29,23 +30,24 @@ import {MatChipsModule} from "@angular/material/chips";
     KubernetesConfigSecretListComponent,
     KubernetesConfigSecretDetailComponent
   ],
-  imports: [
-    CommonModule,
-    MatCardModule,
-    TableModule,
-    FormsModule,
-    MatMenuModule,
-    MatIconModule,
-    MatButtonModule,
-    RouterModule,
-    LoaderModule,
-    MatExpansionModule,
-    FormContainerModule,
-    FormMultipleContainerModule,
-    CodemirrorModule,
-    MatChipsModule,
-    KubernetesComponentsListModule
-  ],
+    imports: [
+        CommonModule,
+        MatCardModule,
+        TableModule,
+        FormsModule,
+        MatMenuModule,
+        MatIconModule,
+        MatButtonModule,
+        RouterModule,
+        LoaderModule,
+        MatExpansionModule,
+        FormContainerModule,
+        FormMultipleContainerModule,
+        CodemirrorModule,
+        MatChipsModule,
+        KubernetesComponentsListModule,
+        KubernetesComponentsActionsModule
+    ],
   providers: [
     KubernetesConfigSecretService
   ]

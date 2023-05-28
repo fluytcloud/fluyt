@@ -30,24 +30,24 @@ import {KubernetesComponentsActionsModule} from "../../components/action/kuberne
     KubernetesConfigConfigMapListComponent,
     KubernetesConfigConfigMapDetailComponent
   ],
-  imports: [
-    CommonModule,
-    MatCardModule,
-    TableModule,
-    FormsModule,
-    MatMenuModule,
-    MatIconModule,
-    MatButtonModule,
-    RouterModule,
-    LoaderModule,
-    MatExpansionModule,
-    FormContainerModule,
-    FormMultipleContainerModule,
-    CodemirrorModule,
-    MatChipsModule,
-    KubernetesComponentsListModule,
-    KubernetesComponentsActionsModule
-  ],
+    imports: [
+        CommonModule,
+        MatCardModule,
+        TableModule,
+        FormsModule,
+        MatMenuModule,
+        MatIconModule,
+        MatButtonModule,
+        RouterModule,
+        LoaderModule,
+        MatExpansionModule,
+        FormContainerModule,
+        FormMultipleContainerModule,
+        CodemirrorModule,
+        MatChipsModule,
+        KubernetesComponentsListModule,
+        KubernetesComponentsActionsModule
+    ],
   providers: [
     KubernetesConfigConfigMapService
   ]

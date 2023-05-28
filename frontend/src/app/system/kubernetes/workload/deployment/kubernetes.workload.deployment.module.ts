@@ -23,6 +23,7 @@ import {KubernetesWorkloadPodModule} from "../pod/kubernetes.workload.pod.module
 import {MatDividerModule} from "@angular/material/divider";
 import {KubernetesWorkloadReplicaSetModule} from "../replica-set/kubernetes.workload.replica-set.module";
 import {KubernetesEventModule} from "../../events/kubernetes.event.module";
+import {KubernetesComponentsActionsModule} from "../../components/action/kubernetes.components.actions.module";
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import {KubernetesEventModule} from "../../events/kubernetes.event.module";
         MatDividerModule,
         KubernetesWorkloadReplicaSetModule,
         KubernetesEventModule,
+        KubernetesComponentsActionsModule,
     ],
   providers: [
     KubernetesWorkloadDeploymentService
