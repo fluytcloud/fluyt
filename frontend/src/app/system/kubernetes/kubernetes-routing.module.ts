@@ -107,6 +107,12 @@ import {
 import {
   KubernetesStoragePersistentVolumeClaimDetailComponent
 } from "./storage/persistent-volume-claim/detail/kubernetes.storage.persistent-volume-claim.detail.component";
+import {
+  KubernetesStoragePersistentVolumeListComponent
+} from "./storage/persistent-volume/list/kubernetes.storage.persistent-volume.list.component";
+import {
+  KubernetesStoragePersistentVolumeDetailComponent
+} from "./storage/persistent-volume/detail/kubernetes.storage.persistent-volume.detail.component";
 
 
 const routes: Routes = [
@@ -337,6 +343,16 @@ const routes: Routes = [
     path: 'persistent-volume-claims/detail',
     canActivate: [KubernetesClusterGuard],
     component: KubernetesStoragePersistentVolumeClaimDetailComponent
+  },
+  {
+    path: 'persistent-volumes',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesStoragePersistentVolumeListComponent
+  },
+  {
+    path: 'persistent-volumes/detail',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesStoragePersistentVolumeDetailComponent
   }
 ];
 

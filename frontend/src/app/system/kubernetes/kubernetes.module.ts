@@ -46,6 +46,9 @@ import {
 import {
   KubernetesStoragePersistentVolumeClaimModule
 } from "./storage/persistent-volume-claim/kubernetes.storage.persistent-volume-claim.module";
+import {
+  KubernetesStoragePersistentVolumeModule
+} from "./storage/persistent-volume/kubernetes.storage.persistent-volume.module";
 
 @NgModule({
   declarations: [
@@ -88,7 +91,8 @@ import {
     KubernetesConfigResourceQuotaModule,
     KubernetesAccessControlClusterRoleModule,
     KubernetesAccessControlClusterRoleBindingModule,
-    KubernetesStoragePersistentVolumeClaimModule
+    KubernetesStoragePersistentVolumeClaimModule,
+    KubernetesStoragePersistentVolumeModule
   ],
   providers: [
     KubernetesClusterService,

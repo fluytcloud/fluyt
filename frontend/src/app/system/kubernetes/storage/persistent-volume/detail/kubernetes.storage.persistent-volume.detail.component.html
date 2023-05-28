@@ -8,7 +8,7 @@
               <mat-panel-title>
                 General
               </mat-panel-title>
-              <button mat-raised-button routerLink="/kubernetes/persistent-volume-claims">Back</button>
+              <button mat-raised-button routerLink="/kubernetes/persistent-volumes">Back</button>
             </div>
           </div>
         </mat-expansion-panel-header>
@@ -17,15 +17,9 @@
                               [value]="value?.metadata?.creationTimestamp | date">
           </app-form-container>
 
-          <app-form-multiple-container>
-            <app-form-container label="Name"
-                                [value]="value?.metadata?.name">
-            </app-form-container>
-
-            <app-form-container label="Namespace"
-                                [value]="value?.metadata?.namespace">
-            </app-form-container>
-          </app-form-multiple-container>
+          <app-form-container label="Name"
+                              [value]="value?.metadata?.name">
+          </app-form-container>
 
           <app-form-container label="Annotations" [labelAbove]="true">
             <mat-chip-listbox aria-label="annotations" [selectable]="false">
@@ -66,31 +60,42 @@
           </app-form-multiple-container>
 
           <app-form-multiple-container>
-            <app-form-container label="Storage Class Name"
-                                [value]="value?.spec?.storageClassName">
+            <app-form-container label="Capacity"
+                                [value]="value?.spec?.capacity?.storage?.number | bytes: 'disc'">
             </app-form-container>
 
-            <app-form-container label="Storage"
-                                [value]="value?.spec?.resources?.requests?.storage?.number | bytes: 'disc'">
+            <app-form-container label="Reclaim Policy"
+                                [value]="value?.spec?.persistentVolumeReclaimPolicy">
             </app-form-container>
           </app-form-multiple-container>
 
           <app-form-multiple-container>
-            <app-form-container label="Volume Mode"
-                                [labelAbove]="true"
-                                [value]="value?.spec?.volumeMode">
-            </app-form-container>
-
-            <app-form-container label="Volume Name"
-                                [labelAbove]="true"
-                                [value]="value?.spec?.volumeName">
+            <app-form-container label="Storage Class Name"
+                                [value]="value?.spec?.storageClassName">
             </app-form-container>
 
             <app-form-container label="Status"
-                                [labelAbove]="true"
                                 [value]="value?.status?.phase">
             </app-form-container>
           </app-form-multiple-container>
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          Claim
+        </mat-expansion-panel-header>
+        <div class="fc-form">
+          <app-form-container label="Kind"
+                              [value]="value?.spec?.claimRef?.kind">
+          </app-form-container>
+
+          <app-form-container label="Name"
+                              [value]="value?.spec?.claimRef?.name">
+          </app-form-container>
+
+          <app-form-container label="Namespace"
+                              [value]="value?.spec?.claimRef?.namespace">
+          </app-form-container>
         </div>
       </mat-expansion-panel>
     </mat-accordion>
