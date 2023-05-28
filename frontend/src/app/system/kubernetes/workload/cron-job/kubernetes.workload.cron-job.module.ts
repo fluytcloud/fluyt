@@ -18,6 +18,7 @@ import {KubernetesWorkloadCronJobService} from "./kubernetes.workload.cron-job.s
 import {KubernetesWorkloadCronJobListComponent} from "./list/kubernetes.workload.cron-job.list.component";
 import {KubernetesWorkloadCronJobDetailComponent} from "./detail/kubernetes.workload.cron-job.detail.component";
 import {KubernetesEventModule} from "../../events/kubernetes.event.module";
+import {KubernetesComponentsActionsModule} from "../../components/action/kubernetes.components.actions.module";
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import {KubernetesEventModule} from "../../events/kubernetes.event.module";
         KeyValuePipe,
         PipesReplicaSetReplicasModule,
         TableModule,
-        KubernetesEventModule
+        KubernetesEventModule,
+        KubernetesComponentsActionsModule
     ],
   providers: [
     KubernetesWorkloadCronJobService
