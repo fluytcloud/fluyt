@@ -121,6 +121,12 @@ import {
 } from "./storage/storage-class/detail/kubernetes.storage.storage-class.detail.component";
 import {KubernetesConfigSecretListComponent} from "./config/secret/list/kubernetes.config.secret.list.component";
 import {KubernetesConfigSecretDetailComponent} from "./config/secret/detail/kubernetes.config.secret.detail.component";
+import {
+  KubernetesConfigLimitRangeListComponent
+} from "./config/limit-range/list/kubernetes.config.limit-range.list.component";
+import {
+  KubernetesConfigLimitRangeDetailComponent
+} from "./config/limit-range/detail/kubernetes.config.limit-range.detail.component";
 
 
 const routes: Routes = [
@@ -381,6 +387,16 @@ const routes: Routes = [
     path: 'secrets/detail',
     canActivate: [KubernetesClusterGuard],
     component: KubernetesConfigSecretDetailComponent
+  },
+  {
+    path: 'limit-ranges',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesConfigLimitRangeListComponent
+  },
+  {
+    path: 'limit-ranges/detail',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesConfigLimitRangeDetailComponent
   }
 ];
 
