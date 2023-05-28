@@ -9,10 +9,10 @@ import com.fluytcloud.kubernetes.transport.request.NamespaceObjectRequestListFil
 import com.fluytcloud.kubernetes.transport.response.ConfigMapResponseList;
 import io.kubernetes.client.openapi.models.V1ConfigMap;
 import io.quarkus.security.Authenticated;
-
 import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
+
 import java.util.List;
 
 @Path("/api/v1/kubernetes/config-map")
@@ -21,10 +21,9 @@ import java.util.List;
 @Produces(MediaType.APPLICATION_JSON)
 public class ConfigMapResource {
 
+    private static final ConfigMapMapper CONFIG_MAP_MAPPER = new ConfigMapMapper();
     private final ConfigMapService configMapService;
     private final ClusterService clusterService;
-
-    private static final ConfigMapMapper CONFIG_MAP_MAPPER = new ConfigMapMapper();
 
     public ConfigMapResource(ConfigMapService configMapService, ClusterService clusterService) {
         this.configMapService = configMapService;
@@ -49,4 +48,22 @@ public class ConfigMapResource {
                 .orElseThrow(() -> new NotFoundException("ConfigMap not found"));
     }
 
+    @Produces("application/x-yaml")
+    @Consumes("application/x-yaml")
+    @GET
+    public V1ConfigMap getYaml(@BeanParam @Valid NamespaceObjectRequestFilter podFilter) {
+        var cluster = clusterService.findById(podFilter.getClusterId())
+                .orElseThrow();
+        return configMapService.read(cluster, podFilter.getNamespace(), podFilter.getName())
+                .orElseThrow(() -> new NotFoundException("ConfigMap not found"));
+    }
+
+    @Produces("application/x-yaml")
+    @Consumes("application/x-yaml")
+    @PUT
+    public V1ConfigMap edit(@BeanParam @Valid NamespaceObjectRequestFilter podFilter,
+                            V1ConfigMap configMap) {
+        var cluster = clusterService.findById(podFilter.getClusterId()).orElseThrow();
+        return configMapService.apply(cluster, configMap);
+    }
 }
