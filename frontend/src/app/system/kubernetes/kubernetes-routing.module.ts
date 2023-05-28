@@ -113,6 +113,12 @@ import {
 import {
   KubernetesStoragePersistentVolumeDetailComponent
 } from "./storage/persistent-volume/detail/kubernetes.storage.persistent-volume.detail.component";
+import {
+  KubernetesStorageStorageClassListComponent
+} from "./storage/storage-class/list/kubernetes.storage.storage-class.list.component";
+import {
+  KubernetesStorageStorageClassDetailComponent
+} from "./storage/storage-class/detail/kubernetes.storage.storage-class.detail.component";
 
 
 const routes: Routes = [
@@ -353,6 +359,16 @@ const routes: Routes = [
     path: 'persistent-volumes/detail',
     canActivate: [KubernetesClusterGuard],
     component: KubernetesStoragePersistentVolumeDetailComponent
+  },
+  {
+    path: 'storage-classes',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesStorageStorageClassListComponent
+  },
+  {
+    path: 'storage-classes/detail',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesStorageStorageClassDetailComponent
   }
 ];
 
