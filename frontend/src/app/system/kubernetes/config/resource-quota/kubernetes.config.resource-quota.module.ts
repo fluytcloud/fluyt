@@ -22,6 +22,7 @@ import {
   KubernetesConfigResourceQuotaDetailQuotaComponents
 } from "./detail/quota/kubernetes.config.resource-quota.detail.quota.components";
 import {PipesBytesModule} from "../../../../pipes/bytes/pipes.bytes.module";
+import {MatChipsModule} from "@angular/material/chips";
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import {PipesBytesModule} from "../../../../pipes/bytes/pipes.bytes.module";
     FormMultipleContainerModule,
     KubernetesComponentsListModule,
     MatProgressBarModule,
+    MatChipsModule,
     PipesBytesModule
   ],
   providers: [

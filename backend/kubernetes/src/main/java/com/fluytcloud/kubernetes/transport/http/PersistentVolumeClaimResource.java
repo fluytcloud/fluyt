@@ -26,8 +26,8 @@ public class PersistentVolumeClaimResource {
 
     private static final PersistentVolumeClaimMapper PERSISTENT_VOLUME_CLAIM_MAPPER = new PersistentVolumeClaimMapper();
 
-    public PersistentVolumeClaimResource(PersistentVolumeClaimService jobService, ClusterService clusterService) {
-        this.persistentVolumeClaimService = jobService;
+    public PersistentVolumeClaimResource(PersistentVolumeClaimService persistentVolumeClaimService, ClusterService clusterService) {
+        this.persistentVolumeClaimService = persistentVolumeClaimService;
         this.clusterService = clusterService;
     }
 

@@ -119,6 +119,8 @@ import {
 import {
   KubernetesStorageStorageClassDetailComponent
 } from "./storage/storage-class/detail/kubernetes.storage.storage-class.detail.component";
+import {KubernetesConfigSecretListComponent} from "./config/secret/list/kubernetes.config.secret.list.component";
+import {KubernetesConfigSecretDetailComponent} from "./config/secret/detail/kubernetes.config.secret.detail.component";
 
 
 const routes: Routes = [
@@ -369,6 +371,16 @@ const routes: Routes = [
     path: 'storage-classes/detail',
     canActivate: [KubernetesClusterGuard],
     component: KubernetesStorageStorageClassDetailComponent
+  },
+  {
+    path: 'secrets',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesConfigSecretListComponent
+  },
+  {
+    path: 'secrets/detail',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesConfigSecretDetailComponent
   }
 ];
 

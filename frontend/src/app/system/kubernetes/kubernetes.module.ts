@@ -50,6 +50,7 @@ import {
   KubernetesStoragePersistentVolumeModule
 } from "./storage/persistent-volume/kubernetes.storage.persistent-volume.module";
 import {KubernetesStorageStorageClassModule} from "./storage/storage-class/kubernetes.storage.storage-class.module";
+import {KubernetesConfigSecretModule} from "./config/secret/kubernetes.config.secret.module";
 
 @NgModule({
   declarations: [
@@ -94,7 +95,8 @@ import {KubernetesStorageStorageClassModule} from "./storage/storage-class/kuber
     KubernetesAccessControlClusterRoleBindingModule,
     KubernetesStoragePersistentVolumeClaimModule,
     KubernetesStoragePersistentVolumeModule,
-    KubernetesStorageStorageClassModule
+    KubernetesStorageStorageClassModule,
+    KubernetesConfigSecretModule
   ],
   providers: [
     KubernetesClusterService,

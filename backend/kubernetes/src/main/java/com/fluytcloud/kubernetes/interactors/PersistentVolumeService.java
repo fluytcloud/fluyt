@@ -10,8 +10,8 @@ public class PersistentVolumeService extends ClusterObjectsService<V1PersistentV
 
     private final PersistentVolumeRepository persistentVolumeRepository;
 
-    public PersistentVolumeService(PersistentVolumeRepository replicaSetRepository) {
-        this.persistentVolumeRepository = replicaSetRepository;
+    public PersistentVolumeService(PersistentVolumeRepository persistentVolumeRepository) {
+        this.persistentVolumeRepository = persistentVolumeRepository;
     }
 
     @Override

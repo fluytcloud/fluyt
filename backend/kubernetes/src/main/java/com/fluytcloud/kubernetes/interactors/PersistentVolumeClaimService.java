@@ -10,8 +10,8 @@ public class PersistentVolumeClaimService extends NamespaceObjectsService<V1Pers
 
     private final PersistentVolumeClaimRepository persistentVolumeClaimRepository;
 
-    public PersistentVolumeClaimService(PersistentVolumeClaimRepository replicaSetRepository) {
-        this.persistentVolumeClaimRepository = replicaSetRepository;
+    public PersistentVolumeClaimService(PersistentVolumeClaimRepository persistentVolumeClaimRepository) {
+        this.persistentVolumeClaimRepository = persistentVolumeClaimRepository;
     }
 
     @Override

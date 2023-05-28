@@ -26,8 +26,8 @@ public class StorageClassResource {
 
     private static final StorageClassMapper STORAGE_CLASS_MAPPER = new StorageClassMapper();
 
-    public StorageClassResource(StorageClassService configMapService, ClusterService clusterService) {
-        this.storageClassService = configMapService;
+    public StorageClassResource(StorageClassService storageClassService, ClusterService clusterService) {
+        this.storageClassService = storageClassService;
         this.clusterService = clusterService;
     }
 

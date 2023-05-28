@@ -10,8 +10,8 @@ public class StorageClassService extends ClusterObjectsService<V1StorageClass> {
 
     private final StorageClassRepository storageClassRepository;
 
-    public StorageClassService(StorageClassRepository replicaSetRepository) {
-        this.storageClassRepository = replicaSetRepository;
+    public StorageClassService(StorageClassRepository storageClassRepository) {
+        this.storageClassRepository = storageClassRepository;
     }
 
     @Override

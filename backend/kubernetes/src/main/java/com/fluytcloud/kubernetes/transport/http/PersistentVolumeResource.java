@@ -26,8 +26,8 @@ public class PersistentVolumeResource {
 
     private static final PersistentVolumeMapper PERSISTENT_VOLUME_MAPPER = new PersistentVolumeMapper();
 
-    public PersistentVolumeResource(PersistentVolumeService configMapService, ClusterService clusterService) {
-        this.persistentVolumeService = configMapService;
+    public PersistentVolumeResource(PersistentVolumeService persistentVolumeService, ClusterService clusterService) {
+        this.persistentVolumeService = persistentVolumeService;
         this.clusterService = clusterService;
     }
 
