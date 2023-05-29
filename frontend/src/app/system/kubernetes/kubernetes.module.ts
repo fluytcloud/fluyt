@@ -52,6 +52,7 @@ import {
 import {KubernetesStorageStorageClassModule} from "./storage/storage-class/kubernetes.storage.storage-class.module";
 import {KubernetesConfigSecretModule} from "./config/secret/kubernetes.config.secret.module";
 import {KubernetesConfigLimitRangeModule} from "./config/limit-range/kubernetes.config.limit-range.module";
+import {KubernetesNodeModule} from "./node/kubernetes.node.module";
 
 @NgModule({
   declarations: [
@@ -98,7 +99,8 @@ import {KubernetesConfigLimitRangeModule} from "./config/limit-range/kubernetes.
     KubernetesStoragePersistentVolumeModule,
     KubernetesStorageStorageClassModule,
     KubernetesConfigSecretModule,
-    KubernetesConfigLimitRangeModule
+    KubernetesConfigLimitRangeModule,
+    KubernetesNodeModule
   ],
   providers: [
     KubernetesClusterService,

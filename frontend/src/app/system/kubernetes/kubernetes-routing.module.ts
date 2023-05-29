@@ -127,6 +127,8 @@ import {
 import {
   KubernetesConfigLimitRangeDetailComponent
 } from "./config/limit-range/detail/kubernetes.config.limit-range.detail.component";
+import {KubernetesNodeListComponent} from "./node/list/kubernetes.node.list.component";
+import {KubernetesNodeDetailComponent} from "./node/detail/kubernetes.node.detail.component";
 
 
 const routes: Routes = [
@@ -397,6 +399,16 @@ const routes: Routes = [
     path: 'limit-ranges/detail',
     canActivate: [KubernetesClusterGuard],
     component: KubernetesConfigLimitRangeDetailComponent
+  },
+  {
+    path: 'nodes',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesNodeListComponent
+  },
+  {
+    path: 'nodes/detail',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesNodeDetailComponent
   }
 ];
 
