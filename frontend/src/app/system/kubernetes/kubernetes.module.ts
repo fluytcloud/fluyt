@@ -53,6 +53,7 @@ import {KubernetesStorageStorageClassModule} from "./storage/storage-class/kuber
 import {KubernetesConfigSecretModule} from "./config/secret/kubernetes.config.secret.module";
 import {KubernetesConfigLimitRangeModule} from "./config/limit-range/kubernetes.config.limit-range.module";
 import {KubernetesNodeModule} from "./node/kubernetes.node.module";
+import {KubernetesEditorModule} from "./editor/kubernetes-editor.module";
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import {KubernetesNodeModule} from "./node/kubernetes.node.module";
     KubernetesClusterModule,
     KubernetesRoutingModule,
     KubernetesTerminalModule,
+    KubernetesEditorModule,
     KubernetesConfigConfigMapModule,
     KubernetesWorkloadReplicaSetModule,
     KubernetesWorkloadStatefulSetModule,

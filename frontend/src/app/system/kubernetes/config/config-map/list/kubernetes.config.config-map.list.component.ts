@@ -11,7 +11,7 @@ import {Header} from "../../../../../components/header/header";
 })
 export class KubernetesConfigConfigMapListComponent extends KubernetesSupportList<KubernetesConfigConfigMapList> {
 
-  constructor(private configConfigMapService: KubernetesConfigConfigMapService,
+  constructor(protected configConfigMapService: KubernetesConfigConfigMapService,
               headerService: HeaderService) {
     super(headerService, configConfigMapService);
   }
