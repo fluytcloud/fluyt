@@ -38,6 +38,141 @@
             </mat-chip-listbox>
             <span *ngIf="!value?.metadata?.labels">None</span>
           </app-form-container>
+
+          <app-form-container label="Addresses" [labelAbove]="true">
+            <mat-chip-listbox aria-label="addresses" [selectable]="false">
+              <mat-chip-option *ngFor="let address of value?.status?.addresses">
+                {{address.type}} : {{address.address}}
+              </mat-chip-option>
+            </mat-chip-listbox>
+          </app-form-container>
+
+          <app-form-multiple-container>
+            <app-form-container label="OS"
+                                [labelAbove]="true"
+                                [value]="value?.status?.nodeInfo?.operatingSystem">
+            </app-form-container>
+            <app-form-container label="Architecture"
+                                [labelAbove]="true"
+                                [value]="value?.status?.nodeInfo?.architecture">
+            </app-form-container>
+            <app-form-container label="OS Image"
+                                [labelAbove]="true"
+                                [value]="value?.status?.nodeInfo?.osImage">
+            </app-form-container>
+          </app-form-multiple-container>
+
+          <app-form-multiple-container>
+            <app-form-container label="Container Runtime Version"
+                                [labelAbove]="true"
+                                [value]="value?.status?.nodeInfo?.containerRuntimeVersion">
+            </app-form-container>
+            <app-form-container label="Kernel Version"
+                                [labelAbove]="true"
+                                [value]="value?.status?.nodeInfo?.kernelVersion">
+            </app-form-container>
+          </app-form-multiple-container>
+
+          <app-form-multiple-container>
+            <app-form-container label="KubeProxy Version"
+                                [labelAbove]="true"
+                                [value]="value?.status?.nodeInfo?.kubeProxyVersion">
+            </app-form-container>
+            <app-form-container label="Kubelet Version"
+                                [labelAbove]="true"
+                                [value]="value?.status?.nodeInfo?.kubeletVersion">
+            </app-form-container>
+          </app-form-multiple-container>
+
+          <app-form-container label="Conditions" [labelAbove]="true">
+            <mat-chip-listbox aria-label="conditions" [selectable]="false">
+              <ng-container *ngFor="let condition of value?.status?.conditions">
+                <mat-chip-option *ngIf="'True' === condition.status">
+                  {{condition.type}}
+                </mat-chip-option>
+              </ng-container>
+            </mat-chip-listbox>
+          </app-form-container>
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          Capacity
+        </mat-expansion-panel-header>
+        <div class="fc-form">
+          <app-form-multiple-container>
+            <app-form-container label="CPU"
+                                [labelAbove]="true"
+                                [value]="value?.status?.capacity?.cpu?.number">
+            </app-form-container>
+            <app-form-container label="Memory"
+                                [labelAbove]="true"
+                                [value]="value?.status?.capacity?.memory?.number | bytes: 'memory'">
+            </app-form-container>
+            <app-form-container label="Ephemeral Storage"
+                                [labelAbove]="true"
+                                [value]="value?.status?.capacity['ephemeral-storage'].number | bytes: 'memory'">
+            </app-form-container>
+          </app-form-multiple-container>
+
+          <app-form-multiple-container>
+            <app-form-container label="Hugepages-1Gi"
+                                [labelAbove]="true"
+                                [value]="value?.status?.capacity['hugepages-1Gi'].number">
+            </app-form-container>
+            <app-form-container label="Hugepages-2Mi"
+                                [labelAbove]="true"
+                                [value]="value?.status?.capacity['hugepages-2Mi'].number">
+            </app-form-container>
+            <app-form-container label="Pods"
+                                [labelAbove]="true"
+                                [value]="value?.status?.capacity?.pods?.number">
+            </app-form-container>
+          </app-form-multiple-container>
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          Allocatable
+        </mat-expansion-panel-header>
+        <div class="fc-form">
+          <app-form-multiple-container>
+            <app-form-container label="CPU"
+                                [labelAbove]="true"
+                                [value]="value?.status?.allocatable?.cpu?.number">
+            </app-form-container>
+            <app-form-container label="Memory"
+                                [labelAbove]="true"
+                                [value]="value?.status?.allocatable?.memory?.number | bytes: 'memory'">
+            </app-form-container>
+            <app-form-container label="Ephemeral Storage"
+                                [labelAbove]="true"
+                                [value]="value?.status?.allocatable['ephemeral-storage'].number | bytes: 'memory'">
+            </app-form-container>
+          </app-form-multiple-container>
+
+          <app-form-multiple-container>
+            <app-form-container label="Hugepages-1Gi"
+                                [labelAbove]="true"
+                                [value]="value?.status?.allocatable['hugepages-1Gi'].number">
+            </app-form-container>
+            <app-form-container label="Hugepages-2Mi"
+                                [labelAbove]="true"
+                                [value]="value?.status?.allocatable['hugepages-2Mi'].number">
+            </app-form-container>
+            <app-form-container label="Pods"
+                                [labelAbove]="true"
+                                [value]="value?.status?.allocatable?.pods?.number">
+            </app-form-container>
+          </app-form-multiple-container>
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel [expanded]="true" class="mat-expansion-panel-spacing">
+        <mat-expansion-panel-header>
+          Events
+        </mat-expansion-panel-header>
+        <div class="fc-form">
+          <app-kubernetes-events-simple-list *ngIf="value" [filter]="filterSimpleList!"></app-kubernetes-events-simple-list>
         </div>
       </mat-expansion-panel>
     </mat-accordion>
