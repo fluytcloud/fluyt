@@ -17,7 +17,7 @@ import {FormContainerModule} from "../../../components/form/container/form.conta
 import {FormMultipleContainerModule} from "../../../components/form/multiple-container/form.multiple-container.module";
 import {KubernetesComponentsActionsModule} from "../components/action/kubernetes.components.actions.module";
 import {PipesBytesModule} from "../../../pipes/bytes/pipes.bytes.module";
-import {KubernetesEventModule} from "../events/kubernetes.event.module";
+import {KubernetesEventModule} from "../event/kubernetes.event.module";
 
 @NgModule({
   declarations: [

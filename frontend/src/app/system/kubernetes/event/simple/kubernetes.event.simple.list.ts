@@ -1,7 +1,7 @@
 export interface KubernetesEventSimpleList {
-  source: string,
-  count: number,
-  object: string,
+  source: string;
+  count: number;
+  object: string;
   lastSeen: Date;
   message: string;
 }

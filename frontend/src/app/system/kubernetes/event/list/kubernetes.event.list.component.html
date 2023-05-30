@@ -1,0 +1,39 @@
+<app-kubernetes-components-list name="Events" (filter)="load($event)" [values]="values" [loading]="loading">
+  <ng-template #header>
+    <tr>
+      <th>Type</th>
+      <th>Namespace</th>
+      <th>Message</th>
+      <th>Involved Object</th>
+      <th>Source</th>
+      <th>Count</th>
+      <th>Age</th>
+      <th>Last Seen</th>
+      <th>Actions</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-event>
+    <tr>
+      <td>
+        <p-tag [value]="event.type"
+               [severity]="event.type === 'Normal' ? 'primary' : 'danger'"
+               [rounded]="true">
+        </p-tag>
+      </td>
+      <td>{{event.namespace}}</td>
+      <td>{{event.message}}</td>
+      <td>{{event.object}}</td>
+      <td>{{event.source}}</td>
+      <td>{{event.count}}</td>
+      <td>{{event.age}}</td>
+      <td>{{event.lastSeen}}</td>
+      <td>
+        <app-kubernetes-components-action
+          [object]="event"
+          [link]="'/kubernetes/events/detail'"
+          [crudService]="crudService">
+        </app-kubernetes-components-action>
+      </td>
+    </tr>
+  </ng-template>
+</app-kubernetes-components-list>

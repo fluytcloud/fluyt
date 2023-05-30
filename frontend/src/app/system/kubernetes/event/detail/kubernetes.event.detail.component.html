@@ -1,0 +1,96 @@
+<div class="container">
+  <app-loader [show]="display">
+    <mat-accordion class="example-headers-align" multi>
+      <mat-expansion-panel [hideToggle]="true" [expanded]="true">
+        <mat-expansion-panel-header>
+          <div class="fc-form">
+            <div class="fc-form-actions-container">
+              <mat-panel-title>
+                General
+              </mat-panel-title>
+              <button mat-raised-button routerLink="/kubernetes/events">Back</button>
+            </div>
+          </div>
+        </mat-expansion-panel-header>
+        <div class="fc-form">
+          <app-form-container label="Created"
+                              [value]="value?.metadata?.creationTimestamp | date">
+          </app-form-container>
+
+          <app-form-multiple-container>
+            <app-form-container label="Name"
+                                [value]="value?.metadata?.name">
+            </app-form-container>
+
+            <app-form-container label="Namespace"
+                                [value]="value?.metadata?.namespace">
+            </app-form-container>
+          </app-form-multiple-container>
+
+          <app-form-container label="Message"
+                              [value]="value?.message">
+          </app-form-container>
+
+          <app-form-container label="Reason"
+                              [value]="value?.reason">
+          </app-form-container>
+
+          <app-form-container label="source"
+                              [value]="value?.source?.host
+                                ? value?.source.component + ' ' + value?.source?.host
+                                : value?.source.component">
+          </app-form-container>
+
+          <app-form-container label="First Seen"
+                              [value]="value?.firstTimestamp | date:'dd/MM/yyyy HH:mm:ss'">
+          </app-form-container>
+
+          <app-form-container label="Last Seen"
+                              [value]="value?.lastTimestamp | date:'dd/MM/yyyy HH:mm:ss'">
+          </app-form-container>
+
+          <app-form-container label="Count"
+                              [value]="value?.count">
+          </app-form-container>
+
+          <app-form-container label="Type">
+            <p-tag [value]="value?.type"
+                   [severity]="value?.type === 'Normal' ? 'primary' : 'danger'"
+                   [rounded]="true"></p-tag>
+          </app-form-container>
+
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-expansion-panel [expanded]="true" class="mat-expansion-panel-spacing">
+      <mat-expansion-panel-header>
+        Involved Object
+      </mat-expansion-panel-header>
+      <div class="fc-form">
+        <p-table [value]="[value?.involvedObject || {}]"
+                 responsiveLayout="scroll"
+                 [paginator]="true"
+                 [rows]="1">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Namespace</th>
+              <th>Name</th>
+              <th>Kind</th>
+              <th>Field Path</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-object>
+            <tr>
+              <td>{{object?.namespace}}</td>
+              <td>{{object?.name}}</td>
+              <td>{{object?.kind}}</td>
+              <td>{{object?.fieldPath}}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </mat-expansion-panel>
+
+  </app-loader>
+</div>
