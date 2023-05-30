@@ -9,8 +9,9 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
-public class PersistentVolumeClaimMapper {
+public class PersistentVolumeClaimMapper implements Mapper<V1PersistentVolumeClaim, PersistentVolumeClaimResponseList> {
 
+    @Override
     public PersistentVolumeClaimResponseList mapResponseList(V1PersistentVolumeClaim pvc) {
         return new PersistentVolumeClaimResponseList(
                 pvc.getMetadata().getName(),
@@ -34,6 +35,7 @@ public class PersistentVolumeClaimMapper {
                 .orElse("");
     }
 
+    @Override
     public List<PersistentVolumeClaimResponseList> mapResponseList(List<V1PersistentVolumeClaim> pvcs) {
         return pvcs.stream()
                 .map(this::mapResponseList)

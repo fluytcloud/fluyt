@@ -10,8 +10,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-public class DaemonSetMapper {
+public class DaemonSetMapper implements Mapper<V1DaemonSet, DaemonSetResponseList> {
 
+    @Override
     public DaemonSetResponseList mapResponseList(V1DaemonSet daemonSet) {
         return new DaemonSetResponseList(
                 daemonSet.getMetadata().getName(),
@@ -41,6 +42,7 @@ public class DaemonSetMapper {
         );
     }
 
+    @Override
     public List<DaemonSetResponseList> mapResponseList(List<V1DaemonSet> daemonSets) {
         return daemonSets.stream()
                 .map(this::mapResponseList)

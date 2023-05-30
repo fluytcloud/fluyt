@@ -6,8 +6,9 @@ import io.kubernetes.client.openapi.models.V1StatefulSetStatus;
 
 import java.util.List;
 
-public class StatefulSetMapper {
+public class StatefulSetMapper implements Mapper<V1StatefulSet, StatefulSetResponseList> {
 
+    @Override
     public StatefulSetResponseList mapResponseList(V1StatefulSet statefulSet) {
         return new StatefulSetResponseList(
                 statefulSet.getMetadata().getName(),
@@ -30,6 +31,7 @@ public class StatefulSetMapper {
         );
     }
 
+    @Override
     public List<StatefulSetResponseList> mapResponseList(List<V1StatefulSet> statefulSets) {
         return statefulSets.stream()
                 .map(this::mapResponseList)
