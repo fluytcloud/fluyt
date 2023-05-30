@@ -14,7 +14,7 @@ export class KubernetesEditorComponent implements OnInit {
   codemirrorValue = '';
   codeMirrorConfig = {
     theme: 'material',
-    // lineNumbers: true,
+    lineNumbers: true,
   };
 
   constructor(@Inject(MAT_DIALOG_DATA) protected data: EditorData,

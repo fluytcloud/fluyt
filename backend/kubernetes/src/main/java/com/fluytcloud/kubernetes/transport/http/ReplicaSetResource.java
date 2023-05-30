@@ -2,55 +2,41 @@ package com.fluytcloud.kubernetes.transport.http;
 
 import com.fluytcloud.kubernetes.entities.Filter;
 import com.fluytcloud.kubernetes.entities.OwnerReference;
-import com.fluytcloud.kubernetes.interactors.ClusterService;
+import com.fluytcloud.kubernetes.interactors.NamespaceObjectsService;
 import com.fluytcloud.kubernetes.interactors.ReplicaSetService;
+import com.fluytcloud.kubernetes.transport.mapper.Mapper;
 import com.fluytcloud.kubernetes.transport.mapper.ReplicaSetMapper;
-import com.fluytcloud.kubernetes.transport.request.NamespaceObjectRequestFilter;
 import com.fluytcloud.kubernetes.transport.request.NamespaceObjectRequestListFilter;
-import com.fluytcloud.kubernetes.transport.response.ReplicaSetSimpleResponseList;
 import com.fluytcloud.kubernetes.transport.response.ReplicaSetResponseList;
+import com.fluytcloud.kubernetes.transport.response.ReplicaSetSimpleResponseList;
 import io.kubernetes.client.openapi.models.V1ReplicaSet;
 import io.quarkus.security.Authenticated;
-
+import jakarta.inject.Inject;
 import jakarta.validation.Valid;
-import jakarta.ws.rs.*;
-import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.BeanParam;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 @Path("/api/v1/kubernetes/replica-set")
 @Authenticated
-@Consumes(MediaType.APPLICATION_JSON)
-@Produces(MediaType.APPLICATION_JSON)
-public class ReplicaSetResource {
-
-    private final ReplicaSetService replicaSetService;
-    private final ClusterService clusterService;
+public class ReplicaSetResource extends NamespaceObjectsResource<V1ReplicaSet, ReplicaSetResponseList> {
 
     private static final ReplicaSetMapper REPLICA_SET_MAPPER = new ReplicaSetMapper();
 
-    public ReplicaSetResource(ReplicaSetService replicaSetService, ClusterService clusterService) {
-        this.replicaSetService = replicaSetService;
-        this.clusterService = clusterService;
+    @Inject
+    protected ReplicaSetService replicaSetService;
+
+    @Override
+    protected NamespaceObjectsService<V1ReplicaSet> getService() {
+        return replicaSetService;
     }
 
-    @GET
-    @Path("list")
-    public List<ReplicaSetResponseList> find(@BeanParam @Valid NamespaceObjectRequestListFilter requestFilter) {
-        var cluster = clusterService.findById(requestFilter.getClusterId())
-                .orElseThrow();
-        var filter = new Filter(cluster).setNamespaces(requestFilter.getNamespaces()).setSearch(requestFilter.getName());
-        var replicaSets = replicaSetService.list(filter);
-        return REPLICA_SET_MAPPER.mapResponseList(replicaSets);
-    }
-
-    @GET
-    public V1ReplicaSet get(@BeanParam @Valid NamespaceObjectRequestFilter podFilter) {
-        var cluster = clusterService.findById(podFilter.getClusterId())
-                .orElseThrow();
-        return replicaSetService.read(cluster, podFilter.getNamespace(), podFilter.getName())
-                .orElseThrow(() -> new NotFoundException("ReplicaSet not found"));
+    @Override
+    protected Mapper<V1ReplicaSet, ReplicaSetResponseList> getMapper() {
+        return REPLICA_SET_MAPPER;
     }
 
     @GET

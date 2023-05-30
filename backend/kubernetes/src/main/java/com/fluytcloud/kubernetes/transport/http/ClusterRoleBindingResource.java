@@ -1,51 +1,31 @@
 package com.fluytcloud.kubernetes.transport.http;
 
-import com.fluytcloud.kubernetes.entities.Filter;
+import com.fluytcloud.kubernetes.interactors.ClusterObjectsService;
 import com.fluytcloud.kubernetes.interactors.ClusterRoleBindingService;
-import com.fluytcloud.kubernetes.interactors.ClusterService;
 import com.fluytcloud.kubernetes.transport.mapper.ClusterRoleBindingMapper;
-import com.fluytcloud.kubernetes.transport.request.ClusterObjectRequestFilter;
-import com.fluytcloud.kubernetes.transport.request.ClusterObjectRequestListFilter;
+import com.fluytcloud.kubernetes.transport.mapper.Mapper;
 import com.fluytcloud.kubernetes.transport.response.ClusterRoleBindingResponseList;
 import io.kubernetes.client.openapi.models.V1ClusterRoleBinding;
 import io.quarkus.security.Authenticated;
-import jakarta.validation.Valid;
-import jakarta.ws.rs.*;
-import jakarta.ws.rs.core.MediaType;
-
-import java.util.List;
+import jakarta.inject.Inject;
+import jakarta.ws.rs.Path;
 
 @Path("/api/v1/kubernetes/cluster-role-binding")
 @Authenticated
-@Consumes(MediaType.APPLICATION_JSON)
-@Produces(MediaType.APPLICATION_JSON)
-public class ClusterRoleBindingResource {
-
-    private final ClusterRoleBindingService clusterRoleBindingService;
-    private final ClusterService clusterService;
+public class ClusterRoleBindingResource extends ClusterObjectsResource<V1ClusterRoleBinding, ClusterRoleBindingResponseList> {
 
     private static final ClusterRoleBindingMapper CLUSTER_ROLE_BINDING_MAPPER = new ClusterRoleBindingMapper();
 
-    public ClusterRoleBindingResource(ClusterRoleBindingService configMapService, ClusterService clusterService) {
-        this.clusterRoleBindingService = configMapService;
-        this.clusterService = clusterService;
+    @Inject
+    protected ClusterRoleBindingService clusterRoleBindingService;
+
+    @Override
+    protected ClusterObjectsService<V1ClusterRoleBinding> getService() {
+        return clusterRoleBindingService;
     }
 
-    @GET
-    @Path("list")
-    public List<ClusterRoleBindingResponseList> find(@BeanParam @Valid ClusterObjectRequestListFilter requestFilter) {
-        var cluster = clusterService.findById(requestFilter.getClusterId())
-                .orElseThrow();
-        var filter = new Filter(cluster).setSearch(requestFilter.getName());
-        var clusterRoleBindings = clusterRoleBindingService.list(filter);
-        return CLUSTER_ROLE_BINDING_MAPPER.mapResponseList(clusterRoleBindings);
-    }
-
-    @GET
-    public V1ClusterRoleBinding get(@BeanParam @Valid ClusterObjectRequestFilter podFilter) {
-        var cluster = clusterService.findById(podFilter.getClusterId())
-                .orElseThrow();
-        return clusterRoleBindingService.read(cluster, podFilter.getName())
-                .orElseThrow(() -> new NotFoundException("ClusterRoleBinding not found"));
+    @Override
+    protected Mapper<V1ClusterRoleBinding, ClusterRoleBindingResponseList> getMapper() {
+        return CLUSTER_ROLE_BINDING_MAPPER;
     }
 }

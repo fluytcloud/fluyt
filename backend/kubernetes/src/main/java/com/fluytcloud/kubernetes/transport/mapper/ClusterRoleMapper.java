@@ -5,8 +5,9 @@ import io.kubernetes.client.openapi.models.V1ClusterRole;
 
 import java.util.List;
 
-public class ClusterRoleMapper {
+public class ClusterRoleMapper implements Mapper<V1ClusterRole, ClusterRoleResponseList> {
 
+    @Override
     public ClusterRoleResponseList mapResponseList(V1ClusterRole clusterRole) {
         return new ClusterRoleResponseList(
                 clusterRole.getMetadata().getName(),
@@ -14,6 +15,7 @@ public class ClusterRoleMapper {
         );
     }
 
+    @Override
     public List<ClusterRoleResponseList> mapResponseList(List<V1ClusterRole> clusterRoles) {
         return clusterRoles.stream()
                 .map(this::mapResponseList)

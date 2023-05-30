@@ -1,16 +1,22 @@
 package com.fluytcloud.kubernetes.transport.mapper;
 
-import com.fluytcloud.kubernetes.transport.response.EventSimpleResponseList;
 import com.fluytcloud.kubernetes.transport.response.EventResponseList;
+import com.fluytcloud.kubernetes.transport.response.EventSimpleResponseList;
 import io.kubernetes.client.openapi.models.CoreV1Event;
 
 import java.util.List;
 import java.util.Objects;
 
-public class EventMapper {
+public class EventMapper implements Mapper<CoreV1Event, EventResponseList> {
 
+    @Override
+    public EventResponseList mapResponseList(CoreV1Event event) {
+        return new EventResponseList();
+    }
+
+    @Override
     public List<EventResponseList> mapResponseList(List<CoreV1Event> events) {
-        return events.stream().map(it -> new EventResponseList())
+        return events.stream().map(this::mapResponseList)
                 .toList();
     }
 
