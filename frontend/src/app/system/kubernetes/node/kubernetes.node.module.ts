@@ -16,6 +16,8 @@ import {LoaderModule} from "../../../components/loader/loader.module";
 import {FormContainerModule} from "../../../components/form/container/form.container.module";
 import {FormMultipleContainerModule} from "../../../components/form/multiple-container/form.multiple-container.module";
 import {KubernetesComponentsActionsModule} from "../components/action/kubernetes.components.actions.module";
+import {PipesBytesModule} from "../../../pipes/bytes/pipes.bytes.module";
+import {KubernetesEventModule} from "../events/kubernetes.event.module";
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import {KubernetesComponentsActionsModule} from "../components/action/kubernetes
     KeyValuePipe,
     TableModule,
     MatDividerModule,
-    KubernetesComponentsActionsModule
+    KubernetesComponentsActionsModule,
+    PipesBytesModule,
+    KubernetesEventModule
   ],
   providers: [
     KubernetesNodeService
