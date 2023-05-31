@@ -8,8 +8,9 @@ import io.kubernetes.client.openapi.models.V1Endpoints;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class EndpointMapper {
+public class EndpointMapper implements Mapper<V1Endpoints, EndpointResponseList> {
 
+    @Override
     public EndpointResponseList mapResponseList(V1Endpoints endpoint) {
         return new EndpointResponseList(
                 endpoint.getMetadata().getName(),
@@ -41,6 +42,7 @@ public class EndpointMapper {
                 .collect(Collectors.toSet());
     }
 
+    @Override
     public List<EndpointResponseList> mapResponseList(List<V1Endpoints> endpoints) {
         return endpoints.stream()
                 .map(this::mapResponseList)

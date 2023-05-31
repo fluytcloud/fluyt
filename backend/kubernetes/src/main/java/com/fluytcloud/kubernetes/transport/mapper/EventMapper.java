@@ -10,7 +10,7 @@ import java.util.Optional;
 
 import static com.fluytcloud.kubernetes.transport.mapper.KubernetesMapper.formatAge;
 
-public class EventMapper {
+public class EventMapper implements Mapper<CoreV1Event, EventResponseList> {
 
     public List<EventResponseList> mapResponseList(List<CoreV1Event> events) {
         return events.stream()

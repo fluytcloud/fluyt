@@ -1,16 +1,20 @@
 package com.fluytcloud.kubernetes.transport.mapper;
 
 import com.fluytcloud.kubernetes.transport.response.PodContainerResponseList;
-import com.fluytcloud.kubernetes.transport.response.PodSimpleResponseList;
 import com.fluytcloud.kubernetes.transport.response.PodResponseList;
+import com.fluytcloud.kubernetes.transport.response.PodSimpleResponseList;
 import io.kubernetes.client.openapi.models.V1ContainerState;
 import io.kubernetes.client.openapi.models.V1ContainerStatus;
 import io.kubernetes.client.openapi.models.V1Pod;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
-public class PodMapper {
+public class PodMapper implements Mapper<V1Pod, PodResponseList> {
 
+    @Override
     public PodResponseList mapResponseList(V1Pod pod) {
         var containers = pod.getStatus().getContainerStatuses()
                 .stream()
@@ -72,6 +76,7 @@ public class PodMapper {
         return Optional.of("Waiting");
     }
 
+    @Override
     public List<PodResponseList> mapResponseList(List<V1Pod> pods) {
         return pods.stream()
                 .map(this::mapResponseList)

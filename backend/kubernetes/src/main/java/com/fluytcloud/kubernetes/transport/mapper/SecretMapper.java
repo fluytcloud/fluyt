@@ -8,8 +8,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-public class SecretMapper {
+public class SecretMapper implements Mapper<V1Secret, SecretResponseList> {
 
+    @Override
     public SecretResponseList mapResponseList(V1Secret secret) {
         return new SecretResponseList(
                 secret.getMetadata().getNamespace(),
@@ -31,6 +32,7 @@ public class SecretMapper {
         return String.join(",", keysMap);
     }
 
+    @Override
     public List<SecretResponseList> mapResponseList(List<V1Secret> secrets) {
         return secrets.stream()
                 .map(this::mapResponseList)

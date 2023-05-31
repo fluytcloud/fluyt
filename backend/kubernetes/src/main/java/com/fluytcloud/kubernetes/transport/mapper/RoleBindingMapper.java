@@ -8,8 +8,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-public class RoleBindingMapper{
+public class RoleBindingMapper implements Mapper<V1RoleBinding, RoleBindingResponseList> {
 
+    @Override
     public RoleBindingResponseList mapResponseList(V1RoleBinding roleBinding) {
         return new RoleBindingResponseList(
                 roleBinding.getMetadata().getName(),
@@ -30,6 +31,7 @@ public class RoleBindingMapper{
                 .toList();
     }
 
+    @Override
     public List<RoleBindingResponseList> mapResponseList(List<V1RoleBinding> roleBindings) {
         return roleBindings.stream()
                 .map(this::mapResponseList)
