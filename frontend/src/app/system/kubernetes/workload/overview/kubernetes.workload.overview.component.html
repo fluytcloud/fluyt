@@ -1,0 +1,33 @@
+<div class="container">
+  <app-loader [show]="display">
+    <mat-card *ngIf="overview">
+      <div class="fc-form">
+        <div class="row">
+          <div class="col-12 col-md-4 col-lg-3">
+            <app-kubernetes-workload-overview-chart [value]="overview.pods"></app-kubernetes-workload-overview-chart>
+          </div>
+          <div class="col-12 col-md-4 col-lg-3">
+            <app-kubernetes-workload-overview-chart [value]="overview.deployments"></app-kubernetes-workload-overview-chart>
+          </div>
+          <div class="col-12 col-md-4 col-lg-3">
+            <app-kubernetes-workload-overview-chart [value]="overview.daemonSets"></app-kubernetes-workload-overview-chart>
+          </div>
+          <div class="col-12 col-md-4 col-lg-3">
+            <app-kubernetes-workload-overview-chart [value]="overview.statefulSets"></app-kubernetes-workload-overview-chart>
+          </div>
+          <div class="col-12 col-md-4 col-lg-3">
+            <app-kubernetes-workload-overview-chart [value]="overview.replicaSets"></app-kubernetes-workload-overview-chart>
+          </div>
+          <div class="col-12 col-md-4 col-lg-3">
+            <app-kubernetes-workload-overview-chart [value]="overview.jobs"></app-kubernetes-workload-overview-chart>
+          </div>
+          <div class="col-12 col-md-4 col-lg-3">
+            <app-kubernetes-workload-overview-chart [value]="overview.cronJobs"></app-kubernetes-workload-overview-chart>
+          </div>
+        </div>
+
+      </div>
+    </mat-card>
+
+  </app-loader>
+</div>
