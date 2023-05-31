@@ -45,4 +45,8 @@ export abstract class KubernetesSupportService<T> {
     return this.http.get<any[]>(url, { params: params });
   }
 
+  delete(filter: KubernetesSearch): Observable<void> {
+    const params = QueryParams.transform(filter);
+    return this.http.delete<void>(this.getUrl(), {params: params});
+  }
 }

@@ -11,6 +11,7 @@ import io.kubernetes.client.common.KubernetesObject;
 import jakarta.inject.Inject;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.Response;
 
 import java.util.List;
 
@@ -65,6 +66,14 @@ public abstract class ClusterObjectsResource<T extends KubernetesObject, X> {
     public T edit(@BeanParam @Valid ClusterObjectRequestFilter filter, T object) {
         var cluster = getCluster(filter.getClusterId());
         return getService().apply(cluster, object);
+    }
+
+    @DELETE
+    public Response delete(@BeanParam @Valid ClusterObjectRequestFilter filter) {
+        var cluster = getCluster(filter.getClusterId());
+
+        getService().delete(cluster, filter.getName());
+        return Response.noContent().build();
     }
 
     protected Cluster getCluster(Integer clusterId) {

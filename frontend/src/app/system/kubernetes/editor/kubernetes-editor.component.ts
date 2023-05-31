@@ -28,16 +28,23 @@ export class KubernetesEditorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dialogRef.updateSize('55vw');
+    this.dialogRef.updateSize('80vw', '80vh');
     this.data.service.getYaml(this.data.filter)
       .subscribe(r => this.codemirrorValue = r);
   }
 
   apply(): void {
     this.data.service.edit(this.data.filter, this.codemirrorValue)
-      .subscribe(() => {
-        this.messageService.add({severity: 'success', summary: 'Success', detail: 'Changes were successfully applied'});
-        this.dialogRef.close();
+      .subscribe({
+        next: () => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Changes were successfully applied'
+          });
+          this.dialogRef.close();
+        },
+        error: err => this.messageService.add({severity: 'error', summary: 'Error', detail: err?.error.message})
       });
   }
 }
