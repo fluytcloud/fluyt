@@ -1,59 +1,31 @@
 package com.fluytcloud.kubernetes.transport.http;
 
-import com.fluytcloud.kubernetes.entities.Filter;
-import com.fluytcloud.kubernetes.interactors.ClusterService;
 import com.fluytcloud.kubernetes.interactors.LimitRangeService;
+import com.fluytcloud.kubernetes.interactors.NamespaceObjectsService;
 import com.fluytcloud.kubernetes.transport.mapper.LimitRangeMapper;
-import com.fluytcloud.kubernetes.transport.request.NamespaceObjectRequestFilter;
-import com.fluytcloud.kubernetes.transport.request.NamespaceObjectRequestListFilter;
+import com.fluytcloud.kubernetes.transport.mapper.Mapper;
 import com.fluytcloud.kubernetes.transport.response.LimitRangeResponseList;
 import io.kubernetes.client.openapi.models.V1LimitRange;
 import io.quarkus.security.Authenticated;
-import jakarta.validation.Valid;
-import jakarta.ws.rs.*;
-import jakarta.ws.rs.core.MediaType;
-
-import java.util.List;
+import jakarta.inject.Inject;
+import jakarta.ws.rs.Path;
 
 @Path("/api/v1/kubernetes/limit-range")
 @Authenticated
-@Consumes(MediaType.APPLICATION_JSON)
-@Produces(MediaType.APPLICATION_JSON)
-public class LimitRangeResource {
+public class LimitRangeResource extends NamespaceObjectsResource<V1LimitRange, LimitRangeResponseList> {
 
     private static final LimitRangeMapper LIMIT_RANGE_MAPPER = new LimitRangeMapper();
 
-    private final LimitRangeService limitRangeService;
-    private final ClusterService clusterService;
+    @Inject
+    protected LimitRangeService limitRangeService;
 
-    public LimitRangeResource(LimitRangeService limitRangeService, ClusterService clusterService) {
-        this.limitRangeService = limitRangeService;
-        this.clusterService = clusterService;
+    @Override
+    protected NamespaceObjectsService<V1LimitRange> getService() {
+        return limitRangeService;
     }
 
-    @GET
-    @Path("list")
-    public List<LimitRangeResponseList> find(@BeanParam @Valid NamespaceObjectRequestListFilter requestFilter) {
-        var cluster = clusterService.findById(requestFilter.getClusterId())
-                .orElseThrow();
-
-        var filter = new Filter(cluster)
-                .setNamespaces(requestFilter.getNamespaces())
-                .setSearch(requestFilter.getName());
-
-        var limitRanges = limitRangeService.list(filter);
-        return LIMIT_RANGE_MAPPER.mapResponseList(limitRanges);
+    @Override
+    protected Mapper<V1LimitRange, LimitRangeResponseList> getMapper() {
+        return LIMIT_RANGE_MAPPER;
     }
-
-    @GET
-    public V1LimitRange get(@BeanParam @Valid NamespaceObjectRequestFilter requestFilter) {
-        var cluster = clusterService.findById(requestFilter.getClusterId())
-                .orElseThrow();
-
-        return limitRangeService.read(cluster,
-                        requestFilter.getNamespace(),
-                        requestFilter.getName())
-                .orElseThrow(() -> new NotFoundException("LimitRange not found"));
-    }
-
 }

@@ -1,14 +1,15 @@
 package com.fluytcloud.kubernetes.transport.mapper;
 
-import com.fluytcloud.kubernetes.transport.response.ReplicaSetSimpleResponseList;
 import com.fluytcloud.kubernetes.transport.response.ReplicaSetResponseList;
+import com.fluytcloud.kubernetes.transport.response.ReplicaSetSimpleResponseList;
 import io.kubernetes.client.openapi.models.V1ReplicaSet;
 
 import java.util.List;
 import java.util.Objects;
 
-public class ReplicaSetMapper {
+public class ReplicaSetMapper implements Mapper<V1ReplicaSet, ReplicaSetResponseList> {
 
+    @Override
     public ReplicaSetResponseList mapResponseList(V1ReplicaSet replicaSet) {
         if (Objects.nonNull(replicaSet.getStatus())) {
             return new ReplicaSetResponseList(
@@ -30,6 +31,7 @@ public class ReplicaSetMapper {
         );
     }
 
+    @Override
     public List<ReplicaSetResponseList> mapResponseList(List<V1ReplicaSet> replicaSets) {
         return replicaSets.stream()
                 .map(this::mapResponseList)

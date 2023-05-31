@@ -8,8 +8,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-public class ConfigMapMapper {
+public class ConfigMapMapper implements Mapper<V1ConfigMap, ConfigMapResponseList> {
 
+    @Override
     public ConfigMapResponseList mapResponseList(V1ConfigMap configMap) {
         return new ConfigMapResponseList(
                 configMap.getMetadata().getName(),
@@ -30,6 +31,7 @@ public class ConfigMapMapper {
         return String.join(",", keysMap);
     }
 
+    @Override
     public List<ConfigMapResponseList> mapResponseList(List<V1ConfigMap> configMaps) {
         return configMaps.stream()
                 .map(this::mapResponseList)
