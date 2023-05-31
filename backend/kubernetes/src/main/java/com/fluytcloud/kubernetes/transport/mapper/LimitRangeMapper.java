@@ -5,8 +5,9 @@ import io.kubernetes.client.openapi.models.V1LimitRange;
 
 import java.util.List;
 
-public class LimitRangeMapper {
+public class LimitRangeMapper implements Mapper<V1LimitRange, LimitRangeResponseList> {
 
+    @Override
     public LimitRangeResponseList mapResponseList(V1LimitRange limitRange) {
         return new LimitRangeResponseList(
                 limitRange.getMetadata().getName(),
@@ -15,6 +16,7 @@ public class LimitRangeMapper {
         );
     }
 
+    @Override
     public List<LimitRangeResponseList> mapResponseList(List<V1LimitRange> limitRanges) {
         return limitRanges.stream()
                 .map(this::mapResponseList)

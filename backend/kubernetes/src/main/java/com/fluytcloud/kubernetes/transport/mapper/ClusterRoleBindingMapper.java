@@ -8,8 +8,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-public class ClusterRoleBindingMapper {
+public class ClusterRoleBindingMapper implements Mapper<V1ClusterRoleBinding, ClusterRoleBindingResponseList> {
 
+    @Override
     public ClusterRoleBindingResponseList mapResponseList(V1ClusterRoleBinding clusterRoleBinding) {
         return new ClusterRoleBindingResponseList(
                 clusterRoleBinding.getMetadata().getName(),
@@ -29,6 +30,7 @@ public class ClusterRoleBindingMapper {
                 .toList();
     }
 
+    @Override
     public List<ClusterRoleBindingResponseList> mapResponseList(List<V1ClusterRoleBinding> clusterRoleBindings) {
         return clusterRoleBindings.stream()
                 .map(this::mapResponseList)

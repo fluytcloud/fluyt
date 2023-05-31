@@ -11,8 +11,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-public class NodeMapper {
+public class NodeMapper implements Mapper<V1Node, NodeResponseList> {
 
+    @Override
     public NodeResponseList mapResponseList(V1Node node) {
         return new NodeResponseList(
                 node.getMetadata().getName(),
@@ -47,6 +48,7 @@ public class NodeMapper {
                 ).orElseGet(Collections::emptyList);
     }
 
+    @Override
     public List<NodeResponseList> mapResponseList(List<V1Node> nodes) {
         return nodes.stream()
                 .map(this::mapResponseList)

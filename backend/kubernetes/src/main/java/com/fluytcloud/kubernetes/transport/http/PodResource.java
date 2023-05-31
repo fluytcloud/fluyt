@@ -2,55 +2,41 @@ package com.fluytcloud.kubernetes.transport.http;
 
 import com.fluytcloud.kubernetes.entities.Filter;
 import com.fluytcloud.kubernetes.entities.OwnerReference;
-import com.fluytcloud.kubernetes.interactors.ClusterService;
+import com.fluytcloud.kubernetes.interactors.NamespaceObjectsService;
 import com.fluytcloud.kubernetes.interactors.PodService;
+import com.fluytcloud.kubernetes.transport.mapper.Mapper;
 import com.fluytcloud.kubernetes.transport.mapper.PodMapper;
-import com.fluytcloud.kubernetes.transport.request.NamespaceObjectRequestFilter;
 import com.fluytcloud.kubernetes.transport.request.NamespaceObjectRequestListFilter;
-import com.fluytcloud.kubernetes.transport.response.PodSimpleResponseList;
 import com.fluytcloud.kubernetes.transport.response.PodResponseList;
+import com.fluytcloud.kubernetes.transport.response.PodSimpleResponseList;
 import io.kubernetes.client.openapi.models.V1Pod;
 import io.quarkus.security.Authenticated;
-
+import jakarta.inject.Inject;
 import jakarta.validation.Valid;
-import jakarta.ws.rs.*;
-import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.BeanParam;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 @Path("/api/v1/kubernetes/pod")
 @Authenticated
-@Consumes(MediaType.APPLICATION_JSON)
-@Produces(MediaType.APPLICATION_JSON)
-public class PodResource {
-
-    private final PodService podService;
-    private final ClusterService clusterService;
+public class PodResource extends NamespaceObjectsResource<V1Pod, PodResponseList> {
 
     private static final PodMapper POD_MAPPER = new PodMapper();
 
-    public PodResource(PodService podService, ClusterService clusterService) {
-        this.podService = podService;
-        this.clusterService = clusterService;
+    @Inject
+    protected PodService podService;
+
+    @Override
+    protected NamespaceObjectsService<V1Pod> getService() {
+        return podService;
     }
 
-    @GET
-    @Path("list")
-    public List<PodResponseList> find(@BeanParam @Valid NamespaceObjectRequestListFilter requestFilter) {
-        var cluster = clusterService.findById(requestFilter.getClusterId())
-                .orElseThrow();
-        var filter = new Filter(cluster).setNamespaces(requestFilter.getNamespaces()).setSearch(requestFilter.getName());
-        var pods = podService.list(filter);
-        return POD_MAPPER.mapResponseList(pods);
-    }
-
-    @GET
-    public V1Pod get(@BeanParam @Valid NamespaceObjectRequestFilter podFilter) {
-        var cluster = clusterService.findById(podFilter.getClusterId())
-                .orElseThrow();
-        return podService.read(cluster, podFilter.getNamespace(), podFilter.getName())
-                .orElseThrow(() -> new NotFoundException("Pod not found"));
+    @Override
+    protected Mapper<V1Pod, PodResponseList> getMapper() {
+        return POD_MAPPER;
     }
 
     @GET

@@ -1,59 +1,31 @@
 package com.fluytcloud.kubernetes.transport.http;
 
-import com.fluytcloud.kubernetes.entities.Filter;
-import com.fluytcloud.kubernetes.interactors.ClusterService;
+import com.fluytcloud.kubernetes.interactors.NamespaceObjectsService;
 import com.fluytcloud.kubernetes.interactors.SecretService;
+import com.fluytcloud.kubernetes.transport.mapper.Mapper;
 import com.fluytcloud.kubernetes.transport.mapper.SecretMapper;
-import com.fluytcloud.kubernetes.transport.request.NamespaceObjectRequestFilter;
-import com.fluytcloud.kubernetes.transport.request.NamespaceObjectRequestListFilter;
 import com.fluytcloud.kubernetes.transport.response.SecretResponseList;
 import io.kubernetes.client.openapi.models.V1Secret;
 import io.quarkus.security.Authenticated;
-import jakarta.validation.Valid;
-import jakarta.ws.rs.*;
-import jakarta.ws.rs.core.MediaType;
-
-import java.util.List;
+import jakarta.inject.Inject;
+import jakarta.ws.rs.Path;
 
 @Path("/api/v1/kubernetes/secret")
 @Authenticated
-@Consumes(MediaType.APPLICATION_JSON)
-@Produces(MediaType.APPLICATION_JSON)
-public class SecretResource {
+public class SecretResource extends NamespaceObjectsResource<V1Secret, SecretResponseList> {
 
     private static final SecretMapper SECRET_MAPPER = new SecretMapper();
 
-    private final SecretService secretService;
-    private final ClusterService clusterService;
+    @Inject
+    protected SecretService secretService;
 
-    public SecretResource(SecretService secretService, ClusterService clusterService) {
-        this.secretService = secretService;
-        this.clusterService = clusterService;
+    @Override
+    protected NamespaceObjectsService<V1Secret> getService() {
+        return secretService;
     }
 
-    @GET
-    @Path("list")
-    public List<SecretResponseList> find(@BeanParam @Valid NamespaceObjectRequestListFilter requestFilter) {
-        var cluster = clusterService.findById(requestFilter.getClusterId())
-                .orElseThrow();
-
-        var filter = new Filter(cluster)
-                .setNamespaces(requestFilter.getNamespaces())
-                .setSearch(requestFilter.getName());
-
-        var secrets = secretService.list(filter);
-        return SECRET_MAPPER.mapResponseList(secrets);
+    @Override
+    protected Mapper<V1Secret, SecretResponseList> getMapper() {
+        return SECRET_MAPPER;
     }
-
-    @GET
-    public V1Secret get(@BeanParam @Valid NamespaceObjectRequestFilter requestFilter) {
-        var cluster = clusterService.findById(requestFilter.getClusterId())
-                .orElseThrow();
-
-        return secretService.read(cluster,
-                        requestFilter.getNamespace(),
-                        requestFilter.getName())
-                .orElseThrow(() -> new NotFoundException("Secret not found"));
-    }
-
 }
