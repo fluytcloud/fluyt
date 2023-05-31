@@ -39,10 +39,7 @@ export class KubernetesComponentsActionsComponent {
     const filter = new KubernetesSupportNamespaceObjectFilter(Number(this.clusterId), this.object.namespace, this.object.name);
 
     this.confirmationService.confirm({
-      header: "Confirmation",
       message: `Are you sure you want to delete '${this.object.name}' ?`,
-      rejectLabel: "No",
-      acceptLabel: "Yes",
       closeOnEscape: false,
       accept: () => {
         this.crudService.delete(filter).subscribe({
