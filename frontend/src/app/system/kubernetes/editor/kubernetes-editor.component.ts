@@ -28,7 +28,7 @@ export class KubernetesEditorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dialogRef.updateSize('55vw');
+    this.dialogRef.updateSize('80vw', '80vh');
     this.data.service.getYaml(this.data.filter)
       .subscribe(r => this.codemirrorValue = r);
   }

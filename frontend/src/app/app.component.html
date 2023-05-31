@@ -19,5 +19,11 @@
 
 </app-loader>
 <p-toast></p-toast>
-<p-confirmDialog header="Confirmação"
-                 icon="pi pi-exclamation-triangle"></p-confirmDialog>
+<p-confirmDialog #cd
+                 header="Confirmation"
+                 icon="pi pi-exclamation-triangle">
+  <ng-template pTemplate="footer">
+    <button (click)="cd.reject()" mat-button>No</button>
+    <button (click)="cd.accept()" mat-button>Yes</button>
+  </ng-template>
+</p-confirmDialog>
