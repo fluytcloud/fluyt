@@ -12,19 +12,25 @@ import static com.fluytcloud.kubernetes.transport.mapper.KubernetesMapper.format
 
 public class EventMapper implements Mapper<CoreV1Event, EventResponseList> {
 
+    @Override
+    public EventResponseList mapResponseList(CoreV1Event source) {
+        return new EventResponseList(
+                source.getType(),
+                source.getMessage(),
+                source.getMetadata().getNamespace(),
+                getInvolvedObject(source),
+                getSource(source),
+                source.getCount(),
+                formatAge(source.getMetadata().getCreationTimestamp()),
+                formatAge(source.getLastTimestamp()),
+                source.getMetadata().getName()
+        );
+    }
+
+    @Override
     public List<EventResponseList> mapResponseList(List<CoreV1Event> events) {
         return events.stream()
-                .map(it -> new EventResponseList(
-                        it.getType(),
-                        it.getMessage(),
-                        it.getMetadata().getNamespace(),
-                        getInvolvedObject(it),
-                        getSource(it),
-                        it.getCount(),
-                        formatAge(it.getMetadata().getCreationTimestamp()),
-                        formatAge(it.getLastTimestamp()),
-                        it.getMetadata().getName()
-                ))
+                .map(this::mapResponseList)
                 .toList();
     }
 

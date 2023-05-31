@@ -29,6 +29,8 @@
       <td>{{event.lastSeen}}</td>
       <td>
         <app-kubernetes-components-action
+          [disableEdit]="true"
+          [disableDelete]="true"
           [object]="event"
           [link]="'/kubernetes/events/detail'"
           [crudService]="crudService">

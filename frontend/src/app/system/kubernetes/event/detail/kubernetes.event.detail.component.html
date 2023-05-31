@@ -38,19 +38,19 @@
           <app-form-container label="source"
                               [value]="value?.source?.host
                                 ? value?.source.component + ' ' + value?.source?.host
-                                : value?.source.component">
+                                : value?.source.component || '-'">
           </app-form-container>
 
           <app-form-container label="First Seen"
-                              [value]="value?.firstTimestamp | date:'dd/MM/yyyy HH:mm:ss'">
+                              [value]="value?.firstTimestamp | date:'dd/MM/yyyy HH:mm:ss' || '-'">
           </app-form-container>
 
           <app-form-container label="Last Seen"
-                              [value]="value?.lastTimestamp | date:'dd/MM/yyyy HH:mm:ss'">
+                              [value]="value?.lastTimestamp | date:'dd/MM/yyyy HH:mm:ss' || '-'">
           </app-form-container>
 
           <app-form-container label="Count"
-                              [value]="value?.count">
+                              [value]="value?.count?.toString() || '-'">
           </app-form-container>
 
           <app-form-container label="Type">

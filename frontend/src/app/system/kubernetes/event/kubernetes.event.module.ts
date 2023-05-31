@@ -15,6 +15,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {FormMultipleContainerModule} from "../../../components/form/multiple-container/form.multiple-container.module";
 import {KubernetesComponentsSimpleListModule} from "../components/list/simple/kubernetes.components.simple.list.module";
 import {TableModule} from "primeng/table";
+import {RouterLink} from "@angular/router";
 
 @NgModule({
   declarations: [
@@ -27,20 +28,21 @@ import {TableModule} from "primeng/table";
     KubernetesEventDetailComponent,
     KubernetesEventSimpleListComponent
   ],
-  imports: [
-    CommonModule,
-    MatExpansionModule,
-    FormContainerModule,
-    KubernetesComponentsActionsModule,
-    KubernetesComponentsListModule,
-    PipesDeploymentConditionModule,
-    TagModule,
-    LoaderModule,
-    MatButtonModule,
-    FormMultipleContainerModule,
-    KubernetesComponentsSimpleListModule,
-    TableModule
-  ],
+    imports: [
+        CommonModule,
+        MatExpansionModule,
+        FormContainerModule,
+        KubernetesComponentsActionsModule,
+        KubernetesComponentsListModule,
+        PipesDeploymentConditionModule,
+        TagModule,
+        LoaderModule,
+        MatButtonModule,
+        FormMultipleContainerModule,
+        KubernetesComponentsSimpleListModule,
+        TableModule,
+        RouterLink
+    ],
   providers: [
     KubernetesEventService
   ]
