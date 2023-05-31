@@ -35,9 +35,16 @@ export class KubernetesEditorComponent implements OnInit {
 
   apply(): void {
     this.data.service.edit(this.data.filter, this.codemirrorValue)
-      .subscribe(() => {
-        this.messageService.add({severity: 'success', summary: 'Success', detail: 'Changes were successfully applied'});
-        this.dialogRef.close();
+      .subscribe({
+        next: () => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Changes were successfully applied'
+          });
+          this.dialogRef.close();
+        },
+        error: err => this.messageService.add({severity: 'error', summary: 'Error', detail: err?.error.message})
       });
   }
 }
