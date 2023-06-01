@@ -17,7 +17,7 @@ import {TableModule} from "primeng/table";
 import {KubernetesWorkloadCronJobService} from "./kubernetes.workload.cron-job.service";
 import {KubernetesWorkloadCronJobListComponent} from "./list/kubernetes.workload.cron-job.list.component";
 import {KubernetesWorkloadCronJobDetailComponent} from "./detail/kubernetes.workload.cron-job.detail.component";
-import {KubernetesEventModule} from "../../events/kubernetes.event.module";
+import {KubernetesEventModule} from "../../event/kubernetes.event.module";
 import {KubernetesComponentsActionsModule} from "../../components/action/kubernetes.components.actions.module";
 
 @NgModule({

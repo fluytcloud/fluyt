@@ -18,7 +18,7 @@ import {KubernetesWorkloadJobListComponent} from "./list/kubernetes.workload.job
 import {KubernetesWorkloadJobDetailComponent} from "./detail/kubernetes.workload.job.detail.component";
 import {KubernetesWorkloadJobService} from "./kubernetes.workload.job.service";
 import {KubernetesWorkloadPodModule} from "../pod/kubernetes.workload.pod.module";
-import {KubernetesEventModule} from "../../events/kubernetes.event.module";
+import {KubernetesEventModule} from "../../event/kubernetes.event.module";
 import {KubernetesComponentsActionsModule} from "../../components/action/kubernetes.components.actions.module";
 
 @NgModule({

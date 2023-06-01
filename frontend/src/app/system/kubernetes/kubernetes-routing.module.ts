@@ -130,6 +130,8 @@ import {
 import {KubernetesNodeListComponent} from "./node/list/kubernetes.node.list.component";
 import {KubernetesNodeDetailComponent} from "./node/detail/kubernetes.node.detail.component";
 import {KubernetesWorkloadOverviewComponent} from "./workload/overview/kubernetes.workload.overview.component";
+import {KubernetesEventListComponent} from "./event/list/kubernetes.event.list.component";
+import {KubernetesEventDetailComponent} from "./event/detail/kubernetes.event.detail.component";
 
 
 const routes: Routes = [
@@ -157,6 +159,22 @@ const routes: Routes = [
     path: 'cluster/form/:id',
     canActivate: [AuthGuard],
     component: KubernetesClusterFormComponent,
+    data: {
+      roles: ['manager']
+    }
+  },
+  {
+    path: 'events',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesEventListComponent,
+    data: {
+      roles: ['manager']
+    }
+  },
+  {
+    path: 'events/detail',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesEventDetailComponent,
     data: {
       roles: ['manager']
     }

@@ -2,17 +2,17 @@
   <mat-icon>more_vert</mat-icon>
 </button>
 <mat-menu #menu="matMenu">
-  <a mat-menu-item
+  <a mat-menu-item *ngIf="!disableDetail"
      [routerLink]="[link]"
      [queryParams]="{name: object.name, namespace: object.namespace, cluster: clusterId}">
     <mat-icon>visibility</mat-icon>
     <span>Detail</span>
   </a>
-  <a (click)="edit()" mat-menu-item>
+  <a (click)="edit()" mat-menu-item *ngIf="!disableEdit">
     <mat-icon>mode_edit</mat-icon>
     <span>Edit</span>
   </a>
-  <a (click)="delete()" mat-menu-item>
+  <a (click)="delete()" mat-menu-item *ngIf="!disableDelete">
     <mat-icon>delete</mat-icon>
     <span>Delete</span>
   </a>

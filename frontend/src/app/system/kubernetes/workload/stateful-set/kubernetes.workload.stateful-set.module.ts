@@ -18,7 +18,7 @@ import {KubernetesWorkloadStatefulSetDetailComponent} from "./detail/kubernetes.
 import {KubernetesWorkloadStatefulSetService} from "./kubernetes.workload.stateful-set.service";
 import {KubernetesWorkloadStatefulSetListComponent} from "./list/kubernetes.workload.stateful-set.list.component";
 import {KubernetesWorkloadPodModule} from "../pod/kubernetes.workload.pod.module";
-import {KubernetesEventModule} from "../../events/kubernetes.event.module";
+import {KubernetesEventModule} from "../../event/kubernetes.event.module";
 import {KubernetesComponentsActionsModule} from "../../components/action/kubernetes.components.actions.module";
 
 @NgModule({

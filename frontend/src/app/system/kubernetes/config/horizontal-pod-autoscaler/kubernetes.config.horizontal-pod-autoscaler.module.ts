@@ -24,7 +24,7 @@ import {
   KubernetesConfigHorizontalPodAutoscalerDetailMetricComponent
 } from "./detail/metric/kubernetes.config.horizontal-pod-autoscaler.detail.metric.component";
 import {MatDividerModule} from "@angular/material/divider";
-import {KubernetesEventModule} from "../../events/kubernetes.event.module";
+import {KubernetesEventModule} from "../../event/kubernetes.event.module";
 import {KubernetesComponentsActionsModule} from "../../components/action/kubernetes.components.actions.module";
 
 @NgModule({

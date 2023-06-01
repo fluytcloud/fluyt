@@ -17,6 +17,12 @@ export class KubernetesComponentsActionsComponent {
 
   @Input() object!: any;
 
+  @Input() disableDetail = false;
+
+  @Input() disableEdit = false;
+
+  @Input() disableDelete = false;
+
   clusterId = sessionStorage.getItem("cluster");
 
   constructor(protected dialog: MatDialog,

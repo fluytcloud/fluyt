@@ -14,7 +14,7 @@ import {
 import {MatChipsModule} from "@angular/material/chips";
 import {TableModule} from "primeng/table";
 import {MatDividerModule} from "@angular/material/divider";
-import {KubernetesEventModule} from "../../events/kubernetes.event.module";
+import {KubernetesEventModule} from "../../event/kubernetes.event.module";
 import {KubernetesConfigLimitRangeService} from "./kubernetes.config.limit-range.service";
 import {KubernetesConfigLimitRangeListComponent} from "./list/kubernetes.config.limit-range.list.component";
 import {KubernetesConfigLimitRangeDetailComponent} from "./detail/kubernetes.config.limit-range.detail.component";
