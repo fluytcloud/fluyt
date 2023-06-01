@@ -1,33 +1,59 @@
 <div class="container">
-  <app-loader [show]="display">
-    <mat-card *ngIf="overview">
-      <div class="fc-form">
+  <mat-accordion class="example-headers-align" multi>
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Filter
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-kubernetes-search (filter)="load($event)" [showNamespace]="true"></app-kubernetes-search>
+    </mat-expansion-panel>
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Overview
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="fc-form" *ngIf="overview">
         <div class="row">
-          <div class="col-12 col-md-4 col-lg-3">
-            <app-kubernetes-workload-overview-chart [value]="overview.pods"></app-kubernetes-workload-overview-chart>
+          <div class="col-6 col-md-3 col-lg-2">
+            <app-kubernetes-workload-overview-chart
+              label="Pods"
+              [value]="overview.pods"></app-kubernetes-workload-overview-chart>
           </div>
-          <div class="col-12 col-md-4 col-lg-3">
-            <app-kubernetes-workload-overview-chart [value]="overview.deployments"></app-kubernetes-workload-overview-chart>
+          <div class="col-6 col-md-3 col-lg-2">
+            <app-kubernetes-workload-overview-chart
+              label="Deployments"
+              [value]="overview.deployments"></app-kubernetes-workload-overview-chart>
           </div>
-          <div class="col-12 col-md-4 col-lg-3">
-            <app-kubernetes-workload-overview-chart [value]="overview.daemonSets"></app-kubernetes-workload-overview-chart>
+          <div class="col-6 col-md-3 col-lg-2">
+            <app-kubernetes-workload-overview-chart
+              label="DaemonSets"
+              [value]="overview.daemonSets"></app-kubernetes-workload-overview-chart>
           </div>
-          <div class="col-12 col-md-4 col-lg-3">
-            <app-kubernetes-workload-overview-chart [value]="overview.statefulSets"></app-kubernetes-workload-overview-chart>
+          <div class="col-6 col-md-3 col-lg-2">
+            <app-kubernetes-workload-overview-chart
+              label="StatefulSets"
+              [value]="overview.statefulSets"></app-kubernetes-workload-overview-chart>
           </div>
-          <div class="col-12 col-md-4 col-lg-3">
-            <app-kubernetes-workload-overview-chart [value]="overview.replicaSets"></app-kubernetes-workload-overview-chart>
+          <div class="col-6 col-md-3 col-lg-2">
+            <app-kubernetes-workload-overview-chart
+              label="ReplicaSets"
+              [value]="overview.replicaSets"></app-kubernetes-workload-overview-chart>
           </div>
-          <div class="col-12 col-md-4 col-lg-3">
-            <app-kubernetes-workload-overview-chart [value]="overview.jobs"></app-kubernetes-workload-overview-chart>
+          <div class="col-6 col-md-3 col-lg-2">
+            <app-kubernetes-workload-overview-chart
+              label="Jobs"
+              [value]="overview.jobs"></app-kubernetes-workload-overview-chart>
           </div>
-          <div class="col-12 col-md-4 col-lg-3">
-            <app-kubernetes-workload-overview-chart [value]="overview.cronJobs"></app-kubernetes-workload-overview-chart>
+          <div class="col-6 col-md-3 col-lg-2">
+            <app-kubernetes-workload-overview-chart
+              label="CronJobs"
+              [value]="overview.cronJobs"></app-kubernetes-workload-overview-chart>
           </div>
         </div>
 
       </div>
-    </mat-card>
-
-  </app-loader>
+    </mat-expansion-panel>
+  </mat-accordion>
 </div>

@@ -10,7 +10,9 @@ export class QueryParams {
       const value = object[key];
       if (value) {
         if (Array.isArray(value)) {
-          params = params.append(key, value.join(","));
+          for (const valueElement of value) {
+            params = params.append(key, valueElement);
+          }
         } else {
           params = params.append(key, value);
         }

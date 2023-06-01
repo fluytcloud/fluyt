@@ -3,6 +3,7 @@ import {KubernetesWorkloadOverviewService} from "./kubernetes.workload.overview.
 import {KubernetesWorkloadOverview} from "./kubernetes.workload.overview";
 import {finalize} from "rxjs";
 import {HeaderService} from "../../../../components/header/header.service";
+import {KubernetesSearch} from "../../search/kubernetes.search";
 
 @Component({
   selector: 'app-kubernetes-workload-overview',
@@ -27,13 +28,15 @@ export class KubernetesWorkloadOverviewComponent implements OnInit {
         }
       ]
     });
+  }
 
-    const clusterId = sessionStorage.getItem("cluster")!;
-    this.kubernetesWorkloadOverviewService.get(+clusterId)
+  load(search: KubernetesSearch): void {
+    this.overview = undefined;
+    this.kubernetesWorkloadOverviewService.get(search)
       .pipe(finalize(() => this.display = true))
       .subscribe(overview => {
-      this.overview = overview;
-    });
+        this.overview = overview;
+      });
   }
 
 }

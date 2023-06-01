@@ -1,8 +1,9 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {KubernetesWorkloadOverview} from "./kubernetes.workload.overview";
 import {environment} from "../../../../../environments/environment";
+import {QueryParams} from "../../../../support/query.params";
+import {KubernetesSearch} from "../../search/kubernetes.search";
 
 @Injectable()
 export class KubernetesWorkloadOverviewService {
@@ -10,9 +11,10 @@ export class KubernetesWorkloadOverviewService {
   constructor(private http: HttpClient) {
   }
 
-  get(clusterId: number): Observable<KubernetesWorkloadOverview> {
-    const url = `${environment.system_v1}/kubernetes/overview?clusterId=${clusterId}`;
-    return this.http.get<KubernetesWorkloadOverview>(url);
+  get(filter: KubernetesSearch): Observable<any> {
+    const params = QueryParams.transform(filter);
+    const url = `${environment.system_v1}/kubernetes/overview`;
+    return this.http.get<any>(url, { params: params });
   }
 
 }
