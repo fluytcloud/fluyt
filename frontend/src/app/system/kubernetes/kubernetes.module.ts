@@ -54,6 +54,7 @@ import {KubernetesConfigSecretModule} from "./config/secret/kubernetes.config.se
 import {KubernetesConfigLimitRangeModule} from "./config/limit-range/kubernetes.config.limit-range.module";
 import {KubernetesNodeModule} from "./node/kubernetes.node.module";
 import {KubernetesEditorModule} from "./editor/kubernetes-editor.module";
+import {KubernetesWorkloadOverviewModule} from "./workload/overview/kubernetes.workload.overview.module";
 import {KubernetesEventModule} from "./event/kubernetes.event.module";
 
 @NgModule({
@@ -104,6 +105,7 @@ import {KubernetesEventModule} from "./event/kubernetes.event.module";
     KubernetesConfigSecretModule,
     KubernetesConfigLimitRangeModule,
     KubernetesNodeModule,
+    KubernetesWorkloadOverviewModule,
     KubernetesEventModule
   ],
   providers: [

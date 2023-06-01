@@ -12,7 +12,7 @@
     <mat-icon>mode_edit</mat-icon>
     <span>Edit</span>
   </a>
-  <a mat-menu-item *ngIf="!disableDelete">
+  <a (click)="delete()" mat-menu-item *ngIf="!disableDelete">
     <mat-icon>delete</mat-icon>
     <span>Delete</span>
   </a>
