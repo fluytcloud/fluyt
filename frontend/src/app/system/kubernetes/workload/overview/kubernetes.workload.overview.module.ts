@@ -8,6 +8,7 @@ import {ChartModule} from "primeng/chart";
 import {KubernetesWorkloadOverviewChartComponent} from "./chart/kubernetes.workload.overview.chart.component";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {KubernetesSearchModule} from "../../search/kubernetes.search.module";
+import {KubernetesEventModule} from "../../event/kubernetes.event.module";
 
 @NgModule({
   declarations: [
@@ -18,14 +19,15 @@ import {KubernetesSearchModule} from "../../search/kubernetes.search.module";
     KubernetesWorkloadOverviewComponent,
     KubernetesWorkloadOverviewChartComponent
   ],
-  imports: [
-    CommonModule,
-    LoaderModule,
-    MatCardModule,
-    ChartModule,
-    MatExpansionModule,
-    KubernetesSearchModule
-  ],
+    imports: [
+        CommonModule,
+        LoaderModule,
+        MatCardModule,
+        ChartModule,
+        MatExpansionModule,
+        KubernetesSearchModule,
+        KubernetesEventModule
+    ],
   providers: [
     KubernetesWorkloadOverviewService
   ]

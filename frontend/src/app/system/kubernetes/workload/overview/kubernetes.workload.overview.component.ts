@@ -14,6 +14,8 @@ export class KubernetesWorkloadOverviewComponent implements OnInit {
   overview?: KubernetesWorkloadOverview;
   display = false;
 
+  search?: KubernetesSearch;
+
   constructor(private kubernetesWorkloadOverviewService: KubernetesWorkloadOverviewService,
               public headerService: HeaderService) {
   }
@@ -31,6 +33,7 @@ export class KubernetesWorkloadOverviewComponent implements OnInit {
   }
 
   load(search: KubernetesSearch): void {
+    this.search = search;
     this.overview = undefined;
     this.kubernetesWorkloadOverviewService.get(search)
       .pipe(finalize(() => this.display = true))

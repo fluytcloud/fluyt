@@ -9,7 +9,8 @@ import {KubernetesWorkloadOverviewChart} from "../kubernetes.workload.overview.c
 export class KubernetesWorkloadOverviewChartComponent implements OnInit {
 
   options = {
-    cutout: '60%',
+    cutout: '80%',
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         position: 'bottom'
@@ -35,19 +36,21 @@ export class KubernetesWorkloadOverviewChartComponent implements OnInit {
   } as any;
 
   ngOnInit(): void {
-    const backgroundColors = this.value.map(it => this.colors[it.type]);
+    const charts = this.value.filter(it => it.total > 0);
+
+    const backgroundColors = charts.map(it => this.colors[it.type]);
 
     this.data = {
-      labels: this.value.map(it => it.type),
+      labels: charts.map(it => it.type),
       datasets: [
         {
-          data: this.value.map(it => it.total),
+          data: charts.map(it => it.total),
           backgroundColor: backgroundColors
         }
       ]
     };
 
-    this.sum = this.value.map(it => it.total)
+    this.sum = charts.map(it => it.total)
       .reduce((sum, current) => sum + current, 0);
 
   }
