@@ -35,6 +35,7 @@ import {
   KubernetesComponentsSimpleListModule
 } from "../../components/list/simple/kubernetes.components.simple.list.module";
 import {KubernetesComponentsActionsModule} from "../../components/action/kubernetes.components.actions.module";
+import {KubernetesEventModule} from "../../event/kubernetes.event.module";
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import {KubernetesComponentsActionsModule} from "../../components/action/kuberne
         MatDividerModule,
         KubernetesComponentsListModule,
         KubernetesComponentsSimpleListModule,
-        KubernetesComponentsActionsModule
+        KubernetesComponentsActionsModule,
+        KubernetesEventModule
     ],
   providers: [
     KubernetesWorkloadPodService

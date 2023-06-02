@@ -138,6 +138,14 @@
           </div>
         </div>
       </mat-expansion-panel>
+      <mat-expansion-panel [expanded]="true" class="mat-expansion-panel-spacing">
+        <mat-expansion-panel-header>
+          Events
+        </mat-expansion-panel-header>
+        <div class="fc-form">
+          <app-kubernetes-events-simple-list *ngIf="value" [filter]="filterSimpleList!"></app-kubernetes-events-simple-list>
+        </div>
+      </mat-expansion-panel>
     </mat-accordion>
   </app-loader>
 </div>
