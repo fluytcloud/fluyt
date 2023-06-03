@@ -25,22 +25,22 @@ To load all these services, you must have install these tools below on your mach
 docker compose up
 ```
 - ### Java 20
-  - If you're using intellij, check in `project struture / pratform settings` if you have jdk 20 already installed ![img.png](frontend/readme-images/img_5.png)
-  - Check in check in `project struture / project settings`  ![img_1.png](frontend/readme-images/img_1.png)
+  - If you're using intellij, check in `project struture / pratform settings` if you have jdk 20 already installed ![img.png](readme-images/img_5.png)
+  - Check in check in `project struture / project settings`  ![img_1.png](readme-images/img_1.png)
   - ATTENTION: IF YOU'RE USING THIS README TO RUN OR VIA TERMINAL. CHECK WHICH VERSION USED IN YOUR TERMINAL, LIKE DE IMAGE BELOW
-   ![img_4.png](frontend/readme-images/img_4.png)
+   ![img_4.png](readme-images/img_4.png)
 - ### Maven 3.8
   - (check it with mvn --version). If you're using Intelijj and you will run using this one, check if maven configurations is pointed to this maven version.
   - Click on `File -> Settings` and check if is the right version.
-  - ![img_2.png](frontend/readme-images/img_2.png)
+  - ![img_2.png](readme-images/img_2.png)
   - ATTENTION: IF YOU'RE USING THIS README TO RUN OR VIA TERMINAL. CHECK WHICH VERSION USED IN YOUR TERMINAL, LIKE DE IMAGE BELOW
-    ![img_3.png](frontend/readme-images/img_3.png)
+    ![img_3.png](readme-images/img_3.png)
 - ### Using Intellij:
   - ADD a maven command.
   - Put in `Run` `quarkus:dev`
   - Select `api` folder within backend project
   - enable EnvFile and look for this file in root path project
-![img.png](frontend/readme-images/img.png)
+![img.png](readme-images/img.png)
 
 To start development with minimal keycloak and application configuration, run the following commands to restore the databases:
 
@@ -123,6 +123,10 @@ To run tests for the frontend, run the following command in the frontend directo
 ```shell
 npm run test
 ```
+
+### Roadmap
+
+![img_4.png](readme-images/roadmap.png)
 
 ### License
 
