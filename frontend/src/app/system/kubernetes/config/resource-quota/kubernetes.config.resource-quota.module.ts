@@ -21,7 +21,9 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {
   KubernetesConfigResourceQuotaDetailQuotaComponents
 } from "./detail/quota/kubernetes.config.resource-quota.detail.quota.components";
-import {PipesResourceQuotaBytesModule} from "../../pipes/resource-quota/bytes/pipes.resource-quota.bytes.module";
+import {PipesBytesModule} from "../../../../pipes/bytes/pipes.bytes.module";
+import {MatChipsModule} from "@angular/material/chips";
+import {KubernetesComponentsActionsModule} from "../../components/action/kubernetes.components.actions.module";
 
 @NgModule({
   declarations: [
@@ -34,23 +36,25 @@ import {PipesResourceQuotaBytesModule} from "../../pipes/resource-quota/bytes/pi
     KubernetesConfigResourceQuotaDetailComponent,
     KubernetesConfigResourceQuotaDetailQuotaComponents
   ],
-  imports: [
-    CommonModule,
-    MatCardModule,
-    TableModule,
-    FormsModule,
-    MatMenuModule,
-    MatIconModule,
-    MatButtonModule,
-    RouterModule,
-    LoaderModule,
-    MatExpansionModule,
-    FormContainerModule,
-    FormMultipleContainerModule,
-    KubernetesComponentsListModule,
-    MatProgressBarModule,
-    PipesResourceQuotaBytesModule
-  ],
+    imports: [
+        CommonModule,
+        MatCardModule,
+        TableModule,
+        FormsModule,
+        MatMenuModule,
+        MatIconModule,
+        MatButtonModule,
+        RouterModule,
+        LoaderModule,
+        MatExpansionModule,
+        FormContainerModule,
+        FormMultipleContainerModule,
+        KubernetesComponentsListModule,
+        MatProgressBarModule,
+        MatChipsModule,
+        PipesBytesModule,
+        KubernetesComponentsActionsModule
+    ],
   providers: [
     KubernetesConfigResourceQuotaService
   ]

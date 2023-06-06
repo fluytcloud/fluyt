@@ -5,8 +5,9 @@ import io.kubernetes.client.openapi.models.V1ResourceQuota;
 
 import java.util.List;
 
-public class ResourceQuotaMapper {
+public class ResourceQuotaMapper implements Mapper<V1ResourceQuota, ResourceQuotaResponseList> {
 
+    @Override
     public ResourceQuotaResponseList mapResponseList(V1ResourceQuota resourceQuota) {
         return new ResourceQuotaResponseList(
                 resourceQuota.getMetadata().getName(),
@@ -15,6 +16,7 @@ public class ResourceQuotaMapper {
         );
     }
 
+    @Override
     public List<ResourceQuotaResponseList> mapResponseList(List<V1ResourceQuota> resourceQuotas) {
         return resourceQuotas.stream()
                 .map(this::mapResponseList)

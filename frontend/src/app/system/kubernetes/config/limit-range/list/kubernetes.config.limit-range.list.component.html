@@ -1,0 +1,24 @@
+<app-kubernetes-components-list name="LimitRanges" (filter)="load($event)" [values]="values" [loading]="loading">
+  <ng-template #header>
+    <tr>
+      <th>Namespace</th>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Actions</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-limitRange>
+    <tr>
+      <td>{{limitRange.namespace}}</td>
+      <td>{{limitRange.name}}</td>
+      <td>{{limitRange.age}}</td>
+      <td>
+        <app-kubernetes-components-action
+          [object]="limitRange"
+          [link]="'/kubernetes/limit-ranges/detail'"
+          [crudService]="crudService">
+        </app-kubernetes-components-action>
+      </td>
+    </tr>
+  </ng-template>
+</app-kubernetes-components-list>

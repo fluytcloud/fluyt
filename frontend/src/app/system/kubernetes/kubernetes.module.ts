@@ -40,6 +40,22 @@ import {KubernetesConfigResourceQuotaModule} from "./config/resource-quota/kuber
 import {
   KubernetesAccessControlClusterRoleModule
 } from "./access-control/cluster-role/kubernetes.access-control.cluster-role.module";
+import {
+  KubernetesAccessControlClusterRoleBindingModule
+} from "./access-control/cluster-role-binding/kubernetes.access-control.cluster-role-binding.module";
+import {
+  KubernetesStoragePersistentVolumeClaimModule
+} from "./storage/persistent-volume-claim/kubernetes.storage.persistent-volume-claim.module";
+import {
+  KubernetesStoragePersistentVolumeModule
+} from "./storage/persistent-volume/kubernetes.storage.persistent-volume.module";
+import {KubernetesStorageStorageClassModule} from "./storage/storage-class/kubernetes.storage.storage-class.module";
+import {KubernetesConfigSecretModule} from "./config/secret/kubernetes.config.secret.module";
+import {KubernetesConfigLimitRangeModule} from "./config/limit-range/kubernetes.config.limit-range.module";
+import {KubernetesNodeModule} from "./node/kubernetes.node.module";
+import {KubernetesEditorModule} from "./editor/kubernetes-editor.module";
+import {KubernetesWorkloadOverviewModule} from "./workload/overview/kubernetes.workload.overview.module";
+import {KubernetesEventModule} from "./event/kubernetes.event.module";
 
 @NgModule({
   declarations: [
@@ -63,6 +79,7 @@ import {
     KubernetesClusterModule,
     KubernetesRoutingModule,
     KubernetesTerminalModule,
+    KubernetesEditorModule,
     KubernetesConfigConfigMapModule,
     KubernetesWorkloadReplicaSetModule,
     KubernetesWorkloadStatefulSetModule,
@@ -80,7 +97,16 @@ import {
     KubernetesAccessControlRoleModule,
     KubernetesNetworkEndpointModule,
     KubernetesConfigResourceQuotaModule,
-    KubernetesAccessControlClusterRoleModule
+    KubernetesAccessControlClusterRoleModule,
+    KubernetesAccessControlClusterRoleBindingModule,
+    KubernetesStoragePersistentVolumeClaimModule,
+    KubernetesStoragePersistentVolumeModule,
+    KubernetesStorageStorageClassModule,
+    KubernetesConfigSecretModule,
+    KubernetesConfigLimitRangeModule,
+    KubernetesNodeModule,
+    KubernetesWorkloadOverviewModule,
+    KubernetesEventModule
   ],
   providers: [
     KubernetesClusterService,

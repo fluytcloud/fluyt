@@ -1,0 +1,34 @@
+<app-kubernetes-components-list name="ClusterRoleBindings"
+                                [showNamespace]="false"
+                                (filter)="load($event)"
+                                [values]="values"
+                                [loading]="loading">
+  <ng-template #header>
+    <tr>
+      <th>Name</th>
+      <th>Bindings</th>
+      <th>Age</th>
+      <th>Actions</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-clusterRoleBinding>
+    <tr>
+      <td>{{clusterRoleBinding.name}}</td>
+      <td>
+        <mat-chip-listbox aria-label="bindings" [selectable]="false">
+          <mat-chip-option *ngFor="let binding of clusterRoleBinding.bindings">
+            {{binding}}
+          </mat-chip-option>
+        </mat-chip-listbox>
+      </td>
+      <td>{{clusterRoleBinding.age}}</td>
+      <td>
+        <app-kubernetes-components-action
+          [object]="clusterRoleBinding"
+          [link]="'/kubernetes/cluster-role-bindings/detail'"
+          [crudService]="crudService">
+        </app-kubernetes-components-action>
+      </td>
+    </tr>
+  </ng-template>
+</app-kubernetes-components-list>

@@ -1,19 +1,44 @@
 package com.fluytcloud.kubernetes.transport.mapper;
 
-import com.fluytcloud.kubernetes.transport.response.EventSimpleResponseList;
 import com.fluytcloud.kubernetes.transport.response.EventResponseList;
+import com.fluytcloud.kubernetes.transport.response.EventSimpleResponseList;
 import io.kubernetes.client.openapi.models.CoreV1Event;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
-public class EventMapper {
+import static com.fluytcloud.kubernetes.transport.mapper.KubernetesMapper.formatAge;
 
+public class EventMapper implements Mapper<CoreV1Event, EventResponseList> {
+
+    @Override
+    public EventResponseList mapResponseList(CoreV1Event source) {
+        return new EventResponseList(
+                source.getType(),
+                source.getMessage(),
+                source.getMetadata().getNamespace(),
+                getInvolvedObject(source),
+                getSource(source),
+                source.getCount(),
+                formatAge(source.getMetadata().getCreationTimestamp()),
+                formatAge(source.getLastTimestamp()),
+                source.getMetadata().getName()
+        );
+    }
+
+    @Override
     public List<EventResponseList> mapResponseList(List<CoreV1Event> events) {
-        return events.stream().map(it -> new EventResponseList())
+        return events.stream()
+                .map(this::mapResponseList)
                 .toList();
     }
 
+    private String getInvolvedObject(CoreV1Event event) {
+        return Optional.ofNullable(event.getInvolvedObject())
+                .map(it -> event.getInvolvedObject().getKind() + ": " + event.getInvolvedObject().getName())
+                .orElse(null);
+    }
     public List<EventSimpleResponseList> mapSimpleResponseList(List<CoreV1Event> events) {
         return events.stream()
                 .map(event -> new EventSimpleResponseList(

@@ -7,8 +7,9 @@ import io.kubernetes.client.openapi.models.V1CronJobStatus;
 import java.util.List;
 import java.util.Objects;
 
-public class CronJobMapper {
+public class CronJobMapper implements Mapper<V1CronJob, CronJobResponseList> {
 
+    @Override
     public CronJobResponseList mapResponseList(V1CronJob cronJob) {
         return new CronJobResponseList(
                 cronJob.getMetadata().getName(),
@@ -35,6 +36,7 @@ public class CronJobMapper {
         return KubernetesMapper.formatAge(status.getLastScheduleTime());
     }
 
+    @Override
     public List<CronJobResponseList> mapResponseList(List<V1CronJob> cronJobs) {
         return cronJobs.stream()
                 .map(this::mapResponseList)

@@ -9,6 +9,7 @@ import {ActivatedRoute} from "@angular/router";
 export class KubernetesSearchComponent implements OnInit {
 
   @Input() showNamespace: boolean = true;
+  @Input() showSearch: boolean = true;
   @Output() filter = new EventEmitter<KubernetesSearch>;
 
   search?: KubernetesSearch;

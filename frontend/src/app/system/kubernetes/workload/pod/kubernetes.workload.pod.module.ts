@@ -34,6 +34,8 @@ import {KubernetesWorkloadPodSimpleListComponent} from "./simple/kubernetes.work
 import {
   KubernetesComponentsSimpleListModule
 } from "../../components/list/simple/kubernetes.components.simple.list.module";
+import {KubernetesComponentsActionsModule} from "../../components/action/kubernetes.components.actions.module";
+import {KubernetesEventModule} from "../../event/kubernetes.event.module";
 
 @NgModule({
   declarations: [
@@ -50,29 +52,31 @@ import {
     KubernetesWorkloadPodDetailVolumeComponent,
     KubernetesWorkloadPodSimpleListComponent
   ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    TableModule,
-    MatButtonModule,
-    MatIconModule,
-    MatMenuModule,
-    PipesPodSeverityModule,
-    FormContainerModule,
-    RouterModule,
-    LoaderModule,
-    FormMultipleContainerModule,
-    PipesPodContainerPortModule,
-    PipesPodContainerEnvModule,
-    PipesPodContainerMountModule,
-    PipesPodVolumeKindModule,
-    MatChipsModule,
-    MatExpansionModule,
-    MatCardModule,
-    MatDividerModule,
-    KubernetesComponentsListModule,
-    KubernetesComponentsSimpleListModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        TableModule,
+        MatButtonModule,
+        MatIconModule,
+        MatMenuModule,
+        PipesPodSeverityModule,
+        FormContainerModule,
+        RouterModule,
+        LoaderModule,
+        FormMultipleContainerModule,
+        PipesPodContainerPortModule,
+        PipesPodContainerEnvModule,
+        PipesPodContainerMountModule,
+        PipesPodVolumeKindModule,
+        MatChipsModule,
+        MatExpansionModule,
+        MatCardModule,
+        MatDividerModule,
+        KubernetesComponentsListModule,
+        KubernetesComponentsSimpleListModule,
+        KubernetesComponentsActionsModule,
+        KubernetesEventModule
+    ],
   providers: [
     KubernetesWorkloadPodService
   ]

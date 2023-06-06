@@ -18,6 +18,8 @@ import {
 import {CodemirrorModule} from "@ctrl/ngx-codemirror";
 import {FormsModule} from "@angular/forms";
 import {KubernetesComponentsListModule} from "../../components/list/kubernetes.components.list.module";
+import {MatChipsModule} from "@angular/material/chips";
+import {KubernetesComponentsActionsModule} from "../../components/action/kubernetes.components.actions.module";
 
 @NgModule({
   declarations: [
@@ -28,22 +30,24 @@ import {KubernetesComponentsListModule} from "../../components/list/kubernetes.c
     KubernetesConfigConfigMapListComponent,
     KubernetesConfigConfigMapDetailComponent
   ],
-  imports: [
-    CommonModule,
-    MatCardModule,
-    TableModule,
-    FormsModule,
-    MatMenuModule,
-    MatIconModule,
-    MatButtonModule,
-    RouterModule,
-    LoaderModule,
-    MatExpansionModule,
-    FormContainerModule,
-    FormMultipleContainerModule,
-    CodemirrorModule,
-    KubernetesComponentsListModule
-  ],
+    imports: [
+        CommonModule,
+        MatCardModule,
+        TableModule,
+        FormsModule,
+        MatMenuModule,
+        MatIconModule,
+        MatButtonModule,
+        RouterModule,
+        LoaderModule,
+        MatExpansionModule,
+        FormContainerModule,
+        FormMultipleContainerModule,
+        CodemirrorModule,
+        MatChipsModule,
+        KubernetesComponentsListModule,
+        KubernetesComponentsActionsModule
+    ],
   providers: [
     KubernetesConfigConfigMapService
   ]

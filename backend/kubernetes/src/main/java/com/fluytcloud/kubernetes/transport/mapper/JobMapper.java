@@ -8,8 +8,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-public class JobMapper {
+public class JobMapper implements Mapper<V1Job, JobResponseList> {
 
+    @Override
     public JobResponseList mapResponseList(V1Job cronJob) {
         var status = Optional.ofNullable(cronJob.getStatus());
 
@@ -35,6 +36,7 @@ public class JobMapper {
                 .orElse(Collections.emptyList());
     }
 
+    @Override
     public List<JobResponseList> mapResponseList(List<V1Job> jobs) {
         return jobs.stream()
                 .map(this::mapResponseList)

@@ -18,6 +18,7 @@ import {MatChipsModule} from "@angular/material/chips";
 import {
   KubernetesNetworkServiceDetailConnectionComponent
 } from "./detail/connection/kubernetes.network.service.detail.connection.component";
+import {KubernetesComponentsActionsModule} from "../../components/action/kubernetes.components.actions.module";
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import {
         FormContainerModule,
         FormMultipleContainerModule,
         MatChipsModule,
+        KubernetesComponentsActionsModule,
     ],
   providers: [
     KubernetesNetworkServiceService

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
   <app-loader [show]="display">
     <mat-accordion class="example-headers-align" multi>
       <mat-expansion-panel [hideToggle]="true" [expanded]="true">
@@ -136,6 +136,14 @@
             <app-kubernetes-workload-pod-detail-volume [volume]="volume">
             </app-kubernetes-workload-pod-detail-volume>
           </div>
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel [expanded]="true" class="mat-expansion-panel-spacing">
+        <mat-expansion-panel-header>
+          Events
+        </mat-expansion-panel-header>
+        <div class="fc-form">
+          <app-kubernetes-events-simple-list *ngIf="value" [filter]="filterSimpleList!"></app-kubernetes-events-simple-list>
         </div>
       </mat-expansion-panel>
     </mat-accordion>

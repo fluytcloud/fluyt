@@ -18,7 +18,8 @@ import {KubernetesWorkloadJobListComponent} from "./list/kubernetes.workload.job
 import {KubernetesWorkloadJobDetailComponent} from "./detail/kubernetes.workload.job.detail.component";
 import {KubernetesWorkloadJobService} from "./kubernetes.workload.job.service";
 import {KubernetesWorkloadPodModule} from "../pod/kubernetes.workload.pod.module";
-import {KubernetesEventModule} from "../../events/kubernetes.event.module";
+import {KubernetesEventModule} from "../../event/kubernetes.event.module";
+import {KubernetesComponentsActionsModule} from "../../components/action/kubernetes.components.actions.module";
 
 @NgModule({
   declarations: [
@@ -29,25 +30,26 @@ import {KubernetesEventModule} from "../../events/kubernetes.event.module";
     KubernetesWorkloadJobListComponent,
     KubernetesWorkloadJobDetailComponent
   ],
-  imports: [
-    CommonModule,
-    KubernetesComponentsListModule,
-    MatMenuModule,
-    MatButtonModule,
-    MatIconModule,
-    RouterModule,
-    LoaderModule,
-    MatExpansionModule,
-    FormContainerModule,
-    FormMultipleContainerModule,
-    DatePipe,
-    MatChipsModule,
-    KeyValuePipe,
-    PipesReplicaSetReplicasModule,
-    TableModule,
-    KubernetesWorkloadPodModule,
-    KubernetesEventModule
-  ],
+    imports: [
+        CommonModule,
+        KubernetesComponentsListModule,
+        MatMenuModule,
+        MatButtonModule,
+        MatIconModule,
+        RouterModule,
+        LoaderModule,
+        MatExpansionModule,
+        FormContainerModule,
+        FormMultipleContainerModule,
+        DatePipe,
+        MatChipsModule,
+        KeyValuePipe,
+        PipesReplicaSetReplicasModule,
+        TableModule,
+        KubernetesWorkloadPodModule,
+        KubernetesEventModule,
+        KubernetesComponentsActionsModule
+    ],
   providers: [
     KubernetesWorkloadJobService
   ]

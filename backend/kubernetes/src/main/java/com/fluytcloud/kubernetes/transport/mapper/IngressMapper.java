@@ -13,8 +13,9 @@ import java.util.stream.Collectors;
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 
-public class IngressMapper {
+public class IngressMapper implements Mapper<V1Ingress, IngressResponseLIst> {
 
+    @Override
     public IngressResponseLIst mapResponseList(V1Ingress ingress) {
         return new IngressResponseLIst(
                 ingress.getMetadata().getName(),
@@ -83,6 +84,7 @@ public class IngressMapper {
                 ).toList();
     }
 
+    @Override
     public List<IngressResponseLIst> mapResponseList(List<V1Ingress> ingresses) {
         return ingresses.stream()
                 .map(this::mapResponseList)

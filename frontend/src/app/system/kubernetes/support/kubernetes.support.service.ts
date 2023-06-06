@@ -1,4 +1,4 @@
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {KubernetesSearch} from "../search/kubernetes.search";
 import {Observable} from "rxjs";
 import {QueryParams} from "../../../support/query.params";
@@ -25,10 +25,28 @@ export abstract class KubernetesSupportService<T> {
     return this.http.get<any>(this.getUrl(), { params: params });
   }
 
+  getYaml(filter: KubernetesSupportNamespaceObjectFilter): Observable<any> {
+    const params = QueryParams.transform(filter);
+    const headers = new HttpHeaders().set('Content-Type', 'application/x-yaml');
+    // @ts-ignore
+    return this.http.get<any>(this.getUrl(), {params, headers, responseType: 'text'});
+  }
+
+  edit(filter: KubernetesSupportNamespaceObjectFilter, yaml: string): Observable<any> {
+    const params = QueryParams.transform(filter);
+    const headers = new HttpHeaders().set('Content-Type', 'application/x-yaml');
+    // @ts-ignore
+    return this.http.put<any>(this.getUrl(), yaml, {params, headers, responseType: 'text'});
+  }
+
   findSimple(filter: KubernetesSearch): Observable<any[]> {
     const params = QueryParams.transform(filter);
     const url = `${this.getUrl()}/simple/list`;
     return this.http.get<any[]>(url, { params: params });
   }
 
+  delete(filter: KubernetesSearch): Observable<void> {
+    const params = QueryParams.transform(filter);
+    return this.http.delete<void>(this.getUrl(), {params: params});
+  }
 }

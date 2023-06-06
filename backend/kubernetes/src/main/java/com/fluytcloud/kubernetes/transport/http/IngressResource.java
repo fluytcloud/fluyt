@@ -1,52 +1,31 @@
 package com.fluytcloud.kubernetes.transport.http;
 
-import com.fluytcloud.kubernetes.entities.Filter;
-import com.fluytcloud.kubernetes.interactors.ClusterService;
 import com.fluytcloud.kubernetes.interactors.IngressService;
+import com.fluytcloud.kubernetes.interactors.NamespaceObjectsService;
 import com.fluytcloud.kubernetes.transport.mapper.IngressMapper;
-import com.fluytcloud.kubernetes.transport.request.NamespaceObjectRequestFilter;
-import com.fluytcloud.kubernetes.transport.request.NamespaceObjectRequestListFilter;
+import com.fluytcloud.kubernetes.transport.mapper.Mapper;
 import com.fluytcloud.kubernetes.transport.response.IngressResponseLIst;
 import io.kubernetes.client.openapi.models.V1Ingress;
 import io.quarkus.security.Authenticated;
-
-import jakarta.validation.Valid;
-import jakarta.ws.rs.*;
-import jakarta.ws.rs.core.MediaType;
-import java.util.List;
+import jakarta.inject.Inject;
+import jakarta.ws.rs.Path;
 
 @Path("/api/v1/kubernetes/ingress")
 @Authenticated
-@Consumes(MediaType.APPLICATION_JSON)
-@Produces(MediaType.APPLICATION_JSON)
-public class IngressResource {
-
-    private final IngressService ingressService;
-    private final ClusterService clusterService;
+public class IngressResource extends NamespaceObjectsResource<V1Ingress, IngressResponseLIst> {
 
     private static final IngressMapper INGRESS_MAPPER = new IngressMapper();
 
-    public IngressResource(IngressService ingressService, ClusterService clusterService) {
-        this.ingressService = ingressService;
-        this.clusterService = clusterService;
+    @Inject
+    protected IngressService ingressService;
+
+    @Override
+    protected NamespaceObjectsService<V1Ingress> getService() {
+        return ingressService;
     }
 
-    @GET
-    @Path("list")
-    public List<IngressResponseLIst> find(@BeanParam @Valid NamespaceObjectRequestListFilter requestFilter) {
-        var cluster = clusterService.findById(requestFilter.getClusterId())
-                .orElseThrow();
-        var filter = new Filter(cluster).setNamespaces(requestFilter.getNamespaces()).setSearch(requestFilter.getName());
-        var ingresses = ingressService.list(filter);
-        return INGRESS_MAPPER.mapResponseList(ingresses);
+    @Override
+    protected Mapper<V1Ingress, IngressResponseLIst> getMapper() {
+        return INGRESS_MAPPER;
     }
-
-    @GET
-    public V1Ingress get(@BeanParam @Valid NamespaceObjectRequestFilter podFilter) {
-        var cluster = clusterService.findById(podFilter.getClusterId())
-                .orElseThrow();
-        return ingressService.read(cluster, podFilter.getNamespace(), podFilter.getName())
-                .orElseThrow(() -> new NotFoundException("Ingress not found"));
-    }
-
 }
