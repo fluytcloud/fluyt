@@ -46,6 +46,7 @@ public abstract class CrudRepositoryImpl<T, M, ID> implements CrudRepository<T, 
     @Override
     public T update(ID id, T object) {
         var model = getMapper().mapToModel(object);
+        model = beforeUpdate(id, model);
         model = getJpaRepository().save(model);
         return getMapper().mapToEntity(model);
     }
@@ -63,5 +64,9 @@ public abstract class CrudRepositoryImpl<T, M, ID> implements CrudRepository<T, 
     @Override
     public List<T> search(String search) {
         throw new UnsupportedOperationException("search");
+    }
+
+    protected M beforeUpdate(ID id, M model) {
+        return model;
     }
 }

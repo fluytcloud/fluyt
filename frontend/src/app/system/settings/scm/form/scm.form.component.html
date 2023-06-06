@@ -1,0 +1,58 @@
+<div class="container">
+  <app-loader [show]="display">
+    <mat-card>
+      <div class="fc-form" [formGroup]="form">
+        <div class="fc-form-actions-container">
+          <button mat-raised-button routerLink="/settings/scm">Back</button>
+          <button mat-raised-button (click)="reset()">New</button>
+          <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="save()">Save</button>
+        </div>
+
+        <app-form-container label="Provider"
+                            inputId="type"
+                            [required]="true"
+                            [isNotValid]="isNotValid('type')">
+          <p-dropdown [options]="types"
+                      formControlName="type"
+                      placeholder="Choose"
+                      optionLabel="label"
+                      optionValue="value"
+                      [showClear]="true"></p-dropdown>
+        </app-form-container>
+
+        <app-form-container label="Name"
+                            inputId="name"
+                            [required]="true"
+                            [isNotValid]="isNotValid('name')">
+          <input id="name" formControlName="name" type="text" pInputText maxlength="100"/>
+        </app-form-container>
+
+        <app-form-container label="Username"
+                            inputId="username"
+                            [required]="true"
+                            [isNotValid]="isNotValid('username')">
+          <input id="username" formControlName="username" type="text" pInputText maxlength="100"/>
+        </app-form-container>
+
+        <app-form-container label="Token"
+                            inputId="token"
+                            [description]="!!getValue('id') ? 'Não é necessário informar novamente quando estiver alterando, será mantido o antigo.' : ''"
+                            [required]="true"
+                            [isNotValid]="isNotValid('token')">
+          <p-password id="token"
+                      inputId="token"
+                      formControlName="token"
+                      [feedback]="false"></p-password>
+        </app-form-container>
+
+        <app-form-container label="Organization"
+                            inputId="organization"
+                            description="Informe caso deseje utilizar uma organização"
+                            [isNotValid]="isNotValid('organization')">
+          <input id="organization" formControlName="organization" type="text" pInputText maxlength="100"/>
+        </app-form-container>
+      </div>
+
+    </mat-card>
+  </app-loader>
+</div>

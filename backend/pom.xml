@@ -18,6 +18,8 @@
     <module>support</module>
     <module>core</module>
     <module>kubernetes</module>
+    <module>scm</module>
+    <module>catalog</module>
   </modules>
 
   <properties>

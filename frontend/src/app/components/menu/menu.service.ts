@@ -38,6 +38,7 @@ export class MenuService {
   private getManagerMenu(): Menu[] {
     return [
       new Menu("home", "Página inicial", "home"),
+      this.getCatalogMenu(),
       this.getKubernetesMenu(),
       this.getSettingsMenu(),
       new Menu("support", "Suporte", "headset_mic")
@@ -47,10 +48,22 @@ export class MenuService {
   private getUserMenu(): Menu[] {
     return [
       new Menu("home", "Página inicial", "home"),
+      this.getCatalogMenu(),
       this.getKubernetesMenu(),
       this.getSettingsMenu(),
       new Menu("support", "Suporte", "headset_mic")
     ];
+  }
+
+  private getCatalogMenu(): Menu {
+    const reports = new Menu("catalog", "Catalog", "apps");
+
+    reports.addChildren("Templates", [
+      new Menu("generate", "Criar projeto"),
+      new Menu("template", "Cadastro")
+    ]);
+
+    return reports;
   }
 
   private getKubernetesMenu(): Menu {
@@ -116,6 +129,10 @@ export class MenuService {
 
     settings.addChildren("Empresa", [
       new Menu("company", "Filiais")
+    ]);
+
+    settings.addChildren("SCM", [
+      new Menu("scm", "Provedores Git")
     ]);
 
     return settings;
