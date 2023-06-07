@@ -21,3 +21,12 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice.  To 
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+## Publish in GitHub  Pages
+
+Run `ng build --prod --output-path docs --base-href /fluyt-site/` and commit de changes.
+
+
+## TODO
+  [] - Remover componentes que não estão sendo utilizados.
