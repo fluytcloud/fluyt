@@ -54,6 +54,6 @@ jobs:
         env:
           CONTAINER_BUILD: true
           CONTAINER_PUSH: true
-          REGISTRY_USERNAME: ${{secrets.DOCKERHUB_USERNAME}}
+          REGISTRY_USERNAME: fluytcloud
           REGISTRY_TOKEN: ${{secrets.DOCKERHUB_TOKEN}}
         run: mvn package
