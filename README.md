@@ -24,8 +24,8 @@ To load all these services, you must have install these tools below on your mach
 ```shell
 docker compose up
 ```
-- ### Java 20
-  - If you're using intellij, check in `project struture / pratform settings` if you have jdk 20 already installed ![img.png](readme-images/img_5.png)
+- ### Java 17
+  - If you're using intellij, check in `project struture / pratform settings` if you have jdk 17 already installed ![img.png](readme-images/img_5.png)
   - Check in check in `project struture / project settings`  ![img_1.png](readme-images/img_1.png)
   - ATTENTION: IF YOU'RE USING THIS README TO RUN OR VIA TERMINAL. CHECK WHICH VERSION USED IN YOUR TERMINAL, LIKE DE IMAGE BELOW
    ![img_4.png](readme-images/img_4.png)
@@ -66,7 +66,7 @@ docker exec -i postgres-keycloak /usr/bin/pg_dumpall -U root > postgres-keycloak
 docker exec -i postgres-app /usr/bin/pg_dumpall -U root > postgres-app-backup.sql
 ```
 
-To run the backend and frontend application, you need to have Java 20 and Node.js 17+ installed on your machine.
+To run the backend and frontend application, you need to have Java 17 and Node.js 17+ installed on your machine.
 # BACKEND
 ### Installing Backend Dependencies
 
