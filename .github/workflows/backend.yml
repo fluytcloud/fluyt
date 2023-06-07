@@ -1,0 +1,52 @@
+name: Java CI with Maven
+
+on:
+  push:
+    branches: [ master ]
+
+defaults:
+  run:
+    working-directory: backend/api
+
+jobs:
+
+  compile:
+    runs-on: ubuntu-latest
+    name: Compile
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 20
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: 20
+      - name: Compile code
+        run: mvn -B compile
+
+  test:
+    runs-on: ubuntu-latest
+    name: Tests
+    needs: compile
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 20
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: 20
+      - name: Run unit tests
+        run: mvn -B test
+
+  build:
+    runs-on: ubuntu-latest
+    name: Build and Deliver
+    needs: test
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 20
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: 20
+      - name: Build Project, create docker image and send image to dockerhub
+        run: mvn package -Dquarkus.container-image.push=true -Dquarkus.jib.base-registry-username=${{secrets.DOCKERHUB_USERNAME}} -Dquarkus.jib.base-registry-password=${{secrets.DOCKERHUB_TOKEN}}
