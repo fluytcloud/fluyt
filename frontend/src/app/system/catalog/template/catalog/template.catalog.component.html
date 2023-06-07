@@ -1,0 +1,31 @@
+<div class="container">
+  <app-loader [show]="display">
+    <mat-card *ngIf="catalogs">
+      <div class="fc-form">
+        <div class="fc-form-header">
+          <mat-card-header>
+            <mat-card-title>Select a template to generate</mat-card-title>
+            <mat-card-subtitle>To generate new project you must select a template</mat-card-subtitle>
+          </mat-card-header>
+
+        </div>
+
+        <div class="container">
+          <div class="row">
+            <div *ngFor="let catalog of catalogs.content"
+                 (click)="select(catalog)"
+                 class="col-12 col-sm-6 col-lg-4">
+              <div pRipple class="catalog-container">{{catalog.name}}</div>
+            </div>
+          </div>
+        </div>
+
+        <p-paginator (onPageChange)="load($event)"
+                     [first]="first"
+                     [rows]="rows"
+                     [totalRecords]="catalogs.totalElements"
+                     [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+      </div>
+    </mat-card>
+  </app-loader>
+</div>

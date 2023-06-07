@@ -1,0 +1,19 @@
+.catalog-container {
+  border: 1px solid #CCC;
+  border-radius: 5px;
+  box-shadow: 0 0 10px 1px #CCC;
+  box-sizing: border-box;
+  padding: 4rem;
+  text-align: center;
+  transition: background-color 400ms linear;
+  cursor: pointer;
+  text-transform: uppercase;
+  user-select: none;
+
+  &:hover {
+    background-color: #CCC;
+  }
+}
+.row {
+  margin: 3rem 0;
+}
