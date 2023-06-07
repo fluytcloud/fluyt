@@ -55,5 +55,5 @@ jobs:
           CONTAINER_BUILD: true
           CONTAINER_PUSH: true
           REGISTRY_USERNAME: fluytcloud
-          REGISTRY_TOKEN: ${{secrets.DOCKERHUB_TOKEN}}
+          REGISTRY_TOKEN: dckr_pat_0GdJfL36No0MeNn1hB2gdSlQIDY
         run: mvn package
