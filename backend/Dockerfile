@@ -7,6 +7,7 @@ COPY --chown=185 api/target/quarkus-app/*.jar /deployments/
 COPY --chown=185 api/target/quarkus-app/app/ /deployments/app/
 COPY --chown=185 api/target/quarkus-app/quarkus/ /deployments/quarkus/
 
+
 EXPOSE 8080
 USER 185
 ENV AB_JOLOKIA_OFF=""
