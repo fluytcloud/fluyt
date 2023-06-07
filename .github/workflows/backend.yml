@@ -50,7 +50,7 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: 17
-      - name: Build Project, create docker image and send image to dockerhub
+      - name: Build Project, create docker image and push image to dockerhub
         env:
           CONTAINER_BUILD: true
           CONTAINER_PUSH: true
