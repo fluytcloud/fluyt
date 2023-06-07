@@ -29,9 +29,7 @@ export class FluytVerticalNavigationAsideItemComponent implements OnChanges, OnI
     private _fluytVerticalNavigationComponent: FluytVerticalNavigationComponent;
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
-    /**
-     * Constructor
-     */
+    
     constructor(
         private _changeDetectorRef: ChangeDetectorRef,
         private _router: Router,
@@ -40,15 +38,9 @@ export class FluytVerticalNavigationAsideItemComponent implements OnChanges, OnI
     {
     }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Lifecycle hooks
-    // -----------------------------------------------------------------------------------------------------
+    
 
-    /**
-     * On changes
-     *
-     * @param changes
-     */
+    
     ngOnChanges(changes: SimpleChanges): void
     {
         // Active item id
@@ -59,9 +51,7 @@ export class FluytVerticalNavigationAsideItemComponent implements OnChanges, OnI
         }
     }
 
-    /**
-     * On init
-     */
+    
     ngOnInit(): void
     {
         // Mark if active

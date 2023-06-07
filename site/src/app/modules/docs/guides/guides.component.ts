@@ -19,9 +19,7 @@ export class GuidesComponent implements OnInit, OnDestroy {
     menuData: FluytNavigationItem[];
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
-    /**
-     * Constructor
-     */
+    
     constructor(
         private _changeDetectorRef: ChangeDetectorRef,
         private _fluytMediaWatcherService: FluytMediaWatcherService

@@ -5,9 +5,7 @@ import { MatIconRegistry } from '@angular/material/icon';
 @NgModule()
 export class IconsModule
 {
-    /**
-     * Constructor
-     */
+    
     constructor(
         private _domSanitizer: DomSanitizer,
         private _matIconRegistry: MatIconRegistry

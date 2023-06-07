@@ -51,9 +51,7 @@ export class DirectoryStructureComponent implements OnInit
     generalDir: any;
     generalTree: any;
 
-    /**
-     * Constructor
-     */
+    
     constructor(private _guidesComponent: GuidesComponent)
     {
         // App dir
@@ -177,13 +175,9 @@ export class DirectoryStructureComponent implements OnInit
         ];
     }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Lifecycle hooks
-    // -----------------------------------------------------------------------------------------------------
+    
 
-    /**
-     * On init
-     */
+    
     ngOnInit(): void
     {
         this.appTree = this.createTree(this.appDir);

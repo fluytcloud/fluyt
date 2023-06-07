@@ -7,9 +7,7 @@ import { FluytSplashScreenService } from 'core/services/splash-screen/splash-scr
     ]
 })
 export class FluytSplashScreenModule {
-    /**
-     * Constructor
-     */
+    
     constructor(private _fluytSplashScreenService: FluytSplashScreenService) {
     }
 }

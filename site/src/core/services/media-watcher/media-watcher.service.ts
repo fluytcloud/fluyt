@@ -9,9 +9,7 @@ export class FluytMediaWatcherService
 {
     private _onMediaChange: ReplaySubject<{ matchingAliases: string[]; matchingQueries: any }> = new ReplaySubject<{ matchingAliases: string[]; matchingQueries: any }>(1);
 
-    /**
-     * Constructor
-     */
+    
     constructor(
         private _breakpointObserver: BreakpointObserver,
         private _fluytTailwindConfigService: FluytTailwindService
@@ -50,10 +48,7 @@ export class FluytMediaWatcherService
         ).subscribe();
     }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Accessors
-    // -----------------------------------------------------------------------------------------------------
-
+    
     /**
      * Getter for _onMediaChange
      */

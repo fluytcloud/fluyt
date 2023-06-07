@@ -6,17 +6,12 @@ import { IsActiveMatchOptions } from '@angular/router';
 })
 export class FluytUtilsService
 {
-    /**
-     * Constructor
-     */
+    
     constructor()
     {
     }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Accessors
-    // -----------------------------------------------------------------------------------------------------
-
+    
     /**
      * Get the equivalent "IsActiveMatchOptions" options for "exact = true".
      */

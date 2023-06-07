@@ -5,9 +5,7 @@ import { filter, take } from 'rxjs/operators';
 
 @Injectable()
 export class FluytSplashScreenService {
-    /**
-     * Constructor
-     */
+    
     constructor(
         @Inject(DOCUMENT) private _document: any,
         private _router: Router

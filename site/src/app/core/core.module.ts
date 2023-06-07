@@ -9,9 +9,7 @@ import { TranslocoCoreModule } from 'app/core/transloco/transloco.module';
     ]
 })
 export class CoreModule {
-    /**
-     * Constructor
-     */
+    
     constructor(
         @Optional() @SkipSelf() parentModule?: CoreModule
     ) {

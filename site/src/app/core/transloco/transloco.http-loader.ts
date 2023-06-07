@@ -7,9 +7,7 @@ import { Translation, TranslocoLoader } from '@ngneat/transloco';
     providedIn: 'root'
 })
 export class TranslocoHttpLoader implements TranslocoLoader {
-    /**
-     * Constructor
-     */
+    
     constructor(
         private _httpClient: HttpClient) {
     }

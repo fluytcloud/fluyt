@@ -7,8 +7,6 @@ import { MatMenuModule } from '@angular/material/menu';
 import { RouterModule } from '@angular/router';
 import { SearchModule } from 'app/layout/common/search/search.module';
 import { SharedModule } from 'app/shared/shared.module';
-import { FluytFullscreenModule } from 'core/components/fullscreen';
-import { FluytLoadingBarModule } from 'core/components/loading-bar';
 import { FluytNavigationModule } from 'core/components/navigation';
 import { DefaultLayoutComponent } from './default-layout.component';
 import { BreadcrumbModule } from 'app/layout/common/breadcrumb/breadcrumb.module';
@@ -24,8 +22,6 @@ import { BreadcrumbModule } from 'app/layout/common/breadcrumb/breadcrumb.module
         MatDividerModule,
         MatIconModule,
         MatMenuModule,
-        FluytFullscreenModule,
-        FluytLoadingBarModule,
         FluytNavigationModule,
         SearchModule,
         SharedModule,

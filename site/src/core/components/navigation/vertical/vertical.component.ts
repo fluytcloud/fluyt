@@ -58,9 +58,7 @@ export class FluytVerticalNavigationComponent implements OnChanges, OnInit, Afte
     private _fluytScrollbarDirectivesSubscription: Subscription;
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
-    /**
-     * Constructor
-     */
+    
     constructor(
         private _animationBuilder: AnimationBuilder,
         private _changeDetectorRef: ChangeDetectorRef,
@@ -79,13 +77,8 @@ export class FluytVerticalNavigationComponent implements OnChanges, OnInit, Afte
         };
     }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Accessors
-    // -----------------------------------------------------------------------------------------------------
-
-    /**
-     * Host binding for component classes
-     */
+    
+    
     @HostBinding('class') get classList(): any {
         return {
             'fluyt-vertical-navigation-animations-enabled': this._animationsEnabled,
@@ -178,15 +171,9 @@ export class FluytVerticalNavigationComponent implements OnChanges, OnInit, Afte
         this._hovered = false;
     }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Lifecycle hooks
-    // -----------------------------------------------------------------------------------------------------
+    
 
-    /**
-     * On changes
-     *
-     * @param changes
-     */
+    
     ngOnChanges(changes: SimpleChanges): void {
         // Appearance
         if ('appearance' in changes) {
@@ -266,9 +253,7 @@ export class FluytVerticalNavigationComponent implements OnChanges, OnInit, Afte
         }
     }
 
-    /**
-     * On init
-     */
+    
     ngOnInit(): void {
         // Make sure the name input is not an empty string
         if (this.name === '') {

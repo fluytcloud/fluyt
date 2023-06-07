@@ -26,9 +26,7 @@ export class FluytHorizontalNavigationBranchItemComponent implements OnInit, OnD
     private _fluytHorizontalNavigationComponent: FluytHorizontalNavigationComponent;
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
-    /**
-     * Constructor
-     */
+    
     constructor(
         private _changeDetectorRef: ChangeDetectorRef,
         private _fluytNavigationService: FluytNavigationService
@@ -36,13 +34,9 @@ export class FluytHorizontalNavigationBranchItemComponent implements OnInit, OnD
     {
     }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Lifecycle hooks
-    // -----------------------------------------------------------------------------------------------------
+    
 
-    /**
-     * On init
-     */
+    
     ngOnInit(): void
     {
         // Get the parent navigation component

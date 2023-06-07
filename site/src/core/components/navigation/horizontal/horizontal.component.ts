@@ -21,9 +21,7 @@ export class FluytHorizontalNavigationComponent implements OnChanges, OnInit, On
     onRefreshed: ReplaySubject<boolean> = new ReplaySubject<boolean>(1);
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
-    /**
-     * Constructor
-     */
+    
     constructor(
         private _changeDetectorRef: ChangeDetectorRef,
         private _fluytNavigationService: FluytNavigationService,
@@ -31,15 +29,9 @@ export class FluytHorizontalNavigationComponent implements OnChanges, OnInit, On
     ) {
     }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Lifecycle hooks
-    // -----------------------------------------------------------------------------------------------------
+    
 
-    /**
-     * On changes
-     *
-     * @param changes
-     */
+    
     ngOnChanges(changes: SimpleChanges): void {
         // Navigation
         if ('navigation' in changes) {
@@ -48,9 +40,7 @@ export class FluytHorizontalNavigationComponent implements OnChanges, OnInit, On
         }
     }
 
-    /**
-     * On init
-     */
+    
     ngOnInit(): void {
         // Make sure the name input is not an empty string
         if (this.name === '') {

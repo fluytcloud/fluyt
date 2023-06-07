@@ -8,9 +8,7 @@ import { FluytUtilsService } from 'core/services/utils/utils.service';
 })
 export class FluytUtilsModule
 {
-    /**
-     * Constructor
-     */
+    
     constructor(private _fluytUtilsService: FluytUtilsService)
     {
     }

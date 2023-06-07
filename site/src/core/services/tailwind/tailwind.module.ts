@@ -8,9 +8,7 @@ import { FluytTailwindService } from 'core/services/tailwind/tailwind.service';
 })
 export class FluytTailwindConfigModule
 {
-    /**
-     * Constructor
-     */
+    
     constructor(private _fluytTailwindConfigService: FluytTailwindService)
     {
     }

@@ -4,7 +4,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTreeModule } from '@angular/material/tree';
-import { FluytHighlightModule } from 'core/components/highlight';
 import { FluytAlertModule } from 'core/components/alert';
 import { FluytNavigationModule } from 'core/components/navigation';
 import { FluytScrollResetModule } from 'core/directives/scroll-reset';
@@ -43,7 +42,6 @@ import { BreadcrumbModule } from 'app/layout/common/breadcrumb/breadcrumb.module
         MatIconModule,
         MatSidenavModule,
         MatTreeModule,
-        FluytHighlightModule,
         FluytAlertModule,
         FluytNavigationModule,
         FluytScrollResetModule,

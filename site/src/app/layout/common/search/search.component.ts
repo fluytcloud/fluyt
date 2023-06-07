@@ -23,9 +23,7 @@ export class SearchComponent implements OnChanges, OnInit, OnDestroy {
     searchControl: FormControl = new FormControl();
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
-    /**
-     * Constructor
-     */
+    
     constructor(
         private _elementRef: ElementRef,
         private _httpClient: HttpClient,
@@ -33,13 +31,8 @@ export class SearchComponent implements OnChanges, OnInit, OnDestroy {
     ) {
     }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Accessors
-    // -----------------------------------------------------------------------------------------------------
-
-    /**
-     * Host binding for component classes
-     */
+    
+    
     @HostBinding('class') get classList(): any {
         return {
             'search-appearance-bar': this.appearance === 'bar',
@@ -67,15 +60,9 @@ export class SearchComponent implements OnChanges, OnInit, OnDestroy {
         }
     }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Lifecycle hooks
-    // -----------------------------------------------------------------------------------------------------
+    
 
-    /**
-     * On changes
-     *
-     * @param changes
-     */
+    
     ngOnChanges(changes: SimpleChanges): void {
         // Appearance
         if ('appearance' in changes) {
@@ -85,9 +72,7 @@ export class SearchComponent implements OnChanges, OnInit, OnDestroy {
         }
     }
 
-    /**
-     * On init
-     */
+    
     ngOnInit(): void {
         // Subscribe to the search field value changes
         this.searchControl.valueChanges

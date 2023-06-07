@@ -8,9 +8,7 @@ export class FluytTailwindService
 {
     private _tailwindConfig: ReplaySubject<any> = new ReplaySubject<any>(1);
 
-    /**
-     * Constructor
-     */
+    
     constructor()
     {
         // Prepare the config object
@@ -44,10 +42,7 @@ export class FluytTailwindService
         this._tailwindConfig.next(config);
     }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Accessors
-    // -----------------------------------------------------------------------------------------------------
-
+    
     /**
      * Getter for _tailwindConfig
      */

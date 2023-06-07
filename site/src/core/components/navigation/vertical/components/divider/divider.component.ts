@@ -18,9 +18,7 @@ export class FluytVerticalNavigationDividerItemComponent implements OnInit, OnDe
     private _fluytVerticalNavigationComponent: FluytVerticalNavigationComponent;
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
-    /**
-     * Constructor
-     */
+    
     constructor(
         private _changeDetectorRef: ChangeDetectorRef,
         private _fluytNavigationService: FluytNavigationService
@@ -28,13 +26,9 @@ export class FluytVerticalNavigationDividerItemComponent implements OnInit, OnDe
     {
     }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Lifecycle hooks
-    // -----------------------------------------------------------------------------------------------------
+    
 
-    /**
-     * On init
-     */
+    
     ngOnInit(): void
     {
         // Get the parent navigation component

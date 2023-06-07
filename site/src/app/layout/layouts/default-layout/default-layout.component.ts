@@ -25,9 +25,6 @@ export class DefaultLayoutComponent implements OnInit, OnDestroy {
     ) {
     }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Accessors
-    // -----------------------------------------------------------------------------------------------------
 
     /**
      * Getter for current year
@@ -36,13 +33,9 @@ export class DefaultLayoutComponent implements OnInit, OnDestroy {
         return new Date().getFullYear();
     }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Lifecycle hooks
-    // -----------------------------------------------------------------------------------------------------
 
-    /**
-     * On init
-     */
+
+
     ngOnInit(): void {
 
         // Subscribe to media changes

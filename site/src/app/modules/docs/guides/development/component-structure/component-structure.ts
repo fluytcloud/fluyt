@@ -7,9 +7,7 @@ import { GuidesComponent } from 'app/modules/docs/guides/guides.component';
 })
 export class ComponentStructureComponent
 {
-    /**
-     * Constructor
-     */
+    
     constructor(private _guidesComponent: GuidesComponent)
     {
     }

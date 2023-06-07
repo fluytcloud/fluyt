@@ -21,9 +21,7 @@ export class FluytHorizontalNavigationBasicItemComponent implements OnInit, OnDe
     private _fluytHorizontalNavigationComponent: FluytHorizontalNavigationComponent;
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
-    /**
-     * Constructor
-     */
+    
     constructor(
         private _changeDetectorRef: ChangeDetectorRef,
         private _fluytNavigationService: FluytNavigationService,
@@ -37,13 +35,9 @@ export class FluytHorizontalNavigationBasicItemComponent implements OnInit, OnDe
         this.isActiveMatchOptions = this._fluytUtilsService.subsetMatchOptions;
     }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Lifecycle hooks
-    // -----------------------------------------------------------------------------------------------------
+    
 
-    /**
-     * On init
-     */
+    
     ngOnInit(): void
     {
         // Set the "isActiveMatchOptions" either from item's

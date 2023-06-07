@@ -454,9 +454,7 @@ export class ChangelogComponent
         }
     ];
 
-    /**
-     * Constructor
-     */
+    
     constructor()
     {
     }

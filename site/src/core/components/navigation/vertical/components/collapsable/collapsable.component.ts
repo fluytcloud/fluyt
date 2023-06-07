@@ -29,9 +29,7 @@ export class FluytVerticalNavigationCollapsableItemComponent implements OnInit, 
     private _fluytVerticalNavigationComponent: FluytVerticalNavigationComponent;
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
-    /**
-     * Constructor
-     */
+    
     constructor(
         private _changeDetectorRef: ChangeDetectorRef,
         private _router: Router,
@@ -40,13 +38,8 @@ export class FluytVerticalNavigationCollapsableItemComponent implements OnInit, 
     {
     }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Accessors
-    // -----------------------------------------------------------------------------------------------------
-
-    /**
-     * Host binding for component classes
-     */
+    
+    
     @HostBinding('class') get classList(): any
     {
         return {
@@ -55,13 +48,9 @@ export class FluytVerticalNavigationCollapsableItemComponent implements OnInit, 
         };
     }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Lifecycle hooks
-    // -----------------------------------------------------------------------------------------------------
+    
 
-    /**
-     * On init
-     */
+    
     ngOnInit(): void
     {
         // Get the parent navigation component

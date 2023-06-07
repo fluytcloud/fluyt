@@ -8,9 +8,7 @@ import { FluytMediaWatcherService } from 'core/services/media-watcher/media-watc
 })
 export class FluytMediaWatcherModule
 {
-    /**
-     * Constructor
-     */
+    
     constructor(private _fluytMediaWatcherService: FluytMediaWatcherService)
     {
     }

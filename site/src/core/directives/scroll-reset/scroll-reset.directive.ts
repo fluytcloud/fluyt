@@ -7,46 +7,31 @@ import { filter, takeUntil } from 'rxjs/operators';
     selector: '[fluytScrollReset]',
     exportAs: 'fluytScrollReset'
 })
-export class FluytScrollResetDirective implements OnInit, OnDestroy
-{
+export class FluytScrollResetDirective implements OnInit, OnDestroy {
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
-    /**
-     * Constructor
-     */
+
     constructor(
         private _elementRef: ElementRef,
         private _router: Router
-    )
-    {
+    ) {
     }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Lifecycle hooks
-    // -----------------------------------------------------------------------------------------------------
 
-    /**
-     * On init
-     */
-    ngOnInit(): void
-    {
-        // Subscribe to NavigationEnd event
+
+
+    ngOnInit(): void {
         this._router.events.pipe(
             filter(event => event instanceof NavigationEnd),
             takeUntil(this._unsubscribeAll)
         ).subscribe(() => {
 
-            // Reset the element's scroll position to the top
             this._elementRef.nativeElement.scrollTop = 0;
         });
     }
 
-    /**
-     * On destroy
-     */
-    ngOnDestroy(): void
-    {
-        // Unsubscribe from all subscriptions
+
+    ngOnDestroy(): void {
         this._unsubscribeAll.next();
         this._unsubscribeAll.complete();
     }

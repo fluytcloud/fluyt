@@ -6,9 +6,7 @@ import { GuidesComponent } from 'app/modules/docs/guides/guides.component';
     templateUrl: './installation.html'
 })
 export class InstallationComponent {
-    /**
-     * Constructor
-     */
+    
     constructor(private _guidesComponent: GuidesComponent) {
     }
 

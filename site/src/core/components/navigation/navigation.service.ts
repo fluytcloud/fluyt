@@ -8,9 +8,7 @@ export class FluytNavigationService {
     private _componentRegistry: Map<string, any> = new Map<string, any>();
     private _navigationStore: Map<string, FluytNavigationItem[]> = new Map<string, any>();
 
-    /**
-     * Constructor
-     */
+    
     constructor() {
     }
 
