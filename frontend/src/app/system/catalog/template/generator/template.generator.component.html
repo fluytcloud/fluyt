@@ -1,0 +1,71 @@
+<div class="container">
+  <app-loader [show]="loading">
+    <mat-card>
+      <div class="fc-form">
+        <div class="fc-form-actions-container">
+          <button mat-raised-button routerLink="/catalog/generate">Back</button>
+          <button mat-raised-button (click)="reset()">New</button>
+          <button mat-raised-button color="primary" [disabled]="!isValid()" (click)="generate()">Generate</button>
+        </div>
+
+        <app-form-container label="Repository"
+                            inputId="repository"
+                            [required]="true">
+          <input id="repository"
+                 [(ngModel)]="repository"
+                 [required]="true"
+                 type="text"
+                 pInputText maxlength="100"/>
+        </app-form-container>
+
+        <app-form-container *ngFor="let parameter of parameters"
+                            [label]="parameter.label"
+                            [inputId]="parameter.name"
+                            [required]="parameter.required">
+
+          <input *ngIf="parameter.type === 'STRING' && !parameter.options"
+                 [id]="parameter.name"
+                 [(ngModel)]="parameter.value"
+                 [required]="parameter.required"
+                 type="text"
+                 pInputText/>
+
+          <p-dropdown *ngIf="parameter.type === 'STRING' && parameter.options"
+                      [options]="parameter.options"
+                      [(ngModel)]="parameter.value"
+                      [showClear]="true"
+                      [autoDisplayFirst]="false"
+                      [required]="parameter.required"></p-dropdown>
+
+          <input *ngIf="parameter.type === 'NUMBER'"
+                 [id]="parameter.name"
+                 [(ngModel)]="parameter.value"
+                 [required]="parameter.required"
+                 type="number"
+                 pInputText/>
+
+        </app-form-container>
+
+
+      </div>
+
+    </mat-card>
+  </app-loader>
+</div>
+
+<p-dialog header="Generating template" [(visible)]="showDialogStatus" [modal]="true" [style]="{width: '50vw'}">
+  <p-timeline [value]="statusList">
+    <ng-template pTemplate="marker" let-status>
+        <span class="marker" [style.background-color]="status.error ? '#f44336' : '#009688'">
+            <i *ngIf="!status.error" class="pi pi-check"></i>
+            <i *ngIf="status.error" class="pi pi-times"></i>
+        </span>
+    </ng-template>
+    <ng-template pTemplate="content" let-status>
+      <small class="p-text-secondary">{{ status.message }}</small>
+    </ng-template>
+    <ng-template pTemplate="opposite" let-status>
+      {{ status.step }}
+    </ng-template>
+  </p-timeline>
+</p-dialog>

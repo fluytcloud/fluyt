@@ -20,6 +20,10 @@ const routes: Routes = [
       {
         path: 'company/form/:id',
         component: CompanyFormComponent
+      },
+      {
+        path: 'scm',
+        loadChildren: () => import('./scm/scm.module').then(m => m.ScmModule),
       }
     ],
     data: {
@@ -32,4 +36,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class SettingsRoutingModule { }
+export class SettingsRoutingModule {
+}

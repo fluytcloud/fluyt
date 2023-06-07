@@ -1,0 +1,68 @@
+<div class="container">
+  <app-loader [show]="display">
+    <mat-card>
+      <div class="fc-form" [formGroup]="form">
+        <div class="fc-form-actions-container">
+          <button mat-raised-button routerLink="/catalog/template">Back</button>
+          <button mat-raised-button (click)="reset()">New</button>
+          <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="save()">Save</button>
+        </div>
+
+        <app-form-container label="Name"
+                            inputId="name"
+                            [required]="true"
+                            [isNotValid]="isNotValid('name')">
+          <input id="name" formControlName="name" type="text" pInputText maxlength="100"/>
+        </app-form-container>
+
+        <app-form-container label="Provider git"
+                            inputId="templateScm"
+                            [required]="true"
+                            [isNotValid]="isNotValid('name')">
+          <p-autoComplete formControlName="templateScm"
+                          [suggestions]="filteredScm"
+                          (completeMethod)="filterScm($event)"
+                          field="name"
+                          [dropdown]="true"
+                          [forceSelection]="true"></p-autoComplete>
+        </app-form-container>
+
+
+        <app-form-container label="Repository"
+                            inputId="templateRepository"
+                            [required]="true"
+                            [isNotValid]="isNotValid('templateRepository')">
+          <input id="templateRepository" formControlName="templateRepository" type="text" pInputText maxlength="100"/>
+        </app-form-container>
+
+        <app-form-container label="Branch"
+                            inputId="templateBranch"
+                            [required]="true"
+                            [isNotValid]="isNotValid('templateBranch')">
+          <input id="templateBranch" formControlName="templateBranch" type="text" pInputText maxlength="100"/>
+        </app-form-container>
+
+        <app-form-container label="Target provider git"
+                            inputId="targetScm"
+                            [required]="true"
+                            [isNotValid]="isNotValid('name')">
+          <p-autoComplete formControlName="targetScm"
+                          [suggestions]="filteredScm"
+                          (completeMethod)="filterScm($event)"
+                          field="name"
+                          [dropdown]="true"
+                          [forceSelection]="true"></p-autoComplete>
+        </app-form-container>
+
+        <app-form-container label="Target branch"
+                            inputId="targetBranch"
+                            [required]="true"
+                            [isNotValid]="isNotValid('targetBranch')">
+          <input id="targetBranch" formControlName="targetBranch" type="text" pInputText maxlength="100"/>
+        </app-form-container>
+
+      </div>
+
+    </mat-card>
+  </app-loader>
+</div>

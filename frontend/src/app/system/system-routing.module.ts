@@ -21,6 +21,14 @@ const routes: Routes = [
     }
   },
   {
+    path: 'catalog',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./catalog/catalog.module').then(m => m.CatalogModule),
+    data: {
+      roles: ['user', 'manager']
+    }
+  },
+  {
     path: 'home',
     canActivate: [AuthGuard],
     component: HomeComponent,
@@ -42,4 +50,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class SystemRoutingModule { }
+export class SystemRoutingModule {
+}
