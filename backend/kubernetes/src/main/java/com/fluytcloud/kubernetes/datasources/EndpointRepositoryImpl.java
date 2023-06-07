@@ -5,11 +5,14 @@ import com.fluytcloud.kubernetes.entities.Search;
 import com.fluytcloud.kubernetes.repositories.EndpointRepository;
 import io.kubernetes.client.openapi.ApiException;
 import io.kubernetes.client.openapi.models.V1Endpoints;
+import io.kubernetes.client.openapi.models.V1EndpointsList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.ApplicationScoped;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @ApplicationScoped
 public class EndpointRepositoryImpl extends NamespaceObjectRepositoryImpl<V1Endpoints> implements EndpointRepository {

@@ -8,22 +8,16 @@ import io.kubernetes.client.openapi.models.V1Endpoints;
 import java.util.*;
 import java.util.stream.Collectors;
 
-// TODO: talvez os métodos possam ser estáticos, visto que não tenho estado nenhum nesta classe.
-public class EndpointMapper {
+public class EndpointMapper implements Mapper<V1Endpoints, EndpointResponseList> {
 
-    public static EndpointResponseList mapResponseList(V1Endpoints endpoint) {
-        // TODO: verificar os dados de fato
+    @Override
+    public EndpointResponseList mapResponseList(V1Endpoints endpoint) {
         return new EndpointResponseList(
                 endpoint.getMetadata().getName(),
                 endpoint.getMetadata().getNamespace(),
                 endpoints(endpoint.getSubsets()),
                 KubernetesMapper.formatAge(endpoint.getMetadata().getCreationTimestamp())
         );
-    }
-    
-    private static String getPrettyTime(OffsetDateTime dateTime) {
-        PrettyTime prettyTime = new PrettyTime();
-        return prettyTime.format(dateTime);
     }
 
     public Set<String> endpoints(List<V1EndpointSubset> subsets) {
@@ -48,9 +42,10 @@ public class EndpointMapper {
                 .collect(Collectors.toSet());
     }
 
-    public static List<EndpointResponseList> mapResponseList(List<V1Endpoints> endpoints) {
+    @Override
+    public List<EndpointResponseList> mapResponseList(List<V1Endpoints> endpoints) {
         return endpoints.stream()
-                .map(EndpointMapper::mapResponseList)
+                .map(this::mapResponseList)
                 .toList();
     }
 
