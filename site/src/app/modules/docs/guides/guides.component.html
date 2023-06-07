@@ -1,0 +1,38 @@
+<div class="absolute inset-0 flex flex-col min-w-0 overflow-hidden">
+
+    <mat-drawer-container class="flex-auto h-full">
+
+        <!-- Drawer -->
+        <mat-drawer
+            class="w-60 dark:bg-gray-900"
+            [autoFocus]="false"
+            [mode]="drawerMode"
+            [opened]="drawerOpened"
+            #matDrawer>
+
+            <fluyt-vertical-navigation
+                [navigation]="menuData"
+                [inner]="true"
+                [mode]="'side'"
+                [name]="'docs-guides-navigation'"
+                [opened]="true"></fluyt-vertical-navigation>
+
+        </mat-drawer>
+
+        <!-- Drawer content -->
+        <mat-drawer-content
+            class="flex flex-col"
+            fluytScrollReset>
+
+            <!-- Main -->
+            <div class="flex-auto">
+                <router-outlet></router-outlet>
+            </div>
+
+        </mat-drawer-content>
+
+    </mat-drawer-container>
+
+</div>
+
+

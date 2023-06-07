@@ -1,0 +1,110 @@
+/* Variables */
+$fluyt-vertical-navigation-compact-width: 112;
+
+fluyt-vertical-navigation {
+
+    /* Compact appearance overrides */
+    &.fluyt-vertical-navigation-appearance-compact {
+        width: #{$fluyt-vertical-navigation-compact-width}px;
+        min-width: #{$fluyt-vertical-navigation-compact-width}px;
+        max-width: #{$fluyt-vertical-navigation-compact-width}px;
+
+        /* Left positioned */
+        &.fluyt-vertical-navigation-position-left {
+
+            /* Side mode */
+            &.fluyt-vertical-navigation-mode-side {
+                margin-left: -#{$fluyt-vertical-navigation-compact-width}px;
+            }
+
+            /* Opened */
+            &.fluyt-vertical-navigation-opened {
+                margin-left: 0;
+            }
+        }
+
+        /* Right positioned */
+        &.fluyt-vertical-navigation-position-right {
+
+            /* Side mode */
+            &.fluyt-vertical-navigation-mode-side {
+                margin-right: -#{$fluyt-vertical-navigation-compact-width}px;
+            }
+
+            /* Opened */
+            &.fluyt-vertical-navigation-opened {
+                margin-right: 0;
+            }
+
+            /* Aside wrapper */
+            .fluyt-vertical-navigation-aside-wrapper {
+                left: auto;
+                right: #{$fluyt-vertical-navigation-compact-width}px;
+            }
+        }
+
+        /* Wrapper */
+        .fluyt-vertical-navigation-wrapper {
+
+            /* Content */
+            .fluyt-vertical-navigation-content {
+
+                > fluyt-vertical-navigation-aside-item,
+                > fluyt-vertical-navigation-basic-item {
+
+                    .fluyt-vertical-navigation-item-wrapper {
+                        margin: 4px 8px 0 8px;
+
+                        .fluyt-vertical-navigation-item {
+                            flex-direction: column;
+                            justify-content: center;
+                            padding: 12px;
+                            border-radius: 6px;
+
+                            .fluyt-vertical-navigation-item-icon {
+                                margin-right: 0;
+                            }
+
+                            .fluyt-vertical-navigation-item-title-wrapper {
+                                margin-top: 8px;
+
+                                .fluyt-vertical-navigation-item-title {
+                                    font-size: 12px;
+                                    font-weight: 500;
+                                    text-align: center;
+                                    line-height: 16px;
+                                }
+
+                                .fluyt-vertical-navigation-item-subtitle {
+                                    display: none !important;
+                                }
+                            }
+
+                            .fluyt-vertical-navigation-item-badge {
+                                position: absolute;
+                                top: 12px;
+                                left: 64px;
+                            }
+                        }
+                    }
+
+                    > fluyt-vertical-navigation-collapsable-item {
+                        display: none
+                    }
+
+                    > fluyt-vertical-navigation-group-item {
+
+                        > .fluyt-vertical-navigation-item-wrapper {
+                            display: none
+                        }
+                    }
+                }
+            }
+        }
+
+        /* Aside wrapper */
+        .fluyt-vertical-navigation-aside-wrapper {
+            left: #{$fluyt-vertical-navigation-compact-width}px;
+        }
+    }
+}

@@ -1,0 +1,106 @@
+<div
+    class="fluyt-vertical-navigation-item-wrapper"
+    [class.fluyt-vertical-navigation-item-has-subtitle]="!!item.subtitle"
+    [ngClass]="item.classes?.wrapper">
+
+    <div
+        class="fluyt-vertical-navigation-item"
+        [ngClass]="{'fluyt-vertical-navigation-item-disabled': item.disabled}"
+        [matTooltip]="item.tooltip || ''"
+        (click)="toggleCollapsable()">
+
+        <!-- Icon -->
+        <ng-container *ngIf="item.icon">
+            <mat-icon
+                class="fluyt-vertical-navigation-item-icon"
+                [ngClass]="item.classes?.icon"
+                [svgIcon]="item.icon"></mat-icon>
+        </ng-container>
+
+        <!-- Title & Subtitle -->
+        <div class="fluyt-vertical-navigation-item-title-wrapper">
+            <div class="fluyt-vertical-navigation-item-title">
+                <span [ngClass]="item.classes?.title">
+                    {{item.title}}
+                </span>
+            </div>
+            <ng-container *ngIf="item.subtitle">
+                <div class="fluyt-vertical-navigation-item-subtitle">
+                    <span [ngClass]="item.classes?.subtitle">
+                        {{item.subtitle}}
+                    </span>
+                </div>
+            </ng-container>
+        </div>
+
+        <!-- Badge -->
+        <ng-container *ngIf="item.badge">
+            <div class="fluyt-vertical-navigation-item-badge">
+                <div
+                    class="fluyt-vertical-navigation-item-badge-content"
+                    [ngClass]="item.badge.classes">
+                    {{item.badge.title}}
+                </div>
+            </div>
+        </ng-container>
+
+        <!-- Arrow -->
+        <mat-icon
+            class="fluyt-vertical-navigation-item-arrow icon-size-4"
+            [svgIcon]="'heroicons_solid:chevron-right'"></mat-icon>
+
+    </div>
+
+</div>
+
+<div
+    class="fluyt-vertical-navigation-item-children"
+    *ngIf="!isCollapsed"
+    @expandCollapse>
+
+    <ng-container *ngFor="let item of item.children; trackBy: trackByFn">
+
+        <!-- Skip the hidden items -->
+        <ng-container *ngIf="(item.hidden && !item.hidden(item)) || !item.hidden">
+
+            <!-- Basic -->
+            <ng-container *ngIf="item.type === 'basic'">
+                <fluyt-vertical-navigation-basic-item
+                    [item]="item"
+                    [name]="name"></fluyt-vertical-navigation-basic-item>
+            </ng-container>
+
+            <!-- Collapsable -->
+            <ng-container *ngIf="item.type === 'collapsable'">
+                <fluyt-vertical-navigation-collapsable-item
+                    [item]="item"
+                    [name]="name"
+                    [autoCollapse]="autoCollapse"></fluyt-vertical-navigation-collapsable-item>
+            </ng-container>
+
+            <!-- Divider -->
+            <ng-container *ngIf="item.type === 'divider'">
+                <fluyt-vertical-navigation-divider-item
+                    [item]="item"
+                    [name]="name"></fluyt-vertical-navigation-divider-item>
+            </ng-container>
+
+            <!-- Group -->
+            <ng-container *ngIf="item.type === 'group'">
+                <fluyt-vertical-navigation-group-item
+                    [item]="item"
+                    [name]="name"></fluyt-vertical-navigation-group-item>
+            </ng-container>
+
+            <!-- Spacer -->
+            <ng-container *ngIf="item.type === 'spacer'">
+                <fluyt-vertical-navigation-spacer-item
+                    [item]="item"
+                    [name]="name"></fluyt-vertical-navigation-spacer-item>
+            </ng-container>
+
+        </ng-container>
+
+    </ng-container>
+
+</div>

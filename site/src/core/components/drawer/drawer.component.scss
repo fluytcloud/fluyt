@@ -1,0 +1,131 @@
+/* Variables */
+$fluyt-drawer-width: 320;
+
+fluyt-drawer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    width: #{$fluyt-drawer-width}px;
+    min-width: #{$fluyt-drawer-width}px;
+    max-width: #{$fluyt-drawer-width}px;
+    z-index: 300;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, .35);
+    @apply bg-card;
+
+    /* Animations */
+    &.fluyt-drawer-animations-enabled {
+        transition-duration: 400ms;
+        transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+        transition-property: visibility, margin-left, margin-right, transform, width, max-width, min-width;
+
+        .fluyt-drawer-content {
+            transition-duration: 400ms;
+            transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition-property: width, max-width, min-width;
+        }
+    }
+
+    /* Over mode */
+    &.fluyt-drawer-mode-over {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+
+        /* Fixed mode */
+        &.fluyt-drawer-fixed {
+            position: fixed;
+        }
+    }
+
+    /* Left position */
+    &.fluyt-drawer-position-left {
+
+        /* Side mode */
+        &.fluyt-drawer-mode-side {
+            margin-left: -#{$fluyt-drawer-width}px;
+
+            &.fluyt-drawer-opened {
+                margin-left: 0;
+            }
+        }
+
+        /* Over mode */
+        &.fluyt-drawer-mode-over {
+            left: 0;
+            transform: translate3d(-100%, 0, 0);
+
+            &.fluyt-drawer-opened {
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        /* Content */
+        .fluyt-drawer-content {
+            left: 0;
+        }
+    }
+
+    /* Right position */
+    &.fluyt-drawer-position-right {
+
+        /* Side mode */
+        &.fluyt-drawer-mode-side {
+            margin-right: -#{$fluyt-drawer-width}px;
+
+            &.fluyt-drawer-opened {
+                margin-right: 0;
+            }
+        }
+
+        /* Over mode */
+        &.fluyt-drawer-mode-over {
+            right: 0;
+            transform: translate3d(100%, 0, 0);
+
+            &.fluyt-drawer-opened {
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        /* Content */
+        .fluyt-drawer-content {
+            right: 0;
+        }
+    }
+
+    /* Content */
+    .fluyt-drawer-content {
+        position: absolute;
+        display: flex;
+        flex: 1 1 auto;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        @apply bg-card;
+    }
+}
+
+/* Overlay */
+.fluyt-drawer-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 299;
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.6);
+
+    /* Fixed mode */
+    &.fluyt-drawer-overlay-fixed {
+        position: fixed;
+    }
+
+    /* Transparent overlay */
+    &.fluyt-drawer-overlay-transparent {
+        background-color: transparent;
+    }
+}
