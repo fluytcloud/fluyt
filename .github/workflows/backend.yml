@@ -6,7 +6,7 @@ on:
 
 defaults:
   run:
-    working-directory: backend/api
+    working-directory: backend
 
 jobs:
 
