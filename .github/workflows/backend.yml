@@ -51,4 +51,9 @@ jobs:
           distribution: 'temurin'
           java-version: 17
       - name: Build Project, create docker image and send image to dockerhub
-        run: mvn package -Dquarkus.container-image.push=true -Dquarkus.jib.base-registry-username=${{secrets.DOCKERHUB_USERNAME}} -Dquarkus.jib.base-registry-password=${{secrets.DOCKERHUB_TOKEN}}
+        env:
+          CONTAINER_BUILD: true
+          CONTAINER_PUSH: true
+          REGISTRY_USERNAME: ${{secrets.DOCKERHUB_USERNAME}}
+          REGISTRY_TOKEN: ${{secrets.DOCKERHUB_TOKEN}}
+        run: mvn package
