@@ -1,0 +1,82 @@
+<div
+    class="fluyt-alert-container"
+    *ngIf="!dismissible || dismissible && !dismissed"
+    [@fadeIn]="!dismissed"
+    [@fadeOut]="!dismissed">
+
+    <!-- Border -->
+    <div
+        class="fluyt-alert-border"
+        *ngIf="appearance === 'border'"></div>
+
+    <!-- Icon -->
+    <div
+        class="fluyt-alert-icon"
+        *ngIf="showIcon">
+
+        <!-- Custom icon -->
+        <div class="fluyt-alert-custom-icon">
+            <ng-content select="[fluytAlertIcon]"></ng-content>
+        </div>
+
+        <!-- Default icons -->
+        <div class="fluyt-alert-default-icon">
+
+            <mat-icon
+                *ngIf="type === 'primary'"
+                [svgIcon]="'heroicons_solid:check-circle'"></mat-icon>
+
+            <mat-icon
+                *ngIf="type === 'accent'"
+                [svgIcon]="'heroicons_solid:check-circle'"></mat-icon>
+
+            <mat-icon
+                *ngIf="type === 'warn'"
+                [svgIcon]="'heroicons_solid:x-circle'"></mat-icon>
+
+            <mat-icon
+                *ngIf="type === 'basic'"
+                [svgIcon]="'heroicons_solid:check-circle'"></mat-icon>
+
+            <mat-icon
+                *ngIf="type === 'info'"
+                [svgIcon]="'heroicons_solid:information-circle'"></mat-icon>
+
+            <mat-icon
+                *ngIf="type === 'success'"
+                [svgIcon]="'heroicons_solid:check-circle'"></mat-icon>
+
+            <mat-icon
+                *ngIf="type === 'warning'"
+                [svgIcon]="'heroicons_solid:exclamation'"></mat-icon>
+
+            <mat-icon
+                *ngIf="type === 'error'"
+                [svgIcon]="'heroicons_solid:x-circle'"></mat-icon>
+
+        </div>
+
+    </div>
+
+    <!-- Content -->
+    <div class="fluyt-alert-content">
+
+        <div class="fluyt-alert-title">
+            <ng-content select="[fluytAlertTitle]"></ng-content>
+        </div>
+
+        <div class="fluyt-alert-message">
+            <ng-content></ng-content>
+        </div>
+
+    </div>
+
+    <!-- Dismiss button -->
+    <button
+        class="fluyt-alert-dismiss-button"
+        mat-icon-button
+        (click)="dismiss()">
+        <mat-icon [svgIcon]="'heroicons_solid:x'"></mat-icon>
+    </button>
+
+</div>
