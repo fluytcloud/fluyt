@@ -8,7 +8,7 @@
     "scripts": {
         "ng": "ng",
         "start": "ng serve",
-        "build": "ng build",
+        "build": "ng build --prod --output-path ../docs --base-href /fluyt-site/",
         "watch": "ng build --watch --configuration development",
         "test": "ng test",
         "lint": "ng lint"

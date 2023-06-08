@@ -25,7 +25,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Publish in GitHub  Pages
 
-Run `ng build --prod --output-path docs --base-href /fluyt-site/` and commit de changes.
+Run `npm run build` and commit de changes.
 
 
 ## TODO
