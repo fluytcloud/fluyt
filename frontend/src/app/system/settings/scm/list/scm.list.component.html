@@ -1,0 +1,32 @@
+<app-crud-list [crudList]="this">
+  <ng-template #header>
+    <tr>
+      <th class="width-100-px">ID</th>
+      <th>Provider</th>
+      <th>Name</th>
+      <th class="width-100-px">Actions</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-scm>
+    <tr>
+      <td class="width-100-px">{{scm.id}}</td>
+      <td>{{scm.type}}</td>
+      <td>{{scm.name}}</td>
+      <td>
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Actions">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <a mat-menu-item [routerLink]="['/settings/scm/form', scm.id]">
+            <mat-icon>mode_edit</mat-icon>
+            <span>Edit</span>
+          </a>
+          <a mat-menu-item (click)="delete(scm.id, scm.name)">
+            <mat-icon>delete</mat-icon>
+            <span>Delete</span>
+          </a>
+        </mat-menu>
+      </td>
+    </tr>
+  </ng-template>
+</app-crud-list>

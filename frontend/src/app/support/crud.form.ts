@@ -52,7 +52,7 @@ export abstract class CrudForm<T, LIST> extends FormValidator implements OnInit 
   onInit(): void {}
 
   setFormValue(value: T) {
-    this.form.setValue(value as ɵFormGroupRawValue<any>);
+    this.form.patchValue(value as ɵFormGroupRawValue<any>);
   }
 
   getFormValue(): T {

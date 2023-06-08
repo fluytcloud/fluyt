@@ -1,0 +1,30 @@
+<app-kubernetes-components-list name="PersistentVolumeClaims" (filter)="load($event)" [values]="values" [loading]="loading">
+  <ng-template #header>
+    <tr>
+      <th>Namespace</th>
+      <th>Name</th>
+      <th>Storage class</th>
+      <th>Size</th>
+      <th>Status</th>
+      <th>Age</th>
+      <th>Actions</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-pvc>
+    <tr>
+      <td>{{pvc.namespace}}</td>
+      <td>{{pvc.name}}</td>
+      <td>{{pvc.storageClass}}</td>
+      <td>{{pvc.size | bytes: 'disc'}}</td>
+      <td>{{pvc.status}}</td>
+      <td>{{pvc.age}}</td>
+      <td>
+        <app-kubernetes-components-action
+          [object]="pvc"
+          [link]="'/kubernetes/persistent-volume-claims/detail'"
+          [crudService]="crudService">
+        </app-kubernetes-components-action>
+      </td>
+    </tr>
+  </ng-template>
+</app-kubernetes-components-list>

@@ -17,6 +17,7 @@ import {MatDividerModule} from "@angular/material/divider";
 import {KubernetesNetworkEndpointService} from "./kubernetes.network.endpoint.service";
 import {KubernetesNetworkEndpointListComponent} from "./list/kubernetes.network.endpoint.list.component";
 import {KubernetesNetworkEndpointDetailComponent} from "./detail/kubernetes.network.endpoint.detail.component";
+import {KubernetesComponentsActionsModule} from "../../components/action/kubernetes.components.actions.module";
 
 @NgModule({
   declarations: [
@@ -27,23 +28,24 @@ import {KubernetesNetworkEndpointDetailComponent} from "./detail/kubernetes.netw
     KubernetesNetworkEndpointListComponent,
     KubernetesNetworkEndpointDetailComponent
   ],
-  imports: [
-    CommonModule,
-    KubernetesComponentsListModule,
-    MatMenuModule,
-    MatButtonModule,
-    MatIconModule,
-    RouterModule,
-    LoaderModule,
-    MatExpansionModule,
-    FormContainerModule,
-    FormMultipleContainerModule,
-    DatePipe,
-    MatChipsModule,
-    KeyValuePipe,
-    TableModule,
-    MatDividerModule
-  ],
+    imports: [
+        CommonModule,
+        KubernetesComponentsListModule,
+        MatMenuModule,
+        MatButtonModule,
+        MatIconModule,
+        RouterModule,
+        LoaderModule,
+        MatExpansionModule,
+        FormContainerModule,
+        FormMultipleContainerModule,
+        DatePipe,
+        MatChipsModule,
+        KeyValuePipe,
+        TableModule,
+        MatDividerModule,
+        KubernetesComponentsActionsModule
+    ],
   providers: [
     KubernetesNetworkEndpointService
   ]

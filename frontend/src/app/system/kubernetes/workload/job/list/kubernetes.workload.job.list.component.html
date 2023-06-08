@@ -12,36 +12,22 @@
       <th>Actions</th>
     </tr>
   </ng-template>
-  <ng-template #body let-cronJob>
+  <ng-template #body let-job>
     <tr>
-      <td>{{cronJob.namespace}}</td>
-      <td>{{cronJob.name}}</td>
-      <td>{{cronJob.active}}</td>
-      <td>{{cronJob.failed}}</td>
-      <td>{{cronJob.ready}}</td>
-      <td>{{cronJob.succeeded}}</td>
-      <td>{{cronJob.conditions?.join(',')}}</td>
-      <td>{{cronJob.age}}</td>
+      <td>{{job.namespace}}</td>
+      <td>{{job.name}}</td>
+      <td>{{job.active}}</td>
+      <td>{{job.failed}}</td>
+      <td>{{job.ready}}</td>
+      <td>{{job.succeeded}}</td>
+      <td>{{job.conditions?.join(',')}}</td>
+      <td>{{job.age}}</td>
       <td>
-        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Actions">
-          <mat-icon>more_vert</mat-icon>
-        </button>
-        <mat-menu #menu="matMenu">
-          <a mat-menu-item
-             [routerLink]="['/kubernetes/jobs/detail']"
-             [queryParams]="{name: cronJob.name, namespace: cronJob.namespace}">
-            <mat-icon>visibility</mat-icon>
-            <span>Detail</span>
-          </a>
-          <a mat-menu-item>
-            <mat-icon>mode_edit</mat-icon>
-            <span>Edit</span>
-          </a>
-          <a mat-menu-item>
-            <mat-icon>delete</mat-icon>
-            <span>Delete</span>
-          </a>
-        </mat-menu>
+        <app-kubernetes-components-action
+          [object]="job"
+          [link]="'/kubernetes/jobs/detail'"
+          [crudService]="crudService">
+        </app-kubernetes-components-action>
       </td>
     </tr>
   </ng-template>

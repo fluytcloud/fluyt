@@ -9,7 +9,7 @@
                      [maxSelectedLabels]="1"
                      appendTo="body"></p-multiSelect>
     </app-form-container>
-    <app-form-container label="Search">
+    <app-form-container label="Search" *ngIf="showSearch">
       <input type="text"
              placeholder="Name"
              (blur)="filter.emit(search)"

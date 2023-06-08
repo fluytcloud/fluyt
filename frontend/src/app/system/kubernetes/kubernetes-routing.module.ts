@@ -83,6 +83,55 @@ import {
 import {
   KubernetesAccessControlRoleDetailComponent
 } from "./access-control/role/detail/kubernetes.access-control.role.detail.component";
+import {
+  KubernetesConfigResourceQuotaListComponent
+} from "./config/resource-quota/list/kubernetes.config.resource-quota.list.component";
+import {
+  KubernetesConfigResourceQuotaDetailComponent
+} from "./config/resource-quota/detail/kubernetes.config.resource-quota.detail.component";
+import {
+  KubernetesAccessControlClusterRoleListComponent
+} from "./access-control/cluster-role/list/kubernetes.access-control.cluster-role.list.component";
+import {
+  KubernetesAccessControlClusterRoleDetailComponent
+} from "./access-control/cluster-role/detail/kubernetes.access-control.cluster-role.detail.component";
+import {
+  KubernetesAccessControlClusterRoleBindingListComponent
+} from "./access-control/cluster-role-binding/list/kubernetes.access-control.cluster-role-binding.list.component";
+import {
+  KubernetesAccessControlClusterRoleBindingDetailComponent
+} from "./access-control/cluster-role-binding/detail/kubernetes.access-control.cluster-role-binding.detail.component";
+import {
+  KubernetesStoragePersistentVolumeClaimListComponent
+} from "./storage/persistent-volume-claim/list/kubernetes.storage.persistent-volume-claim.list.component";
+import {
+  KubernetesStoragePersistentVolumeClaimDetailComponent
+} from "./storage/persistent-volume-claim/detail/kubernetes.storage.persistent-volume-claim.detail.component";
+import {
+  KubernetesStoragePersistentVolumeListComponent
+} from "./storage/persistent-volume/list/kubernetes.storage.persistent-volume.list.component";
+import {
+  KubernetesStoragePersistentVolumeDetailComponent
+} from "./storage/persistent-volume/detail/kubernetes.storage.persistent-volume.detail.component";
+import {
+  KubernetesStorageStorageClassListComponent
+} from "./storage/storage-class/list/kubernetes.storage.storage-class.list.component";
+import {
+  KubernetesStorageStorageClassDetailComponent
+} from "./storage/storage-class/detail/kubernetes.storage.storage-class.detail.component";
+import {KubernetesConfigSecretListComponent} from "./config/secret/list/kubernetes.config.secret.list.component";
+import {KubernetesConfigSecretDetailComponent} from "./config/secret/detail/kubernetes.config.secret.detail.component";
+import {
+  KubernetesConfigLimitRangeListComponent
+} from "./config/limit-range/list/kubernetes.config.limit-range.list.component";
+import {
+  KubernetesConfigLimitRangeDetailComponent
+} from "./config/limit-range/detail/kubernetes.config.limit-range.detail.component";
+import {KubernetesNodeListComponent} from "./node/list/kubernetes.node.list.component";
+import {KubernetesNodeDetailComponent} from "./node/detail/kubernetes.node.detail.component";
+import {KubernetesWorkloadOverviewComponent} from "./workload/overview/kubernetes.workload.overview.component";
+import {KubernetesEventListComponent} from "./event/list/kubernetes.event.list.component";
+import {KubernetesEventDetailComponent} from "./event/detail/kubernetes.event.detail.component";
 
 
 const routes: Routes = [
@@ -110,6 +159,22 @@ const routes: Routes = [
     path: 'cluster/form/:id',
     canActivate: [AuthGuard],
     component: KubernetesClusterFormComponent,
+    data: {
+      roles: ['manager']
+    }
+  },
+  {
+    path: 'events',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesEventListComponent,
+    data: {
+      roles: ['manager']
+    }
+  },
+  {
+    path: 'events/detail',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesEventDetailComponent,
     data: {
       roles: ['manager']
     }
@@ -273,6 +338,101 @@ const routes: Routes = [
     path: 'endpoints/detail',
     canActivate: [KubernetesClusterGuard],
     component: KubernetesNetworkIngressDetailComponent
+  },
+  {
+    path: 'resource-quotas',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesConfigResourceQuotaListComponent
+  },
+  {
+    path: 'resource-quotas/detail',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesConfigResourceQuotaDetailComponent
+  },
+  {
+    path: 'cluster-roles',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesAccessControlClusterRoleListComponent
+  },
+  {
+    path: 'cluster-roles/detail',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesAccessControlClusterRoleDetailComponent
+  },
+  {
+    path: 'cluster-role-bindings',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesAccessControlClusterRoleBindingListComponent
+  },
+  {
+    path: 'cluster-role-bindings/detail',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesAccessControlClusterRoleBindingDetailComponent
+  },
+  {
+    path: 'persistent-volume-claims',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesStoragePersistentVolumeClaimListComponent
+  },
+  {
+    path: 'persistent-volume-claims/detail',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesStoragePersistentVolumeClaimDetailComponent
+  },
+  {
+    path: 'persistent-volumes',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesStoragePersistentVolumeListComponent
+  },
+  {
+    path: 'persistent-volumes/detail',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesStoragePersistentVolumeDetailComponent
+  },
+  {
+    path: 'storage-classes',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesStorageStorageClassListComponent
+  },
+  {
+    path: 'storage-classes/detail',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesStorageStorageClassDetailComponent
+  },
+  {
+    path: 'secrets',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesConfigSecretListComponent
+  },
+  {
+    path: 'secrets/detail',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesConfigSecretDetailComponent
+  },
+  {
+    path: 'limit-ranges',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesConfigLimitRangeListComponent
+  },
+  {
+    path: 'limit-ranges/detail',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesConfigLimitRangeDetailComponent
+  },
+  {
+    path: 'nodes',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesNodeListComponent
+  },
+  {
+    path: 'nodes/detail',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesNodeDetailComponent
+  },
+  {
+    path: 'overview',
+    canActivate: [KubernetesClusterGuard],
+    component: KubernetesWorkloadOverviewComponent
   }
 ];
 

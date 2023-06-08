@@ -9,13 +9,23 @@
   </parent>
   <artifactId>api</artifactId>
   <properties>
-    <maven.compiler.release>20</maven.compiler.release>
-    <maven.compiler.source>20</maven.compiler.source>
-    <maven.compiler.target>20</maven.compiler.target>
+    <maven.compiler.release>17</maven.compiler.release>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
   </properties>
   <dependencies>
+    <dependency>
+      <groupId>com.fluytcloud</groupId>
+      <artifactId>catalog</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fluytcloud</groupId>
+      <artifactId>scm</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
+    </dependency>
     <dependency>
       <groupId>com.fluytcloud</groupId>
       <artifactId>kubernetes</artifactId>

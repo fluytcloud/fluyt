@@ -1,0 +1,26 @@
+<app-kubernetes-components-list name="ClusterRoles"
+                                [showNamespace]="false"
+                                (filter)="load($event)"
+                                [values]="values"
+                                [loading]="loading">
+  <ng-template #header>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Actions</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-clusterRole>
+    <tr>
+      <td>{{clusterRole.name}}</td>
+      <td>{{clusterRole.age}}</td>
+      <td>
+        <app-kubernetes-components-action
+          [object]="clusterRole"
+          [link]="'/kubernetes/cluster-roles/detail'"
+          [crudService]="crudService">
+        </app-kubernetes-components-action>
+      </td>
+    </tr>
+  </ng-template>
+</app-kubernetes-components-list>

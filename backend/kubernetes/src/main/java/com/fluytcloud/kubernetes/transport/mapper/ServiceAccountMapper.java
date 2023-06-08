@@ -5,8 +5,9 @@ import io.kubernetes.client.openapi.models.V1ServiceAccount;
 
 import java.util.List;
 
-public class ServiceAccountMapper {
+public class ServiceAccountMapper implements Mapper<V1ServiceAccount, ServiceAccountResponseList> {
 
+    @Override
     public ServiceAccountResponseList mapResponseList(V1ServiceAccount serviceAccount) {
          return new ServiceAccountResponseList(
                  serviceAccount.getMetadata().getNamespace(),
@@ -15,6 +16,7 @@ public class ServiceAccountMapper {
          );
     }
 
+    @Override
     public List<ServiceAccountResponseList> mapResponseList(List<V1ServiceAccount> serviceAccounts) {
         return serviceAccounts.stream()
                 .map(this::mapResponseList)

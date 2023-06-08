@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component} from "@angular/core";
 import {HeaderService} from "../../../../../components/header/header.service";
 import {KubernetesConfigConfigMapList} from "../kubernetes.config.config-map.list";
 import {KubernetesConfigConfigMapService} from "../kubernetes.config.config-map.service";
@@ -9,9 +9,9 @@ import {Header} from "../../../../../components/header/header";
   selector: 'app-kubernetes-config-config-map-list',
   templateUrl: './kubernetes.config.config-map.list.component.html'
 })
-export class KubernetesConfigConfigMapListComponent extends KubernetesSupportList<KubernetesConfigConfigMapList> implements OnInit {
+export class KubernetesConfigConfigMapListComponent extends KubernetesSupportList<KubernetesConfigConfigMapList> {
 
-  constructor(private configConfigMapService: KubernetesConfigConfigMapService,
+  constructor(protected configConfigMapService: KubernetesConfigConfigMapService,
               headerService: HeaderService) {
     super(headerService, configConfigMapService);
   }

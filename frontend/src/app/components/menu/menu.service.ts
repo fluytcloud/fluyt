@@ -38,6 +38,7 @@ export class MenuService {
   private getManagerMenu(): Menu[] {
     return [
       new Menu("home", "Página inicial", "home"),
+      this.getCatalogMenu(),
       this.getKubernetesMenu(),
       this.getSettingsMenu(),
       new Menu("support", "Suporte", "headset_mic")
@@ -47,10 +48,22 @@ export class MenuService {
   private getUserMenu(): Menu[] {
     return [
       new Menu("home", "Página inicial", "home"),
+      this.getCatalogMenu(),
       this.getKubernetesMenu(),
       this.getSettingsMenu(),
       new Menu("support", "Suporte", "headset_mic")
     ];
+  }
+
+  private getCatalogMenu(): Menu {
+    const reports = new Menu("catalog", "Catalog", "apps");
+
+    reports.addChildren("Templates", [
+      new Menu("generate", "Criar projeto"),
+      new Menu("template", "Cadastro")
+    ]);
+
+    return reports;
   }
 
   private getKubernetesMenu(): Menu {
@@ -93,7 +106,7 @@ export class MenuService {
     reports.addChildren("Network", network);
 
     const storage = [
-      new Menu("persistent-volume_claims", "Persistent Volume Claims"),
+      new Menu("persistent-volume-claims", "Persistent Volume Claims"),
       new Menu("persistent-volumes", "Persistent Volumes"),
       new Menu("storage-classes", "Storage Classes")
     ];
@@ -104,7 +117,7 @@ export class MenuService {
       new Menu("roles", "Roles"),
       new Menu("cluster-roles", "Cluster Roles"),
       new Menu("role-bindings", "Role Bindings"),
-      new Menu("cluster-role_bindings", "Cluster Role Bindings")
+      new Menu("cluster-role-bindings", "Cluster Role Bindings")
     ];
     reports.addChildren("Access Control", accessControl);
 
@@ -116,6 +129,10 @@ export class MenuService {
 
     settings.addChildren("Empresa", [
       new Menu("company", "Filiais")
+    ]);
+
+    settings.addChildren("SCM", [
+      new Menu("scm", "Provedores Git")
     ]);
 
     return settings;

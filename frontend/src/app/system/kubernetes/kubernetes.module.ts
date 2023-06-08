@@ -36,6 +36,26 @@ import {
   KubernetesAccessControlServiceAccountModule
 } from "./access-control/service-account/kubernetes.access-control.service-account.module";
 import {KubernetesAccessControlRoleModule} from "./access-control/role/kubernetes.access-control.role.module";
+import {KubernetesConfigResourceQuotaModule} from "./config/resource-quota/kubernetes.config.resource-quota.module";
+import {
+  KubernetesAccessControlClusterRoleModule
+} from "./access-control/cluster-role/kubernetes.access-control.cluster-role.module";
+import {
+  KubernetesAccessControlClusterRoleBindingModule
+} from "./access-control/cluster-role-binding/kubernetes.access-control.cluster-role-binding.module";
+import {
+  KubernetesStoragePersistentVolumeClaimModule
+} from "./storage/persistent-volume-claim/kubernetes.storage.persistent-volume-claim.module";
+import {
+  KubernetesStoragePersistentVolumeModule
+} from "./storage/persistent-volume/kubernetes.storage.persistent-volume.module";
+import {KubernetesStorageStorageClassModule} from "./storage/storage-class/kubernetes.storage.storage-class.module";
+import {KubernetesConfigSecretModule} from "./config/secret/kubernetes.config.secret.module";
+import {KubernetesConfigLimitRangeModule} from "./config/limit-range/kubernetes.config.limit-range.module";
+import {KubernetesNodeModule} from "./node/kubernetes.node.module";
+import {KubernetesEditorModule} from "./editor/kubernetes-editor.module";
+import {KubernetesWorkloadOverviewModule} from "./workload/overview/kubernetes.workload.overview.module";
+import {KubernetesEventModule} from "./event/kubernetes.event.module";
 
 @NgModule({
   declarations: [
@@ -59,6 +79,7 @@ import {KubernetesAccessControlRoleModule} from "./access-control/role/kubernete
     KubernetesClusterModule,
     KubernetesRoutingModule,
     KubernetesTerminalModule,
+    KubernetesEditorModule,
     KubernetesConfigConfigMapModule,
     KubernetesWorkloadReplicaSetModule,
     KubernetesWorkloadStatefulSetModule,
@@ -74,7 +95,18 @@ import {KubernetesAccessControlRoleModule} from "./access-control/role/kubernete
     KubernetesAccessControlRoleBindingModule,
     KubernetesAccessControlServiceAccountModule,
     KubernetesAccessControlRoleModule,
-    KubernetesNetworkEndpointModule
+    KubernetesNetworkEndpointModule,
+    KubernetesConfigResourceQuotaModule,
+    KubernetesAccessControlClusterRoleModule,
+    KubernetesAccessControlClusterRoleBindingModule,
+    KubernetesStoragePersistentVolumeClaimModule,
+    KubernetesStoragePersistentVolumeModule,
+    KubernetesStorageStorageClassModule,
+    KubernetesConfigSecretModule,
+    KubernetesConfigLimitRangeModule,
+    KubernetesNodeModule,
+    KubernetesWorkloadOverviewModule,
+    KubernetesEventModule
   ],
   providers: [
     KubernetesClusterService,

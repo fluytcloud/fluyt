@@ -1,0 +1,35 @@
+<app-form-container label="CPU" [labelAbove]="true">
+  <mat-chip-option *ngIf="limit?.min?.cpu?.number">
+    Min: {{limit?.min?.cpu?.number}}
+  </mat-chip-option>
+
+  <mat-chip-option *ngIf="limit?.max?.cpu?.number">
+    Max: {{limit?.max?.cpu?.number}}
+  </mat-chip-option>
+
+  <mat-chip-option *ngIf="limit?.default?.cpu?.number">
+    Default: {{limit?.default?.cpu?.number}}
+  </mat-chip-option>
+
+  <mat-chip-option *ngIf="limit?.defaultRequest?.cpu?.number">
+    DefaultRequest: {{limit?.defaultRequest?.cpu?.number}}
+  </mat-chip-option>
+</app-form-container>
+
+<app-form-container label="Memory" [labelAbove]="true">
+  <mat-chip-option *ngIf="limit?.min?.memory?.number">
+    Min: {{limit?.min?.memory?.number | bytes: 'memory'}}
+  </mat-chip-option>
+
+  <mat-chip-option *ngIf="limit?.max?.memory?.number">
+    Max: {{limit?.max?.memory?.number | bytes: 'memory'}}
+  </mat-chip-option>
+
+  <mat-chip-option *ngIf="limit?.default?.memory?.number">
+    Request: {{limit?.default?.memory?.number | bytes: 'memory'}}
+  </mat-chip-option>
+
+  <mat-chip-option *ngIf="limit?.defaultRequest?.memory?.number">
+    DefaultRequest: {{limit?.defaultRequest?.memory?.number | bytes: 'memory'}}
+  </mat-chip-option>
+</app-form-container>

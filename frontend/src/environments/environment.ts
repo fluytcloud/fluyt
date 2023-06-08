@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  keycloak: 'http://localhost:18080/',
+  keycloak: 'http://${HOST_IP}:18080/',
   companies: 'http://localhost:8080/companies',
   organizations: 'http://localhost:8080/organizations',
   auth: 'http://localhost:8080/auth',

@@ -5,7 +5,6 @@ import io.kubernetes.client.openapi.models.V1Condition;
 import io.kubernetes.client.openapi.models.V1Service;
 import io.kubernetes.client.openapi.models.V1ServiceSpec;
 import io.kubernetes.client.openapi.models.V1ServiceStatus;
-import org.ocpsoft.prettytime.PrettyTime;
 
 import java.util.List;
 
@@ -14,8 +13,9 @@ import static java.util.Collections.emptyList;
 import static java.util.Objects.nonNull;
 import static java.util.Optional.ofNullable;
 
-public class ServiceMapper {
+public class ServiceMapper implements Mapper<V1Service, ServiceResponseList> {
 
+    @Override
     public ServiceResponseList mapResponseList(V1Service service) {
 
         if (nonNull(service)
@@ -38,6 +38,7 @@ public class ServiceMapper {
         return null;
     }
 
+    @Override
     public List<ServiceResponseList> mapResponseList(List<V1Service> services) {
         return services.stream()
                 .map(this::mapResponseList)

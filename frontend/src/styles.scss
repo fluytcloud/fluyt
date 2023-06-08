@@ -3,12 +3,20 @@
 * {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
-html, body { height: 100%; }
-body { margin: 0; }
+
+html, body {
+  height: 100%;
+  overflow-x: clip;
+}
+
+body {
+  margin: 0;
+}
 
 /* width */
 ::-webkit-scrollbar {
   width: 5px;
+  height: 5px;
 }
 
 /* Track */
@@ -39,4 +47,18 @@ body { margin: 0; }
 /* Custom PrimeNG Components*/
 .p-tag {
   margin: 0.3rem
+}
+
+.p-dialog {
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+  border-radius: 4px;
+
+  .p-dialog-footer {
+    padding: .5rem;
+  }
+
+  .p-dialog-header .p-dialog-title {
+    font-size: 20px;
+    font-weight: 500;
+  }
 }

@@ -12,8 +12,9 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
 
-public class HorizontalPodAutoscalerMapper {
+public class HorizontalPodAutoscalerMapper implements Mapper<V2HorizontalPodAutoscaler, HorizontalPodAutoscalerResponseList> {
 
+    @Override
     public HorizontalPodAutoscalerResponseList mapResponseList(V2HorizontalPodAutoscaler hpa) {
         var status = Optional.ofNullable(hpa.getStatus());
 
@@ -69,6 +70,7 @@ public class HorizontalPodAutoscalerMapper {
                 .orElse(Collections.emptyList());
     }
 
+    @Override
     public List<HorizontalPodAutoscalerResponseList> mapResponseList(List<V2HorizontalPodAutoscaler> hpas) {
         return hpas.stream()
                 .map(this::mapResponseList)

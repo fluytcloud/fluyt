@@ -1,0 +1,11 @@
+<div>
+  <ul>
+    <li>{{type}}</li>
+    <li>
+      {{used | bytes: type}} / {{hard | bytes: type}}
+    </li>
+  </ul>
+
+  <mat-progress-bar mode="determinate"
+                    [value]="used * 100 / hard"></mat-progress-bar>
+</div>

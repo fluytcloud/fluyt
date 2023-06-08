@@ -1,0 +1,38 @@
+<app-kubernetes-components-list name="Nodes"
+                                [showNamespace]="false"
+                                (filter)="load($event)"
+                                [values]="values"
+                                [loading]="loading">
+  <ng-template #header>
+    <tr>
+      <th>Name</th>
+      <th>Taints</th>
+      <th>Version</th>
+      <th>Conditions</th>
+      <th>Age</th>
+      <th>Actions</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-node>
+    <tr>
+      <td>{{node.name}}</td>
+      <td>{{node.taints}}</td>
+      <td>{{node.version}}</td>
+      <td>
+        <mat-chip-listbox aria-label="containers" [selectable]="false">
+          <mat-chip-option *ngFor="let condition of node.conditions"
+                           highlighted>
+            {{condition}}
+          </mat-chip-option>
+        </mat-chip-listbox>
+      <td>{{node.age}}</td>
+      <td>
+        <app-kubernetes-components-action
+          [object]="node"
+          [link]="'/kubernetes/nodes/detail'"
+          [crudService]="crudService">
+        </app-kubernetes-components-action>
+      </td>
+    </tr>
+  </ng-template>
+</app-kubernetes-components-list>
