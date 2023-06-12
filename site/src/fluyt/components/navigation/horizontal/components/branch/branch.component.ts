@@ -8,12 +8,11 @@ import { FluytNavigationService } from 'fluyt/components/navigation/navigation.s
 import { FluytNavigationItem } from 'fluyt/components/navigation/navigation.types';
 
 @Component({
-    selector       : 'fluyt-horizontal-navigation-branch-item',
-    templateUrl    : './branch.component.html',
+    selector: 'fluyt-horizontal-navigation-branch-item',
+    templateUrl: './branch.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FluytHorizontalNavigationBranchItemComponent implements OnInit, OnDestroy
-{
+export class FluytHorizontalNavigationBranchItemComponent implements OnInit, OnDestroy {
     /* eslint-disable @typescript-eslint/naming-convention */
     static ngAcceptInputType_child: BooleanInput;
     /* eslint-enable @typescript-eslint/naming-convention */
@@ -21,24 +20,22 @@ export class FluytHorizontalNavigationBranchItemComponent implements OnInit, OnD
     @Input() child: boolean = false;
     @Input() item: FluytNavigationItem;
     @Input() name: string;
-    @ViewChild('matMenu', {static: true}) matMenu: MatMenu;
+    @ViewChild('matMenu', { static: true }) matMenu: MatMenu;
 
     private _fluytHorizontalNavigationComponent: FluytHorizontalNavigationComponent;
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
-    
+
     constructor(
         private _changeDetectorRef: ChangeDetectorRef,
         private _fluytNavigationService: FluytNavigationService
-    )
-    {
+    ) {
     }
 
-    
 
-    
-    ngOnInit(): void
-    {
+
+
+    ngOnInit(): void {
         // Get the parent navigation component
         this._fluytHorizontalNavigationComponent = this._fluytNavigationService.getComponent(this.name);
 
@@ -55,8 +52,7 @@ export class FluytHorizontalNavigationBranchItemComponent implements OnInit, OnD
     /**
      * On destroy
      */
-    ngOnDestroy(): void
-    {
+    ngOnDestroy(): void {
         // Unsubscribe from all subscriptions
         this._unsubscribeAll.next();
         this._unsubscribeAll.complete();
@@ -69,8 +65,7 @@ export class FluytHorizontalNavigationBranchItemComponent implements OnInit, OnD
     /**
      * Trigger the change detection
      */
-    triggerChangeDetection(): void
-    {
+    triggerChangeDetection(): void {
         // Mark for check
         this._changeDetectorRef.markForCheck();
     }
@@ -81,8 +76,7 @@ export class FluytHorizontalNavigationBranchItemComponent implements OnInit, OnD
      * @param index
      * @param item
      */
-    trackByFn(index: number, item: any): any
-    {
+    trackByFn(index: number, item: any): any {
         return item.id || index;
     }
 }

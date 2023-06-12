@@ -1,19 +1,12 @@
 <ng-container *ngIf="!child">
-    <div
-        [ngClass]="{'fluyt-horizontal-navigation-menu-active': trigger.menuOpen,
-                 'fluyt-horizontal-navigation-menu-active-forced': item.active}"
-        [matMenuTriggerFor]="matMenu"
-        (onMenuOpen)="triggerChangeDetection()"
-        (onMenuClose)="triggerChangeDetection()"
-        #trigger="matMenuTrigger">
+    <div [ngClass]="{'fluyt-horizontal-navigation-menu-active': trigger.menuOpen,
+                 'fluyt-horizontal-navigation-menu-active-forced': item.active}" [matMenuTriggerFor]="matMenu"
+        (onMenuOpen)="triggerChangeDetection()" (onMenuClose)="triggerChangeDetection()" #trigger="matMenuTrigger">
         <ng-container *ngTemplateOutlet="itemTemplate; context: {$implicit: item}"></ng-container>
     </div>
 </ng-container>
 
-<mat-menu
-    class="fluyt-horizontal-navigation-menu-panel"
-    [overlapTrigger]="false"
-    #matMenu="matMenu">
+<mat-menu class="fluyt-horizontal-navigation-menu-panel" [overlapTrigger]="false" #matMenu="matMenu">
 
     <ng-container *ngFor="let item of item.children; trackBy: trackByFn">
 
@@ -22,39 +15,26 @@
 
             <!-- Basic -->
             <ng-container *ngIf="item.type === 'basic'">
-                <div
-                    class="fluyt-horizontal-navigation-menu-item"
-                    [disabled]="item.disabled"
-                    mat-menu-item>
-                    <fluyt-horizontal-navigation-basic-item
-                        [item]="item"
+                <div class="fluyt-horizontal-navigation-menu-item" [disabled]="item.disabled" mat-menu-item>
+                    <fluyt-horizontal-navigation-basic-item [item]="item"
                         [name]="name"></fluyt-horizontal-navigation-basic-item>
                 </div>
             </ng-container>
 
             <!-- Branch: aside, collapsable, group -->
             <ng-container *ngIf="item.type === 'aside' || item.type === 'collapsable' || item.type === 'group'">
-                <div
-                    class="fluyt-horizontal-navigation-menu-item"
-                    [disabled]="item.disabled"
-                    [matMenuTriggerFor]="branch.matMenu"
-                    mat-menu-item>
+                <div class="fluyt-horizontal-navigation-menu-item" [disabled]="item.disabled"
+                    [matMenuTriggerFor]="branch.matMenu" mat-menu-item>
                     <ng-container *ngTemplateOutlet="itemTemplate; context: {$implicit: item}"></ng-container>
-                    <fluyt-horizontal-navigation-branch-item
-                        [child]="true"
-                        [item]="item"
-                        [name]="name"
+                    <fluyt-horizontal-navigation-branch-item [child]="true" [item]="item" [name]="name"
                         #branch></fluyt-horizontal-navigation-branch-item>
                 </div>
             </ng-container>
 
             <!-- Divider -->
             <ng-container *ngIf="item.type === 'divider'">
-                <div
-                    class="fluyt-horizontal-navigation-menu-item"
-                    mat-menu-item>
-                    <fluyt-horizontal-navigation-divider-item
-                        [item]="item"
+                <div class="fluyt-horizontal-navigation-menu-item" mat-menu-item>
+                    <fluyt-horizontal-navigation-divider-item [item]="item"
                         [name]="name"></fluyt-horizontal-navigation-divider-item>
                 </div>
             </ng-container>
@@ -66,26 +46,18 @@
 </mat-menu>
 
 <!-- Item template -->
-<ng-template
-    let-item
-    #itemTemplate>
+<ng-template let-item #itemTemplate>
 
-    <div
-        class="fluyt-horizontal-navigation-item-wrapper"
-        [class.fluyt-horizontal-navigation-item-has-subtitle]="!!item.subtitle"
-        [ngClass]="item.classes?.wrapper">
+    <div class="fluyt-horizontal-navigation-item-wrapper"
+        [class.fluyt-horizontal-navigation-item-has-subtitle]="!!item.subtitle" [ngClass]="item.classes?.wrapper">
 
-        <div
-            class="fluyt-horizontal-navigation-item"
-            [ngClass]="{'fluyt-horizontal-navigation-item-disabled': item.disabled,
+        <div class="fluyt-horizontal-navigation-item" [ngClass]="{'fluyt-horizontal-navigation-item-disabled': item.disabled,
                          'fluyt-horizontal-navigation-item-active-forced': item.active}"
             [matTooltip]="item.tooltip || ''">
 
             <!-- Icon -->
             <ng-container *ngIf="item.icon">
-                <mat-icon
-                    class="fluyt-horizontal-navigation-item-icon"
-                    [ngClass]="item.classes?.icon"
+                <mat-icon class="fluyt-horizontal-navigation-item-icon" [ngClass]="item.classes?.icon"
                     [svgIcon]="item.icon"></mat-icon>
             </ng-container>
 
@@ -108,9 +80,7 @@
             <!-- Badge -->
             <ng-container *ngIf="item.badge">
                 <div class="fluyt-horizontal-navigation-item-badge">
-                    <div
-                        class="fluyt-horizontal-navigation-item-badge-content"
-                        [ngClass]="item.badge.classes">
+                    <div class="fluyt-horizontal-navigation-item-badge-content" [ngClass]="item.badge.classes">
                         {{item.badge.title}}
                     </div>
                 </div>

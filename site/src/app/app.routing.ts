@@ -27,13 +27,21 @@ export const appRoutes: Route[] = [
 
                     // Changelog
                     {
-                        path: 'changelog', loadChildren: () =>
+                        path: 'changelog',
+                        data: {
+                            breadcrumb: 'Changelog'
+                        },
+                        loadChildren: () =>
                             import('app/modules/docs/changelog/changelog.module').then(m => m.ChangelogModule)
                     },
 
                     // Guides
                     {
-                        path: 'guides', loadChildren: () =>
+                        path: 'guides',
+                        data: {
+                            breadcrumb: 'Guides'
+                        },
+                        loadChildren: () =>
                             import('app/modules/docs/guides/guides.module').then(m => m.GuidesModule)
                     }
                 ]

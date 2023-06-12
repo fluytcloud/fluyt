@@ -11,6 +11,7 @@ import { filter, distinctUntilChanged } from 'rxjs/operators';
 export class BreadcrumbComponent implements OnInit {
 
   public breadcrumbs: BreadcrumbItem[];
+  public labelCurrentRoute: string;
 
   constructor(
     private router: Router,
@@ -29,17 +30,26 @@ export class BreadcrumbComponent implements OnInit {
   }
 
   private buildBreadCrumb(route: ActivatedRoute, url: string = '', breadcrumbs: BreadcrumbItem[] = []): BreadcrumbItem[] {
-    const breadcrumbItem = this.getBreadcrumbItem(route, url);
-    const newBreadcrumbs = breadcrumbItem.label ? [...breadcrumbs, breadcrumbItem] : [...breadcrumbs];
-    if (route.firstChild) {
-      return this.buildBreadCrumb(route.firstChild, breadcrumbItem.url, newBreadcrumbs);
+    const isCurrenteRoute = this.isCurrenteRoute(route);
+    let newBreadcrumbs: BreadcrumbItem[] = [...breadcrumbs];
+    if (isCurrenteRoute) {
+      this.labelCurrentRoute = this.getLabel(route.routeConfig);
     }
+    // TODO: refatorar
+    if (!isCurrenteRoute) {
+      const breadcrumbItem = this.getBreadcrumbItem(route, url);
+      newBreadcrumbs = breadcrumbItem.label ? [...breadcrumbs, breadcrumbItem] : [...breadcrumbs];
+      if (route.firstChild) {
+        return this.buildBreadCrumb(route.firstChild, breadcrumbItem.url, newBreadcrumbs);
+      }
+    }
+
     return newBreadcrumbs;
   }
 
   private getBreadcrumbItem(route: ActivatedRoute, url: string = ''): BreadcrumbItem {
     const routeConfig = route.routeConfig;
-    const labelAux = routeConfig && routeConfig.data ? routeConfig.data.breadcrumb : '';
+    const labelAux = this.getLabel(routeConfig);
     const isClickable = routeConfig && routeConfig.data && routeConfig.data.isClickable;
     const pathAux = routeConfig && routeConfig.data ? routeConfig.path : '';
 
@@ -53,6 +63,10 @@ export class BreadcrumbComponent implements OnInit {
     };
   }
 
+  private getLabel(routeConfig: Route): string {
+    return routeConfig && routeConfig.data ? routeConfig.data.breadcrumb : '';
+  }
+
   private getLabelAndPath(path: string, label: string, route: ActivatedRoute): { label: string; path: string } {
     const lastRoutePart = path.split('/').pop();
     const isDynamicRoute = lastRoutePart.startsWith(':');
@@ -62,5 +76,9 @@ export class BreadcrumbComponent implements OnInit {
       label = route.snapshot.params[paramName];
     }
     return { path, label };
+  }
+
+  private isCurrenteRoute(route: ActivatedRoute): boolean {
+    return this.activatedRoute.url === route.url;
   }
 }
