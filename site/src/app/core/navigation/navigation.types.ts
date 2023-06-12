@@ -1,4 +1,4 @@
-import { FluytNavigationItem } from 'core/components/navigation';
+import { FluytNavigationItem } from 'fluyt/components/navigation';
 
 export interface Navigation {
     default: FluytNavigationItem[];

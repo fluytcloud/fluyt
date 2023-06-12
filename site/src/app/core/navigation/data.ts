@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { FluytNavigationItem } from 'core/components/navigation';
+import { FluytNavigationItem } from 'fluyt/components/navigation';
 
 export const defaultNavigation: FluytNavigationItem[] = [
     {
@@ -25,7 +25,7 @@ export const defaultNavigation: FluytNavigationItem[] = [
                 icon: 'heroicons_outline:speakerphone',
                 link: '/docs/changelog',
                 badge: {
-                    title: '13.6.2',
+                    title: '0.0.1',
                     classes: 'px-2 bg-yellow-300 text-black rounded-full'
                 }
             },
@@ -71,7 +71,7 @@ export const horizontalNavigation: FluytNavigationItem[] = [
                 icon: 'heroicons_outline:speakerphone',
                 link: '/docs/changelog',
                 badge: {
-                    title: '13.6.2',
+                    title: '0.0.1',
                     classes: 'px-2 bg-yellow-300 text-black rounded-full'
                 }
             },

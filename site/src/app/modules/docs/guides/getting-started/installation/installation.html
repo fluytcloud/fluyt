@@ -1,14 +1,14 @@
 <div class="flex flex-col flex-auto min-w-0">
 
     <!-- Header -->
-    <div class="flex flex-col sm:flex-row flex-0 sm:items-center gap-5 p-6 sm:py-8 sm:px-8 border-b bg-card">
+    <div class="flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between p-6 sm:py-8 sm:px-10 border-b bg-card dark:bg-transparent">
+        <breadcrumb></breadcrumb>
         <button
-            class="-ml-3 sm:ml-0 mb-2 sm:mb-0"
+            class="-ml-3 sm:ml-0 mb-2 sm:mb-0 order-first sm:order-last"
             mat-icon-button
             (click)="toggleDrawer()">
             <mat-icon [svgIcon]="'heroicons_outline:menu'"></mat-icon>
         </button>
-        <breadcrumb></breadcrumb>
     </div>
 
     <div class="flex-auto max-w-3xl p-6 sm:p-10 prose prose-sm">

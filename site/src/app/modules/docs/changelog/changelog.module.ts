@@ -8,11 +8,10 @@ import { changelogRoutes } from 'app/modules/docs/changelog/changelog.routing';
     declarations: [
         ChangelogComponent
     ],
-    imports     : [
+    imports: [
         RouterModule.forChild(changelogRoutes),
         SharedModule
     ]
 })
-export class ChangelogModule
-{
+export class ChangelogModule {
 }

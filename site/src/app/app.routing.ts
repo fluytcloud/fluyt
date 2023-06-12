@@ -19,7 +19,11 @@ export const appRoutes: Route[] = [
             },
             // Documentation
             {
-                path: 'docs', children: [
+                path: 'docs',
+                data: {
+                    breadcrumb: 'Documentation'
+                },
+                children: [
 
                     // Changelog
                     {

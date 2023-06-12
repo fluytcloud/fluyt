@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { FluytMediaWatcherService } from 'core/services/media-watcher';
-import { FluytNavigationService, FluytVerticalNavigationComponent } from 'core/components/navigation';
+import { FluytMediaWatcherService } from 'fluyt/services/media-watcher';
+import { FluytNavigationService, FluytVerticalNavigationComponent } from 'fluyt/components/navigation';
 import { Navigation } from 'app/core/navigation/navigation.types';
 import { defaultNavigation, horizontalNavigation } from 'app/core/navigation/data';
 

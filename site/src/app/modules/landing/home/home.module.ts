@@ -10,13 +10,12 @@ import { landingHomeRoutes } from 'app/modules/landing/home/home.routing';
     declarations: [
         LandingHomeComponent
     ],
-    imports     : [
+    imports: [
         RouterModule.forChild(landingHomeRoutes),
         MatButtonModule,
         MatIconModule,
         SharedModule
     ]
 })
-export class LandingHomeModule
-{
+export class LandingHomeModule {
 }

@@ -7,7 +7,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { RouterModule } from '@angular/router';
 import { SearchModule } from 'app/layout/common/search/search.module';
 import { SharedModule } from 'app/shared/shared.module';
-import { FluytNavigationModule } from 'core/components/navigation';
+import { FluytNavigationModule } from 'fluyt/components/navigation';
 import { DefaultLayoutComponent } from './default-layout.component';
 import { BreadcrumbModule } from 'app/layout/common/breadcrumb/breadcrumb.module';
 

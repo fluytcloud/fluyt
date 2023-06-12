@@ -3,7 +3,7 @@ import { ChangelogComponent } from 'app/modules/docs/changelog/changelog';
 
 export const changelogRoutes: Route[] = [
     {
-        path     : '',
+        path: '',
         component: ChangelogComponent
     }
 ];

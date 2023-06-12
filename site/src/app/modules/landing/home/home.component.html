@@ -2,7 +2,14 @@
     <section class="flex md:flex-row md:items-stretch md:justify-items-stretch md:px-30 flex-col px-2 pt-3 mx-auto">
         <div class="flex flex-1 flex-col md:gap-2 gap-5 items-start justify-evenly">
             <div class="flex flex-col gap-4">
-                <p class="md:text-8xl text-5xl">Fluyt Cloud</p>
+                <div class="flex items-center gap-2">
+                    <div class="md:hidden">
+                        <img class="w-24" src="assets/images/logo/logo.png" alt="Logo image">
+                    </div>
+                    <p class="md:text-8xl text-5xl">
+                        Fluyt Cloud
+                    </p>
+                </div>
                 <p class="text-xl">
                     This is an open-source project for a Single Pane of Glass web application, licensed under the Apache
                     License. The application is developed using Quarkus with Java for the backend and Angular with
@@ -14,7 +21,7 @@
                     systems, where many pieces of information need to be monitored simultaneously.
                 </p>
             </div>
-            <div>
+            <div class="mb-10">
                 <button class="fluyt-mat-button-rounded bg-accent-700" mat-flat-button [color]="'accent'">
                     <mat-icon class="icon-size-5" [svgIcon]="'feather:github'"></mat-icon>
                     <span class="ml-2">Get Started</span>
@@ -27,7 +34,7 @@
     </section>
     <!-- End block -->
     <!-- Start block -->
-    <section class="bg-white md:flex md:flex-col md:items-center md:px-30 md:py-30 px-2 py-5 pt-3 mx-auto">
+    <section class="bg-white md:flex md:flex-col md:items-center md:px-30 md:py-30 px-2 py-5 pt-3">
         <div class="my-10">
             <p class="text-2xl">
                 Donec consectetur diam nec vulputate dignissim. Vivamus dui dui, vulputate quis ex at

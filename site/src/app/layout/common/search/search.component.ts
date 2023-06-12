@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { debounceTime, filter, map, takeUntil } from 'rxjs/operators';
-import { fluytAnimations } from 'core/animations/public-api';
+import { fluytAnimations } from 'fluyt/animations/public-api';
 
 @Component({
     selector: 'search',
@@ -23,7 +23,7 @@ export class SearchComponent implements OnChanges, OnInit, OnDestroy {
     searchControl: FormControl = new FormControl();
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
-    
+
     constructor(
         private _elementRef: ElementRef,
         private _httpClient: HttpClient,
@@ -31,8 +31,8 @@ export class SearchComponent implements OnChanges, OnInit, OnDestroy {
     ) {
     }
 
-    
-    
+
+
     @HostBinding('class') get classList(): any {
         return {
             'search-appearance-bar': this.appearance === 'bar',
@@ -60,9 +60,9 @@ export class SearchComponent implements OnChanges, OnInit, OnDestroy {
         }
     }
 
-    
 
-    
+
+
     ngOnChanges(changes: SimpleChanges): void {
         // Appearance
         if ('appearance' in changes) {
@@ -72,7 +72,7 @@ export class SearchComponent implements OnChanges, OnInit, OnDestroy {
         }
     }
 
-    
+
     ngOnInit(): void {
         // Subscribe to the search field value changes
         this.searchControl.valueChanges
