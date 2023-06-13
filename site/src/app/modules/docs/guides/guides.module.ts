@@ -6,25 +6,21 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTreeModule } from '@angular/material/tree';
 import { GuidesComponent } from 'app/modules/docs/guides/guides.component';
 import { IntroductionComponent } from 'app/modules/docs/guides/getting-started/introduction/introduction';
-import { PrerequisitesComponent } from 'app/modules/docs/guides/getting-started/prerequisites/prerequisites';
-import { InstallationComponent } from 'app/modules/docs/guides/getting-started/installation/installation';
-import { ServingComponent } from 'app/modules/docs/guides/getting-started/serving/serving';
 import { guidesRoutes } from 'app/modules/docs/guides/guides.routing';
 import { BreadcrumbModule } from 'app/components/breadcrumb/breadcrumb.module';
 import { FluytAlertModule } from 'fluyt/components/alert/alert.module';
 import { FluytNavigationModule } from 'fluyt/components/navigation/navigation.module';
 import { FluytScrollResetModule } from 'fluyt/directives/scroll-reset/scroll-reset.module';
+import { MarkdownModule } from 'ngx-markdown';
 
 @NgModule({
     declarations: [
         GuidesComponent,
         IntroductionComponent,
-        PrerequisitesComponent,
-        InstallationComponent,
-        ServingComponent,
     ],
     imports     : [
         RouterModule.forChild(guidesRoutes),
+        MarkdownModule.forRoot(),
         MatButtonModule,
         MatIconModule,
         MatSidenavModule,

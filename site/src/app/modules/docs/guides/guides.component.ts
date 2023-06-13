@@ -39,24 +39,6 @@ export class GuidesComponent implements OnInit, OnDestroy {
                         title: 'Introduction',
                         type: 'basic',
                         link: '/docs/guides/getting-started/introduction'
-                    },
-                    {
-                        id: 'getting-started.prerequisites',
-                        title: 'Prerequisites',
-                        type: 'basic',
-                        link: '/docs/guides/getting-started/prerequisites'
-                    },
-                    {
-                        id: 'getting-started.installation',
-                        title: 'Installation',
-                        type: 'basic',
-                        link: '/docs/guides/getting-started/installation'
-                    },
-                    {
-                        id: 'getting-started.serving',
-                        title: 'Serving',
-                        type: 'basic',
-                        link: '/docs/guides/getting-started/serving'
                     }
                 ]
             },
