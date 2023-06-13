@@ -2,14 +2,23 @@
 @use "sass:map";
 
 /* Include the core Angular Material styles */
-@include mat.core();
+// TODO(v15): As of v15 mat.legacy-core no longer includes default typography styles.
+//  The following line adds:
+//    1. Default typography styles for all components
+//    2. Styles for typography hierarchy classes (e.g. .mat-headline-1)
+//  If you specify typography styles for the components you use elsewhere, you should delete this line.
+//  If you don't need the default component typographies but still want the hierarchy styles,
+//  you can delete this line and instead use:
+//    `@include mat.legacy-typography-hierarchy(mat.define-legacy-typography-config());`
+@include mat.all-legacy-component-typographies();
+@include mat.legacy-core();
 
 /* Create a base theme without color.
     This will globally set the density and typography for all future color themes. */
-@include mat.all-component-themes((
+@include mat.all-legacy-component-themes((
     color: null,
     density: -2,
-    typography: mat.define-typography-config(
+    typography: mat.define-legacy-typography-config(
         $font-family: theme('fontFamily.sans'),
         $title: mat.define-typography-level(1.25rem, 2rem, 600),
         $body-2: mat.define-typography-level(0.875rem, 1.5rem, 600),
@@ -109,7 +118,7 @@ body .light {
     );
 
     /* Use all-component-colors to only generate the colors */
-    @include mat.all-component-colors($light-theme);
+    @include mat.all-legacy-component-colors($light-theme);
 }
 
 body.dark,
@@ -163,5 +172,5 @@ body .dark {
     );
 
     /* Use all-component-colors to only generate the colors */
-    @include mat.all-component-colors($dark-theme);
+    @include mat.all-legacy-component-colors($dark-theme);
 }

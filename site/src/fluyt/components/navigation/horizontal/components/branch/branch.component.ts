@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { BooleanInput } from '@angular/cdk/coercion';
-import { MatMenu } from '@angular/material/menu';
+import { MatLegacyMenu as MatMenu } from '@angular/material/legacy-menu';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { FluytHorizontalNavigationComponent } from 'fluyt/components/navigation/horizontal/horizontal.component';
