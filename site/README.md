@@ -30,3 +30,4 @@ Run `npm run build` and commit de changes.
 
 ## TODO
   [] - Atualizar versão do angular
+  [] - Adicionar eslint
