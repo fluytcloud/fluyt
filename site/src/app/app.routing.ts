@@ -19,17 +19,32 @@ export const appRoutes: Route[] = [
             },
             // Documentation
             {
-                path: 'docs', children: [
+                path: 'docs',
+                data: {
+                    breadcrumb: 'Documentation',
+                    isAbstract: true,
+                },
+                children: [
 
                     // Changelog
                     {
-                        path: 'changelog', loadChildren: () =>
+                        path: 'changelog',
+                        data: {
+                            breadcrumb: 'Changelog',
+                            isAbstract: true,
+                        },
+                        loadChildren: () =>
                             import('app/modules/docs/changelog/changelog.module').then(m => m.ChangelogModule)
                     },
 
                     // Guides
                     {
-                        path: 'guides', loadChildren: () =>
+                        path: 'guides',
+                        data: {
+                            breadcrumb: 'Guides',
+                            isAbstract: true,
+                        },
+                        loadChildren: () =>
                             import('app/modules/docs/guides/guides.module').then(m => m.GuidesModule)
                     }
                 ]

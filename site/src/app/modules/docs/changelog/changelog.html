@@ -1,19 +1,7 @@
 <div class="flex flex-col flex-auto min-w-0">
 
-    <!-- Header -->
     <div class="flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between p-6 sm:py-8 sm:px-10 border-b bg-card dark:bg-transparent">
-        <div class="flex-1 min-w-0">
-            <!-- Breadcrumbs -->
-            <div class="flex flex-wrap items-center font-medium">
-                <a class="whitespace-nowrap text-primary-500">Documentation</a>
-            </div>
-            <!-- Title -->
-            <div class="mt-2">
-                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">
-                    Changelog
-                </h2>
-            </div>
-        </div>
+        <breadcrumb></breadcrumb>
     </div>
 
     <div class="flex-auto p-6 sm:p-10">
@@ -27,7 +15,8 @@
                     <hr class="mt-6">
                     <ng-container *ngFor="let change of item.changes">
                         <div class="mt-8">
-                            <span class="inline-flex bg-default rounded px-3 py-1 text-secondary font-bold">{{change.type}}</span>
+                            <span
+                                class="inline-flex bg-default rounded px-3 py-1 text-secondary font-bold">{{change.type}}</span>
                             <ul>
                                 <ng-container *ngFor="let listItem of change.list">
                                     <li>{{listItem}}</li>

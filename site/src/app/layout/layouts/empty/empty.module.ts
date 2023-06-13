@@ -1,20 +1,19 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { SharedModule } from 'app/shared/shared.module';
 import { EmptyLayoutComponent } from 'app/layout/layouts/empty/empty.component';
 
 @NgModule({
     declarations: [
-        EmptyLayoutComponent
+        EmptyLayoutComponent,
     ],
-    imports     : [
+    imports: [
         RouterModule,
-        SharedModule
+        CommonModule
     ],
-    exports     : [
+    exports: [
         EmptyLayoutComponent
     ]
 })
-export class EmptyLayoutModule
-{
+export class EmptyLayoutModule {
 }

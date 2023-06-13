@@ -1,0 +1,21 @@
+<div class="flex-1 min-w-0">
+
+    <div class="flex flex-wrap items-center font-medium">
+        <div class="flex items-center whitespace-nowrap" *ngFor="let breadcrumb of breadcrumbs; let i =index;">
+            <mat-icon *ngIf="i !== 0" class="icon-size-5 text-secondary"
+                [svgIcon]="'heroicons_solid:chevron-right'"></mat-icon>
+            <a *ngIf="!breadcrumb.isAbstract" class="text-primary-500 cursor-pointer" [routerLink]="breadcrumb.url">
+                {{ breadcrumb.label }}
+            </a>
+            <a *ngIf="breadcrumb.isAbstract" class="text-secondary">
+                {{ breadcrumb.label }}
+            </a>
+        </div>
+    </div>
+
+    <div class="mt-2">
+        <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">
+            {{labelCurrentRoute}}
+        </h2>
+    </div>
+</div>

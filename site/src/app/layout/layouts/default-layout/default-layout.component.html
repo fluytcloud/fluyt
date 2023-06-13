@@ -37,10 +37,10 @@
         <!-- Components -->
         <div class="flex items-center pl-2 ml-auto space-x-0.5 sm:space-x-2">
             <search [appearance]="'bar'"></search>
-            <button *ngIf="!isScreenSmall" class="fluyt-mat-button-rounded bg-accent-700" mat-flat-button
+            <button  (click)="openGitHub()" *ngIf="!isScreenSmall" class="fluyt-mat-button-rounded bg-accent-700" mat-flat-button
                 [color]="'accent'">
                 <mat-icon class="icon-size-5" [svgIcon]="'feather:github'"></mat-icon>
-                <span class="ml-2">Get Started</span>
+                <span class="ml-2">Repository</span>
             </button>
             <button *ngIf="!isScreenSmall" class="fluyt-mat-button-rounded" mat-flat-button [color]="'primary'">
                 <mat-icon class="icon-size-5" [svgIcon]="'heroicons_outline:download'"></mat-icon>

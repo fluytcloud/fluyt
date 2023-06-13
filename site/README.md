@@ -29,4 +29,4 @@ Run `npm run build` and commit de changes.
 
 
 ## TODO
-  [] - Remover componentes que não estão sendo utilizados.
+  [] - Atualizar versão do angular

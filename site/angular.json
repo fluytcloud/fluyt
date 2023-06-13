@@ -42,14 +42,14 @@
                         ],
                         "stylePreprocessorOptions": {
                             "includePaths": [
-                                "src/core/styles"
+                                "src/fluyt/styles"
                             ]
                         },
                         "styles": [
-                            "src/core/styles/tailwind.scss",
-                            "src/core/styles/themes.scss",
+                            "src/fluyt/styles/tailwind.scss",
+                            "src/fluyt/styles/themes.scss",
                             "src/styles/vendors.scss",
-                            "src/core/styles/main.scss",
+                            "src/fluyt/styles/main.scss",
                             "src/styles/styles.scss",
                             "src/styles/tailwind.scss"
                         ],
