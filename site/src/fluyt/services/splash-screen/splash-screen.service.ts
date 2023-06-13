@@ -5,12 +5,11 @@ import { filter, take } from 'rxjs/operators';
 
 @Injectable()
 export class FluytSplashScreenService {
-    
+
     constructor(
         @Inject(DOCUMENT) private _document: any,
         private _router: Router
     ) {
-        // Hide it on the first NavigationEnd event
         this._router.events
             .pipe(
                 filter(event => event instanceof NavigationEnd),
@@ -21,20 +20,10 @@ export class FluytSplashScreenService {
             });
     }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Public methods
-    // -----------------------------------------------------------------------------------------------------
-
-    /**
-     * Show the splash screen
-     */
     show(): void {
         this._document.body.classList.remove('fluyt-splash-screen-hidden');
     }
 
-    /**
-     * Hide the splash screen
-     */
     hide(): void {
         this._document.body.classList.add('fluyt-splash-screen-hidden');
     }
