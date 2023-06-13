@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { MatButtonModule } from '@angular/material/button';
+import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTreeModule } from '@angular/material/tree';
@@ -11,7 +11,7 @@ import { BreadcrumbModule } from 'app/components/breadcrumb/breadcrumb.module';
 import { FluytAlertModule } from 'fluyt/components/alert/alert.module';
 import { FluytNavigationModule } from 'fluyt/components/navigation/navigation.module';
 import { FluytScrollResetModule } from 'fluyt/directives/scroll-reset/scroll-reset.module';
-import { MarkdownModule } from 'ngx-markdown';
+//TODO: adicionar import { MarkdownModule } from 'ngx-markdown';
 
 @NgModule({
     declarations: [
@@ -20,7 +20,7 @@ import { MarkdownModule } from 'ngx-markdown';
     ],
     imports     : [
         RouterModule.forChild(guidesRoutes),
-        MarkdownModule.forRoot(),
+        // MarkdownModule.forRoot(),
         MatButtonModule,
         MatIconModule,
         MatSidenavModule,

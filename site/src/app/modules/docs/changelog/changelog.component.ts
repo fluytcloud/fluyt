@@ -7,8 +7,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 })
 export class ChangelogComponent {
     changelog: any[] = [
-
-        // TODO: fazer buscar da api do GItHUb
         {
             version: '0.0.1',
             releaseDate: 'Fake jan 16, 2023',

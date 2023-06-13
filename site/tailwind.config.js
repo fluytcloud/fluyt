@@ -389,7 +389,6 @@ const config = {
         verticalAlign: false
     },
     plugins: [
-        require(path.resolve(__dirname, ('src/fluyt/tailwind/plugins/extract-config'))),
         require(path.resolve(__dirname, ('src/fluyt/tailwind/plugins/utilities'))),
         require(path.resolve(__dirname, ('src/fluyt/tailwind/plugins/icon-size'))),
         require(path.resolve(__dirname, ('src/fluyt/tailwind/plugins/theming')))({ themes }),

@@ -3,7 +3,7 @@ import { MatDrawer } from '@angular/material/sidenav';
 import { FluytNavigationItem } from 'fluyt/components/navigation';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { FluytMediaWatcherService } from 'fluyt/services/media-watcher';
+import { BreakpointObserver, BreakpointState, Breakpoints } from '@angular/cdk/layout';
 
 type DrawerConfig = {
     drawerMode: 'side' | 'over';
@@ -26,7 +26,7 @@ export class GuidesComponent implements OnInit, OnDestroy {
 
     constructor(
         private _changeDetectorRef: ChangeDetectorRef,
-        private _fluytMediaWatcherService: FluytMediaWatcherService
+        private _responsive: BreakpointObserver,
     ) {
         this.menuData = [
             {
@@ -46,10 +46,12 @@ export class GuidesComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        this._fluytMediaWatcherService.onMediaChange$
+        this._responsive.observe([
+            Breakpoints.Handset
+        ])
             .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe(({ matchingAliases }) => {
-                this.setDrawerConfig(this.getDrawerConfigByChanges(matchingAliases));
+            .subscribe(result => {
+                this.setDrawerConfig(this.getDrawerConfigByChanges(result.matches));
                 this._changeDetectorRef.markForCheck();
             });
     }
@@ -63,16 +65,16 @@ export class GuidesComponent implements OnInit, OnDestroy {
         this.drawerConfig = config;
     }
 
-    private getDrawerConfigByChanges(matchingAliases: string[]): DrawerConfig {
-        if (matchingAliases.includes('md')) {
+    private getDrawerConfigByChanges(isHandset: boolean): DrawerConfig {
+        if (isHandset) {
             return {
-                drawerMode: 'side',
-                drawerOpened: true
+                drawerMode: 'over',
+                drawerOpened: false
             };
         }
         return {
-            drawerMode: 'over',
-            drawerOpened: false
+            drawerMode: 'side',
+            drawerOpened: true
         };
     }
 

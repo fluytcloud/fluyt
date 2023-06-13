@@ -24,11 +24,7 @@
                         "tsConfig": "tsconfig.app.json",
                         "inlineStyleLanguage": "scss",
                         "allowedCommonJsDependencies": [
-                            "apexcharts",
-                            "highlight.js",
-                            "crypto-js/enc-utf8",
-                            "crypto-js/hmac-sha256",
-                            "crypto-js/enc-base64"
+                            "highlight.js"
                         ],
                         "assets": [
                             "src/favicon-16x16.png",
@@ -137,8 +133,9 @@
             }
         }
     },
-    "defaultProject": "fluyt",
     "cli": {
-        "defaultCollection": "@angular-eslint/schematics"
+      "schematicCollections": [
+          "@angular-eslint/schematics"
+        ]
     }
 }

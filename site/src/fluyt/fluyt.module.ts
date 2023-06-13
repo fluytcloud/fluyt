@@ -1,16 +1,12 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { MATERIAL_SANITY_CHECKS } from '@angular/material/core';
-import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
-import { FluytMediaWatcherModule } from 'fluyt/services/media-watcher/media-watcher.module';
+import { MAT_LEGACY_FORM_FIELD_DEFAULT_OPTIONS as MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/legacy-form-field';
 import { FluytSplashScreenModule } from 'fluyt/services/splash-screen/splash-screen.module';
-import { FluytTailwindConfigModule } from 'fluyt/services/tailwind/tailwind.module';
 import { FluytUtilsModule } from 'fluyt/services/utils/utils.module';
 
 @NgModule({
     imports: [
-        FluytMediaWatcherModule,
         FluytSplashScreenModule,
-        FluytTailwindConfigModule,
         FluytUtilsModule
     ],
     providers: [

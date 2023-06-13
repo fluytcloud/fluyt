@@ -1,5 +1,3 @@
-
-<!-- Navigation -->
 <ng-container *ngIf="isScreenSmall">
     <fluyt-vertical-navigation class="dark bg-gray-900 print:hidden" [mode]="'over'" [name]="'mainNavigation'"
         [navigation]="navigation.default" [opened]="false">
@@ -13,32 +11,26 @@
     </fluyt-vertical-navigation>
 </ng-container>
 
-<!-- Wrapper -->
 <div class="flex flex-col flex-auto w-full min-w-0">
 
-    <!-- Header -->
-    <div class="flex flex-wrap items-center justify-between px-2 sm:px-30 mx-auto 
+    <div class="flex flex-wrap items-center justify-between px-2 mx-auto 
         relative flex-0 w-full h-16 sm:h-20 md:px-6 z-49 shadow bg-card print:hidden">
         <ng-container *ngIf="!isScreenSmall">
-            <!-- Logo -->
             <div class="flex items-center mx-2 lg:mr-8">
                 <img class="flex w-12" src="assets/images/logo/logo.png">
             </div>
-            <!-- Horizontal navigation -->
             <fluyt-horizontal-navigation class="mr-2" [name]="'mainNavigation'"
                 [navigation]="navigation.horizontal"></fluyt-horizontal-navigation>
         </ng-container>
-        <!-- Navigation toggle button -->
         <ng-container *ngIf="isScreenSmall">
             <button mat-icon-button (click)="toggleNavigation('mainNavigation')">
                 <mat-icon [svgIcon]="'heroicons_outline:menu'"></mat-icon>
             </button>
         </ng-container>
-        <!-- Components -->
         <div class="flex items-center pl-2 ml-auto space-x-0.5 sm:space-x-2">
             <search [appearance]="'bar'"></search>
-            <button  (click)="openGitHub()" *ngIf="!isScreenSmall" class="fluyt-mat-button-rounded bg-accent-700" mat-flat-button
-                [color]="'accent'">
+            <button (click)="openGitHub()" *ngIf="!isScreenSmall" class="fluyt-mat-button-rounded bg-accent-700"
+                mat-flat-button [color]="'accent'">
                 <mat-icon class="icon-size-5" [svgIcon]="'feather:github'"></mat-icon>
                 <span class="ml-2">Repository</span>
             </button>
@@ -49,14 +41,10 @@
         </div>
     </div>
 
-    <!-- Content -->
     <div class="flex flex-col flex-auto w-full">
-        <!-- *ngIf="true" hack is required here for router-outlet to work correctly.
-             Otherwise, layout changes won't be registered and the view won't be updated! -->
         <router-outlet *ngIf="true"></router-outlet>
     </div>
 
-    <!-- Footer -->
     <div
         class="relative flex flex-0 items-center w-full h-14 sm:h-20 px-4 md:px-6 z-49 border-t bg-card dark:bg-transparent print:hidden">
         <span class="font-medium text-secondary">Fluyt &copy; {{currentYear}}</span>

@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
-import { FluytMediaWatcherService } from 'fluyt/services/media-watcher';
 import { FluytNavigationService, FluytVerticalNavigationComponent } from 'fluyt/components/navigation';
 import { Navigation } from 'app/layout/layouts/default-layout/navigation/navigation.types';
 import { defaultNavigation, horizontalNavigation } from 'app/layout/layouts/default-layout/navigation/data';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
     selector: 'default-layout',
@@ -20,8 +20,8 @@ export class DefaultLayoutComponent implements OnInit, OnDestroy {
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
     constructor(
-        private _fluytMediaWatcherService: FluytMediaWatcherService,
-        private _fluytNavigationService: FluytNavigationService
+        private _fluytNavigationService: FluytNavigationService,
+        private _responsive: BreakpointObserver,
     ) {
     }
 
@@ -30,10 +30,13 @@ export class DefaultLayoutComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        this._fluytMediaWatcherService.onMediaChange$
+        this._responsive.observe([
+            Breakpoints.Handset,
+            Breakpoints.Tablet,
+        ])
             .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe(({ matchingAliases }) => {
-                this.isScreenSmall = !matchingAliases.includes('md');
+            .subscribe(result => {
+                this.isScreenSmall = result.matches;
             });
     }
 

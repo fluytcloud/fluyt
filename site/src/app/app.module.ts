@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ExtraOptions, PreloadAllModules, RouterModule } from '@angular/router';
-import { MarkdownModule } from 'ngx-markdown';
+// import { MarkdownModule } from 'ngx-markdown';
 import { AppComponent } from 'app/app.component';
 import { appRoutes } from 'app/app.routing';
 import { LayoutModule } from 'app/layout/layout.module';
@@ -26,7 +26,6 @@ const routerConfig: ExtraOptions = {
         FluytModule,
         IconsModule,
         LayoutModule,
-        MarkdownModule.forRoot({}),
         CommonModule,
     ],
     bootstrap: [
