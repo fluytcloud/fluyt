@@ -5,4 +5,9 @@ import { Component, ViewEncapsulation } from '@angular/core';
     templateUrl: './home.component.html',
     encapsulation: ViewEncapsulation.None
 })
-export class LandingHomeComponent { }
+export class LandingHomeComponent {
+
+    public openGitHub(): void {
+        window.open('https://github.com/fluytcloud/fluyt', '_blank');
+    }
+ }

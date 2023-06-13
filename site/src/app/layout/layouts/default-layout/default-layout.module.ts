@@ -5,11 +5,11 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { RouterModule } from '@angular/router';
-import { SearchModule } from 'app/layout/common/search/search.module';
-import { SharedModule } from 'app/shared/shared.module';
+import { SearchModule } from 'app/components/search/search.module';
 import { FluytNavigationModule } from 'fluyt/components/navigation';
 import { DefaultLayoutComponent } from './default-layout.component';
-import { BreadcrumbModule } from 'app/layout/common/breadcrumb/breadcrumb.module';
+import { BreadcrumbModule } from 'app/components/breadcrumb/breadcrumb.module';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
     declarations: [
@@ -24,8 +24,8 @@ import { BreadcrumbModule } from 'app/layout/common/breadcrumb/breadcrumb.module
         MatMenuModule,
         FluytNavigationModule,
         SearchModule,
-        SharedModule,
-        BreadcrumbModule
+        BreadcrumbModule,
+        CommonModule
     ],
     exports: [
         DefaultLayoutComponent

@@ -2,8 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BreadcrumbComponent } from './breadcrumb.component';
 import { MatIconModule } from '@angular/material/icon';
-
-// TODO: lidar com rotas que não rederizam sozinhas
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -15,6 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [
     CommonModule,
     MatIconModule,
+    RouterModule
   ]
 })
 export class BreadcrumbModule { }

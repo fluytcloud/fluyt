@@ -18,7 +18,8 @@ export const guidesRoutes: Route[] = [
             {
                 path: 'getting-started',
                 data: {
-                    breadcrumb: 'Getting Started'
+                    breadcrumb: 'Getting Started',
+                    isAbstract: true,
                 },
                 children: [
                     {

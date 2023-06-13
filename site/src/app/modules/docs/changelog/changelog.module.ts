@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { SharedModule } from 'app/shared/shared.module';
+import { BreadcrumbModule } from 'app/components/breadcrumb/breadcrumb.module';
 import { ChangelogComponent } from 'app/modules/docs/changelog/changelog';
 import { changelogRoutes } from 'app/modules/docs/changelog/changelog.routing';
 
@@ -10,7 +10,7 @@ import { changelogRoutes } from 'app/modules/docs/changelog/changelog.routing';
     ],
     imports: [
         RouterModule.forChild(changelogRoutes),
-        SharedModule
+        BreadcrumbModule,
     ]
 })
 export class ChangelogModule {

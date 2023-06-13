@@ -30,18 +30,16 @@ export class BreadcrumbComponent implements OnInit {
   }
 
   private buildBreadCrumb(route: ActivatedRoute, url: string = '', breadcrumbs: BreadcrumbItem[] = []): BreadcrumbItem[] {
-    const isCurrenteRoute = this.isCurrenteRoute(route);
     let newBreadcrumbs: BreadcrumbItem[] = [...breadcrumbs];
-    if (isCurrenteRoute) {
+    if (route.firstChild && !route.firstChild.firstChild) {
       this.labelCurrentRoute = this.getLabel(route.routeConfig);
+      return newBreadcrumbs;
     }
-    // TODO: refatorar
-    if (!isCurrenteRoute) {
-      const breadcrumbItem = this.getBreadcrumbItem(route, url);
-      newBreadcrumbs = breadcrumbItem.label ? [...breadcrumbs, breadcrumbItem] : [...breadcrumbs];
-      if (route.firstChild) {
-        return this.buildBreadCrumb(route.firstChild, breadcrumbItem.url, newBreadcrumbs);
-      }
+
+    const breadcrumbItem = this.getBreadcrumbItem(route, url);
+    newBreadcrumbs = breadcrumbItem.label ? [...breadcrumbs, breadcrumbItem] : [...breadcrumbs];
+    if (route.firstChild) {
+      return this.buildBreadCrumb(route.firstChild, breadcrumbItem.url, newBreadcrumbs);
     }
 
     return newBreadcrumbs;
@@ -52,6 +50,7 @@ export class BreadcrumbComponent implements OnInit {
     const labelAux = this.getLabel(routeConfig);
     const isClickable = routeConfig && routeConfig.data && routeConfig.data.isClickable;
     const pathAux = routeConfig && routeConfig.data ? routeConfig.path : '';
+    const isAbstract = routeConfig && routeConfig.data ? routeConfig.data.isAbstract : false;
 
     const { label, path } = this.getLabelAndPath(pathAux, labelAux, route);
     const nextUrl = path ? `${url}/${path}` : url;
@@ -60,6 +59,7 @@ export class BreadcrumbComponent implements OnInit {
       label,
       isClickable,
       url: nextUrl,
+      isAbstract
     };
   }
 
@@ -76,9 +76,5 @@ export class BreadcrumbComponent implements OnInit {
       label = route.snapshot.params[paramName];
     }
     return { path, label };
-  }
-
-  private isCurrenteRoute(route: ActivatedRoute): boolean {
-    return this.activatedRoute.url === route.url;
   }
 }

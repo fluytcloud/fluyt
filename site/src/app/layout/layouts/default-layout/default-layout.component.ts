@@ -3,8 +3,8 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { FluytMediaWatcherService } from 'fluyt/services/media-watcher';
 import { FluytNavigationService, FluytVerticalNavigationComponent } from 'fluyt/components/navigation';
-import { Navigation } from 'app/core/navigation/navigation.types';
-import { defaultNavigation, horizontalNavigation } from 'app/core/navigation/data';
+import { Navigation } from 'app/layout/layouts/default-layout/navigation/navigation.types';
+import { defaultNavigation, horizontalNavigation } from 'app/layout/layouts/default-layout/navigation/data';
 
 @Component({
     selector: 'default-layout',
@@ -25,54 +25,32 @@ export class DefaultLayoutComponent implements OnInit, OnDestroy {
     ) {
     }
 
-
-    /**
-     * Getter for current year
-     */
     get currentYear(): number {
         return new Date().getFullYear();
     }
 
-
-
-
     ngOnInit(): void {
-
-        // Subscribe to media changes
         this._fluytMediaWatcherService.onMediaChange$
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe(({ matchingAliases }) => {
-
-                // Check if the screen is small
                 this.isScreenSmall = !matchingAliases.includes('md');
             });
     }
 
-    /**
-     * On destroy
-     */
     ngOnDestroy(): void {
-        // Unsubscribe from all subscriptions
         this._unsubscribeAll.next();
         this._unsubscribeAll.complete();
     }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Public methods
-    // -----------------------------------------------------------------------------------------------------
-
-    /**
-     * Toggle navigation
-     *
-     * @param name
-     */
     toggleNavigation(name: string): void {
-        // Get the navigation
         const navigation = this._fluytNavigationService.getComponent<FluytVerticalNavigationComponent>(name);
 
         if (navigation) {
-            // Toggle the opened status
             navigation.toggle();
         }
+    }
+
+    public openGitHub(): void {
+        window.open('https://github.com/fluytcloud/fluyt', '_blank');
     }
 }

@@ -21,7 +21,8 @@ export const appRoutes: Route[] = [
             {
                 path: 'docs',
                 data: {
-                    breadcrumb: 'Documentation'
+                    breadcrumb: 'Documentation',
+                    isAbstract: true,
                 },
                 children: [
 
@@ -29,7 +30,8 @@ export const appRoutes: Route[] = [
                     {
                         path: 'changelog',
                         data: {
-                            breadcrumb: 'Changelog'
+                            breadcrumb: 'Changelog',
+                            isAbstract: true,
                         },
                         loadChildren: () =>
                             import('app/modules/docs/changelog/changelog.module').then(m => m.ChangelogModule)
@@ -39,7 +41,8 @@ export const appRoutes: Route[] = [
                     {
                         path: 'guides',
                         data: {
-                            breadcrumb: 'Guides'
+                            breadcrumb: 'Guides',
+                            isAbstract: true,
                         },
                         loadChildren: () =>
                             import('app/modules/docs/guides/guides.module').then(m => m.GuidesModule)

@@ -1,10 +1,13 @@
 <div class="flex-1 min-w-0">
 
     <div class="flex flex-wrap items-center font-medium">
-        <div class="flex items-center ml-1 whitespace-nowrap" *ngFor="let breadcrumb of breadcrumbs; let i =index;">
+        <div class="flex items-center whitespace-nowrap" *ngFor="let breadcrumb of breadcrumbs; let i =index;">
             <mat-icon *ngIf="i !== 0" class="icon-size-5 text-secondary"
                 [svgIcon]="'heroicons_solid:chevron-right'"></mat-icon>
-            <a class="ml-1 text-primary-500" [routerLink]="breadcrumb.url">
+            <a *ngIf="!breadcrumb.isAbstract" class="text-primary-500 cursor-pointer" [routerLink]="breadcrumb.url">
+                {{ breadcrumb.label }}
+            </a>
+            <a *ngIf="breadcrumb.isAbstract" class="text-secondary">
                 {{ breadcrumb.label }}
             </a>
         </div>
