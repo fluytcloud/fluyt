@@ -8,7 +8,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod --output-path ../docs",
+    "build": "ng build --output-path ../docs",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint"

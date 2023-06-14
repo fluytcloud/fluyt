@@ -59,8 +59,8 @@ export class MenuService {
     const reports = new Menu("catalog", "Catalog", "apps");
 
     reports.addChildren("Templates", [
-      new Menu("generate", "Criar projeto"),
-      new Menu("template", "Cadastro")
+      new Menu("template", "Cadastro"),
+      new Menu("generate", "Criar projeto")
     ]);
 
     return reports;

@@ -1,10 +1,11 @@
 export const environment = {
   production: true,
-  keycloak: 'https://auth.fluytcloud.com/',
-  companies: 'https://backend.fluytcloud.com/companies',
-  auth: 'https://backend.fluytcloud.com/auth',
-  admin_customer: 'https://backend.fluytcloud.com/admin/customer',
-  system_v1: "https://backend.fluytcloud.com/api/v1",
-  public_v1: "https://backend.fluytcloud.com/api/public/v1",
-  websocket: 'wss://backend.fluytcloud.com'
+  keycloak: 'http://localhost:18080/',
+  companies: 'http://localhost:8080/companies',
+  organizations: 'http://localhost:8080/organizations',
+  auth: 'http://localhost:8080/auth',
+  admin_customer: 'http://localhost:8080/api/admin/customer',
+  system_v1: "http://localhost:8080/api/v1",
+  public_v1: "http://localhost:8080/api/public/v1",
+  websocket: 'ws://localhost:8080'
 };
